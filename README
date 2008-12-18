@@ -1,6 +1,17 @@
 Silverlight.FX
+Copyright (c) 2008, Nikhil Kothari (http://www.nikhilk.net)
+All Rights Reserved.
+
+Silverlight.FX is licensed under the BSD License. See License.txt within
+the project sources for more information.
+
 ------------------------------------------------------------------------------
 
-Silverlight.FX is an application framework on top of Silverlight 2. You can
-read more about this framework and its features on various blog posts at
-http://www.nikhilk.net until it has a dedicated project page.
+About Silverlight.FX
+
+Silverlight.FX is an application framework for building Rich Internet
+Applications based on Silverlight 2.
+
+You can read more about this framework and its features on various blog
+posts on http://www.nikhilk.net. Its dedicated project page will be at
+http://projects.nikhilk.net/SilverlightFX.
