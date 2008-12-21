@@ -75,6 +75,18 @@
     <Compile Include="UserInterface\Form.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\FormPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\FormPanelLabelAlignment.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\FormPanelLabelPosition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\FormPanelSpacing.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\FormResult.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,6 +94,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\HStackPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Label.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Screen.cs">
