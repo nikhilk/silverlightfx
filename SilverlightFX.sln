@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Framework", "Framework", "{AD78F638-DC18-44E3-AC5A-4E050DAEAE1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "src\Server\Services\Services.csproj", "{32824411-499F-4D62-8DF5-ABF44742D61A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32824411-499F-4D62-8DF5-ABF44742D61A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32824411-499F-4D62-8DF5-ABF44742D61A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32824411-499F-4D62-8DF5-ABF44742D61A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32824411-499F-4D62-8DF5-ABF44742D61A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{32824411-499F-4D62-8DF5-ABF44742D61A} = {AD78F638-DC18-44E3-AC5A-4E050DAEAE1E}
+	EndGlobalSection
+EndGlobal
