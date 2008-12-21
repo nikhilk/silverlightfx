@@ -48,6 +48,15 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Applications\ServiceCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Applications\Theme.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Applications\XApplication.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data\BooleanInverter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -61,6 +70,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\VisibilityConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Form.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\FormResult.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Screen.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Window.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_System\Collections\IEditableCollection.cs">

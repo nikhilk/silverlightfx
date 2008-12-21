@@ -26,3 +26,12 @@ using System.Windows.Markup;
 [assembly: AssemblyFileVersion("0.1.0.0")]
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
+
+[assembly: XmlnsPrefix("clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX", "fxapp")]
+[assembly: XmlnsDefinition("clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX", "SilverlightFX.Applications")]
+
+[assembly: XmlnsPrefix("clr-namespace:SilverlightFX.Data;assembly=SilverlightFX", "fxdata")]
+[assembly: XmlnsDefinition("clr-namespace:SilverlightFX.Data;assembly=SilverlightFX", "SilverlightFX.Data")]
+
+[assembly: XmlnsPrefix("clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX", "fxui")]
+[assembly: XmlnsDefinition("clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX", "SilverlightFX.UserInterface")]
