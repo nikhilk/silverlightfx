@@ -78,10 +78,28 @@
     <Compile Include="UserInterface\FormResult.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\HorizontalFlow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\HStackPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\Screen.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\TilePanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\VerticalFlow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\VStackPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\Window.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\XGrid.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_System\Collections\IEditableCollection.cs">

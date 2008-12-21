@@ -24,8 +24,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-using NativeGrid = System.Windows.Controls.Grid;
-
 namespace SilverlightFX.UserInterface {
 
     // TODO: Add visual states for empty and for main window
@@ -34,7 +32,7 @@ namespace SilverlightFX.UserInterface {
     /// <summary>
     /// Represents the root visual of an application.
     /// </summary>
-    [TemplatePart(Name = "RootElement", Type = typeof(NativeGrid))]
+    [TemplatePart(Name = "RootElement", Type = typeof(Grid))]
     [TemplatePart(Name = "WindowPresenter", Type = typeof(ContentPresenter))]
     public sealed class Screen : ContentControl {
 
@@ -45,7 +43,7 @@ namespace SilverlightFX.UserInterface {
             DependencyProperty.Register("FormBackground", typeof(Brush), typeof(Screen), null);
 
         private ContentPresenter _windowPresenter;
-        private NativeGrid _rootElement;
+        private Grid _rootElement;
 
         private Window _mainWindow;
         private Form _currentForm;
@@ -82,7 +80,7 @@ namespace SilverlightFX.UserInterface {
         public override void OnApplyTemplate() {
             base.OnApplyTemplate();
 
-            _rootElement = GetTemplateChild("RootElement") as NativeGrid;
+            _rootElement = GetTemplateChild("RootElement") as Grid;
             _windowPresenter = GetTemplateChild("WindowPresenter") as ContentPresenter;
 
             if (_mainWindow != null) {
@@ -99,11 +97,11 @@ namespace SilverlightFX.UserInterface {
                 _mainWindow.IsEnabled = false;
             }
 
-            NativeGrid overlayElement = null;
+            Grid overlayElement = null;
 
             Brush overlayBrush = FormBackground;
             if (overlayBrush != null) {
-                overlayElement = new NativeGrid();
+                overlayElement = new Grid();
                 overlayElement.Background = overlayBrush;
             }
 
