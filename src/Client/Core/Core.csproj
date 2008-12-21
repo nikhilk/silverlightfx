@@ -48,6 +48,160 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\BooleanInverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\CurrencyFormatter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\ImageLoader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\StringFormatter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data\VisibilityConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Collections\IEditableCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Collections\IIndexableCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Collections\IPageableCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Collections\IPredicate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\ComponentModel\CancelEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\ComponentModel\Model.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\ComponentModel\TimeSpanTypeConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\ComponentModel\TypeTypeConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Controls\AnimatedPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Controls\IAdornableControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Controls\LayoutEasing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Controls\View.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Data\DataboundControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Data\DataCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Data\DataItemContentControl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Data\DataList.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Data\IDataSource.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\FramworkElementExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\ColorAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\DoubleAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\EasingFunctions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\Effect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\EffectCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\EffectDirection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\EffectEasing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\IAnimationFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\ProceduralAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\ProceduralAnimationController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\ProceduralAnimationEasingFunction.cs" />
+    <Compile Include="_System\Presentation\Glitz\ProceduralAnimationSequence.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\ProceduralAnimationSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\ProceduralAnimationStopState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\Transition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Glitz\TweenAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\IAttachedObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Input\DelegateCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Input\ICommandContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Interactivity\Behavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Interactivity\BehaviorCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Interactivity\ScriptTriggerAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Interactivity\Trigger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Interactivity\TriggerAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Interactivity\TriggerActionCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Interactivity\TriggerActionTypeConverter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Interactivity\TriggerCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\Parameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="_System\Presentation\ParameterCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" />
