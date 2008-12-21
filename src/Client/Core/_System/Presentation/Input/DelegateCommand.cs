@@ -21,7 +21,8 @@ namespace System.Windows.Input {
     /// </summary>
     public class DelegateCommand : ICommand {
 
-        private Action<object> _commandAction;
+        private Action<object> _commandActionWithParameter;
+        private Action _commandAction;
         private bool _canExecute;
 
         private EventHandler _changedHandler;
@@ -31,6 +32,27 @@ namespace System.Windows.Input {
         /// </summary>
         protected DelegateCommand() {
             _canExecute = true;
+        }
+
+        /// <summary>
+        /// Initializes a command with the associated action.
+        /// </summary>
+        /// <param name="commandAction">The action to invoke when the command is executed.</param>
+        public DelegateCommand(Action commandAction)
+            : this(commandAction, true) {
+        }
+
+        /// <summary>
+        /// Initializes a command with the associated action.
+        /// </summary>
+        /// <param name="commandAction">The action to invoke when the command is executed.</param>
+        /// <param name="canExecute">The initial state of the command.</param>
+        public DelegateCommand(Action commandAction, bool canExecute) {
+            if (commandAction == null) {
+                throw new ArgumentNullException("commandAction");
+            }
+            _commandAction = commandAction;
+            _canExecute = canExecute;
         }
 
         /// <summary>
@@ -50,7 +72,7 @@ namespace System.Windows.Input {
             if (commandAction == null) {
                 throw new ArgumentNullException("commandAction");
             }
-            _commandAction = commandAction;
+            _commandActionWithParameter = commandAction;
             _canExecute = canExecute;
         }
 
@@ -60,7 +82,10 @@ namespace System.Windows.Input {
         /// <param name="parameter">Any parameter information associated with the command.</param>
         protected virtual void Execute(object parameter) {
             if (_commandAction != null) {
-                _commandAction(parameter);
+                _commandAction();
+            }
+            else if (_commandActionWithParameter != null) {
+                _commandActionWithParameter(parameter);
             }
         }
 
