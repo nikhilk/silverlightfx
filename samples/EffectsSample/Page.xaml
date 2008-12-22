@@ -1,0 +1,268 @@
+﻿<UserControl x:Class="EffectsSample.Page"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:fxeffects="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
+  xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX">
+  <UserControl.Resources>
+    <Style x:Key="headerText" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="Verdana" />
+      <Setter Property="FontSize" Value="20" />
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style x:Key="staticText" TargetType="TextBlock">
+      <Setter Property="FontFamily" Value="Verdana" />
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="HorizontalAlignment" Value="Center" />
+    </Style>
+  </UserControl.Resources>
+
+  <StackPanel Margin="20" Background="White">
+    <!-- Effects -->
+
+    <TextBlock Style="{StaticResource headerText}">Effects</TextBlock>
+
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="25*" />
+        <ColumnDefinition Width="25*" />
+        <ColumnDefinition Width="25*" />
+        <ColumnDefinition Width="25*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="220*" />
+        <RowDefinition Height="220*" />
+      </Grid.RowDefinitions>
+    
+      <Grid Grid.Column="0" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxeffects:Fade TargetName="fadeImage" FadeOpacity="0" Duration="00:00:01" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Image Source="/Silverlight.png" x:Name="fadeImage" />
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Fade</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxeffects:Highlight TargetName="highlightImage" HighlightColor="Yellow" Duration="00:00:01" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Border x:Name="highlightImage" HorizontalAlignment="Center" VerticalAlignment="Center">
+          <Image Source="/SilverlightT.png" />
+        </Border>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Highlight</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="2" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxeffects:Shake ShakeDistance="20" TargetName="shakeImage" Duration="00:00:1" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+          <Image x:Name="shakeImage" Source="/Silverlight.png">
+            <Image.RenderTransform>
+              <TranslateTransform />
+            </Image.RenderTransform>
+          </Image>
+        </Border>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Shake</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxeffects:Pulsate FadeOpacity="0.25" TargetName="pulsateImage" Duration="00:00:1" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Image x:Name="pulsateImage" Source="/Silverlight.png" />
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Pulsate</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="0" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxeffects:Spin TargetName="spinImage" SpinAngle="360" Duration="00:00:01" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Image Source="/Silverlight.png" x:Name="spinImage" RenderTransformOrigin="0.5,0.5">
+          <Image.RenderTransform>
+            <RotateTransform />
+          </Image.RenderTransform>
+        </Image>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Spin</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="1" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxeffects:Resize TargetName="resizeImage" ScaleXRatio="0.5" ScaleYRatio="0.5" Duration="00:00:01" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Image Source="/Silverlight.png" x:Name="resizeImage" RenderTransformOrigin="0.5,0.5">
+          <Image.RenderTransform>
+            <ScaleTransform />
+          </Image.RenderTransform>
+        </Image>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Resize</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="2" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxeffects:Move TargetName="moveImage" HorizontalMovement="20" Duration="00:00:01" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Image Source="/Silverlight.png" x:Name="moveImage" RenderTransformOrigin="0.5,0.5">
+          <Image.RenderTransform>
+            <TranslateTransform />
+          </Image.RenderTransform>
+        </Image>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Move</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="3" Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxeffects:CompositeEffect AutoReverse="True" Composition="Parallel">
+              <fxeffects:Move TargetName="compositeImage" HorizontalMovement="50" Duration="00:00:01" Easing="QuadraticInOut" />
+              <fxeffects:Resize TargetName="compositeImage" ScaleXRatio="0.5" ScaleYRatio="0.5" Duration="00:00:01" Easing="QuadraticInOut" />
+              <fxeffects:Spin TargetName="compositeImage" SpinAngle="360" Duration="00:00:01" Easing="QuadraticInOut" />
+              <fxeffects:Fade TargetName="compositeImage" FadeOpacity="0.5" Duration="00:00:01" Easing="QuadraticInOut" />
+            </fxeffects:CompositeEffect>
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Image Source="/Silverlight.png" x:Name="compositeImage" RenderTransformOrigin="0.5,0.5">
+          <Image.RenderTransform>
+            <TransformGroup>
+              <ScaleTransform />
+              <RotateTransform />
+              <TranslateTransform />
+            </TransformGroup>
+          </Image.RenderTransform>
+        </Image>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Composite</TextBlock>
+      </Grid>
+
+    </Grid>
+
+    <!-- Transitions -->
+    
+    <TextBlock Style="{StaticResource headerText}">Transitions</TextBlock>
+
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="25*" />
+        <ColumnDefinition Width="25*" />
+        <ColumnDefinition Width="25*" />
+        <ColumnDefinition Width="25*" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="220*" />
+      </Grid.RowDefinitions>
+      
+      <Grid Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxtransitions:CrossFade TargetName="crossFadeContainer" Duration="00:00:1" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Grid x:Name="crossFadeContainer">
+          <Image Source="/MS.net.png" />
+          <Image Source="/Silverlight.png" />
+        </Grid>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Cross-Fade</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="1" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxtransitions:Blinds Mode="Up" TargetName="blindsContainer" Duration="00:00:1" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Grid x:Name="blindsContainer">
+          <Image Source="/MS.net.png" />
+          <Image Source="/Silverlight.png" />
+        </Grid>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Blinds</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="2" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxtransitions:Slide Mode="Left" TargetName="horzSlideContainer" Duration="00:00:1" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Grid x:Name="horzSlideContainer">
+          <Image Source="/MS.net.png" />
+          <Image Source="/Silverlight.png" />
+        </Grid>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Slide</TextBlock>
+      </Grid>
+
+      <Grid Grid.Column="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" Cursor="Hand">
+        <Grid.RowDefinitions>
+          <RowDefinition Height="180" />
+          <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        <fxui:Interaction.Behaviors>
+          <fxui:ClickEffect>
+            <fxtransitions:Flip TargetName="flipContainer" Duration="00:00:1" Easing="QuadraticInOut" />
+          </fxui:ClickEffect>
+        </fxui:Interaction.Behaviors>
+        <Grid x:Name="flipContainer">
+          <Image Source="/MS.net.png" />
+          <Image Source="/Silverlight.png" />
+        </Grid>
+        <TextBlock Style="{StaticResource staticText}" Grid.Row="1">Flip</TextBlock>
+      </Grid>
+    </Grid>
+  </StackPanel>
+</UserControl>

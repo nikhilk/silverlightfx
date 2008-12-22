@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{1C2C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{38EE0482-5653-49CE-9C94-EBF490218D23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectsSample", "EffectsSample\EffectsSample.csproj", "{AC2DE467-846C-4621-AFEC-FF35DA1F8062}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +19,16 @@ Global
 		{E333259B-1F2E-473E-90D4-7306D3E283B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E333259B-1F2E-473E-90D4-7306D3E283B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E333259B-1F2E-473E-90D4-7306D3E283B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2DE467-846C-4621-AFEC-FF35DA1F8062}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2DE467-846C-4621-AFEC-FF35DA1F8062}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2DE467-846C-4621-AFEC-FF35DA1F8062}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2DE467-846C-4621-AFEC-FF35DA1F8062}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E333259B-1F2E-473E-90D4-7306D3E283B4} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
+		{AC2DE467-846C-4621-AFEC-FF35DA1F8062} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
 	EndGlobalSection
 EndGlobal
