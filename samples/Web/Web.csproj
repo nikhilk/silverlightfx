@@ -11,7 +11,7 @@
     <RootNamespace>Web</RootNamespace>
     <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <SilverlightApplicationList>{AC2DE467-846C-4621-AFEC-FF35DA1F8062}|..\EffectsSample\EffectsSample.csproj|Effects|False,{E333259B-1F2E-473E-90D4-7306D3E283B4}|..\EffectControl\EffectControl.csproj|Effects|False,{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}|..\TaskList\TaskList.csproj|TaskList|False,{783F6A15-E472-41A9-903C-105DC10F9BF0}|..\ThemeSample\ThemeSample.csproj|Themes|False,{39685CDF-0CB4-424F-BD0A-100AA220CB79}|..\Experiments\Experiments.csproj|Experiments|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{AC2DE467-846C-4621-AFEC-FF35DA1F8062}|..\EffectsSample\EffectsSample.csproj|Effects|False,{E333259B-1F2E-473E-90D4-7306D3E283B4}|..\EffectControl\EffectControl.csproj|Effects|False,{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}|..\TaskList\TaskList.csproj|TaskList|False,{783F6A15-E472-41A9-903C-105DC10F9BF0}|..\ThemeSample\ThemeSample.csproj|Themes|False,{39685CDF-0CB4-424F-BD0A-100AA220CB79}|..\Experiments\Experiments.csproj|Experiments|False,{A9A30F66-5957-4467-B206-3AC96714EAB8}|..\WeatherWidget\WeatherWidget.csproj|Weather|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -80,6 +80,56 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Experiments\CityService.ashx" />
+    <Content Include="Weather\Images\0.png" />
+    <Content Include="Weather\Images\01.png" />
+    <Content Include="Weather\Images\02.png" />
+    <Content Include="Weather\Images\03.png" />
+    <Content Include="Weather\Images\04.png" />
+    <Content Include="Weather\Images\05.png" />
+    <Content Include="Weather\Images\06.png" />
+    <Content Include="Weather\Images\07.png" />
+    <Content Include="Weather\Images\08.png" />
+    <Content Include="Weather\Images\09.png" />
+    <Content Include="Weather\Images\10.png" />
+    <Content Include="Weather\Images\11.png" />
+    <Content Include="Weather\Images\12.png" />
+    <Content Include="Weather\Images\13.png" />
+    <Content Include="Weather\Images\14.png" />
+    <Content Include="Weather\Images\15.png" />
+    <Content Include="Weather\Images\16.png" />
+    <Content Include="Weather\Images\17.png" />
+    <Content Include="Weather\Images\18.png" />
+    <Content Include="Weather\Images\19.png" />
+    <Content Include="Weather\Images\20.png" />
+    <Content Include="Weather\Images\21.png" />
+    <Content Include="Weather\Images\22.png" />
+    <Content Include="Weather\Images\23.png" />
+    <Content Include="Weather\Images\24.png" />
+    <Content Include="Weather\Images\25.png" />
+    <Content Include="Weather\Images\26.png" />
+    <Content Include="Weather\Images\27.png" />
+    <Content Include="Weather\Images\28.png" />
+    <Content Include="Weather\Images\29.png" />
+    <Content Include="Weather\Images\30.png" />
+    <Content Include="Weather\Images\31.png" />
+    <Content Include="Weather\Images\32.png" />
+    <Content Include="Weather\Images\33.png" />
+    <Content Include="Weather\Images\34.png" />
+    <Content Include="Weather\Images\35.png" />
+    <Content Include="Weather\Images\36.png" />
+    <Content Include="Weather\Images\37.png" />
+    <Content Include="Weather\Images\38.png" />
+    <Content Include="Weather\Images\39.png" />
+    <Content Include="Weather\Images\40.png" />
+    <Content Include="Weather\Images\41.png" />
+    <Content Include="Weather\Images\42.png" />
+    <Content Include="Weather\Images\43.png" />
+    <Content Include="Weather\Images\44.png" />
+    <Content Include="Weather\Images\45.png" />
+    <Content Include="Weather\Images\46.png" />
+    <Content Include="Weather\Images\47.png" />
+    <Content Include="Weather\WeatherSample.aspx" />
+    <Content Include="Weather\WeatherWidget.xap" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v9.0\WebApplications\Microsoft.WebApplication.targets" />

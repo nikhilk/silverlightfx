@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeSample", "ThemeSample\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Experiments", "Experiments\Experiments.csproj", "{39685CDF-0CB4-424F-BD0A-100AA220CB79}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherWidget", "WeatherWidget\WeatherWidget.csproj", "{A9A30F66-5957-4467-B206-3AC96714EAB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{39685CDF-0CB4-424F-BD0A-100AA220CB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39685CDF-0CB4-424F-BD0A-100AA220CB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39685CDF-0CB4-424F-BD0A-100AA220CB79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A30F66-5957-4467-B206-3AC96714EAB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A30F66-5957-4467-B206-3AC96714EAB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A30F66-5957-4467-B206-3AC96714EAB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A30F66-5957-4467-B206-3AC96714EAB8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{783F6A15-E472-41A9-903C-105DC10F9BF0} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
 		{39685CDF-0CB4-424F-BD0A-100AA220CB79} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
 		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A} = {38EE0482-5653-49CE-9C94-EBF490218D23}
+		{A9A30F66-5957-4467-B206-3AC96714EAB8} = {38EE0482-5653-49CE-9C94-EBF490218D23}
 	EndGlobalSection
 EndGlobal
