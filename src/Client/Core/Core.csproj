@@ -237,6 +237,9 @@
     <Compile Include="UserInterface\MouseTrigger.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\Page.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\Screen.cs">
       <SubType>Code</SubType>
     </Compile>
