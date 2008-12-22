@@ -1,0 +1,108 @@
+﻿<fxapp:Theme
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+  xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <fxapp:Theme.Resources>
+
+    <sys:String x:Key="uiFontFamily">Verdana</sys:String>
+    <sys:Int32 x:Key="uiFontSize">11</sys:Int32>
+
+    <Style x:Key="titleText" TargetType="TextBlock">
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Foreground" Value="#003399" />
+    </Style>
+    
+    <Style x:Key="watermarkText" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="#AAAAAA" />
+    </Style>
+    
+    <Style x:Key="taskNameText" TargetType="TextBlock">
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <Style x:Key="taskDateText" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="#808080" />
+    </Style>
+    
+    <Style x:Key="taskCompleteButton" TargetType="Button">
+      <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="Width" Value="16" />
+      <Setter Property="Height" Value="16" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Image Source="/Themes/Done.png" />
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="taskDeleteButton" TargetType="Button">
+      <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="Width" Value="16" />
+      <Setter Property="Height" Value="16" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Image Source="/Themes/Delete.png" />
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="adornableTextBox" TargetType="fxui:XTextBox">
+      <Setter Property="AcceptsReturn" Value="false" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="fxui:XTextBox">
+            <Grid x:Name="RootElement">
+              <Grid.Resources>
+                <Storyboard x:Key="Normal State">
+                  <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Opacity">
+                    <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="0"/>
+                  </DoubleAnimationUsingKeyFrames>
+                  <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AdornerLayer" Storyboard.TargetProperty="Opacity">
+                    <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                  </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+                <Storyboard x:Key="Focused State">
+                  <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Opacity">
+                    <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                  </DoubleAnimationUsingKeyFrames>
+                  <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AdornerLayer" Storyboard.TargetProperty="Opacity">
+                    <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                  </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+              </Grid.Resources>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Border x:Name="ContentElement"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Padding="4,3,4,3"
+                CornerRadius="1" Grid.ColumnSpan="3" />
+              <Grid x:Name="AdornerLayer" Margin="4.5,3.5,4,3" IsHitTestVisible="false" Visibility="Collapsed" />
+              <Grid x:Name="GlyphPresenter" Grid.Column="1" Margin="0,1.5,2,1.5" Visibility="Collapsed" />
+              <Grid x:Name="ButtonPresenter" Grid.Column="2" Margin="0,1.5,2,1.5" Visibility="Collapsed" />
+              <Grid x:Name="FocusVisual" Grid.ColumnSpan="3" IsHitTestVisible="False" Opacity="0">
+                <Rectangle RadiusX="1" RadiusY="1" Stroke="#FFFFFFFF" StrokeThickness="1" />
+                <Rectangle Margin="0.75" RadiusX="1" RadiusY="1"
+                  StrokeDashCap="Square" Stroke="#80FFFFFF" StrokeThickness="1" />
+              </Grid>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    
+  </fxapp:Theme.Resources>
+
+</fxapp:Theme>

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EffectsSample", "EffectsSam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{B9DD44C5-26A7-4AB4-987C-49F0309C6C8E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskList", "TaskList\TaskList.csproj", "{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{B9DD44C5-26A7-4AB4-987C-49F0309C6C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9DD44C5-26A7-4AB4-987C-49F0309C6C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9DD44C5-26A7-4AB4-987C-49F0309C6C8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,5 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E333259B-1F2E-473E-90D4-7306D3E283B4} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
 		{AC2DE467-846C-4621-AFEC-FF35DA1F8062} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
+		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A} = {38EE0482-5653-49CE-9C94-EBF490218D23}
 	EndGlobalSection
 EndGlobal
