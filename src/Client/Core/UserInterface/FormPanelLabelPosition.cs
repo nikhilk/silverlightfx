@@ -20,7 +20,7 @@
 
 using System;
 
-namespace Silverlight.FX.UserInterface {
+namespace SilverlightFX.UserInterface {
 
     /// <summary>
     /// Represents the position of a Label element with respect to its

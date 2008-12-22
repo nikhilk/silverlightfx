@@ -17,7 +17,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace Silverlight.FX.UserInterface {
+namespace SilverlightFX.UserInterface {
 
     /// <summary>
     /// An extended TextBox control with adornment capabilities.

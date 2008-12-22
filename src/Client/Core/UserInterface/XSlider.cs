@@ -18,7 +18,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-namespace Silverlight.FX.UserInterface {
+namespace SilverlightFX.UserInterface {
 
     /// <summary>
     /// A extended Slider control with support for

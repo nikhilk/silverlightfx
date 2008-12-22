@@ -20,7 +20,7 @@
 
 using System;
 
-namespace Silverlight.FX.UserInterface {
+namespace SilverlightFX.UserInterface {
 
     /// <summary>
     /// Represents the alignment of labels within a FormPanel.

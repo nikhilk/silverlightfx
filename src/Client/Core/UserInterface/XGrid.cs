@@ -14,7 +14,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Silverlight.FX.UserInterface {
+namespace SilverlightFX.UserInterface {
 
     /// <summary>
     /// An extended Grid control with more convenient syntax for defining its

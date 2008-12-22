@@ -20,7 +20,7 @@
 
 using System;
 
-namespace Silverlight.FX.UserInterface {
+namespace SilverlightFX.UserInterface {
 
     /// <summary>
     /// Represents the spacing style between groups of labels and associated

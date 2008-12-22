@@ -24,7 +24,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Silverlight.FX.UserInterface {
+namespace SilverlightFX.UserInterface {
 
     /// <summary>
     /// A Panel control with behavior to automatically layout its
