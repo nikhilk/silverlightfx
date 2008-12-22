@@ -72,6 +72,60 @@
     <Compile Include="Data\VisibilityConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\Actions\GoToState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\InvokeMemberAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\InvokeMethod.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\InvokeScript.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\Navigate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\PlayStoryboard.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\SetFocus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\SetProperty.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\SetVisibility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\StopStoryboard.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Actions\StoryboardAction.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\AutoCommit.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\AutoComplete.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\AutoCompleteCompletedEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\AutoCompleteCompletingEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\CheckBoxTrigger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ClickTrigger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Command.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\ContentCollection.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -82,6 +136,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\ContentView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\EventTrigger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\EventTriggerBase.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Form.cs">
@@ -108,10 +168,22 @@
     <Compile Include="UserInterface\HStackPanel.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\Interaction.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\Label.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\MouseTrigger.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\Screen.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\TextFilter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\TextFilterType.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\TilePanel.cs">
@@ -121,6 +193,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\VStackPanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Watermark.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Window.cs">
