@@ -4,21 +4,21 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3C606440-9DF0-4A72-A08D-23B3F20F67C4}</ProjectGuid>
+    <ProjectGuid>{6F2D06F0-B548-4D89-8628-A7EB3BE4A8BE}</ProjectGuid>
     <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FlickrTiles</RootNamespace>
-    <AssemblyName>FlickrTiles</AssemblyName>
+    <RootNamespace>AmazonSearch</RootNamespace>
+    <AssemblyName>AmazonSearch</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <SilverlightApplication>false</SilverlightApplication>
     <SupportedCultures>
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>FlickrTiles.xap</XapFilename>
+    <XapFilename>AmazonSearch.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>FlickrTiles.FlickrTilesApplication</SilverlightAppEntry>
+    <SilverlightAppEntry>AmazonSearch.App</SilverlightAppEntry>
     <TestPageFileName>TestPage.html</TestPageFileName>
     <CreateTestPage>false</CreateTestPage>
     <ValidateXaml>true</ValidateXaml>
@@ -60,48 +60,49 @@
     <Reference Include="System.Xml.Linq, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Data\FlickrService.cs" />
-    <Compile Include="Data\Photo.cs" />
-    <Compile Include="Data\IPhotoGallery.cs" />
-    <Compile Include="FlickrTilesApplication.xaml.cs">
-      <DependentUpon>FlickrTilesApplication.xaml</DependentUpon>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ImageLoader.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainWindowModel.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PhotoImage.cs" />
-    <Compile Include="Views\Progress.xaml.cs">
+    <Compile Include="Data\Catalog.cs" />
+    <Compile Include="Data\ICatalog.cs" />
+    <Compile Include="Data\Product.cs" />
+    <Compile Include="Controls\Progress.xaml.cs">
       <DependentUpon>Progress.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\ProductView.xaml.cs">
+      <DependentUpon>ProductView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchView.model.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SearchView.xaml.cs">
+      <DependentUpon>SearchView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="FlickrTilesApplication.xaml">
+    <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Content Include="Themes\Default\Theme.xaml">
+    <Page Include="Controls\Progress.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
-    </Content>
-    <Page Include="Views\MainWindow.xaml">
+    </Page>
+    <Page Include="Views\ProductView.xaml">
       <SubType>Page</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
-    <Page Include="Views\Progress.xaml">
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    <Page Include="Views\SearchView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Flickr.png" />
-    <Content Include="Assets\FlickrIcon.png" />
+    <Resource Include="Views\Amazon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
