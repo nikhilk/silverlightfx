@@ -1,0 +1,6 @@
+Silverlight.FX TODO List
+==============================================================================
+
+- Control style pack (eg. for adornable textbox)
+- Application template
+- Item template
