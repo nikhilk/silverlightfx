@@ -38,34 +38,34 @@ namespace SilverlightFX.UserInterface {
         /// Represents the Child property of a Border.
         /// </summary>
         public static readonly DependencyProperty ChildProperty =
-            DependencyProperty.Register("Child", typeof(FrameworkElement), typeof(Border),
+            DependencyProperty.Register("Child", typeof(FrameworkElement), typeof(XBorder),
                                         new PropertyMetadata(OnBorderChildPropertyChanged));
 
         /// <summary>
         /// Represents the ClipChild property of a Border.
         /// </summary>
         public static readonly DependencyProperty ClipChildProperty =
-            DependencyProperty.Register("ClipChild", typeof(bool), typeof(Border), null);
+            DependencyProperty.Register("ClipChild", typeof(bool), typeof(XBorder), null);
 
         /// <summary>
         /// Represents the CornerRadius property of a Border.
         /// </summary>
         public static readonly DependencyProperty CornerRadiusProperty =
-            DependencyProperty.Register("CornerRadius", typeof(double), typeof(Border),
+            DependencyProperty.Register("CornerRadius", typeof(double), typeof(XBorder),
                                         new PropertyMetadata(OnCornerRadiusPropertyChanged));
 
         /// <summary>
         /// Represents the ShadowBrush property of a Border.
         /// </summary>
         public static readonly DependencyProperty ShadowBrushProperty =
-            DependencyProperty.Register("ShadowBrush", typeof(LinearGradientBrush), typeof(Border),
+            DependencyProperty.Register("ShadowBrush", typeof(LinearGradientBrush), typeof(XBorder),
                                         new PropertyMetadata(OnShadowBrushPropertyChanged));
 
         /// <summary>
         /// Represents the ShadowSpread property of a Border.
         /// </summary>
         public static readonly DependencyProperty ShadowSpreadProperty =
-            DependencyProperty.Register("ShadowSpread", typeof(double), typeof(Border),
+            DependencyProperty.Register("ShadowSpread", typeof(double), typeof(XBorder),
                                         new PropertyMetadata(OnShadowSpreadPropertyChanged));
 
         private Grid _nineGrid;

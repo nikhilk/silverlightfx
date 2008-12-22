@@ -54,7 +54,7 @@
   <Style TargetType="fxui:XBorder">
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="fxui:Border">
+        <ControlTemplate TargetType="fxui:XBorder">
           <Grid x:Name="NineGrid" Background="{TemplateBinding Background}">
             <Grid.RowDefinitions>
               <RowDefinition Height="0"/>
