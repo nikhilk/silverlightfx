@@ -1,0 +1,3598 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SilverlightFX</name>
+    </assembly>
+    <members>
+        <member name="T:System.Windows.Data.IDataSource">
+            <summary>
+            Represents an object or component that is able to provide
+            data source functionality, i.e. a collection of items.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Data.IDataSource.Data">
+            <summary>
+            Gets the collection of items contained within underlying collection.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Controls.View">
+            <summary>
+            Represents a View user control that is associated with a Model.
+            The associated model is surfaced as the View's DataContext.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.View.ModelProperty">
+            <summary>
+            Represents the Model attached property.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.View.#ctor">
+            <summary>
+            Initializes an instance of a View.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.View.#ctor(System.Object)">
+            <summary>
+            Initializes an instance of a View with the specified model.
+            </summary>
+            <param name="viewModel">The associated model.</param>
+        </member>
+        <member name="M:System.Windows.Controls.View.GetModel(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the model associated with the specified framework element.
+            This will walk up the parent hierarchy to find a model if the specified
+            element does not have a model.
+            </summary>
+            <param name="element">The element to lookup.</param>
+            <returns>The associated model object if any.</returns>
+        </member>
+        <member name="P:System.Windows.Controls.View.Model">
+            <summary>
+            Gets or sets the model associated with the view.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.FormPanel">
+            <summary>
+            A Panel control with behavior to automatically layout its
+            children in a form-like manner. The children consist of regular
+            elements along with Label elements to represent associated form labels.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanel.IsLabeledProperty">
+            <summary>
+            Represents the IsLabeled attached property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanel.IsStretchedProperty">
+            <summary>
+            Represents the IsStretched attached property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanel.LabelAlignmentProperty">
+            <summary>
+            Represents the LabelAlignment property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanel.LabelPositionProperty">
+            <summary>
+            Represents the LabelPosition attached property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanel.LabelSpacingProperty">
+            <summary>
+            Represents the LabelSpacing property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanel.OrientationProperty">
+            <summary>
+            Represents the Orientation property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanel.SpacingProperty">
+            <summary>
+            Represents the Spacing property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanel.SpacingModeProperty">
+            <summary>
+            Represents the SpacingMode attached property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.#ctor">
+            <summary>
+            Initializes a new instance of a FormPanel panel.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.GetIsLabeled(System.Windows.FrameworkElement)">
+            <summary>
+            Gets whether a particular element in a FormPanel has an associated Label.
+            The default is true.
+            </summary>
+            <param name="element">The element to lookup.</param>
+            <returns>true if the element has a Label; false otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.GetIsStretched(System.Windows.FrameworkElement)">
+            <summary>
+            Gets whether a particular element in a FormPanel should be stretched to
+            consume all available space.
+            </summary>
+            <param name="element">The element to lookup.</param>
+            <returns>true if the element should be stretched; false otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.GetLabelPosition(SilverlightFX.UserInterface.Label)">
+            <summary>
+            Gets the position of a Label with respect to its associated element in
+            a FormPanel.
+            </summary>
+            <param name="element">The Label element to lookup.</param>
+            <returns>The Left or Top relative position.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.GetSpacingMode(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the spacing mode of the element relative to the previous label/element group.
+            </summary>
+            <param name="element">The element to set.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.SetIsLabeled(System.Windows.FrameworkElement,System.Boolean)">
+            <summary>
+            Sets whether a particular element in a FormPanel has an associated Label.
+            </summary>
+            <param name="element">The element to set.</param>
+            <param name="labeled">true if the element has an associated Label; false otherwise.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.SetIsStretched(System.Windows.FrameworkElement,System.Boolean)">
+            <summary>
+            Sets whether a particular element in a FormPanel is stretched to consume all available space.
+            </summary>
+            <param name="element">The element to set.</param>
+            <param name="stretched">true if the element should be stretched; false otherwise.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.SetLabelPosition(SilverlightFX.UserInterface.Label,SilverlightFX.UserInterface.FormPanelLabelPosition)">
+            <summary>
+            Sets the relative position of a Label with respect to its associated element
+            in a FormPanel.
+            </summary>
+            <param name="element">The Label element to set.</param>
+            <param name="labelPosition">The relative position.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FormPanel.SetSpacingMode(System.Windows.FrameworkElement,SilverlightFX.UserInterface.FormPanelSpacing)">
+            <summary>
+            Sets the spacing mode of the element relative to the previous label/element group.
+            </summary>
+            <param name="element">The element to set.</param>
+            <param name="spacingMode">The spacing mode to use.</param>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.FormPanel.LabelAlignment">
+            <summary>
+            Gets or sets the alignment of labels in the FormPanel.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.FormPanel.LabelSpacing">
+            <summary>
+            Gets or sets the spacing between the Label and its associated element.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.FormPanel.Orientation">
+            <summary>
+            Gets or sets the orientation of the panel that determines whether the
+            contents are laid out top to bottom or left to right.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.FormPanel.Spacing">
+            <summary>
+            Gets or sets the spacing between consecutive pairs of labels and their
+            associated elements.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.ColorFill">
+            <summary>
+            Represents a colored background fill effect.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.Effect">
+            <summary>
+            Represents an effect that can be associated with an element.
+            </summary>
+        </member>
+        <member name="T:System.Windows.IAttachedObject">
+            <summary>
+            Represents an object that can be attached to another DependencyObject.
+            </summary>
+        </member>
+        <member name="M:System.Windows.IAttachedObject.Attach(System.Windows.DependencyObject)">
+            <summary>
+            Attaches the object to the specified DependencyObject.
+            </summary>
+            <param name="associatedObject">The associated DepedencyObject.</param>
+        </member>
+        <member name="M:System.Windows.IAttachedObject.Detach">
+            <summary>
+            Detaches the object from its associated DependencyObject.
+            </summary>
+        </member>
+        <member name="P:System.Windows.IAttachedObject.AssociatedObject">
+            <summary>
+            Gets the DependencyObject that this object is attached to.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.IAnimationFactory">
+            <summary>
+            Provides the ability to create animation instances.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.IAnimationFactory.CreateAnimation">
+            <summary>
+            Creates a new animation instance defined by the object.
+            </summary>
+            <returns>An animation instance that can be played.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.#ctor">
+            <summary>
+            Initializes an Effect instance.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.GetEasingFunction">
+            <summary>
+            Returns an easing delegate matching the selected easing method,
+            or null if no easing is selected.
+            </summary>
+            <returns>An AnimationEasingFunction instance.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.GetTarget">
+            <summary>
+            Gets the target of the effect. This resolves the TargetName
+            property value into an actual object if one has been specified.
+            </summary>
+            <returns>The target of the effect.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.OnDetach">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <summary>
+            Creates the animation representing the effect.
+            </summary>
+            <param name="direction">The direction of the animation.</param>
+            <returns>The animation to be played to play the effect.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.OnCompleted">
+            <summary>
+            Indicates that the effect has completed playing.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.OnStarting">
+            <summary>
+            Indicates that the effect is about to be played.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.PlayEffect(System.Windows.Media.Glitz.EffectDirection)">
+            <summary>
+            Indicates that the effect should start playing.
+            </summary>
+            <param name="direction">Indicates whether to play the direction in forward direction or reverse direction.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Effect.StopEffect">
+            <summary>
+            Indicates that the effect should complete itself now and stop.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.AssociatedObject">
+            <summary>
+            Gets the object that this Effect is associated with.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.AutoReverse">
+            <summary>
+            Whether to automatically play the reverse effect upon completing
+            the forward effect in response to a single event.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.Direction">
+            <summary>
+            Gets the direction that the effect is currently playing while it is
+            active or has just completed.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.Duration">
+            <summary>
+            Gets or sets the duration over which the effect is played.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.Easing">
+            <summary>
+            Gets or sets how the animation is progressed over time.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.IsActive">
+            <summary>
+            Gets whether the effect is currently active, i.e. the associated animation
+            is currently playing.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.Reversed">
+            <summary>
+            Gets or sets whether the effect is logically reversed, i.e. it plays the
+            reverse effect on being triggered to play in the forward direction and vice versa.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.Reversible">
+            <summary>
+            Gets or sets whether the effect is allowed to play in reverse direction.
+            If this is set to false, the effect only plays in forward direction, and uses
+            the same animation when triggered to play in reverse direction.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.Target">
+            <summary>
+            The object on which the effect is applied. By default
+            this is the object that the effect is associated with.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.Effect.TargetName">
+            <summary>
+            The name of the object on which the effect is applied. By default
+            this is the object that the effect is associated with
+            </summary>
+        </member>
+        <member name="E:System.Windows.Media.Glitz.Effect.Completed">
+            <summary>
+            Indicates that an effect has been completed. This event is only raised
+            when the effect completes on its own, rather than implicitly completed
+            as a result of restarting the effect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.ColorFill.#ctor">
+            <summary>
+            Initializes an instance of an ColorFillEffect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.ColorFill.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.ColorFill.FillColor">
+            <summary>
+            Gets or sets the color of the fill.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.TweenAnimation">
+            <summary>
+            The base class for animations that involve tweening over a
+            specific time duration.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.ProceduralAnimation">
+            <summary>
+            The base class for procedural animations.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.#ctor">
+            <summary>
+            Initializes an instance of an Animation class.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.Dispose">
+            <summary>
+            Disposes the animation instance.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.PerformCleanup">
+            <summary>
+            Allows the animation to perform any cleanup work once the
+            animation is complete.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.PerformSetup">
+            <summary>
+            Allows the animation to perform any setup work before the
+            animation is started.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.Play(System.Windows.FrameworkElement)">
+            <summary>
+            Schedules the animation to be played.
+            </summary>
+            <param name="associatedElement">The element to use to control the animation.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.PlayCore">
+            <summary>
+            Plays the animation when it has been scheduled and started.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.ProgressCore(System.Boolean,System.Boolean,System.DateTime)">
+            <summary>
+            Progresses the animation to the new current time.
+            </summary>
+            <param name="startRepetition">Whether the animation is starting a repetition.</param>
+            <param name="startReverse">Whether the animation is starting a reverse run.</param>
+            <param name="timeStamp">The time stamp to progress the animation through.</param>
+            <returns>Whether the animation has completed.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.Repeat(System.Boolean)">
+            <summary>
+            Indicates the animation is being repeated.
+            </summary>
+            <param name="reverse">Whether the next repetition will happen in reverse direction.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.Stop(System.Windows.Media.Glitz.ProceduralAnimationStopState)">
+            <summary>
+            Stops playing the animation mid-way. The specified stopState determines
+            the state in which the element being animated is left in. 
+            </summary>
+            <param name="stopState">The state of the element upon stopping the animation.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimation.StopCore(System.Boolean,System.Windows.Media.Glitz.ProceduralAnimationStopState)">
+            <summary>
+            Stops the animation when it is no longer scheduled to continue playing.
+            </summary>
+            <param name="completed">Whether the animation has completed naturally.</param>
+            <param name="stopState">The state in which the animation should end if it was interrupted.</param>
+        </member>
+        <member name="E:System.Windows.Media.Glitz.ProceduralAnimation.Repeating">
+            <summary>
+            Raised before the animation is repeated. This event can
+            be used to cancel further repeatitions.
+            </summary>
+        </member>
+        <member name="E:System.Windows.Media.Glitz.ProceduralAnimation.Starting">
+            <summary>
+            Raised before the animation is started and performs
+            any setup work.
+            </summary>
+        </member>
+        <member name="E:System.Windows.Media.Glitz.ProceduralAnimation.Stopped">
+            <summary>
+            Raised after the animation is stopped or completed,
+            and any cleanup work has been performed.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.AssociatedElement">
+            <summary>
+            Gets the element associated with the animation while the animation
+            is playing.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.AutoReverse">
+            <summary>
+            Whether an animation automatically plays in the reverse direction
+            upon repeating.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.Completed">
+            <summary>
+            True if the animation has completely finished playing without
+            being stopped mid-way.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.IsPlaying">
+            <summary>
+            Whether the animation is currently playing or not.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.IsReversed">
+            <summary>
+            Whether the animation is currently playing in the reverse direction.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.RepeatCount">
+            <summary>
+            Whether the animation repeats or plays a single time. 0 implies
+            implies endless repetition, and other positive values indicate a fixed
+            number of repetitions. The default value is 1.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.RepeatDelay">
+            <summary>
+            The number of milliseconds to delay the animation between successive
+            repetitions.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.Repetitions">
+            <summary>
+            Returns the number of repeatitions of the animation completed so far.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimation.ReverseDelay">
+            <summary>
+            The number of milliseconds to delay the animation between reversal.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenAnimation.#ctor(System.TimeSpan)">
+            <summary>
+            Initializes an instance of TweenAnimation.
+            </summary>
+            <param name="duration">The time span over which the animation runs.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenAnimation.Repeat(System.Boolean)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenAnimation.PerformTweening(System.Double)">
+            <summary>
+            Allows the animation to implement its core tweening logic to generate
+            intermediate frames as it progresses from start to end.
+            </summary>
+            <param name="frame">A value between 0 and 1 (inclusive) indicating the current frame.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenAnimation.PlayCore">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenAnimation.ProgressCore(System.Boolean,System.Boolean,System.DateTime)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenAnimation.StopCore(System.Boolean,System.Windows.Media.Glitz.ProceduralAnimationStopState)">
+            <internalonly />
+        </member>
+        <member name="P:System.Windows.Media.Glitz.TweenAnimation.Duration">
+            <summary>
+            The duration of time (in ticks) that this animation plays over.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.TweenAnimation.EasingFunction">
+            <summary>
+            The easing function used to ease the normal linear progression of
+            the animation from the start to end state.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.TweenAnimation.StartDelay">
+            <summary>
+            Gets or sets the delay for starting the animation.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ContentView">
+            <summary>
+            A derived ContentControl that supports transitions to animate from
+            initial content to another content.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Controls.IAdornableControl">
+            <summary>
+            Represents a control that provides an adornment layer.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.IAdornableControl.AddAdornment(System.Windows.UIElement)">
+            <summary>
+            Adds an adornment to the control.
+            </summary>
+            <param name="element">The element representing the adornment.</param>
+        </member>
+        <member name="M:System.Windows.Controls.IAdornableControl.RemoveAdornment(System.Windows.UIElement)">
+            <summary>
+            Removes an adornment from the control.
+            </summary>
+            <param name="element">The element representing the adornment.</param>
+        </member>
+        <member name="P:System.Windows.Controls.IAdornableControl.CanAdorn">
+            <summary>
+            Gets whether the control can be adorned in its present state.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Controls.IAdornableControl.HasAdornments">
+            <summary>
+            Gets whether the control is currently being adorned.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ContentView.ContentProperty">
+            <summary>
+            Represents the Content property of a ContentControl.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ContentView.ContentTemplateProperty">
+            <summary>
+            Represents the ContentTemplate property of a ContentControl.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ContentView.ContentTransitionProperty">
+            <summary>
+            Represents the ContentTransition property of a ContentControl.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ContentView.#ctor">
+            <summary>
+            Initializes an instance of a ContentControl.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ContentView.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ContentView.OnContentChanged(System.Object,System.Object)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ContentView.Content">
+            <summary>
+            Gets or sets the content to be displayed within the control.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ContentView.ContentTemplate">
+            <summary>
+            Gets or sets he template used to display the content within the control.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ContentView.ContentTransition">
+            <summary>
+            Gets or sets he template used to display the content within the control.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.InvokeMethod">
+            <summary>
+            An action that invokes a method on the DataContext set on the
+            associated object or a specified target.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.InvokeMemberAction">
+            <summary>
+            An action that invokes a member on the associated DataContext or a specified
+            target object.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Interactivity.TriggerAction`1">
+            <summary>
+            The base class for all TriggerAction implementations.
+            </summary>
+            <typeparam name="T">The type of object that this TriggerAction can be associated with.</typeparam>
+        </member>
+        <member name="T:System.Windows.Interactivity.TriggerAction">
+            <summary>
+            TriggerActions are attachable objects that encapsulate some logic to
+            perform whenever they are triggered.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Interactivity.TriggerAction.ConditionProperty">
+            <summary>
+            Represents the Condition property on an Action.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerAction.OnAttach">
+            <summary>
+            Allows the trigger to attach to its associated object.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerAction.OnDetach">
+            <summary>
+            Allows the trigger to detach from its associated object.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerAction.InvokeAction(System.EventArgs)">
+            <summary>
+            Allows an action to perform its functionlity. This is called
+            by the framework whenever the associated event is raised by
+            the associated component.
+            </summary>
+            <param name="e">The event data associated with the event.</param>
+        </member>
+        <member name="P:System.Windows.Interactivity.TriggerAction.Condition">
+            <summary>
+            Gets or sets whether the action is enabled if it is to be conditionally
+            enabled.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Interactivity.TriggerAction.QueuedExecution">
+            <summary>
+            Gets or sets whether the action is executed by placing it into the message
+            queue, or whether it executes immediately while the associated event is raised.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Interactivity.TriggerAction`1.AssociatedObject">
+            <summary>
+            The object associated with the trigger.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.InvokeMemberAction.GetTarget">
+            <summary>
+            Gets the target of the InvokeMemberAction.
+            </summary>
+            <returns>The target object; null if no object could be found.</returns>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.InvokeMemberAction.TargetName">
+            <summary>
+            Gets or sets the name of the target to invoke the method on when this action
+            is triggered. You can use the special $self special value to indicate the
+            associated object itself. Leaving this unspecified defaults the target to
+            be the value set as the DataContext of the associated object.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.InvokeMethod.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.InvokeMethod.MethodName">
+            <summary>
+            Gets or sets the name of the method to invoke when this action is triggered.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.InvokeMethod.Parameters">
+            <summary>
+            Gets the collection of parameters associated with the method.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.Applications.Theme">
+            <summary>
+            Represents a theme control, whose top-level resource items are to be included
+            when this theme is selected.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.Theme.Includes">
+            <summary>
+            Any additional themes to include. Each of the additional themes must contain
+            a UserControl declaration. The list of themes are processed in order after
+            the current theme's resource items have been included.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.EffectDirection">
+            <summary>
+            Whether to play the effect in the forward or reverse direction.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectDirection.Forward">
+            <summary>
+            Plays an effect in the forward direction.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectDirection.Reverse">
+            <summary>
+            Plays an effect in the reverse direction.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.EffectCollection">
+            <summary>
+            Represents a collection of Effect objects.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Transitions.SlideMode">
+            <summary>
+            The slide behavior to use.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Transitions.SlideMode.Right">
+            <summary>
+            Indicates a slide transition that shifts the content from left to right.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Transitions.SlideMode.Left">
+            <summary>
+            Indicates a slide transition that shifts the content from right to left.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Transitions.SlideMode.Down">
+            <summary>
+            Indicates a slide transition that shifts the content from top to bottom.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Transitions.SlideMode.Up">
+            <summary>
+            Indicates a slide transition that shifts the content from bottom to top.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ListView">
+            <summary>
+            A simple data-bound list control.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Data.DataboundControl">
+            <summary>
+            A base class for writing data-bound controls. This provides a data source property to
+            all derived controls.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Data.DataboundControl.DataSourceProperty">
+            <summary>
+            Represents the DataSource property on a DataboundControl.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Data.DataboundControl.#ctor">
+            <summary>
+            Initializes an instance of a DataboundControl.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Data.DataboundControl.CreateDataList(System.Collections.IEnumerable)">
+            <summary>
+            Create a new DataList that abstracts the specified underlying data.
+            </summary>
+            <param name="data">The specified underlying data.</param>
+            <returns>The DataView abstracting the specified data.</returns>
+        </member>
+        <member name="M:System.Windows.Data.DataboundControl.OnDataListChanging">
+            <summary>
+            Indicates that the data associated with the control is changing.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Data.DataboundControl.OnDataListChanged">
+            <summary>
+            Indicates that the data associated with the control has changed.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Data.DataboundControl.OnLoaded(System.Windows.RoutedEventArgs)">
+            <summary>
+            Indicates that the control has been loaded.
+            </summary>
+            <param name="e">The information associated with the Loaded event.</param>
+        </member>
+        <member name="P:System.Windows.Data.DataboundControl.DataList">
+            <summary>
+            The data that this control is bound to currently.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Data.DataboundControl.DataSource">
+            <summary>
+            Gets or sets the data source to display within this control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ListView.ItemAddedEffectProperty">
+            <summary>
+            Represents the ItemAddedEffect property on a ListView control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ListView.ItemContainerStyleProperty">
+            <summary>
+            Represents the ItemContainerStyle property on a ListView control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ListView.ItemFilterProperty">
+            <summary>
+            Represents the ItemFilter property on a ListView control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ListView.ItemRemovedEffectProperty">
+            <summary>
+            Represents the ItemRemovedEffect property on a ListView control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ListView.ItemSortProperty">
+            <summary>
+            Represents the ItemSort property on a ListView control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ListView.ItemTemplateProperty">
+            <summary>
+            Represents the ItemTemplate property on a ListView control.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ListView.#ctor">
+            <summary>
+            Initializes an instance of a ListView.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ListView.GetItem(System.Object)">
+            <summary>
+            Gets the item associated with the specified data item.
+            </summary>
+            <param name="dataItem">The data item to lookup.</param>
+            <returns>The item if one exists; null otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ListView.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ListView.OnDataListChanging">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ListView.OnDataListChanged">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ListView.OnLoaded(System.Windows.RoutedEventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ListView.IsEmpty">
+            <summary>
+            Whether the control is empty, i.e. is not bound or is bound to an empty collection.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ListView.ItemAddedEffect">
+            <summary>
+            Gets or sets the effect applied to items when they are added to the list.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ListView.ItemContainerStyle">
+            <summary>
+            Gets or sets the style applied to each item in the list.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ListView.ItemFilter">
+            <summary>
+            Gets or sets the filter applied to the data source.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ListView.ItemRemovedEffect">
+            <summary>
+            Gets or sets the effect applied to items when they are removed from the list.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ListView.ItemSort">
+            <summary>
+            Gets or sets the sort applied to the data source.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ListView.Items">
+            <summary>
+            Gets the list of items created within the control.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ListView.ItemTemplate">
+            <summary>
+            The item template used to display each item in the list of items
+            that the ListView is bound to.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Label">
+            <summary>
+            A label control that represents some text on a form.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Label.TextProperty">
+            <summary>
+            Represents the Text property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Label.TextAlignmentProperty">
+            <summary>
+            Represents the TextAlignment property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Label.TextDecorationsProperty">
+            <summary>
+            Represents the TextDecorations property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Label.TextWrappingProperty">
+            <summary>
+            Represents the TextWrapping property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Label.#ctor">
+            <summary>
+            Initializes an instance of a Label.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Label.Text">
+            <summary>
+            Gets or sets the text displayed within a Label.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Label.TextAlignment">
+            <summary>
+            Gets or sets the alignment of the text within the label.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Label.TextDecorations">
+            <summary>
+            Gets or sets the decorations applied to the text within the label.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Label.TextWrapping">
+            <summary>
+            Gets or sets the wrapping of the text within the label.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.FormPanelLabelPosition">
+            <summary>
+            Represents the position of a Label element with respect to its
+            associated element within a FormPanel.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanelLabelPosition.Left">
+            <summary>
+            The Label is placed to the left of its associated control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanelLabelPosition.Top">
+            <summary>
+            The Label is placed on the top of its associated control.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.AutoCommit">
+            <summary>
+            A behavior that can be associated with the TextBox control to add commit semantics.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Interactivity.Behavior`1">
+            <summary>
+            The base class for all behavior.
+            </summary>
+            <typeparam name="T">The type of object that this behavior can be associated with.</typeparam>
+        </member>
+        <member name="T:System.Windows.Interactivity.Behavior">
+            <summary>
+            Triggers are attachable objects that encapsulate some logic to
+            determine when they are activated. They execute their associated action
+            whenever they are activated.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.Behavior.OnAttach">
+            <summary>
+            Allows the trigger to attach to its associated object.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.Behavior.OnDetach">
+            <summary>
+            Allows the trigger to detach from its associated object.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Interactivity.Behavior`1.AssociatedObject">
+            <summary>
+            The object associated with the trigger.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoCommit.#ctor">
+            <summary>
+            Initializes an instance of a TextFilter behavior.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoCommit.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoCommit.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoCommit.ButtonName">
+            <summary>
+            The name of a Button control.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.StoryboardAction">
+            <summary>
+            An action that interacts with a storyboard.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.StoryboardAction.GetStoryboard">
+            <summary>
+            Gets the storyboard instance associated with this action.
+            </summary>
+            <returns>The selected storyboard instance</returns>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.StoryboardAction.StoryboardName">
+            <summary>
+            Gets or sets the name of the storyboard to play. This is used as the
+            key to lookup a storyboard in the associated object's resources.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.SetVisibility">
+            <summary>
+            An action that sets the visibility of a particular element.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.SetVisibility.TargetNameProperty">
+            <summary>
+            Represents the TargetName property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.SetVisibility.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.SetVisibility.TargetName">
+            <summary>
+            Gets or sets the target element whose visibility should be set.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.SetFocus">
+            <summary>
+            An action that sets focus to a particular control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.SetFocus.TargetNameProperty">
+            <summary>
+            Represents the TargetName property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.SetFocus.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.SetFocus.TargetName">
+            <summary>
+            Gets or sets the target control that should be focused.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.InvokeScript">
+            <summary>
+            An action that evaluates a script expression.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Interactivity.ScriptTriggerAction">
+            <summary>
+            Represents an action that contains a simple script expression.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.ScriptTriggerAction.#ctor">
+            <summary>
+            Initializes an instance of a ScriptTriggerAction.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.ScriptTriggerAction.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:System.Windows.Interactivity.ScriptTriggerAction.Expression">
+            <summary>
+            Gets or sets the script expression to evaluate.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.Data.ImageLoader">
+            <summary>
+            A value converter that can be used in a binding that loads an image
+            to convert a string or Uri to an ImageSource.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Input.DelegateCommand">
+            <summary>
+            Represents a specific command instance that can be invoked to do
+            some work, or check if it is enabled.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Input.DelegateCommand.#ctor">
+            <summary>
+            Initializes a command as executable.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Input.DelegateCommand.#ctor(System.Action)">
+            <summary>
+            Initializes a command with the associated action.
+            </summary>
+            <param name="commandAction">The action to invoke when the command is executed.</param>
+        </member>
+        <member name="M:System.Windows.Input.DelegateCommand.#ctor(System.Action,System.Boolean)">
+            <summary>
+            Initializes a command with the associated action.
+            </summary>
+            <param name="commandAction">The action to invoke when the command is executed.</param>
+            <param name="canExecute">The initial state of the command.</param>
+        </member>
+        <member name="M:System.Windows.Input.DelegateCommand.#ctor(System.Action{System.Object})">
+            <summary>
+            Initializes a command with the associated action.
+            </summary>
+            <param name="commandAction">The action to invoke when the command is executed.</param>
+        </member>
+        <member name="M:System.Windows.Input.DelegateCommand.#ctor(System.Action{System.Object},System.Boolean)">
+            <summary>
+            Initializes a command with the associated action.
+            </summary>
+            <param name="commandAction">The action to invoke when the command is executed.</param>
+            <param name="canExecute">The initial state of the command.</param>
+        </member>
+        <member name="M:System.Windows.Input.DelegateCommand.Execute(System.Object)">
+            <summary>
+            Invokes the command to allow it to execute its associated functionality.
+            </summary>
+            <param name="parameter">Any parameter information associated with the command.</param>
+        </member>
+        <member name="M:System.Windows.Input.DelegateCommand.UpdateStatus(System.Boolean)">
+            <summary>
+            Updates the status of the command.
+            </summary>
+            <param name="canExecute">Whether the command is executable.</param>
+        </member>
+        <member name="T:System.Collections.IIndexableCollection">
+            <summary>
+            Represents a collection with ability to access items by index.
+            </summary>
+        </member>
+        <member name="P:System.Collections.IIndexableCollection.Count">
+            <summary>
+            The number of items contained in the collection.
+            </summary>
+        </member>
+        <member name="P:System.Collections.IIndexableCollection.Item(System.Int32)">
+            <summary>
+            Gets the item at the specified index in the collection.
+            </summary>
+            <param name="index">The index to lookup.</param>
+            <returns>The item at the specified index.</returns>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.VStackPanel">
+            <summary>
+            A panel that arranges its children vertically.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Controls.AnimatedPanel">
+            <summary>
+            A base class for all panels providing animated layout.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.AnimatedPanel.DurationProperty">
+            <summary>
+            Represents the Duration property of an AnimatedPanel.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.AnimatedPanel.EasingProperty">
+            <summary>
+            Represents the Easing property of an AnimatedPanel.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.AnimatedPanel.UseAnimatedLayoutProperty">
+            <summary>
+            Represents the UseAnimatedLayout property of an AnimatedPanel.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.AnimatedPanel.#ctor">
+            <summary>
+            Initializes an instance of an AnimatedPanel.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.AnimatedPanel.BeginArrange">
+            <summary>
+            Creates a new layout animation when an arrange pass starts.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.AnimatedPanel.EndArrange">
+            <summary>
+            Plays the current layout animation when an arrange pass is completed.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.AnimatedPanel.GetInitialRect(System.Windows.Size,System.Windows.Rect,System.Windows.UIElement)">
+            <summary>
+            Gets the initial bounds of an element.
+            </summary>
+            <param name="panelSize">The size of this panel.</param>
+            <param name="elementRect">The computed bounds of the panel.</param>
+            <param name="element">The element whose initial bounds are required.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Windows.Controls.AnimatedPanel.ArrangeElement(System.Windows.UIElement,System.Windows.Rect)">
+            <summary>
+            Arranges the element by animating it to the specified bounds.
+            </summary>
+            <param name="element">The element to animate and arrange.</param>
+            <param name="finalRect">The bounds that the element should use once it is arranged.</param>
+        </member>
+        <member name="M:System.Windows.Controls.AnimatedPanel.ArrangeElement(System.Windows.UIElement,System.Windows.Rect,System.Boolean)">
+            <summary>
+            Arranges the element by optionally animating it to the specified bounds.
+            </summary>
+            <param name="element">The element to animate and arrange.</param>
+            <param name="finalRect">The bounds that the element should use once it is arranged.</param>
+            <param name="isAnimated">Whether to animate the element or just arrange it immediately.</param>
+        </member>
+        <member name="P:System.Windows.Controls.AnimatedPanel.Duration">
+            <summary>
+            Gets or sets the duration over which the layout animation is performed.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Controls.AnimatedPanel.Easing">
+            <summary>
+            Gets or sets the easing effect applied to the layout animation.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Controls.AnimatedPanel.UseAnimatedLayout">
+            <summary>
+            Gets or sets whether the layout is to be performed in an animated manner.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.VStackPanel.ChildAlignmentProperty">
+            <summary>
+            Represents the ChildAlignment property of HStackPanel
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.VStackPanel.ChildFlowProperty">
+            <summary>
+            Represents the ChildFlow property of HStackPanel
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.VStackPanel.ChildSpacingProperty">
+            <summary>
+            Represents the ChildSpacing property of HStackPanel
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.VStackPanel.ArrangeOverride(System.Windows.Size)">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.VStackPanel.MeasureOverride(System.Windows.Size)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.VStackPanel.ChildAlignment">
+            <summary>
+            Gets or sets the vertical alignment of children within the panel.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.VStackPanel.ChildFlow">
+            <summary>
+            Gets or sets the vertical flow of children within the panel.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.VStackPanel.ChildSpacing">
+            <summary>
+            Gets or sets the spacing between children within the panel.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Transitions.Blinds">
+            <summary>
+            Represents a blind transition that switches between content by raising or lowering
+            one contained content element over another.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.Transition">
+            <summary>
+            Represents a transition effect that can be attached to a container
+            with two child elements. The transition shows one element and hides the other.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Transition.CreateTransitionAnimation(System.Windows.Controls.Panel,System.Windows.Media.Glitz.EffectDirection)">
+            <summary>
+            Creates the animation associated with the transition for the specified direction.
+            Forward implies going from the first child to the second child in the container.
+            Reverse implies second to the first.
+            </summary>
+            <param name="container">The container that contains the controls to transition.</param>
+            <param name="direction">The direction of the transition.</param>
+            <returns>The animation representing the transition.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Transition.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Transition.OnCompleted">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.Transition.OnStarting">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Transitions.Blinds.CreateTransitionAnimation(System.Windows.Controls.Panel,System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Transitions.Blinds.Mode">
+            <summary>
+            Gets or sets the nature of the transition.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.AutoCompleteCompletedEventArgs">
+            <summary>
+            The event data associated with the AutoComplete behavior's Completed event.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoCompleteCompletedEventArgs.Prefix">
+            <summary>
+            The current textbox entry being used as a prefix for determining
+            completion items.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoCompleteCompletedEventArgs.SelectedItem">
+            <summary>
+            The item that was selected by the user. This can be set to alter the
+            selection, or to customize the string that will be used to update the
+            TextBox associated with the AutoComplete behavior.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.PlayStoryboard">
+            <summary>
+            An action that plays a storyboard.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.PlayStoryboard.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.Data.StringFormatter">
+            <summary>
+            A value converter that can be used in a binding to generate
+            a formatted string representation.
+            </summary>
+        </member>
+        <member name="T:System.Windows.ParameterCollection">
+            <summary>
+            Represents a collection of Parameter objects.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Interactivity.BehaviorCollection">
+            <summary>
+            Represents a collection of behaviors associated with the same DependencyObject.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.BehaviorCollection.InsertItem(System.Int32,System.Windows.Interactivity.Behavior)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Interactivity.BehaviorCollection.RemoveItem(System.Int32)">
+            <internalonly />
+        </member>
+        <member name="T:System.Collections.IPageableCollection">
+            <summary>
+            Represents a collection with ability to provide a paged view
+            of the contained items.
+            </summary>
+        </member>
+        <member name="M:System.Collections.IPageableCollection.GetPage(System.Int32,System.Int32)">
+            <summary>
+            Gets a subset of the items contained within the collection
+            that fit into the specified page definition.
+            </summary>
+            <param name="pageIndex">The index of the page.</param>
+            <param name="pageSize">The size of the page.</param>
+            <returns>A collection of items fitting into the specified page.</returns>
+        </member>
+        <member name="P:System.Collections.IPageableCollection.Count">
+            <summary>
+            Gets the number of items contained within the collection.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.LoadEffect">
+            <summary>
+            Plays an effect whenever the associated element is
+            loaded.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.EffectBehavior">
+            <summary>
+            A base class for behaviors that play effects.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EffectBehavior.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EffectBehavior.OnDetach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EffectBehavior.PlayEffect(System.Windows.Media.Glitz.EffectDirection)">
+            <summary>
+            Plays the effect in the specified direction.
+            </summary>
+            <param name="direction">The direction to play the effect in.</param>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.EffectBehavior.Effect">
+            <summary>
+            Gets or sets the effect to be played by the behavior.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.LoadEffect.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.LoadEffect.OnDetach">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.FormPanelSpacing">
+            <summary>
+            Represents the spacing style between groups of labels and associated
+            elements.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanelSpacing.Normal">
+            <summary>
+            The single unit of spacing is added between groups.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanelSpacing.Ignore">
+            <summary>
+            The default spacing between groups is ignored.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanelSpacing.Extra">
+            <summary>
+            An extra unit of spacing is added between groups.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Resize">
+            <summary>
+            Represents a fade effect that fades in the associated element
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Resize.#ctor">
+            <summary>
+            Initializes an instance of a ScaleEffect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Resize.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Resize.ScaleXRatio">
+            <summary>
+            Gets or sets the X scaling factor used by the effect.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Resize.ScaleYRatio">
+            <summary>
+            Gets or sets the Y scaling factor used by the effect.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ContentLayoutMode">
+            <summary>
+            Indicates the mode of a panel within the template associated
+            with a ContentLayout control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ContentLayoutMode.Replace">
+            <summary>
+            Indicates that the content element matched to a panel
+            should replace or override existing content in the panel.
+            This is the default behavior.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ContentLayoutMode.Merge">
+            <summary>
+            Indicates that the content element matched to a panel
+            should be merged along with existing content in the panel.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.EffectEasing">
+            <summary>
+            Determines how the animation is progressed over time.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.None">
+            <summary>
+            Linearly interpolates the animaton from start to finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.QuadraticIn">
+            <summary>
+            Accelerates the animation at start and then linearly interpolates
+            the animation to finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.QuadraticOut">
+            <summary>
+            Decelerates the animation at finish after linearly interpolating
+            the animation from start.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.QuadraticInOut">
+            <summary>
+            Accelerates the animation at start, then linearly interpolates
+            the animation toward the finish, and finally decelerates to the
+            finishing point.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.BounceIn">
+            <summary>
+            Bounces the animation at the start, and then interpolates the
+            animation toward the finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.BounceOut">
+            <summary>
+            Starts the animation and bounces it toward the finish at the end.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.BounceInOut">
+            <summary>
+            Bounces the animation at the start and toward the finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.BackIn">
+            <summary>
+            Starts the animation by going in reverse direction, and then proceeds
+            towards the finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.BackOut">
+            <summary>
+            Starts the animation and goes beyond the finish and then back to finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.BackInOut">
+            <summary>
+            Starts the animation by going back, then going beyond the finish, and then
+            back to finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.ElasticIn">
+            <summary>
+            Starts the animation by going back and forth at the start and then
+            shooting toward the finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.ElasticOut">
+            <summary>
+            Starts the animation by shooting toward the finish, and then ending by
+            going back and forth.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EffectEasing.ElasticInOut">
+            <summary>
+            Starts the animation by going back and forth at the start, then shooting
+            toward the finish, and ending by going back and forth.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.TypeTypeConverter">
+            <summary>
+            Converts between Type and String.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.TypeTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <internalonly />
+        </member>
+        <member name="M:System.ComponentModel.TypeTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <internalonly />
+        </member>
+        <member name="M:System.ComponentModel.TypeTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <internalonly />
+        </member>
+        <member name="M:System.ComponentModel.TypeTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Transitions.Flip">
+            <summary>
+            Represents a flip effect that can be attached to a container
+            with two child elements. The effect flips one element to another.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Transitions.Flip.CreateTransitionAnimation(System.Windows.Controls.Panel,System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Transitions.Flip.OnDetach">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Transitions.BlindsMode">
+            <summary>
+            The mode that the blinds transition operates in.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Transitions.BlindsMode.Up">
+            <summary>
+            Indicates a blind transition that shows content underneath by lifting up the top content.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Transitions.BlindsMode.Down">
+            <summary>
+            Indicates a blind effect that hides content underneath by dropping down the top content.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Pulsate">
+            <summary>
+            Represents an effect that fades in and out the associated element.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Pulsate.#ctor">
+            <summary>
+            Initializes an instance of a ShakeEffect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Pulsate.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Pulsate.FadeOpacity">
+            <summary>
+            Gets or sets the value to fade to.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ListViewItem">
+            <summary>
+            Represents a single item within a ListView.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Data.DataItemContentControl">
+            <summary>
+            Represents a single item within a data-bound control.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Input.ICommandContainer">
+            <summary>
+            Represents a object that contains commands that can be looked up
+            dynamically.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Input.ICommandContainer.GetCommand(System.String)">
+            <summary>
+            Returns the command corresponding to the specified command name.
+            </summary>
+            <param name="commandName">The name of command.</param>
+            <returns>The command if it exists; null otherwise.</returns>
+        </member>
+        <member name="M:System.Windows.Data.DataItemContentControl.GetCommand(System.String)">
+            <summary>
+            Gets a command by name.
+            </summary>
+            <param name="commandName">The name of the command to lookup.</param>
+            <returns>The command if its supported; null otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ListViewItem.#ctor">
+            <summary>
+            Initializes an instance of a ListViewItem.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.FocusEffect">
+            <summary>
+            Plays an effect whenever the associated element gets or loses
+            focus.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FocusEffect.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.FocusEffect.OnDetach">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.GoToState">
+            <summary>
+            An action that transitions from one visual state to another.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.GoToState.StateNameProperty">
+            <summary>
+            Represents the State property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.GoToState.TargetNameProperty">
+            <summary>
+            Represents the TargetName property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.GoToState.UseTransitionProperty">
+            <summary>
+            Represents the UseTransition property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.GoToState.#ctor">
+            <summary>
+            Initializes an instance of a GoToState action.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.GoToState.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.GoToState.StateName">
+            <summary>
+            Gets or sets the name of the state to navigate to.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.GoToState.TargetName">
+            <summary>
+            Gets or sets the target control that should be navigated. By default this is
+            the control that the action is associated with.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.GoToState.UseTransition">
+            <summary>
+            Gets or sets whether the state navigation should be accompanied with a transition.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Interactivity.TriggerActionTypeConverter">
+            <summary>
+            Converts strings to Action instances. Specifically, a string is always
+            interpreted as a script statement and corresponding an InvokeScript
+            action is created.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerActionTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerActionTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerActionTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerActionTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <internalonly />
+        </member>
+        <member name="T:System.ComponentModel.Model">
+            <summary>
+            Provides a base class for implementing models that encapsulate
+            data and behavior that is independent of the presentation.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.Model.#ctor">
+            <summary>
+            Initializes an instance of a Model.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String)">
+            <summary>
+            Raises a change notification event to signal a change in the
+            specified property's value.
+            </summary>
+            <param name="propertyName">The property that has changed.</param>
+        </member>
+        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String[])">
+            <summary>
+            Raises a change notification event to signal a change in the
+            specified properties.
+            </summary>
+            <param name="propertyNames">The properties that have changed.</param>
+        </member>
+        <member name="T:System.Collections.IPredicate">
+            <summary>
+            Provides the ability to check if an item matches the encapsulated
+            critieria.
+            </summary>
+        </member>
+        <member name="M:System.Collections.IPredicate.Filter(System.Object)">
+            <summary>
+            Filters an item using the encapsulated criteria.
+            </summary>
+            <param name="item">The item to filter.</param>
+            <returns>true if the item matches; false otherwise.</returns>
+        </member>
+        <member name="T:System.Collections.Generic.IPredicate`1">
+            <summary>
+            Provides the ability to check if an item matches the encapsulated
+            critieria.
+            </summary>
+            <typeparam name="T">The type of object that can be matched.</typeparam>
+        </member>
+        <member name="M:System.Collections.Generic.IPredicate`1.Filter(`0)">
+            <summary>
+            Filters an item using the encapsulated criteria.
+            </summary>
+            <param name="item">The item to filter.</param>
+            <returns>true if the item matches; false otherwise.</returns>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.XGrid">
+            <summary>
+            An extended Grid control with more convenient syntax for defining its
+            rows and columns.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XGrid.Columns">
+            <summary>
+            Gets or sets the list of columns as a comma separated list of widths.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XGrid.Rows">
+            <summary>
+            Gets or sets the list of rows as a comma separated list of heights.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.VerticalFlow">
+            <summary>
+            Indicates the flow children into a vertical layout panel.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.VerticalFlow.Top">
+            <summary>
+            Children flow from top to bottom.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.VerticalFlow.Center">
+            <summary>
+            Children flow from center out toward top and bottom.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.VerticalFlow.Bottom">
+            <summary>
+            Children flow from bottom to top.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Form">
+            <summary>
+            Represents the root visual of the application.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Form.#ctor">
+            <summary>
+            Initializes an instance of a Form.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Form.#ctor(System.ComponentModel.Model)">
+            <summary>
+            Initializes an instance of a Form with an associated view model.
+            The view model is set as the DataContext of the Form.
+            </summary>
+            <param name="viewModel">The associated view model object.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Form.Close(SilverlightFX.UserInterface.FormResult)">
+            <summary>
+            Closes the Form with the specified FormResult code.
+            </summary>
+            <param name="result">The result of the Form.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Form.Show">
+            <summary>
+            Shows the Form as a modal dialog.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Form.ParentForm">
+            <summary>
+            Gets the parent Form that logically owns this Form.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Form.Result">
+            <summary>
+            The result of Form selected when it was closed.
+            </summary>
+        </member>
+        <member name="E:SilverlightFX.UserInterface.Form.Closed">
+            <summary>
+            Raised when the Form is closed.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ElementProperty">
+            <summary>
+            An ActionParameter that provides access to a property off a specified element.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Parameter">
+            <summary>
+            Represents the base class for declarative parameters.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Parameter.GetValue(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the value of the parameter.
+            </summary>
+            <param name="element">The element that the action is associated with.</param>
+            <returns>The value of the parameter.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ElementProperty.GetValue(System.Windows.FrameworkElement)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ElementProperty.ElementName">
+            <summary>
+            Gets or sets the name of the element to retrieve the parameter value.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ElementProperty.PropertyName">
+            <summary>
+            Gets or sets the name of the property to retrieve the parameter value.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.DetailView">
+            <summary>
+            A simple data-bound list control that shows one item at a time.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.DetailView.ItemContainerStyleProperty">
+            <summary>
+            Represents the ItemContainerStyle property on a ListView control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.DetailView.ItemTemplateProperty">
+            <summary>
+            Represents the ItemTemplate property on a ListView control.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.DetailView.ItemTransitionProperty">
+            <summary>
+            Represents the ItemTransition property on a DetailView control.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DetailView.#ctor">
+            <summary>
+            Initializes an instance of a DetailView.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DetailView.CreateDataList(System.Collections.IEnumerable)">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DetailView.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DetailView.OnDataListChanging">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DetailView.OnDataListChanged">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DetailView.OnLoaded(System.Windows.RoutedEventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.DetailView.IsEmpty">
+            <summary>
+            Whether the control is empty, i.e. is not bound or is bound to an empty collection.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.DetailView.ItemContainerStyle">
+            <summary>
+            Gets or sets the style applied to each item in the list.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.DetailView.Item">
+            <summary>
+            Gets the current item created within the control.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.DetailView.ItemTemplate">
+            <summary>
+            The item template used to display each item in the list of items
+            that the ListView is bound to.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.DetailView.ItemTransition">
+            <summary>
+            The transition used to switch from one item to another.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ClickTrigger">
+            <summary>
+            A trigger that can be associated with a Button for handling
+            Click events.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.EventTriggerBase`1">
+            <summary>
+            A base class for triggers that can be associated with a specific event.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Interactivity.Trigger`1">
+            <summary>
+            The base class for all triggers.
+            </summary>
+            <typeparam name="T">The type of object that this trigger can be associated with.</typeparam>
+        </member>
+        <member name="T:System.Windows.Interactivity.Trigger">
+            <summary>
+            Triggers are attachable objects that encapsulate some logic to
+            determine when they are activated. They execute their associated action
+            whenever they are activated.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.Trigger.InvokeActions(System.EventArgs)">
+            <summary>
+            Invokes the associated actions.
+            </summary>
+            <param name="e">The event data associated with the invocation.</param>
+        </member>
+        <member name="M:System.Windows.Interactivity.Trigger.OnAttach">
+            <summary>
+            Allows the trigger to attach to its associated object.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.Trigger.OnDetach">
+            <summary>
+            Allows the trigger to detach from its associated object.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Interactivity.Trigger.Action">
+            <summary>
+            Gets or sets the default Action associated with this Trigger.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Interactivity.Trigger.Actions">
+            <summary>
+            Gets the Actions to be invoked when the trigger is activated.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Interactivity.Trigger`1.AssociatedObject">
+            <summary>
+            The object associated with the trigger.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EventTriggerBase`1.GetEventName">
+            <summary>
+            Returns the name of the event to subscribe to.
+            </summary>
+            <returns>The event to handle.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EventTriggerBase`1.GetSource">
+            <summary>
+            Gets the source of the event that this EventTrigger is subscribed to.
+            </summary>
+            <returns>The source of the event.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EventTriggerBase`1.HandleEvent(System.EventArgs)">
+            <summary>
+            Allows the trigger implementation to handle the event. The
+            default implementation invokes the associated action.
+            </summary>
+            <param name="e">The data associated with the event.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EventTriggerBase`1.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EventTriggerBase`1.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.EventTriggerBase`1.SourceName">
+            <summary>
+            The name of the event to associated the trigger with.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ClickTrigger.GetEventName">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ClickEffect">
+            <summary>
+            Plays an effect whenever the associated element is clicked.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ClickEffect.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ClickEffect.OnDetach">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.CheckBoxTrigger">
+            <summary>
+            A trigger that can be associated with a CheckBox for handling
+            Checked and Unchecked events.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.CheckBoxTrigger.GetEventName">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.CheckBoxTrigger.Checked">
+            <summary>
+            Gets whether the associated action should be triggered when
+            the Checkbox is checked or unchecked.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Watermark">
+            <summary>
+            A behavior that can be associated with the TextBox control to add an in-place
+            prompt.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Watermark.#ctor">
+            <summary>
+            Initializes an instance of a Watermark behavior.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Watermark.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Watermark.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Watermark.PromptStyle">
+            <summary>
+            The style to apply to the prompt.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Watermark.PromptText">
+            <summary>
+            The text to display as a prompt.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Transitions.Slide">
+            <summary>
+            Represents an transition that slides top content to reveal underneath content.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Transitions.Slide.CreateTransitionAnimation(System.Windows.Controls.Panel,System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Transitions.Slide.Mode">
+            <summary>
+            Gets or sets the specific mode of slide behavior to use for the transition.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Page">
+            <summary>
+            Represents a page within the application's user interface.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Page.#ctor">
+            <summary>
+            Initializes an instance of a Page.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Page.#ctor(System.ComponentModel.Model)">
+            <summary>
+            Initializes an instance of a Page with an associated view model.
+            The view model is set as the DataContext of the Form.
+            </summary>
+            <param name="viewModel">The associated view model object.</param>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.FormResult">
+            <summary>
+            Represents the result of a Form instance when it is closed.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormResult.OK">
+            <summary>
+            The Form was closed by clicking its OK button.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormResult.Cancel">
+            <summary>
+            The Form was closed by clicking its Cancel button.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Fade">
+            <summary>
+            Represents a fade effect that fades in the associated element
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Fade.#ctor">
+            <summary>
+            Initializes an instance of a FadeEffect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Fade.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Fade.FadeOpacity">
+            <summary>
+            Gets or sets the final value of the opacity that this effect should animate to.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ContentCollection">
+            <summary>
+            A list of content elements.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Shake">
+            <summary>
+            Represents an effect that shakes the associated element left and right.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Shake.#ctor">
+            <summary>
+            Initializes an instance of a ShakeEffect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Shake.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Shake.ShakeDistance">
+            <summary>
+            Gets or sets the distance that the element should be shaken.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.AutoComplete">
+            <summary>
+            A behavior that can be associated with the TextBox control to add auto-completion
+            functionality.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoComplete.#ctor">
+            <summary>
+            Initializes an instance of an AutoComplete behavior.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoComplete.ClearCache">
+            <summary>
+            Clears the cache of service results.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoComplete.CancelCompletion">
+            <summary>
+            Closes the completion dropdown without making a selection if it is open.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoComplete.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoComplete.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoComplete.DropDownTemplate">
+            <summary>
+            Gets or sets the template used to customize the dropdown. The template
+            must contain a ListBox or other derived control.
+            If this is not set, a default ListBox control is created.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoComplete.EnableServiceResultCaching">
+            <summary>
+            Gets or sets whether results of invoking the associated service should be
+            cached or not. The AutoComplete by default caches the last 10 sets of items.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoComplete.MinimumPrefixLength">
+            <summary>
+            Gets or sets the length of the minimum text entry before the dropdown is
+            displayed. This defaults to 3.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoComplete.ServiceResultType">
+            <summary>
+            Gets or sets the type of items returned by the service. The expectation is that
+            the service returns a JSON-formatted array of items of the specified type. The
+            default type is String.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoComplete.ServiceUri">
+            <summary>
+            Gets or sets the Uri of the service to invoke to fetch the list of completion
+            items to display in the dropdown.
+            </summary>
+        </member>
+        <member name="E:SilverlightFX.UserInterface.AutoComplete.Completed">
+            <summary>
+            Raised to indicate that user has selected an item from the dropdown. This event
+            can be used to automatically fill other fields on the form based on selection, or
+            to customize the text that will be used to update the TextBox.
+            </summary>
+        </member>
+        <member name="E:SilverlightFX.UserInterface.AutoComplete.Completing">
+            <summary>
+            Raised to indicate that the dropdown is being displayed. This event can be used
+            to suppress the dropdown, or provide a computed set of items to display instead
+            of invoking the specified service.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoComplete.IsCompleting">
+            <summary>
+            Indicates whether the dropdown is currently being displayed.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.StopStoryboard">
+            <summary>
+            An action that stop a storyboard.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.StopStoryboard.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.SetProperty">
+            <summary>
+            An action that invokes a method on the DataContext set on the
+            associated object or a specified target.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.SetProperty.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.SetProperty.PropertyName">
+            <summary>
+            Gets or sets the name of the property to set when this action is triggered.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.SetProperty.Value">
+            <summary>
+            Gets or sets the Value as an ActionParameter that will supply the actual value to set.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.Applications.XApplication">
+            <summary>
+            Represents an Application with extended functionality including support
+            for theming, a main window, settings, services and other features.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.Applications.XApplication.#ctor">
+            <summary>
+            Initializes an instance of XApplication.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.Applications.XApplication.GetService(System.Type)">
+            <summary>
+            Gets a service that implements the specified service contract.
+            </summary>
+            <param name="serviceType">The type representing the service contract.</param>
+            <returns>A service instance if the service is available; null otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.Applications.XApplication.OnClosing">
+            <summary>
+            Allows the application to perform any processing work necessary before the application closes.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.Applications.XApplication.OnError(System.Exception)">
+            <summary>
+            Allows the application to perform custom error handling of unhandled exceptions.
+            </summary>
+            <param name="unhandledException">The exception that was not handled.</param>
+            <returns>true if the exception was handled; false otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.Applications.XApplication.OnStarting">
+            <summary>
+            Allows the application to perform any processing work before the application starts.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.Applications.XApplication.Run(SilverlightFX.UserInterface.Window)">
+            <summary>
+            Runs the application using the specified main window as the top-most user interface element.
+            </summary>
+            <param name="mainWindow">The main window to use to represent the application's user interface.</param>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.Current">
+            <summary>
+            Gets the current XApplication instance for the running application.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.Model">
+            <summary>
+            Gets or sets the application-wide model.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.ScreenStyle">
+            <summary>
+            The style applied to the screen or the root visual of the application.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.Services">
+            <summary>
+            Gets the collection of services declared at the application level.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.Settings">
+            <summary>
+            Gets the settings associated with the running application.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.SiteSettings">
+            <summary>
+            Gets the settings associated with the running application that are shared
+            amongst other applications on the same site.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.StartupArguments">
+            <summary>
+            Gets the list of name/value pairs passed in into the application as initialization
+            or startup arguments.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.ThemeName">
+            <summary>
+            Gets or sets the name of the selected theme. The name of the theme is used to construct
+            a URI of the form: Themes/{name}/Theme.xaml which is then loaded to load the
+            theme and add the theme items to the associated Resources dictionary.
+            The name can either be a simple identifier, or be of the form $initParamName|defaultName,
+            which allows selection of the theme from within the HTML page.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.UISynchronizationContext">
+            <summary>
+            Represents the SynchronizationContext representing the main UI thread associated
+            with the application.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.Uri">
+            <summary>
+            Gets the URI that represents the identity of this application.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.Window">
+            <summary>
+            Gets the top-level window associated with the application.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.Applications.XApplication.WindowName">
+            <summary>
+            Gets or sets the type name of the top-level window. The name is used to instantiate
+            the top-level window on startup.
+            The name can be one of the following:
+            - A simple identifier which is treated as the name of a type alongside the application
+            - A namespace qualified type name treated as the name of a type in the application assembly
+            - An assembly qualified type name
+            - $initParamName|defaultName which allows the selection of a type name from the HTML page
+            </summary>
+        </member>
+        <member name="T:System.Collections.IEditableCollection">
+            <summary>
+            Represents a collection with editing semantics over the list
+            of items, and the individual items.
+            </summary>
+        </member>
+        <member name="M:System.Collections.IEditableCollection.AddItem(System.Object)">
+            <summary>
+            Adds the specified item into the collection.
+            </summary>
+            <param name="item">The item to add.</param>
+        </member>
+        <member name="M:System.Collections.IEditableCollection.BeginEditItem(System.Object)">
+            <summary>
+            Begins editing the specified item.
+            </summary>
+            <param name="item">The item to edit.</param>
+        </member>
+        <member name="M:System.Collections.IEditableCollection.CancelEditItem(System.Object)">
+            <summary>
+            Cancels editing the specified item.
+            </summary>
+            <param name="item">The item to cancel editing on.</param>
+        </member>
+        <member name="M:System.Collections.IEditableCollection.CreateNew">
+            <summary>
+            Creates a new item that can be added to the collection.
+            </summary>
+            <returns>A new item not yet in the collection.</returns>
+        </member>
+        <member name="M:System.Collections.IEditableCollection.EndEditItem(System.Object)">
+            <summary>
+            Ends editing the specified item.
+            </summary>
+            <param name="item">The item to end editing on.</param>
+        </member>
+        <member name="M:System.Collections.IEditableCollection.RemoveItem(System.Object)">
+            <summary>
+            Removes the specified item from the collection.
+            </summary>
+            <param name="item">The item to remove.</param>
+        </member>
+        <member name="P:System.Collections.IEditableCollection.CanAdd">
+            <summary>
+            Whether the collection supports additions.
+            </summary>
+        </member>
+        <member name="P:System.Collections.IEditableCollection.CanCancelEditItem">
+            <summary>
+            Whether the collection supports canceling editing on items.
+            </summary>
+        </member>
+        <member name="P:System.Collections.IEditableCollection.CanCreateNew">
+            <summary>
+            Whether the collection supports creating new items.
+            </summary>
+        </member>
+        <member name="P:System.Collections.IEditableCollection.CanEditItems">
+            <summary>
+            Whether the collection supports editing items.
+            </summary>
+        </member>
+        <member name="P:System.Collections.IEditableCollection.CanRemove">
+            <summary>
+            Whether the collection supports removals.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.XTextBox">
+            <summary>
+            An extended TextBox control with adornment capabilities.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XTextBox.AddAdornment(System.Windows.UIElement)">
+            <summary>
+            Adds the specified adornment to the textbox. An adornment is
+            overlaid over the text in the textbox.
+            </summary>
+            <param name="adornment">The adornment to overlay.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XTextBox.AddGlyph(System.Windows.UIElement)">
+            <summary>
+            Adds the specified glyph or icon to the textbox. A glyph is
+            overlaid to the right of the text in the textbox.
+            </summary>
+            <param name="glyph">The glyph to add.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XTextBox.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XTextBox.RemoveAdornment(System.Windows.UIElement)">
+            <summary>
+            Removes the specified adornment from the textbox.
+            </summary>
+            <param name="adornment">The adornment to remove.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XTextBox.RemoveGlyph(System.Windows.UIElement)">
+            <summary>
+            Removes the specified glyph from the textbox.
+            </summary>
+            <param name="glyph">The glyph to remove.</param>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XTextBox.InPlaceButton">
+            <summary>
+            Gets the button contained within a TextBox if there is one.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XTextBox.SupportsAdornments">
+            <summary>
+            Whether this textbox can render adornments.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XTextBox.SupportsGlyphs">
+            <summary>
+            Whether this textbox can render glyphs.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.TimedEffect">
+            <summary>
+            Plays an effect whenever the associated element is
+            loaded.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TimedEffect.#ctor">
+            <summary>
+            Initializes an instance of a TimedEffect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TimedEffect.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TimedEffect.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.TimedEffect.Interval">
+            <summary>
+            Gets or sets the tick interval of the timer.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.TextFilterType">
+            <summary>
+            The type of filters that can be applied to a TextBox.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.TextFilterType.None">
+            <summary>
+            No filtering is done.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.TextFilterType.Numbers">
+            <summary>
+            Input is restricted to numbers.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.TextFilterType.Alphabets">
+            <summary>
+            Input is restricted to alphabets (A-Z and a-z).
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.HStackPanel">
+            <summary>
+            A panel that arranges its children horizontally.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.HStackPanel.ChildAlignmentProperty">
+            <summary>
+            Represents the ChildAlignment property of HStackPanel
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.HStackPanel.ChildFlowProperty">
+            <summary>
+            Represents the ChildFlow property of HStackPanel
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.HStackPanel.ChildSpacingProperty">
+            <summary>
+            Represents the ChildSpacing property of HStackPanel
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.HStackPanel.ArrangeOverride(System.Windows.Size)">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.HStackPanel.MeasureOverride(System.Windows.Size)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.HStackPanel.ChildAlignment">
+            <summary>
+            Gets or sets the vertical alignment of children within the panel.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.HStackPanel.ChildFlow">
+            <summary>
+            Gets or sets the horizontal flow of children within the panel.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.HStackPanel.ChildSpacing">
+            <summary>
+            Gets or sets the spacing between children within the panel.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.FormPanelLabelAlignment">
+            <summary>
+            Represents the alignment of labels within a FormPanel.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanelLabelAlignment.Left">
+            <summary>
+            Labels are left-aligned.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.FormPanelLabelAlignment.Right">
+            <summary>
+            Labels are right-aligned.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ContentLayout">
+            <summary>
+            A control that presents a list of content elements with a template.
+            Content elements are matched to associated Panel elements
+            via the attached ContentName property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.ContentLayout.ContentNameProperty">
+            <summary>
+            Represents the ContentName attached property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ContentLayout.#ctor">
+            <summary>
+            Initializes an instance of a ContentListControl.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ContentLayout.GetContentName(System.Windows.DependencyObject)">
+            <summary>
+            Gets the value of the ContentName attached property.
+            </summary>
+            <param name="o">The object with the attached property.</param>
+            <returns>The name if it has been set; null otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ContentLayout.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ContentLayout.SetContentName(System.Windows.DependencyObject,System.String)">
+            <summary>
+            Sets the value of the ContentName attached property.
+            </summary>
+            <param name="o">The object to attach a name to.</param>
+            <param name="value">The name to set.</param>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.ContentLayout.ContentList">
+            <summary>
+            The list of content elements within the control.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Command">
+            <summary>
+            A behavior that can be associated with a Button to invoke a command.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Command.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Command.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Command.CommandName">
+            <summary>
+            Gets or sets the name of the command to invoke.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Command.CommandParameter">
+            <summary>
+            Gets or sets the object to use as the parameter when invoking
+            the command.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Interactivity.TriggerActionCollection">
+            <summary>
+            Represents a collection of TriggerAction objects.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerActionCollection.InsertItem(System.Int32,System.Windows.Interactivity.TriggerAction)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerActionCollection.RemoveItem(System.Int32)">
+            <internalonly />
+        </member>
+        <member name="T:System.Windows.Media.Glitz.ProceduralAnimationSet">
+            <summary>
+            An animation that composes a set of multiple animations playing
+            simulataneously.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSet.#ctor(System.Windows.Media.Glitz.ProceduralAnimation[])">
+            <summary>
+            Creates an AnimationSet with the specified set of individual
+            animations.
+            </summary>
+            <param name="animations">The individual animations.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSet.Repeat(System.Boolean)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSet.PlayCore">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSet.ProgressCore(System.Boolean,System.Boolean,System.DateTime)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSet.StopCore(System.Boolean,System.Windows.Media.Glitz.ProceduralAnimationStopState)">
+            <internalonly />
+        </member>
+        <member name="T:System.Windows.Data.DataList">
+            <summary>
+            An object that abstracts a collection of items and various capabilities
+            of different collection interfaces.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Data.DataList.#ctor(System.Collections.IEnumerable)">
+            <summary>
+            Creates an instance of a DataList from the specified underlying data.
+            </summary>
+            <param name="data">The underlying data to abstract.</param>
+        </member>
+        <member name="M:System.Windows.Data.DataList.#ctor(System.Collections.IEnumerable,System.Type)">
+            <summary>
+            Creates an instance of a DataList from the specified underlying data,
+            and supplies the item type that goes into the list.
+            </summary>
+            <param name="data"></param>
+            <param name="itemType"></param>
+        </member>
+        <member name="M:System.Windows.Data.DataList.#ctor(System.Collections.IEnumerable,System.Boolean)">
+            <summary>
+            Creates an instance of a DataList from the specified underlying data.
+            </summary>
+            <param name="data">The underlying data to abstract.</param>
+            <param name="enableCurrency">Whether to enable currency management.</param>
+        </member>
+        <member name="M:System.Windows.Data.DataList.MoveNext">
+            <summary>
+            Moves the current index forward.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Data.DataList.MovePrevious">
+            <summary>
+            Moves the current index back.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Data.DataList.MoveToItem(System.Object)">
+            <summary>
+            Sets the current item to the specified item.
+            </summary>
+            <param name="item">The item that should become the current item.</param>
+        </member>
+        <member name="M:System.Windows.Data.DataList.UpdateFilter(System.Collections.Generic.IPredicate{System.Object})">
+            <summary>
+            Sets the predicate to use to filter the items contained in this DataList.
+            </summary>
+            <param name="predicate">The predicate to use; null if no filter is to be applied.</param>
+        </member>
+        <member name="M:System.Windows.Data.DataList.UpdateSort(System.Collections.Generic.IComparer{System.Object})">
+            <summary>
+            Sets the comparer to use to sort the items contained in this DataList.
+            </summary>
+            <param name="comparer">The comparer to use; null if no sort is to be applied.</param>
+        </member>
+        <member name="P:System.Windows.Data.DataList.CanMoveNext">
+            <summary>
+            Gets whether the current index can be moved forward.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Data.DataList.CanMovePrevious">
+            <summary>
+            Gets whether the current index can be moved back.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Data.DataList.Count">
+            <summary>
+            Gets the count of items currently in the list.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Data.DataList.CurrentItem">
+            <summary>
+            Gets the item at the current index.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Data.DataList.IsCurrencyEnabled">
+            <summary>
+            Gets whether current index is tracked and can be changed.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Data.DataList.Item(System.Int32)">
+            <summary>
+            Gets the item at the specified index within the underlying data.
+            </summary>
+            <param name="index">The index to lookup.</param>
+            <returns>The item at the specified index.</returns>
+        </member>
+        <member name="T:SilverlightFX.Data.BooleanInverter">
+            <summary>
+            A value converter that inverts the value of a boolean property.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.ProceduralAnimationEasingFunction">
+            <summary>
+            A delegate used to define an easing function that can be used to
+            vary the otherwise normal linear progression of an animation from
+            its start state to end state.
+            An easing function is basically f(t) where t = [0...1] such that
+            it is continuous and f(0) == 0 and f(1) == 1.
+            Easing functions can be used to add the illusion of acceleration
+            and deceleration, as well as other sophisticated movement patterns.
+            </summary>
+            <param name="t">The current progress value derived from linear progression.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.ColorAnimation">
+            <summary>
+            An animation that interpolates a Color-typed property from one value to another.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ColorAnimation.#ctor(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.TimeSpan,System.Windows.Media.Color)">
+            <summary>
+            Initializes an instance of an ColorAnimation.
+            </summary>
+            <param name="o">The object to animate.</param>
+            <param name="dp">The property on the object to animate.</param>
+            <param name="duration">The time span over which the animation performs the interpolation.</param>
+            <param name="targetValue">The value to interpolate to.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ColorAnimation.PerformTweening(System.Double)">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Screen">
+            <summary>
+            Represents the root visual of an application.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Screen.FormBackgroundProperty">
+            <summary>
+            Represents the FormBackground property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Screen.#ctor">
+            <summary>
+            Initializes an instance of a Screen control.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Screen.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Screen.FormBackground">
+            <summary>
+            The background brush applied as an overlay on top of the previous form
+            when a new form is displayed.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.HoverEffect">
+            <summary>
+            Plays an effect whenever the mouse enters or leaves the
+            associated element.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.HoverEffect.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.HoverEffect.OnDetach">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.EventTrigger">
+            <summary>
+            A trigger that can be associated with a specific event.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.EventTrigger.GetEventName">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.EventTrigger.EventName">
+            <summary>
+            The name of the event to associated the trigger with.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.EffectComposition">
+            <summary>
+            Represents how a set of effects are composed together.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Effects.EffectComposition.Sequence">
+            <summary>
+            Runs the set of effects one after another.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Effects.EffectComposition.Parallel">
+            <summary>
+            Runs the set of effects together at the same time.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.AutoCompleteCompletingEventArgs">
+            <summary>
+            The event data associated with the AutoComplete behavior's Completing event.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoCompleteCompletingEventArgs.AddServiceParameter(System.String,System.String)">
+            <summary>
+            Allows adding a query string parameter to the web request that will
+            be invoked to get a list of completion items in addition to the
+            prefix itself.
+            </summary>
+            <param name="name">The name of the query string parameter.</param>
+            <param name="value">The value of the query string parameter.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoCompleteCompletingEventArgs.SetCompletionItems(System.Collections.IList)">
+            <summary>
+            Allows providing a set of completion items to be used instead of
+            invoking a web request to fetch a list. This enables using autocompletion
+            with computed values.
+            </summary>
+            <param name="items">The alternate set of items to use.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.AutoCompleteCompletingEventArgs.SuppressDropDown">
+            <summary>
+            Suppresses the AutoComplete dropdown for this particular prefix.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.AutoCompleteCompletingEventArgs.Prefix">
+            <summary>
+            The current textbox entry being used as a prefix for determining
+            completion items.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.XBorder">
+            <summary>
+            A control providing border treatments to its contents.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.XBorder.ChildProperty">
+            <summary>
+            Represents the Child property of a Border.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.XBorder.ClipChildProperty">
+            <summary>
+            Represents the ClipChild property of a Border.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.XBorder.CornerRadiusProperty">
+            <summary>
+            Represents the CornerRadius property of a Border.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.XBorder.ShadowBrushProperty">
+            <summary>
+            Represents the ShadowBrush property of a Border.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.XBorder.ShadowSpreadProperty">
+            <summary>
+            Represents the ShadowSpread property of a Border.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XBorder.#ctor">
+            <summary>
+            Initializes an instance of a Border.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XBorder.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XBorder.Child">
+            <summary>
+            Gets or sets the child property representing the element shown within
+            a Border.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XBorder.ClipChild">
+            <summary>
+            Gets or sets whether the child is clipped when the border has a non-zero
+            corner radius. The default is true, but can be set to false if the
+            perf hit does not justify this.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XBorder.CornerRadius">
+            <summary>
+            Gets or sets the corner radius of the border.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XBorder.ShadowBrush">
+            <summary>
+            Gets or sets the brush used to create a shadow around the child.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.XBorder.ShadowSpread">
+            <summary>
+            Gets or sets the spread or size of the shadow around the child.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Highlight">
+            <summary>
+            Represents a colored background highlight effect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Highlight.#ctor">
+            <summary>
+            Initializes an instance of an HighlightEffect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Highlight.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Highlight.HighlightColor">
+            <summary>
+            Gets or sets the color of the highlight.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.Navigate">
+            <summary>
+            An action that navigates to a selected URI.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.Navigate.NavigateUrlProperty">
+            <summary>
+            Represents the NavigateUrl property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.Navigate.TargetProperty">
+            <summary>
+            Represents the Target property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.Navigate.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.Navigate.NavigateUrl">
+            <summary>
+            Gets or sets the URL to navigate to.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.Navigate.Target">
+            <summary>
+            Gets or sets the target window/frame that should be navigated.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.Applications.ServiceCollection">
+            <summary>
+            Represents a list of services.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.ProceduralAnimationSequence">
+            <summary>
+            An animation that composes a set of multiple animations into a
+            sequence with one animation following the other.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSequence.#ctor(System.Windows.Media.Glitz.ProceduralAnimation[])">
+            <summary>
+            Creates an AnimationSequence with the specified set of individual
+            animations.
+            </summary>
+            <param name="animations"></param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSequence.PlayCore">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSequence.Repeat(System.Boolean)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSequence.ProgressCore(System.Boolean,System.Boolean,System.DateTime)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSequence.StopCore(System.Boolean,System.Windows.Media.Glitz.ProceduralAnimationStopState)">
+            <internalonly />
+        </member>
+        <member name="P:System.Windows.Media.Glitz.ProceduralAnimationSequence.SuccessionDelay">
+            <summary>
+            The delay in milliseconds between animations within the
+            animation sequence.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.TextFilter">
+            <summary>
+            A behavior that can be associated with the TextBox control to filter input.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TextFilter.#ctor">
+            <summary>
+            Initializes an instance of a TextFilter behavior.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TextFilter.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TextFilter.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.TextFilter.Filter">
+            <summary>
+            The type of filter applied to the textbox.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.Data.VisibilityConverter">
+            <summary>
+            A value converter that converts values into equivalent Visibility values.
+            For Boolean values, this maps true/false into Visible/Collapsed.
+            For other values, this maps null and String.Empty into Collapsed.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.ProceduralAnimationStopState">
+            <summary>
+            Used to indicate the final state of an element being animated
+            when the the animation is stopped mid-way.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.ProceduralAnimationStopState.Complete">
+            <summary>
+            Leaves the animated element in its intended final state.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.ProceduralAnimationStopState.Abort">
+            <summary>
+            Leaves the element in its current state.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.ProceduralAnimationStopState.Revert">
+            <summary>
+            Leaves the element back in its original state.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.ProceduralAnimationController">
+            <summary>
+            This class manages the set of active animations and is responsible for
+            scheduling them, and executing them from start to finish.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.ProceduralAnimationController.#ctor(System.Windows.FrameworkElement)">
+            <summary>
+            Initializes an instance of an AnimationController applying
+            to the specified FrameworkElement.
+            </summary>
+            <param name="fe">The associated FrameworkElement.</param>
+        </member>
+        <member name="T:System.ComponentModel.TimeSpanTypeConverter">
+            <summary>
+            Converts between TimeSpan and String.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.TimeSpanTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <internalonly />
+        </member>
+        <member name="M:System.ComponentModel.TimeSpanTypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)">
+            <internalonly />
+        </member>
+        <member name="M:System.ComponentModel.TimeSpanTypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)">
+            <internalonly />
+        </member>
+        <member name="M:System.ComponentModel.TimeSpanTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.XSlider">
+            <summary>
+            A extended Slider control with support for
+            tracking mouse clicks to change the value of the slider.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XSlider.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.XButton">
+            <summary>
+            An extended Button control with more functionality.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XButton.PerformClick">
+            <summary>
+            Allows invoking the associated Click event handler programmatically.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Transitions.CrossFade">
+            <summary>
+            Represents a fade effect that can be attached to a container
+            with two child elements. The effect fades one element to another.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Transitions.CrossFade.CreateTransitionAnimation(System.Windows.Controls.Panel,System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.TilePanel">
+            <summary>
+            A panel that arranges its child elements horizontally, and then wrapped to the next
+            row in an animated manner.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.TilePanel.TileHeightProperty">
+            <summary>
+            Represents the TileHeight property of the TilePanel.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.TilePanel.TileSpacingProperty">
+            <summary>
+            Represents the TileSpacing property of the TilePanel.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.TilePanel.TileWidthProperty">
+            <summary>
+            Represents the TileWidth property of the TilePanel.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TilePanel.ArrangeOverride(System.Windows.Size)">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TilePanel.MeasureOverride(System.Windows.Size)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.TilePanel.TileHeight">
+            <summary>
+            The height of each tile in the panel.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.TilePanel.TileSpacing">
+            <summary>
+            The spacing between each tile in the panel.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.TilePanel.TileWidth">
+            <summary>
+            The width of each tile in the panel.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.HorizontalFlow">
+            <summary>
+            Indicates the flow children into a horizontal layout panel.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.HorizontalFlow.Left">
+            <summary>
+            Children flow from left to right.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.HorizontalFlow.Center">
+            <summary>
+            Children flow from center out toward left and right.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.HorizontalFlow.Right">
+            <summary>
+            Children flow from right to left.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Spin">
+            <summary>
+            Represents a spin effect that rotates the associated element
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Spin.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Spin.SpinAngle">
+            <summary>
+            Gets or sets the angle used by the effect.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.DoubleAnimation">
+            <summary>
+            An animation that interpolates a double-typed property from one value to another.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.DoubleAnimation.#ctor(System.Windows.DependencyObject,System.Windows.DependencyProperty,System.TimeSpan,System.Double)">
+            <summary>
+            Initializes an instance of an DoubleAnimation.
+            </summary>
+            <param name="o">The object to animate.</param>
+            <param name="dp">The property on the object to animate.</param>
+            <param name="duration">The time span over which the animation performs the interpolation.</param>
+            <param name="targetValue">The value to interpolate to.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.DoubleAnimation.PerformTweening(System.Double)">
+            <internalonly />
+        </member>
+        <member name="T:System.Windows.Controls.LayoutEasing">
+            <summary>
+            Determines how the layout is progressed over time.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.None">
+            <summary>
+            Linearly interpolates the layout from start to finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.QuadraticIn">
+            <summary>
+            Accelerates the layout at start and then linearly interpolates
+            the layout to finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.QuadraticOut">
+            <summary>
+            Decelerates the layout at finish after linearly interpolating
+            the layout from start.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.QuadraticInOut">
+            <summary>
+            Accelerates the layout at start, then linearly interpolates
+            the layout toward the finish, and finally decelerates to the
+            finishing point.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.BounceIn">
+            <summary>
+            Bounces the layout at the start, and then interpolates the
+            layout toward the finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.BounceOut">
+            <summary>
+            Starts the layout and bounces it toward the finish at the end.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.BounceInOut">
+            <summary>
+            Bounces the layout at the start and toward the finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.BackIn">
+            <summary>
+            Starts the layout by going in reverse direction, and then proceeds
+            towards the finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.BackOut">
+            <summary>
+            Starts the layout and goes beyond the finish and then back to finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.BackInOut">
+            <summary>
+            Starts the layout by going back, then going beyond the finish, and then
+            back to finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.ElasticIn">
+            <summary>
+            Starts the layout by going back and forth at the start and then
+            shooting toward the finish.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.ElasticOut">
+            <summary>
+            Starts the layout by shooting toward the finish, and then ending by
+            going back and forth.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Controls.LayoutEasing.ElasticInOut">
+            <summary>
+            Starts the layout by going back and forth at the start, then shooting
+            toward the finish, and ending by going back and forth.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Window">
+            <summary>
+            Represents the top-most window in an application.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Window.#ctor">
+            <summary>
+            Initializes an instance of a Window.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Window.#ctor(System.ComponentModel.Model)">
+            <summary>
+            Initializes an instance of a Window with an associated view model.
+            The view model is set as the DataContext of the Form.
+            </summary>
+            <param name="viewModel">The associated view model object.</param>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Transitions.Explode">
+            <summary>
+            Represents an explode-like effect that can be attached to a container
+            with two child elements. The effect zooms out and fade out one element
+            to reveal the other.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Transitions.Explode.#ctor">
+            <summary>
+            Initializes an instance of ExplodeTransition.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Transitions.Explode.CreateTransitionAnimation(System.Windows.Controls.Panel,System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Transitions.Explode.ScaleRatio">
+            <summary>
+            Gets or sets the ratio by which elements are scaled during the
+            explode transition.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.CompositeEffect">
+            <summary>
+            Represents an effect that contains a set of nested effects.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.CompositeEffect.#ctor">
+            <summary>
+            Initializes an instance of a CompositeEffect.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.CompositeEffect.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.CompositeEffect.Composition">
+            <summary>
+            The composition method used to play the child effects.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.CompositeEffect.Effects">
+            <summary>
+            The list of effects to be composed.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.DetailViewItem">
+            <summary>
+            Represents a single item within a DetailView.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DetailViewItem.#ctor">
+            <summary>
+            Initializes an instance of a DetailViewItem.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Interactivity.TriggerCollection">
+            <summary>
+            Represents a collection of triggers associated with the same DependencyObject.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerCollection.InsertItem(System.Int32,System.Windows.Interactivity.Trigger)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Interactivity.TriggerCollection.RemoveItem(System.Int32)">
+            <internalonly />
+        </member>
+        <member name="T:System.ComponentModel.CancelEventArgs">
+            <summary>
+            Represents the event argument associated with a cancelable action.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.CancelEventArgs.Canceled">
+            <summary>
+            Whether the action is to be canceled.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.CancelEventHandler">
+            <summary>
+            Represents the signature of an cancelable event handler.
+            </summary>
+            <param name="sender">The sender of the event.</param>
+            <param name="e">The event argument associated with the event.</param>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.MouseTrigger">
+            <summary>
+            A trigger that can be associated with an element to handle Mouse events.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.MouseTrigger.GetEventName">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.MouseTrigger.MouseUp">
+            <summary>
+            Gets whether the associated action should be triggered when
+            the mouse is pressed down or when the mouse is released.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Interaction">
+            <summary>
+            A class providing various attached properties for creating interactivty.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Interaction.ActionProperty">
+            <summary>
+            Represents the Action attached property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Interaction.BehaviorsProperty">
+            <summary>
+            Represents the Behaviors attached property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Interaction.CommandProperty">
+            <summary>
+            Represents the Command attached property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Interaction.TriggersProperty">
+            <summary>
+            Represents the Triggers attached property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Interaction.GetAction(System.Windows.Controls.Primitives.ButtonBase)">
+            <summary>
+            Gets the action associated with the specified Button.
+            </summary>
+            <param name="button">The Button to lookup.</param>
+            <returns>The action associated with the Button; null if there is none.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Interaction.GetBehaviors(System.Windows.DependencyObject)">
+            <summary>
+            Gets the collection of behaviors for the specified DependencyObject.
+            </summary>
+            <param name="o">The DependencyObject to lookup.</param>
+            <returns>The collection of associated behaviors.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Interaction.GetCommand(System.Windows.Controls.Primitives.ButtonBase)">
+            <summary>
+            Gets the command name associated with the specified Button.
+            </summary>
+            <param name="button">The Button to lookup.</param>
+            <returns>The command name associated with the Button; null if there is none.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Interaction.GetTriggers(System.Windows.DependencyObject)">
+            <summary>
+            Gets the collection of triggers for the specified DependencyObject.
+            </summary>
+            <param name="o">The DependencyObject to lookup.</param>
+            <returns>The collection of associated triggers.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Interaction.SetAction(System.Windows.Controls.Primitives.ButtonBase,System.Windows.Interactivity.TriggerAction)">
+            <summary>
+            Sets the action associated with the specified Button.
+            </summary>
+            <param name="button">The Button to associate the action with.</param>
+            <param name="action">The action to associate with the button.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Interaction.SetBehaviors(System.Windows.DependencyObject,System.Windows.Interactivity.BehaviorCollection)">
+            <summary>
+            Sets the collection of behaviors for the specified DependencyObject.
+            </summary>
+            <param name="o">The DependencyObject to set.</param>
+            <param name="behaviors">The collection of behaviors to associate.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Interaction.SetCommand(System.Windows.Controls.Primitives.ButtonBase,System.String)">
+            <summary>
+            Sets the name of the command associated with the specified Button.
+            </summary>
+            <param name="button">The Button to associate the command with.</param>
+            <param name="commandName">The name of the command to associated.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Interaction.SetTriggers(System.Windows.DependencyObject,System.Windows.Interactivity.TriggerCollection)">
+            <summary>
+            Sets the collection of triggers for the specified DependencyObject.
+            </summary>
+            <param name="o">The DependencyObject to set.</param>
+            <param name="triggers">The collection of triggers to associate.</param>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Move">
+            <summary>
+            Represents an effect that moves the associated element
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Move.CreateEffectAnimation(System.Windows.Media.Glitz.EffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Move.HorizontalMovement">
+            <summary>
+            Gets or sets the amount to move in the horizontal direction.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Move.VerticalMovement">
+            <summary>
+            Gets or sets the amount to move in the vertical direction.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.Data.CurrencyFormatter">
+            <summary>
+            A value converter that can be used in a binding to generate
+            a formatted string representation for a currency value.
+            </summary>
+        </member>
+    </members>
+</doc>
