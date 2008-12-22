@@ -6,7 +6,6 @@
 // This project is licensed under the BSD license. See the accompanying License.txt
 // file for more information.
 // For updated project information please visit http://projects.nikhilk.net/SilverlightFX.
-//              a license identical to this one.
 //
 
 using System;
