@@ -1,0 +1,262 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  x:Class="UserControl"
+	mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+
+  <UserControl.Resources>
+
+    <sys:Double x:Key="lineThickness">2</sys:Double>
+    <Color x:Key="lineColor">#000000</Color>
+    <Color x:Key="fillColor">#CAF562</Color>
+    <Color x:Key="fontColor">#000000</Color>
+    <SolidColorBrush x:Key="fontBrush" Color="{StaticResource fontColor}" />
+    <sys:String x:Key="fontFamily">Verdana</sys:String>
+    <sys:Int32 x:Key="fontSize">11</sys:Int32>
+    <sys:String x:Key="fontWeight">Bold</sys:String>
+
+    <!-- Button -->
+    <Style x:Key="sketchButton" TargetType="Button">
+      <Setter Property="IsEnabled" Value="true" />
+      <Setter Property="IsTabStop" Value="true" />
+      <Setter Property="Foreground" Value="{StaticResource fontBrush}" />
+      <Setter Property="FontFamily" Value="{StaticResource fontFamily}"/>
+      <Setter Property="FontWeight" Value="{StaticResource fontWeight}" />
+      <Setter Property="FontSize" Value="{StaticResource fontSize}"/>
+      <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Grid x:Name="RootElement">
+              <vsm:VisualStateManager.VisualStateGroups>
+                <vsm:VisualStateGroup x:Name="CommonStates">
+                  <vsm:VisualStateGroup.Transitions>
+                    <vsm:VisualTransition GeneratedDuration="0:0:0.2" To="MouseOver"/>
+                    <vsm:VisualTransition GeneratedDuration="0:0:0.1" To="Pressed"/>
+                  </vsm:VisualStateGroup.Transitions>
+                  <vsm:VisualState x:Name="Normal">
+                    <Storyboard/>
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="MouseOver">
+                    <Storyboard>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FillElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.05"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LineElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.05"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.05"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FillElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.05"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LineElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.05"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.05"/>
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="Pressed">
+                    <Storyboard>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LineElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.075"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.075"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="LineElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.075"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="ContentElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.075"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FillElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.075"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FillElement" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1.075"/>
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="Disabled">
+                    <Storyboard>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="DisabledElement" Storyboard.TargetProperty="(UIElement.Opacity)" BeginTime="00:00:00" Duration="00:00:00.0010000">
+                        <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                </vsm:VisualStateGroup>
+                <vsm:VisualStateGroup x:Name="FocusStates">
+                  <vsm:VisualState x:Name="Focused">
+                    <Storyboard>
+                      <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0">
+                          <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Visible</Visibility>
+                          </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                      </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="Unfocused">
+                    <Storyboard>
+                      <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0">
+                          <DiscreteObjectKeyFrame.Value>
+                            <Visibility>Collapsed</Visibility>
+                          </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                      </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                </vsm:VisualStateGroup>
+              </vsm:VisualStateManager.VisualStateGroups>
+
+              <Path x:Name="LineElement" Stretch="Fill" Margin="-1.25,0,0,-1"
+                RenderTransformOrigin="0.5,0.5"
+                Fill="#FFFFFFFF" StrokeThickness="{StaticResource lineThickness}"
+                Data="M0.86650187,0.69540656 C9.839016,1.5543122E-15 19.298248,0 28.666666,0 C34.111111,0 39.555557,0 45,0 C49.827866,0 54.697731,1.1666666 59.333332,1.1666666 C64.324516,1.1666666 69.205429,0.91472858 74.166664,0.66666669 C76.631264,0.54343694 79.333336,-1.1676883 79.333336,3.8333333 C79.333336,11.344878 79,19.153017 79,26.666666 C79,30.484423 77.184448,30.447409 70.5,29.333334 C63.711517,28.20192 56.572155,29.121061 49.666668,28.833334 C39.880856,28.425591 30.177942,31.056808 20.666666,30 C16.043324,29.486296 11.5665,30.340723 7,29.833334 C4.1721892,29.519133 4.3808351,30.563976 2,28 C0.43954825,26.319513 1.6226629,23.586496 0,22.166666 C-2.3480425,20.112129 -0.66666669,14.317116 -0.66666669,10.833333 C-0.66666669,7.1040154 -0.31854713,1.2169615 0.86650187,0.69540656 z">
+                <Path.Stroke>
+                  <SolidColorBrush Color="{StaticResource lineColor}" />
+                </Path.Stroke>
+                <Path.RenderTransform>
+                  <ScaleTransform/>
+                </Path.RenderTransform>
+              </Path>
+              <Path x:Name="FillElement" Stretch="Fill" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="1.5,2.5,5.5,2.5"
+                RenderTransformOrigin="0.5,0.5"
+                StrokeThickness="2">
+                <Path.Fill>
+                  <SolidColorBrush Color="{StaticResource fillColor}" />
+                </Path.Fill>
+                <Path.Data>
+                  <PathGeometry>
+                    <PathFigure IsClosed="True" StartPoint="55.3734893798828,18.3878383636475">
+                      <BezierSegment Point1="55.4575424194336,19.6423645019531" Point2="54.0918769836426,18.1212940216064" Point3="54.1759376525879,19.3758182525635"/>
+                      <BezierSegment Point1="54.1044921875,19.43869972229" Point2="54.1721153259277,19.5379447937012" Point3="54.101448059082,19.5246734619141"/>
+                      <BezierSegment Point1="53.697998046875,19.2345180511475" Point2="53.7027320861816,20.5981388092041" Point3="53.2657089233398,20.5459175109863"/>
+                      <LineSegment Point="54.9807624816895,20.2940578460693"/>
+                      <BezierSegment Point1="55.4915466308594,19.2132472991943" Point2="55.6735687255859,19.6681518554688" Point3="55.5702743530273,19.2230930328369"/>
+                      <LineSegment Point="55.3734893798828,18.3878383636475"/>
+                    </PathFigure>
+                    <PathFigure IsClosed="True" StartPoint="2.75041627883911,4.18817186355591">
+                      <BezierSegment Point1="2.60941195487976,4.23498106002808" Point2="2.44556498527527,4.34848213195801" Point3="2.25126266479492,4.5509033203125"/>
+                      <BezierSegment Point1="1.95730113983154,3.90779161453247" Point2="1.66666030883789,5.07916784286499" Point3="1.46416211128235,5.60511302947998"/>
+                      <LineSegment Point="1.28398549556732,5.28074789047241"/>
+                      <LineSegment Point="1.2844455242157,5.27347755432129"/>
+                      <LineSegment Point="1.43954491615295,5.49028921127319"/>
+                      <BezierSegment Point1="1.46683251857758,5.47077798843384" Point2="1.34879219532013,5.18408298492432" Point3="1.2877790927887,5.220703125"/>
+                      <LineSegment Point="1.2844455242157,5.27347755432129"/>
+                      <LineSegment Point="1.26432502269745,5.24535417556763"/>
+                      <LineSegment Point="1.28398549556732,5.28074789047241"/>
+                      <LineSegment Point="1.26432502269745,5.59193277359009"/>
+                      <BezierSegment Point1="1.28229105472565,5.78759717941284" Point2="1.3096958398819,5.8595871925354" Point3="1.34388554096222,5.84831285476685"/>
+                      <LineSegment Point="1.46416211128235,5.60511302947998"/>
+                      <LineSegment Point="2.18957805633545,6.91105651855469"/>
+                      <BezierSegment Point1="4.89191150665283,6.34800672531128" Point2="3.10698843002319,8.09412384033203" Point3="4.9653377532959,5.38372611999512"/>
+                      <BezierSegment Point1="3.60521507263184,6.80067920684814" Point2="3.73745012283325,3.86050128936768" Point3="2.75041627883911,4.18817186355591"/>
+                    </PathFigure>
+                    <PathFigure IsClosed="True" StartPoint="3.98743844032288,2.72233080863953">
+                      <BezierSegment Point1="3.87878394126892,2.65442371368408" Point2="3.73797965049744,2.68036603927612" Point3="3.53287696838379,2.89400577545166"/>
+                      <BezierSegment Point1="3.3777277469635,2.55462884902954" Point2="3.22433018684387,3.17277550697327" Point3="3.11745405197144,3.45032072067261"/>
+                      <LineSegment Point="3.02235960960388,3.27914905548096"/>
+                      <LineSegment Point="3.02260160446167,3.27531266212463"/>
+                      <LineSegment Point="3.01198220252991,3.2604718208313"/>
+                      <LineSegment Point="3.02235960960388,3.27914905548096"/>
+                      <LineSegment Point="3.01198220252991,3.44336438179016"/>
+                      <BezierSegment Point1="3.01268339157104,3.45099830627441" Point2="3.01341199874878,3.45827555656433" Point3="3.11745405197144,3.45032072067261"/>
+                      <LineSegment Point="3.50032067298889,4.13947582244873"/>
+                      <LineSegment Point="4.19300651550293,4.08932685852051"/>
+                      <BezierSegment Point1="4.57573270797729,4.15608644485474" Point2="4.22972536087036,4.40621519088745" Point3="4.9653377532959,3.33349204063416"/>
+                      <BezierSegment Point1="4.35003042221069,3.97440934181213" Point2="4.31340551376343,2.92605090141296" Point3="3.98743844032288,2.72233080863953"/>
+                    </PathFigure>
+                    <PathFigure IsClosed="True" StartPoint="43.6054306030273,2.55744552612305">
+                      <LineSegment Point="42.7685508728027,3.07746315002441"/>
+                      <BezierSegment Point1="42.8401260375977,3.02574563026428" Point2="44.8010520935059,3.60871481895447" Point3="44.8063468933105,3.56444692611694"/>
+                      <LineSegment Point="47.3169860839844,3.1744339466095"/>
+                      <BezierSegment Point1="47.7981910705566,2.0477294921875" Point2="50.5490341186523,3.69445133209229" Point3="50.9364852905273,2.43774271011353"/>
+                      <LineSegment Point="46.9194679260254,2.11273193359375"/>
+                      <BezierSegment Point1="45.9232177734375,2.00986051559448" Point2="42.2318840026855,3.34697723388672" Point3="43.6054306030273,2.55744552612305"/>
+                    </PathFigure>
+                    <PathFigure IsClosed="True" StartPoint="16.5382518768311,2.38410639762878">
+                      <BezierSegment Point1="17.9376049041748,2.47057723999023" Point2="28.9235725402832,0.979193687438965" Point3="30.961519241333,1.25740206241608"/>
+                      <BezierSegment Point1="39.7206230163574,2.45314311981201" Point2="36.6131362915039,2.46526336669922" Point3="45.4653663635254,2.03742814064026"/>
+                      <BezierSegment Point1="48.1704330444336,1.90669059753418" Point2="53.7993202209473,2.94819211959839" Point3="56.5043983459473,2.81745433807373"/>
+                      <BezierSegment Point1="57.6275444030762,2.76317286491394" Point2="58.8492164611816,1.81751883029938" Point3="58.7605514526367,4.98419380187988"/>
+                      <BezierSegment Point1="58.6914901733398,7.45075988769531" Point2="59.2414894104004,7.46710634231567" Point3="59.1634330749512,9.40434169769287"/>
+                      <LineSegment Point="59.1302642822266,9.42093944549561"/>
+                      <BezierSegment Point1="58.9689521789551,9.46572589874268" Point2="58.8931922912598,9.64298820495605" Point3="58.9885597229004,10.0852022171021"/>
+                      <LineSegment Point="58.7547225952148,10.0751485824585"/>
+                      <BezierSegment Point1="58.7845993041992,10.1730222702026" Point2="59.0883674621582,10.4170408248901" Point3="59.129207611084,10.4465093612671"/>
+                      <LineSegment Point="58.9072380065918,10.2733154296875"/>
+                      <BezierSegment Point1="58.2435150146484,9.76523780822754" Point2="58.5282859802246,11.6655864715576" Point3="57.8627014160156,11.4802284240723"/>
+                      <BezierSegment Point1="57.8627014160156,11.4802284240723" Point2="58.1601409912109,13.5446062088013" Point3="58.357666015625,14.1711664199829"/>
+                      <BezierSegment Point1="58.9370613098145,16.0090198516846" Point2="58.3653373718262,16.4901638031006" Point3="58.357666015625,18.4179744720459"/>
+                      <BezierSegment Point1="58.3484077453613,20.745641708374" Point2="60.4300498962402,21.9203453063965" Point3="56.8666801452637,21.5362567901611"/>
+                      <BezierSegment Point1="45.6265144348145,20.32470703125" Point2="39.9008178710938,21.5664978027344" Point3="30.3169002532959,20.9313945770264"/>
+                      <BezierSegment Point1="24.7872543334961,20.5649566650391" Point2="17.0756797790527,21.3352470397949" Point3="11.5372772216797,21.6029224395752"/>
+                      <BezierSegment Point1="9.37526988983154,21.7074146270752" Point2="6.82023525238037,22.2953662872314" Point3="4.65164470672607,21.9357109069824"/>
+                      <BezierSegment Point1="1.45201742649078,21.4050598144531" Point2="1.73953628540039,23.0963401794434" Point3="1.51341998577118,17.1753234863281"/>
+                      <BezierSegment Point1="1.38521957397461,13.8183069229126" Point2="0.133225455880165,11.0509176254272" Point3="0.00502508180215955,7.6939001083374"/>
+                      <BezierSegment Point1="-0.0463196896016598,6.3494029045105" Point2="0.306805700063705,4.28786516189575" Point3="0.562162816524506,2.95534110069275"/>
+                      <LineSegment Point="2.65466785430908,2.14960050582886"/>
+                      <BezierSegment Point1="5.5844030380249,2.0080041885376" Point2="7.20274591445923,3.57988381385803" Point3="10.0115203857422,2.2107675075531"/>
+                      <BezierSegment Point1="11.7393894195557,1.36852860450745" Point2="15.138897895813,2.29763579368591" Point3="16.5382518768311,2.38410639762878"/>
+                    </PathFigure>
+                  </PathGeometry>
+                </Path.Data>
+                <Path.RenderTransform>
+                  <TransformGroup>
+                    <ScaleTransform/>
+                    <TranslateTransform X="1.4916732314436434" Y="-0.23907148924159571"/>
+                  </TransformGroup>
+                </Path.RenderTransform>
+              </Path>
+              <Path x:Name="FocusVisual" Stretch="Fill" Margin="2.75,4.375,4,3.5" Visibility="Collapsed"
+                RenderTransformOrigin="0.5,0.5"
+                StrokeDashArray="1 2" Stroke="#FF000000" StrokeThickness="0.5"
+                Data="M0.86650187,0.69540656 C9.839016,1.5543122E-15 19.298248,0 28.666666,0 C34.111111,0 39.555557,0 45,0 C49.827866,0 54.697731,1.1666666 59.333332,1.1666666 C64.324516,1.1666666 69.205429,0.91472858 74.166664,0.66666669 C76.631264,0.54343694 79.333336,-1.1676883 79.333336,3.8333333 C79.333336,11.344878 79,19.153017 79,26.666666 C79,30.484423 77.184448,30.447409 70.5,29.333334 C63.711517,28.20192 56.572155,29.121061 49.666668,28.833334 C39.880856,28.425591 30.177942,31.056808 20.666666,30 C16.043324,29.486296 11.5665,30.340723 7,29.833334 C4.1721892,29.519133 4.3808351,30.563976 2,28 C0.43954825,26.319513 1.6226629,23.586496 0,22.166666 C-2.3480425,20.112129 -0.66666669,14.317116 -0.66666669,10.833333 C-0.66666669,7.1040154 -0.31854713,1.2169615 0.86650187,0.69540656 z">
+                <Path.RenderTransform>
+                  <ScaleTransform/>
+                </Path.RenderTransform>
+              </Path>
+              <ContentPresenter x:Name="ContentElement"
+                Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+                Margin="0"
+                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                RenderTransformOrigin="0.5,0.5">
+                <ContentPresenter.RenderTransform>
+                  <ScaleTransform/>
+                </ContentPresenter.RenderTransform>
+              </ContentPresenter>
+              <Path x:Name="DisabledElement" Stretch="Fill" Margin="-1.25,0,0,-1" Opacity="0"
+                RenderTransformOrigin="0.5,0.5"
+                Stroke="#B2FFFFFF" StrokeThickness="2" Fill="#B2FFFFFF"
+                Data="M0.86650187,0.69540656 C9.839016,1.5543122E-15 19.298248,0 28.666666,0 C34.111111,0 39.555557,0 45,0 C49.827866,0 54.697731,1.1666666 59.333332,1.1666666 C64.324516,1.1666666 69.205429,0.91472858 74.166664,0.66666669 C76.631264,0.54343694 79.333336,-1.1676883 79.333336,3.8333333 C79.333336,11.344878 79,19.153017 79,26.666666 C79,30.484423 77.184448,30.447409 70.5,29.333334 C63.711517,28.20192 56.572155,29.121061 49.666668,28.833334 C39.880856,28.425591 30.177942,31.056808 20.666666,30 C16.043324,29.486296 11.5665,30.340723 7,29.833334 C4.1721892,29.519133 4.3808351,30.563976 2,28 C0.43954825,26.319513 1.6226629,23.586496 0,22.166666 C-2.3480425,20.112129 -0.66666669,14.317116 -0.66666669,10.833333 C-0.66666669,7.1040154 -0.31854713,1.2169615 0.86650187,0.69540656 z">
+                <Path.RenderTransform>
+                  <ScaleTransform/>
+                </Path.RenderTransform>
+              </Path>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+  </UserControl.Resources>
+
+  <Grid x:Name="LayoutRoot" Background="White">
+    <Button Style="{StaticResource sketchButton}"
+      Height="40" Margin="247,28,308,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+      Content="Search" />
+  </Grid>
+
+</UserControl>

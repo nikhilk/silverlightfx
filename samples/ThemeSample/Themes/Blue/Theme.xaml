@@ -1,0 +1,17 @@
+﻿<fxa:Theme
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxa="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  Includes="Button, CheckBox, TextBox">
+
+  <fxa:Theme.Resources>
+
+    <Color x:Key="fillColor">#7FCAFF</Color>
+    <sys:String x:Key="fontFamily">assets/architect.ttf#Architect</sys:String>
+    <sys:Int32 x:Key="fontSize">16</sys:Int32>
+    <sys:String x:Key="fontWeight">Normal</sys:String>
+
+  </fxa:Theme.Resources>
+
+</fxa:Theme>

@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="ThemeSample.Page"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Grid x:Name="LayoutRoot" Background="White" Margin="10">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="Auto" />
+      <ColumnDefinition Width="8" />
+      <ColumnDefinition Width="Auto" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <TextBox Style="{StaticResource sketchTextBox}"
+      Height="40" Width="180"
+      Text="Keyword" />
+
+    <CheckBox Style="{StaticResource sketchCheckBox}" Grid.Row="1" Grid.ColumnSpan="3"
+      Content="Show only products on sale" />
+
+    <Button Style="{StaticResource sketchButton}" Grid.Column="2"
+      Height="40" Width="80"
+      Content="Search" />
+  </Grid>
+</UserControl>

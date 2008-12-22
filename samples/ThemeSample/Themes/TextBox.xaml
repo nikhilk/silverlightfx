@@ -1,0 +1,54 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  x:Class="UserControl"
+	mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
+
+  <UserControl.Resources>
+
+    <sys:Double x:Key="lineThickness">2</sys:Double>
+    <Color x:Key="lineColor">#000000</Color>
+    <Color x:Key="fillColor">#CAF562</Color>
+    <Color x:Key="fontColor">#000000</Color>
+    <SolidColorBrush x:Key="fontBrush" Color="{StaticResource fontColor}" />
+    <sys:String x:Key="fontFamily">Verdana</sys:String>
+    <sys:Int32 x:Key="fontSize">11</sys:Int32>
+    <sys:String x:Key="fontWeight">Bold</sys:String>
+
+    <!--Textbox-->
+    <Style x:Key="sketchTextBox" TargetType="TextBox">
+      <Setter Property="Foreground" Value="{StaticResource fontBrush}" />
+      <Setter Property="FontFamily" Value="{StaticResource fontFamily}"/>
+      <Setter Property="FontWeight" Value="{StaticResource fontWeight}" />
+      <Setter Property="FontSize" Value="{StaticResource fontSize}"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="TextBox">
+            <Grid x:Name="Background">
+              <Path x:Name="LineElement" Stretch="Fill"
+                StrokeThickness="{StaticResource lineThickness}" Fill="#FFFFFFFF"
+                Data="M0.66666669,0.83333331 C22.98843,0.83333331 17.999788,1.0007761 41.49995,1.5003691 C46.659081,1.6100477 78.647705,0.66666669 83.833336,0.66666669 C87.669823,0.66666669 91.711746,1.1313757 95.5,0.5 C101.84077,-0.55679578 99.333336,7.3401279 99.333336,17.666666 C99.333336,21.970675 101.8026,20.833334 93.166664,20.833334 C87.083107,20.833334 81.223564,20.838076 75.166664,20.333334 C64.167976,19.416775 52.892971,20.99983 41.833286,20.99983 C29.611065,20.99983 17.388889,20.166666 5.1666665,20.166666 C0.80628252,20.166666 0.83333331,24.179943 0.83333331,15.333333 C0.83333331,10.525309 1.2613385,5.5907078 0.66666669,0.83333331 z">
+                <Path.Stroke>
+                  <SolidColorBrush Color="{StaticResource lineColor}" />
+                </Path.Stroke>
+              </Path>
+              <Border x:Name="ContentElement" Margin="5,5,5,2"/>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+  </UserControl.Resources>
+
+  <Grid x:Name="LayoutRoot" Background="White">
+    <TextBox Style="{StaticResource sketchTextBox}"
+      Height="40" Width="180" Margin="63,28,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"
+      Text="Keyword" />
+  </Grid>
+
+</UserControl>

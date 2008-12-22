@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskList", "TaskList\TaskList.csproj", "{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThemeSample", "ThemeSample\ThemeSample.csproj", "{783F6A15-E472-41A9-903C-105DC10F9BF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{783F6A15-E472-41A9-903C-105DC10F9BF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{783F6A15-E472-41A9-903C-105DC10F9BF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{783F6A15-E472-41A9-903C-105DC10F9BF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{783F6A15-E472-41A9-903C-105DC10F9BF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +48,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E333259B-1F2E-473E-90D4-7306D3E283B4} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
 		{AC2DE467-846C-4621-AFEC-FF35DA1F8062} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
+		{783F6A15-E472-41A9-903C-105DC10F9BF0} = {1C2C2EFA-F360-4AF8-A86D-7431631BB712}
 		{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A} = {38EE0482-5653-49CE-9C94-EBF490218D23}
 	EndGlobalSection
 EndGlobal

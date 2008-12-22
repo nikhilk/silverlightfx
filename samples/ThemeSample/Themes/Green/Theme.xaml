@@ -1,0 +1,6 @@
+﻿<fxa:Theme
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxa="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
+  Includes="Button, CheckBox, TextBox" />
+
