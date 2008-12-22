@@ -126,6 +126,9 @@
     <Compile Include="UserInterface\Window.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\XBorder.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\XGrid.cs">
       <SubType>Code</SubType>
     </Compile>
