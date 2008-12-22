@@ -141,6 +141,12 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\DetailView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\DetailViewItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\EffectBehavior.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -172,6 +178,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Effects\Spin.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ElementProperty.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\EventTrigger.cs">
@@ -214,6 +223,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Label.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ListView.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ListViewItem.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\LoadEffect.cs">
