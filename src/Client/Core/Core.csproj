@@ -120,6 +120,9 @@
     <Compile Include="UserInterface\CheckBoxTrigger.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\ClickEffect.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\ClickTrigger.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -138,10 +141,46 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\EffectBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\ColorFill.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\CompositeEffect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\EffectComposition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\Fade.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\Highlight.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\Move.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\Pulsate.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\Resize.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\Shake.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Effects\Spin.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\EventTrigger.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\EventTriggerBase.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\FocusEffect.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Form.cs">
@@ -165,6 +204,9 @@
     <Compile Include="UserInterface\HorizontalFlow.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\HoverEffect.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\HStackPanel.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -172,6 +214,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Label.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\LoadEffect.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\MouseTrigger.cs">
@@ -187,6 +232,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\TilePanel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\TimedEffect.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Transitions\Blinds.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Transitions\BlindsMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Transitions\CrossFade.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Transitions\Explode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Transitions\Flip.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Transitions\Slide.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\Transitions\SlideMode.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\VerticalFlow.cs">

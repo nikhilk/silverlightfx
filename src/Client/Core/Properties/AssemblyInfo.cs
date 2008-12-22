@@ -38,3 +38,9 @@ using System.Windows.Markup;
 
 [assembly: XmlnsPrefix("clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX", "fxaction")]
 [assembly: XmlnsDefinition("clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX", "SilverlightFX.UserInterface.Actions")]
+
+[assembly: XmlnsPrefix("clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX", "fxeffect")]
+[assembly: XmlnsDefinition("clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX", "SilverlightFX.UserInterface.Effects")]
+
+[assembly: XmlnsPrefix("clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX", "fxtransition")]
+[assembly: XmlnsDefinition("clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX", "SilverlightFX.UserInterface.Transitions")]
