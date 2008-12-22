@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Experiments.TriggersPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+    xmlns:fxaction="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
+    Width="400" Height="300">
+    <Grid x:Name="LayoutRoot" Background="White">
+
+    <Button Content="Click Me!">
+      <fxui:Interaction.Triggers>
+        <fxui:EventTrigger EventName="Click">
+          <fxaction:Navigate NavigateUrl="http://www.nikhilk.net" Target="_new" />
+        </fxui:EventTrigger>
+      </fxui:Interaction.Triggers>
+    </Button>
+
+  </Grid>
+</UserControl>

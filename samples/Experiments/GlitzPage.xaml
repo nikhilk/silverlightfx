@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="Experiments.GlitzPage"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+    xmlns:fxeffects="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
+    xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
+    xmlns:app="clr-namespace:Experiments;assembly=Experiments">
+  <Grid x:Name="LayoutRoot" Background="White">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="300" />
+      <ColumnDefinition Width="100" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <Rectangle Opacity=".5" Margin="100" Fill="Red" RenderTransformOrigin="0.5,0.5">
+      <Rectangle.RenderTransform>
+        <ScaleTransform />
+      </Rectangle.RenderTransform>
+
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Fade Duration="0:0:1" Easing="QuadraticInOut" />
+        </fxui:HoverEffect>
+      </fxui:Interaction.Behaviors>
+    </Rectangle>
+
+    <Ellipse Grid.Column="1" Width="100" Height="100" Margin="0,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5">
+      <Ellipse.Fill>
+        <RadialGradientBrush GradientOrigin="0.75,0.25">
+          <RadialGradientBrush.GradientStops>
+            <GradientStop Color="Orange" Offset="0" />
+            <GradientStop Color="Red" Offset="1" />
+          </RadialGradientBrush.GradientStops>
+        </RadialGradientBrush>
+      </Ellipse.Fill>
+      <Ellipse.RenderTransform>
+        <TransformGroup>
+          <RotateTransform />
+          <ScaleTransform />
+          <TranslateTransform />
+        </TransformGroup>
+      </Ellipse.RenderTransform>
+      <fxui:Interaction.Behaviors>
+        <fxui:ClickEffect>
+          <fxeffects:CompositeEffect AutoReverse="True" Composition="Parallel">
+            <fxeffects:Move VerticalMovement="200" />
+            <fxeffects:Resize ScaleXRatio="2" ScaleYRatio="2" Duration="0:0:2" />
+          </fxeffects:CompositeEffect>
+        </fxui:ClickEffect>
+        <fxui:TimedEffect Interval="0:0:5">
+          <fxeffects:Spin SpinAngle="360" AutoReverse="True" Duration="0:0:5" />
+        </fxui:TimedEffect>
+      </fxui:Interaction.Behaviors>
+    </Ellipse>
+
+    <Ellipse Grid.Column="1" Width="100" Height="100" Margin="0,220,0,0" VerticalAlignment="Top">
+      <Ellipse.Fill>
+        <RadialGradientBrush GradientOrigin="0.75,0.25">
+          <RadialGradientBrush.GradientStops>
+            <GradientStop Color="LightBlue" Offset="0" />
+            <GradientStop Color="MediumBlue" Offset="1" />
+          </RadialGradientBrush.GradientStops>
+        </RadialGradientBrush>
+      </Ellipse.Fill>
+      <Ellipse.RenderTransform>
+        <TranslateTransform />
+      </Ellipse.RenderTransform>
+      <fxui:Interaction.Behaviors>
+        <fxui:ClickEffect>
+          <fxeffects:Move VerticalMovement="200" Easing="ElasticIn" Duration="0:0:5" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Ellipse>
+
+    <Ellipse Grid.Column="1" Width="100" Height="100" Margin="0,340,0,0" VerticalAlignment="Top">
+      <Ellipse.Fill>
+        <RadialGradientBrush GradientOrigin="0.75,0.25">
+          <RadialGradientBrush.GradientStops>
+            <GradientStop Color="Yellow" Offset="0" />
+            <GradientStop Color="Orange" Offset="1" />
+          </RadialGradientBrush.GradientStops>
+        </RadialGradientBrush>
+      </Ellipse.Fill>
+      <Ellipse.RenderTransform>
+        <TransformGroup>
+          <ScaleTransform />
+          <TranslateTransform />
+        </TransformGroup>
+      </Ellipse.RenderTransform>
+      <fxui:Interaction.Behaviors>
+        <fxui:TimedEffect Interval="0:0:5">
+          <fxeffects:CompositeEffect Composition="Parallel" AutoReverse="True">
+            <fxeffects:Fade FadeOpacity="0.5" />
+            <fxeffects:CompositeEffect Composition="Sequence">
+              <fxeffects:Move HorizontalMovement="40" />
+              <fxeffects:Move VerticalMovement="40" />
+            </fxeffects:CompositeEffect>
+          </fxeffects:CompositeEffect>
+        </fxui:TimedEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Move HorizontalMovement="100" AutoReverse="true" Duration="0:0:3" Easing="QuadraticInOut" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Ellipse>
+
+    <Image Source="Garden.jpg" Stretch="Fill" Width="300" Height="250" Grid.Column="2"/>
+    <Grid x:Name="screens" RenderTransformOrigin="0.5,0.5" Height="200" Width="150" Opacity=".6" Grid.Column="2">
+      <app:FrontFace x:Name="front" Height="200" Width="150" />
+      <app:BackFace x:Name="back" Height="200" Width="150" Opacity="0" />
+    </Grid>
+
+    <Button Grid.Column="2" Height="23" HorizontalAlignment="Center" Margin="0,4,0,1" VerticalAlignment="Bottom" Width="75" Content="Flip">
+      <fxui:Interaction.Behaviors>
+        <fxui:ClickEffect>
+          <fxtransitions:Flip TargetName="screens" Easing="QuadraticInOut" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Button>
+
+  </Grid>
+</UserControl>

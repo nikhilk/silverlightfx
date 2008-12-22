@@ -1,0 +1,59 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+    xmlns:fxactions="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
+    xmlns:app="clr-namespace:Experiments;assembly=Experiments"
+    x:Class="Experiments.ViewModelPage">
+  <UserControl.DataContext>
+    <app:NumberModel />
+  </UserControl.DataContext>
+  <StackPanel Background="White" Margin="20" HorizontalAlignment="Center">
+    <StackPanel Orientation="Horizontal">
+
+      <fxui:XTextBox x:Name="valueTextBox" Width="40" Height="21" />
+      <fxui:XButton Margin="2" Width="75" Height="23" VerticalAlignment="Center"
+        Content="Initialize">
+        <fxui:Interaction.Triggers>
+          <fxui:ClickTrigger>
+            <fxactions:SetProperty PropertyName="Value">
+              <fxui:ElementProperty ElementName="valueTextBox" PropertyName="Text" />
+            </fxactions:SetProperty>
+          </fxui:ClickTrigger>
+        </fxui:Interaction.Triggers>
+      </fxui:XButton>
+      
+    </StackPanel>
+    
+    <StackPanel Orientation="Horizontal">
+      <fxui:XTextBox x:Name="numberTextBox" Width="40" Height="21" />
+      <Button Content="Add" Margin="2" fxui:Interaction.Action="$dataContext.Add(numberTextBox.Text)" />
+    </StackPanel>
+    
+    <StackPanel Orientation="Horizontal">
+
+      <TextBlock Style="{StaticResource flatLabel}" VerticalAlignment="Center"
+        FontWeight="Bold" Margin="20,0,20,0"
+        Text="{Binding Value}" />
+
+      <fxui:XButton Margin="2" Width="75" Height="23" VerticalAlignment="Center"
+        Content="Increment">
+        <fxui:Interaction.Triggers>
+          <fxui:ClickTrigger>
+            <fxactions:InvokeMethod MethodName="Increment" />
+            <fxactions:InvokeMethod MethodName="Increment" Condition="{Binding IsSingleDigit}" />
+          </fxui:ClickTrigger>
+        </fxui:Interaction.Triggers>
+      </fxui:XButton>
+      <fxui:XButton Margin="2" Width="75" Height="23" VerticalAlignment="Center"
+        Content="Decrement" IsEnabled="{Binding CanDecrement}">
+        <fxui:Interaction.Triggers>
+          <fxui:ClickTrigger>
+            <fxactions:InvokeMethod MethodName="Decrement" />
+          </fxui:ClickTrigger>
+        </fxui:Interaction.Triggers>
+      </fxui:XButton>
+    </StackPanel>
+
+  </StackPanel>
+</UserControl>

@@ -1,0 +1,29 @@
+﻿<UserControl
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+    x:Class="Experiments.SearchPage">
+  <Grid Background="White" Margin="20" HorizontalAlignment="Center">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="60" />
+      <ColumnDefinition Width="300" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    
+    <TextBlock Style="{StaticResource flatLabel}" Text="Search:" VerticalAlignment="Center" FontWeight="Bold" />
+    <fxui:XTextBox x:Name="searchTextBox" Margin="2" Grid.Column="1">
+      <fxui:Interaction.Behaviors>
+        <fxui:AutoCommit ButtonName="searchButton" />
+      </fxui:Interaction.Behaviors>
+    </fxui:XTextBox>
+    
+    <fxui:XButton x:Name="searchButton" Grid.Row="1" Grid.Column="1" Margin="2" Width="75" Height="23" HorizontalAlignment="Center"
+      Content="OK" Click="OnSearchButtonClick" />
+    
+    <TextBlock x:Name="searchLabel" Style="{StaticResource flatLabel}" VerticalAlignment="Top" Grid.Row="2" Grid.ColumnSpan="2" Margin="2" />
+  </Grid>
+</UserControl>

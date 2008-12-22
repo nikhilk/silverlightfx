@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="Experiments.BackFace"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="150" Height="200">
+  <Grid Background="#000000" Height="200" Width="150">
+    <Grid Margin="54,18,61.5,0" VerticalAlignment="Top" Height="34">
+      <Rectangle Height="10" HorizontalAlignment="Left" Margin="0,1.5,0,0" VerticalAlignment="Top" Width="10" Fill="#FFFFFFFF" Stroke="#FF000000" RadiusX="1" RadiusY="1"/>
+      <Rectangle Height="10" HorizontalAlignment="Stretch" Margin="12.5,1.5,12,0" VerticalAlignment="Top" Fill="#FFFFFFFF" Stroke="#FF000000" RadiusX="1" RadiusY="1"/>
+      <Rectangle Height="10" HorizontalAlignment="Right" Margin="0,1.5,0,0" VerticalAlignment="Top" Fill="#FFFFFFFF" Stroke="#FF000000" Width="10" RadiusX="1" RadiusY="1"/>
+      <Rectangle HorizontalAlignment="Left" Margin="0,0,0,1.5" VerticalAlignment="Bottom" Fill="#FFFFFFFF" Stroke="#FF000000" Height="10" Width="10" RadiusX="1" RadiusY="1"/>
+      <Rectangle HorizontalAlignment="Left" Margin="0,12,0,12" VerticalAlignment="Stretch" Width="10" Fill="#FFFFFFFF" Stroke="#FF000000" RadiusX="1" RadiusY="1"/>
+      <Rectangle HorizontalAlignment="Stretch" Margin="12.5,0,12,1.5" VerticalAlignment="Bottom" Fill="#FFFFFFFF" Stroke="#FF000000" Height="10" RadiusX="1" RadiusY="1"/>
+      <Rectangle HorizontalAlignment="Right" Margin="0,12,0,12" VerticalAlignment="Stretch" Fill="#FFFFFFFF" Stroke="#FF000000" Width="10" RadiusX="1" RadiusY="1"/>
+      <Rectangle HorizontalAlignment="Stretch" Margin="12.5,12,12,12" VerticalAlignment="Stretch" Fill="#FFFFFFFF" Stroke="#FF000000" RadiusX="1" RadiusY="1"/>
+      <Rectangle HorizontalAlignment="Right" Margin="0,0,0,1.5" VerticalAlignment="Bottom" Fill="#FFFFFFFF" Stroke="#FF000000" Height="10" Width="10" RadiusX="1" RadiusY="1"/>
+      <TextBlock HorizontalAlignment="Stretch" Margin="-12.5,0,-13,-22.5" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="10" FontWeight="Bold" Foreground="#FFFFFFFF" Text="Keypad" TextAlignment="Center" x:Name="keypad" Height="23"/>
+    			</Grid>
+    <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="13,20.5,0,0" Width="22.5" Height="Auto">
+      <Rectangle HorizontalAlignment="Left" Margin="-1.5,0,0,0" VerticalAlignment="Top" Width="10" Fill="#FFFFFFFF" Stroke="#FF000000" RadiusX="2" RadiusY="2" Height="30"/>
+      <Rectangle HorizontalAlignment="Right" Margin="0,0,-1,0" VerticalAlignment="Top" Fill="#FFFFFFFF" Stroke="#FF000000" RadiusX="2" RadiusY="2" Width="10" Height="30"/>
+      <TextBlock HorizontalAlignment="Stretch" Margin="-19,0,-18.5,-24.5" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="10" FontWeight="Bold" Foreground="#FFFFFFFF" Text="hold" TextAlignment="Center" x:Name="keypad_Copy" Height="23"/>
+    			</Grid>
+    <Grid Height="Auto" HorizontalAlignment="Right" Margin="0,20,17.5,0" VerticalAlignment="Top" Width="22.5">
+      <Path Height="30" HorizontalAlignment="Stretch" Margin="-4,0,-3.5,0" VerticalAlignment="Top" Data="M12.5,0.5 L17.5,0.5 C18.604568,0.5 19.5,1.3954304 19.5,2.5000002 L19.5,10.5 L27.5,10.5 C28.60457,10.5 29.5,11.395431 29.5,12.5 L29.5,17.5 C29.5,18.60457 28.60457,19.5 27.5,19.5 L19.5,19.5 L19.5,27.5 C19.5,28.60457 18.604568,29.5 17.5,29.5 L12.5,29.5 C11.395431,29.5 10.5,28.60457 10.5,27.5 L10.5,19.5 L2.5,19.5 C1.3954306,19.5 0.5,18.60457 0.5,17.5 L0.5,12.5 C0.5,11.395431 1.3954306,10.5 2.5,10.5 L10.5,10.5 L10.5,2.5000002 C10.5,1.3954304 11.395431,0.5 12.5,0.5 z" Fill="#FFFFFFFF" Stretch="Fill" Stroke="#FF000000"/>
+      <TextBlock HorizontalAlignment="Stretch" Margin="-19,0,-18.5,-24.5" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="10" FontWeight="Bold" Foreground="#FFFFFFFF" Text="add call" TextAlignment="Center" x:Name="keypad_Copy1" Height="23"/>
+    			</Grid>
+    <TextBlock HorizontalAlignment="Left" Margin="8.5,75,0,0" VerticalAlignment="Top"  FontFamily="Arial" FontSize="12" TextWrapping="Wrap" FontWeight="Bold" Foreground="#FFFFFFFF" Text="This is some text that I want to show wraping and simulate copy on the back side of the control" TextAlignment="Center" x:Name="copy" Height="100" Width="130"/>
+	</Grid>
+</UserControl>

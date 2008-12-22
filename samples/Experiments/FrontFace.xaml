@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="Experiments.FrontFace"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Width="150" Height="200">
+  <Grid Background="#000000" Height="200" Width="150">
+    <TextBlock Height="57" HorizontalAlignment="Left" Margin="0,7,0,0" x:Name="_1" VerticalAlignment="Top" Width="59" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="1" TextAlignment="Center"/>
+		<TextBlock Height="57" HorizontalAlignment="Stretch" Margin="46,7,44,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="2" TextAlignment="Center" x:Name="_2"/>
+		<TextBlock Height="57" HorizontalAlignment="Right" Margin="0,7,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="3" TextAlignment="Center" x:Name="_3" Width="59"/>
+		<TextBlock HorizontalAlignment="Left" Margin="0,57,0,88" VerticalAlignment="Stretch" Width="59" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="4" TextAlignment="Center" x:Name="_4"/>
+		<TextBlock HorizontalAlignment="Stretch" Margin="46,57,44,88" VerticalAlignment="Stretch" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="5" TextAlignment="Center" x:Name="_5"/>
+		<TextBlock HorizontalAlignment="Right" Margin="0,57,0,88" VerticalAlignment="Stretch" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="6" TextAlignment="Center" Width="59" x:Name="_6"/>
+		<TextBlock HorizontalAlignment="Left" Margin="0,0,0,38" VerticalAlignment="Bottom" Width="59" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="7" TextAlignment="Center" x:Name="_7" Height="57"/>
+		<TextBlock HorizontalAlignment="Stretch" Margin="46,0,44,38" VerticalAlignment="Bottom"  FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="8" TextAlignment="Center" x:Name="_8" Height="57"/>
+		<TextBlock HorizontalAlignment="Right" Margin="0,0,0,38" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="9" TextAlignment="Center" Width="59" x:Name="_9" Height="57"/>
+		<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-1" VerticalAlignment="Bottom" Width="59" FontFamily="Arial" FontSize="70" FontWeight="Bold" Foreground="#FFFFFFFF" Text="*" TextAlignment="Center" Height="57" x:Name="_star"/>
+		<TextBlock HorizontalAlignment="Stretch" Margin="46,0,44,-7" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="0" TextAlignment="Center" Height="57" x:Name="_0"/>
+		<TextBlock HorizontalAlignment="Right" Margin="0,0,0,-7" VerticalAlignment="Bottom" FontFamily="Arial" FontSize="36" FontWeight="Bold" Foreground="#FFFFFFFF" Text="#" TextAlignment="Center" Width="59" Height="57" x:Name="_number"/>
+	</Grid>
+</UserControl>

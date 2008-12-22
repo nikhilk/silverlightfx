@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="Experiments.ContentListPage" x:Name="RootControl"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:app="clr-namespace:Experiments">
+
+  <UserControl.Resources>
+
+    <ControlTemplate x:Key="HeaderFooterPanel">
+      <fxui:XBorder CornerRadius="4" BorderThickness="1" BorderBrush="#20000000" ShadowSpread="8">
+        <fxui:XBorder.ShadowBrush>
+          <LinearGradientBrush>
+            <GradientStop Color="#40000000" Offset="0" />
+            <GradientStop Color="#00000000" Offset="1" />
+          </LinearGradientBrush>
+        </fxui:XBorder.ShadowBrush>
+        <fxui:XGrid Rows="31,*,40">
+          <Border Grid.Row="0" BorderThickness="0,0,0,0.5" BorderBrush="#80000000">
+            <Border.Background>
+              <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#E6ECF4" Offset="0" />
+                <GradientStop Color="#EEF1F3" Offset="1" />
+              </LinearGradientBrush>
+            </Border.Background>
+            <Grid x:Name="header" Margin="4" />
+          </Border>
+          <Grid x:Name="body" Grid.Row="1" Margin="4" />
+          <Border Grid.Row="2" BorderThickness="0,0.5,0,0" BorderBrush="#80000000">
+            <Border.Background>
+              <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#EEF1F3" Offset="0" />
+                <GradientStop Color="#E6ECF4" Offset="1" />
+              </LinearGradientBrush>
+            </Border.Background>
+            <Grid x:Name="footer" Margin="4" />
+          </Border>
+        </fxui:XGrid>
+      </fxui:XBorder>
+    </ControlTemplate>
+
+  </UserControl.Resources>
+
+  <fxui:XGrid Background="White" Columns="20,*,10,320,20" Rows="20,40,300,10,*,30,20">
+
+    <TextBlock Text="Store" Grid.Column="1" Grid.Row="1" Margin="0,4,0,4" />
+    
+    <fxui:HStackPanel Grid.Column="3" Grid.Row="1" ChildSpacing="8" ChildFlow="Right" ChildAlignment="Center">
+      <TextBlock Text="Hello User!" />
+      <TextBlock Text="About..." />
+    </fxui:HStackPanel>
+
+    <fxui:ContentLayout Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" Template="{StaticResource HeaderFooterPanel}">
+      <fxui:XGrid fxui:ContentLayout.ContentName="header" Columns="*,Auto">
+        <TextBlock Text="Catalog" VerticalAlignment="Center" />
+        
+        <fxui:HStackPanel Grid.Column="1" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
+          <TextBox x:Name="searchTextBox" Width="150" Height="21" />
+          <Button x:Name="searchButton" Width="75" Height="23" Content="Search" />
+        </fxui:HStackPanel>
+      </fxui:XGrid>
+      <Button Content="Click Me!" fxui:ContentLayout.ContentName="body" />
+      <Button Content="Click Me Too!" fxui:ContentLayout.ContentName="body" />
+      <fxui:XGrid fxui:ContentLayout.ContentName="footer" Columns="*,Auto">
+        <fxui:HStackPanel Grid.Column="1" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
+          <Button Content="T" Width="23" Height="23" />
+          <Button Content="L" Width="23" Height="23" />
+        </fxui:HStackPanel>
+      </fxui:XGrid>
+    </fxui:ContentLayout>
+
+    <fxui:ContentLayout Grid.Column="3" Grid.Row="2" Template="{StaticResource HeaderFooterPanel}">
+      <TextBlock fxui:ContentLayout.ContentName="header" Text="Product Details" VerticalAlignment="Center" />
+      <Button fxui:ContentLayout.ContentName="body" Content="Click Me!" />
+      <TextBlock fxui:ContentLayout.ContentName="footer" Text="Copyright" />
+    </fxui:ContentLayout>
+
+    <fxui:ContentLayout Grid.Column="3" Grid.Row="4" Template="{StaticResource HeaderFooterPanel}">
+      <TextBlock fxui:ContentLayout.ContentName="header" Text="Shopping Cart" VerticalAlignment="Center" />
+      <Button fxui:ContentLayout.ContentName="body" Content="Click Me!" />
+      <fxui:HStackPanel fxui:ContentLayout.ContentName="footer" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
+        <Button Content="Remove" />
+        <Button Content="Checkout" />
+        <TextBlock Text="Total" />
+      </fxui:HStackPanel>
+    </fxui:ContentLayout>
+    
+    <fxui:HStackPanel Grid.Column="3" Grid.Row="5" ChildSpacing="8" ChildAlignment="Center" ChildFlow="Right">
+      <TextBlock Text="Amazon" />
+      <TextBlock Text="Silverlight" />
+    </fxui:HStackPanel>
+  </fxui:XGrid>
+</UserControl>

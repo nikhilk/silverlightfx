@@ -1,0 +1,53 @@
+﻿<UserControl
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  x:Class="Experiments.StackPanelsPage">
+
+  <fxui:XGrid Columns="5*,5*">
+    
+    <fxui:HStackPanel ChildSpacing="4" ChildAlignment="Center" ChildFlow="Right"
+      UseAnimatedLayout="True">
+      
+      <fxui:Label Text="Horizontal Layout" />
+      
+      <Button Content="Hello" Height="23" Width="75"/>
+      
+      <Button Content="World" Height="40" Width="125" />
+      
+    </fxui:HStackPanel>
+
+    <fxui:VStackPanel Grid.Column="1" ChildSpacing="4" ChildAlignment="Left" ChildFlow="Bottom">
+
+      <Button Content="Hello!" Height="23" Width="75"/>
+
+      <Button Content="World!" Height="40" Width="125" />
+      
+      <fxui:XBorder BorderBrush="Black" BorderThickness="2" CornerRadius="8" ShadowSpread="8">
+        <fxui:XBorder.ShadowBrush>
+          <LinearGradientBrush>
+            <GradientStop Color="#40000000" Offset="0" />
+            <GradientStop Color="#30000000" Offset="0.25" />
+            <GradientStop Color="#00000000" Offset="1" />
+          </LinearGradientBrush>
+        </fxui:XBorder.ShadowBrush>
+        <Rectangle Width="100" Height="50" Fill="Red" />
+      </fxui:XBorder>
+      
+      <ScrollViewer Width="200" Height="150" BorderThickness="0"
+        HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+        <fxui:TilePanel TileWidth="100" TileHeight="100">
+          <Rectangle Fill="Red" />
+          <Rectangle Fill="Green" />
+          <Rectangle Fill="Yellow" />
+          <Rectangle Fill="Blue" />
+        </fxui:TilePanel>
+      </ScrollViewer>
+      
+      <fxui:TilePanel TileWidth="100" TileHeight="100" />
+
+    </fxui:VStackPanel>
+
+  </fxui:XGrid>
+
+</UserControl>

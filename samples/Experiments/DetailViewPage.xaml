@@ -1,0 +1,74 @@
+﻿<fxui:Window
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+    xmlns:fxaction="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
+    xmlns:fxeffects="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
+    xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
+    xmlns:app="clr-namespace:Experiments;assembly=Experiments"
+    x:Class="Experiments.DetailViewPage">
+  <fxui:Window.Model>
+    <app:ListModel />
+  </fxui:Window.Model>
+
+  <StackPanel Background="White" Margin="20" HorizontalAlignment="Center">
+
+    <fxui:DetailView DataSource="{Binding Items}" Background="AliceBlue">
+      <fxui:DetailView.Template>
+        <ControlTemplate>
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="25" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="ItemPresenter" />
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,1,0,1">
+              <Button Content="Previous" fxui:Interaction.Command="Previous" />
+              <Button Content="Next" fxui:Interaction.Command="Next" />
+            </StackPanel>
+          </Grid>
+        </ControlTemplate>
+      </fxui:DetailView.Template>
+      <fxui:DetailView.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name}" Margin="1" FontSize="24" FontFamily="Segoe" />
+            <TextBlock Text="{Binding Age}" Margin="1" FontSize="24" FontFamily="Segoe" />
+          </StackPanel>
+        </DataTemplate>
+      </fxui:DetailView.ItemTemplate>
+      <fxui:DetailView.ItemTransition>
+        <!--
+        <fxtransitions:CrossFade Duration="0:0:1" />
+        -->
+        <fxtransitions:Flip Duration="0:0:0.25" />
+      </fxui:DetailView.ItemTransition>
+    </fxui:DetailView>
+
+    <fxui:ListView DataSource="{Binding Items}">
+      <fxui:ListView.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding Name}" Margin="1" FontSize="24" FontFamily="Segoe" />
+            <Button Content="Delete" fxui:Interaction.Action="$model.RemoveItem($dataContext)" />
+          </StackPanel>
+        </DataTemplate>
+      </fxui:ListView.ItemTemplate>
+      <fxui:ListView.ItemAddedEffect>
+        <fxeffects:Highlight Duration="0:0:1" Easing="QuadraticInOut" />
+      </fxui:ListView.ItemAddedEffect>
+      <fxui:ListView.ItemRemovedEffect>
+        <fxeffects:Highlight Duration="0:0:0.5" HighlightColor="Red" Easing="QuadraticInOut" />
+      </fxui:ListView.ItemRemovedEffect>
+    </fxui:ListView>
+    
+    <StackPanel Orientation="Horizontal">
+      <TextBlock Margin="1">Name:</TextBlock>
+      <TextBox x:Name="nameTextBox" Width="100" Margin="1" />
+      <TextBlock Margin="1">Age:</TextBlock>
+      <TextBox x:Name="ageTextBox" Width="50" Margin="1" />
+      <Button Content="Add" fxui:Interaction.Action="$model.AddItem(nameTextBox.Text, ageTextBox.Text)" />
+    </StackPanel>
+
+  </StackPanel>
+</fxui:Window>
