@@ -1,0 +1,16 @@
+﻿<UserControl
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxeffects="clr-namespace:Silverlight.FX.UserInterface.Effects;assembly=Silverlight.FX"
+  xmlns:app="clr-namespace:EffectControl"
+  x:Class="EffectControl.Page">
+  <Grid Background="White">
+
+    <app:Sprite Image="/Silverlight.png" Margin="10">
+      <app:Sprite.Effect>
+        <app:FlashBulb Duration="0:0:1" Easing="QuadraticInOut" />
+      </app:Sprite.Effect>
+    </app:Sprite>
+    
+  </Grid>
+</UserControl>

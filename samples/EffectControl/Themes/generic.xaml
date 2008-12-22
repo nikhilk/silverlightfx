@@ -1,0 +1,20 @@
+﻿<ResourceDictionary 
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:app="clr-namespace:EffectControl">
+
+  <Style TargetType="app:Sprite">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="app:Sprite">
+          <Grid>
+            <Image x:Name="ImagePresenter" Source="{TemplateBinding Image}" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+</ResourceDictionary>
