@@ -141,6 +141,7 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\ViewUserControl.cs" />
     <Compile Include="UserInterface\DetailView.cs">
       <SubType>Code</SubType>
     </Compile>
