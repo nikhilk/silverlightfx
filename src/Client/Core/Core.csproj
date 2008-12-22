@@ -135,6 +135,9 @@
     <Compile Include="UserInterface\XSlider.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\XTextBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="_System\Collections\IEditableCollection.cs">
       <SubType>Code</SubType>
     </Compile>
