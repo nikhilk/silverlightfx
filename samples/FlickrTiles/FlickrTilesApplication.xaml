@@ -1,0 +1,6 @@
+﻿<fxapp:XApplication
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
+  x:Class="FlickrTiles.FlickrTilesApplication"
+  WindowName="FlickrTiles.Views.MainWindow" ThemeName="Default" />

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="FlickrTiles.Views.Progress"
+  xmlns="http://schemas.microsoft.com/client/2007" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  Width="75" Height="75" IsHitTestVisible="False">
+  <Grid x:Name="rootElement" Background="#80000000">
+    <Canvas x:Name="progressSpinner"
+      Width="32" Height="32" Visibility="Collapsed" HorizontalAlignment="Center" VerticalAlignment="Center"
+      RenderTransformOrigin="0.5,0.5">
+      <Canvas.Resources>
+        <Storyboard x:Key="spinStoryboard" RepeatBehavior="Forever">
+          <DoubleAnimation Storyboard.TargetName="rotateTransform" Storyboard.TargetProperty="Angle" To="360" Duration="0:0:02" />
+        </Storyboard>
+      </Canvas.Resources>
+      <Canvas.RenderTransform>
+        <TransformGroup>
+          <RotateTransform x:Name="rotateTransform" Angle="0"/>
+        </TransformGroup>
+      </Canvas.RenderTransform>
+      <Path Width="4.47202" Height="4.47197" Canvas.Left="13.351" Canvas.Top="0" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 17.823,2.23601C 17.823,3.47099 16.822,4.47197 15.588,4.47197C 14.353,4.47197 13.351,3.47099 13.351,2.23601C 13.351,1.002 14.353,0 15.588,0C 16.822,0 17.823,1.002 17.823,2.23601 Z "/>
+      <Path Width="4.47" Height="4.47101" Canvas.Left="20.08" Canvas.Top="1.81999" Stretch="Fill" Fill="#E6FFFFFF" Data="F1 M 24.55,4.05699C 24.55,5.291 23.549,6.291 22.315,6.291C 21.08,6.291 20.08,5.291 20.08,4.05699C 20.08,2.82097 21.08,1.81999 22.315,1.81999C 23.549,1.81999 24.55,2.82097 24.55,4.05699 Z "/>
+      <Path Width="4.47098" Height="4.46997" Canvas.Left="24.966" Canvas.Top="6.76604" Stretch="Fill" Fill="#CDFFFFFF" Data="F1 M 29.437,9.00102C 29.437,10.235 28.436,11.236 27.201,11.236C 25.966,11.236 24.966,10.235 24.966,9.00102C 24.966,7.76701 25.966,6.76604 27.201,6.76604C 28.436,6.76604 29.437,7.76701 29.437,9.00102 Z "/>
+      <Path Width="4.47" Height="4.47095" Canvas.Left="26.707" Canvas.Top="13.355" Stretch="Fill" Fill="#B3FFFFFF" Data="F1 M 31.177,15.591C 31.177,16.826 30.177,17.826 28.943,17.826C 27.708,17.826 26.707,16.826 26.707,15.591C 26.707,14.356 27.708,13.355 28.943,13.355C 30.177,13.355 31.177,14.356 31.177,15.591 Z "/>
+      <Path Width="4.47101" Height="4.47101" Canvas.Left="6.62399" Canvas.Top="1.81999" Stretch="Fill" Fill="#E6FFFFFF" Data="F1 M 11.095,4.05699C 11.095,5.291 10.093,6.291 8.85901,6.291C 7.625,6.291 6.62399,5.291 6.62399,4.05699C 6.62399,2.82097 7.625,1.81999 8.85901,1.81999C 10.093,1.81999 11.095,2.82097 11.095,4.05699 Z "/>
+      <Path Width="4.47098" Height="4.46997" Canvas.Left="1.73801" Canvas.Top="6.76604" Stretch="Fill" Fill="#00FFFFFF" Data="F1 M 6.20898,9.00102C 6.20898,10.235 5.207,11.236 3.97198,11.236C 2.73801,11.236 1.73801,10.235 1.73801,9.00102C 1.73801,7.76701 2.73801,6.76604 3.97198,6.76604C 5.207,6.76604 6.20898,7.76701 6.20898,9.00102 Z "/>
+      <Path Width="4.47202" Height="4.47003" Canvas.Left="13.351" Canvas.Top="26.893" Stretch="Fill" Fill="#67FFFFFF" Data="F1 M 17.823,29.127C 17.823,27.893 16.822,26.893 15.588,26.893C 14.353,26.893 13.351,27.893 13.351,29.127C 13.351,30.362 14.353,31.363 15.588,31.363C 16.822,31.363 17.823,30.362 17.823,29.127 Z "/>
+      <Path Width="4.47" Height="4.47101" Canvas.Left="20.08" Canvas.Top="25.072" Stretch="Fill" Fill="#80FFFFFF" Data="F1 M 24.55,27.307C 24.55,26.072 23.549,25.072 22.315,25.072C 21.08,25.072 20.08,26.072 20.08,27.307C 20.08,28.542 21.08,29.543 22.315,29.543C 23.549,29.543 24.55,28.542 24.55,27.307 Z "/>
+      <Path Width="4.47098" Height="4.47101" Canvas.Left="24.966" Canvas.Top="20.127" Stretch="Fill" Fill="#9AFFFFFF" Data="F1 M 29.437,22.362C 29.437,21.128 28.436,20.127 27.201,20.127C 25.966,20.127 24.966,21.128 24.966,22.362C 24.966,23.598 25.966,24.598 27.201,24.598C 28.436,24.598 29.437,23.598 29.437,22.362 Z "/>
+      <Path Width="4.47101" Height="4.47101" Canvas.Left="6.62399" Canvas.Top="25.072" Stretch="Fill" Fill="#4DFFFFFF" Data="F1 M 11.095,27.307C 11.095,26.072 10.093,25.072 8.85901,25.072C 7.625,25.072 6.62399,26.072 6.62399,27.307C 6.62399,28.542 7.625,29.543 8.85901,29.543C 10.093,29.543 11.095,28.542 11.095,27.307 Z "/>
+      <Path Width="4.47098" Height="4.47101" Canvas.Left="1.73801" Canvas.Top="20.127" Stretch="Fill" Fill="#34FFFFFF" Data="F1 M 6.20898,22.362C 6.20898,21.128 5.207,20.127 3.97198,20.127C 2.73801,20.127 1.73801,21.128 1.73801,22.362C 1.73801,23.598 2.73801,24.598 3.97198,24.598C 5.207,24.598 6.20898,23.598 6.20898,22.362 Z "/>
+      <Path Width="4.47" Height="4.47107" Canvas.Left="0" Canvas.Top="13.545" Stretch="Fill" Fill="#1AFFFFFF" Data="F1 M 4.47,15.781C 4.47,17.016 3.47,18.016 2.23499,18.016C 1,18.016 0,17.016 0,15.781C 0,14.546 1,13.545 2.23499,13.545C 3.47,13.545 4.47,14.546 4.47,15.781 Z "/>
+    </Canvas>
+  </Grid>
+</UserControl>
