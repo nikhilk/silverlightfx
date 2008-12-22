@@ -72,6 +72,15 @@
     <Compile Include="Data\VisibilityConverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\ContentCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ContentLayout.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UserInterface\ContentLayoutMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
