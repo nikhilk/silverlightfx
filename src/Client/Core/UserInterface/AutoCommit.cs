@@ -17,6 +17,8 @@ using System.ComponentModel;
 using System.Net;
 using System.Text;
 using System.Windows;
+using System.Windows.Automation.Peers;
+using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interactivity;
@@ -62,22 +64,29 @@ namespace SilverlightFX.UserInterface {
             if ((e.Handled == false) &&
                 (e.Key == Key.Enter) &&
                 (AssociatedObject.Text.Length != 0)) {
-                // TODO: Use Automation if this is a ButtonBase?
-                XButton targetButton = null;
-
+                Button targetButton = null;
                 if (String.IsNullOrEmpty(_buttonName) == false) {
-                    targetButton = AssociatedObject.FindName(_buttonName) as XButton;
+                    targetButton = AssociatedObject.FindName(_buttonName) as Button;
                 }
 
                 if (targetButton == null) {
-                    throw new InvalidOperationException("ButtonName on DefaultCommit must be set to a valid Button control name.");
+                    throw new InvalidOperationException("ButtonName on AutoCommit must be set to a valid Button control name.");
                 }
 
                 if (targetButton.IsEnabled) {
                     targetButton.Focus();
 
                     AssociatedObject.Dispatcher.BeginInvoke(delegate() {
-                        targetButton.PerformClick();
+                        XButton xButton = targetButton as XButton;
+                        if (xButton != null) {
+                            xButton.PerformClick();
+                        }
+                        else {
+                            ButtonAutomationPeer automationPeer = new ButtonAutomationPeer(targetButton);
+                            IInvokeProvider invokeProvider = (IInvokeProvider)automationPeer.GetPattern(PatternInterface.Invoke);
+
+                            invokeProvider.Invoke();
+                        }
                     });
                 }
 
