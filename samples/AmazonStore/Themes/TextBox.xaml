@@ -1,0 +1,126 @@
+﻿<UserControl
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  x:Class="UserControl">
+  <UserControl.Resources>
+
+    <sys:String x:Key="uiFontFamily">Verdana</sys:String>
+    <sys:Int32 x:Key="uiFontSize">11</sys:Int32>
+
+    <Style x:Key="textBox" TargetType="fxui:XTextBox">
+      <Setter Property="BorderBrush" Value="#FFAAAAAA" />
+      <Setter Property="BorderThickness" Value=".75" />
+      <Setter Property="AcceptsReturn" Value="false" />
+      <Setter Property="FontSize" Value="{StaticResource uiFontSize}"/>
+      <Setter Property="FontFamily" Value="{StaticResource uiFontFamily}" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="fxui:XTextBox">
+            <Grid x:Name="RootElement">
+              <vsm:VisualStateManager.VisualStateGroups>
+                <vsm:VisualStateGroup x:Name="FocusStates">
+                  <vsm:VisualStateGroup.Transitions>
+                    <vsm:VisualTransition GeneratedDuration="0:0:0.1" To="Focused"/>
+                  </vsm:VisualStateGroup.Transitions>
+                  <vsm:VisualState x:Name="Normal">
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="Focused">
+                    <Storyboard>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Opacity">
+                        <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AdornerLayer" Storyboard.TargetProperty="Opacity">
+                        <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                </vsm:VisualStateGroup>
+              </vsm:VisualStateManager.VisualStateGroups>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Border x:Name="ContentElement"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Padding="4,3,4,3"
+                CornerRadius="1" Grid.ColumnSpan="3" />
+              <Grid x:Name="FocusVisual" Grid.ColumnSpan="3" IsHitTestVisible="False" Opacity="0">
+                <Rectangle RadiusX="1" RadiusY="1" Stroke="#FF72B9DF" StrokeThickness="1" />
+                <Rectangle Margin="0.75" RadiusX="1" RadiusY="1"
+                  StrokeDashCap="Square" Stroke="#8072B9DF" StrokeThickness="1" />
+              </Grid>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="adornableTextBox" TargetType="fxui:XTextBox">
+      <Setter Property="BorderBrush" Value="#FFAAAAAA" />
+      <Setter Property="BorderThickness" Value=".75" />
+      <Setter Property="AcceptsReturn" Value="false" />
+      <Setter Property="FontSize" Value="{StaticResource uiFontSize}"/>
+      <Setter Property="FontFamily" Value="{StaticResource uiFontFamily}" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="fxui:XTextBox">
+            <Grid x:Name="RootElement">
+              <vsm:VisualStateManager.VisualStateGroups>
+                <vsm:VisualStateGroup x:Name="FocusStates">
+                  <vsm:VisualStateGroup.Transitions>
+                    <vsm:VisualTransition GeneratedDuration="0:0:0.1" To="Focused"/>
+                  </vsm:VisualStateGroup.Transitions>
+                  <vsm:VisualState x:Name="Normal">
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="Focused">
+                    <Storyboard>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="FocusVisual" Storyboard.TargetProperty="Opacity">
+                        <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
+                      </DoubleAnimationUsingKeyFrames>
+                      <DoubleAnimationUsingKeyFrames Storyboard.TargetName="AdornerLayer" Storyboard.TargetProperty="Opacity">
+                        <DiscreteDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                      </DoubleAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                </vsm:VisualStateGroup>
+              </vsm:VisualStateManager.VisualStateGroups>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
+              </Grid.ColumnDefinitions>
+              <Border x:Name="ContentElement"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                Padding="4,3,4,3"
+                CornerRadius="1" Grid.ColumnSpan="3" />
+              <Grid x:Name="AdornerLayer" Margin="4.5,3.5,4,3" IsHitTestVisible="false" Visibility="Collapsed" />
+              <Grid x:Name="GlyphPresenter" Grid.Column="1" Margin="0,1.5,2,1.5" Visibility="Collapsed" />
+              <Grid x:Name="ButtonPresenter" Grid.Column="2" Margin="0,1.5,2,1.5" Visibility="Collapsed" />
+              <Grid x:Name="FocusVisual" Grid.ColumnSpan="3" IsHitTestVisible="False" Opacity="0">
+                <Rectangle RadiusX="1" RadiusY="1" Stroke="#FF72B9DF" StrokeThickness="1" />
+                <Rectangle Margin="0.75" RadiusX="1" RadiusY="1"
+                  StrokeDashCap="Square" Stroke="#8072B9DF" StrokeThickness="1" />
+              </Grid>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style x:Key="watermark" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="{StaticResource uiFontSize}"/>
+      <Setter Property="FontFamily" Value="{StaticResource uiFontFamily}" />
+      <Setter Property="FontStyle" Value="Italic" />
+      <Setter Property="Foreground" Value="#AAAAAA" />
+    </Style>
+
+  </UserControl.Resources>
+</UserControl>

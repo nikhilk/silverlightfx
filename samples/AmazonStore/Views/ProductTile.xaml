@@ -1,0 +1,28 @@
+﻿<UserControl
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:fxeffects="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
+  x:Class="Store.ProductTile"
+  Width="200" Height="200">
+
+  <Border CornerRadius="4" Cursor="Hand" Width="200" VerticalAlignment="Top">
+    <fxui:Interaction.Triggers>
+      <fxui:MouseTrigger Action="$model.SelectedProduct = $dataContext" />
+    </fxui:Interaction.Triggers>
+    <fxui:Interaction.Behaviors>
+      <fxui:HoverEffect>
+        <fxeffects:ColorFill Duration="0:0:0.5" Easing="QuadraticInOut" FillColor="#408CCBFB" />
+      </fxui:HoverEffect>
+    </fxui:Interaction.Behaviors>
+    <fxui:XGrid Rows="*,Auto,Auto" HorizontalAlignment="Center" Margin="5">
+      <Image HorizontalAlignment="Center" Width="75"
+        Source="{Binding ImageUri, Converter={StaticResource imageLoader}}" />
+      <TextBlock Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap"
+        Text="{Binding Title}" />
+      <TextBlock Grid.Row="2" HorizontalAlignment="Center" TextWrapping="NoWrap" FontWeight="Bold"
+        Text="{Binding Price, Converter={StaticResource currencyFormatter}, ConverterCulture='en-US'}" />
+    </fxui:XGrid>
+  </Border>
+
+</UserControl>

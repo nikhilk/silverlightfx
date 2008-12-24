@@ -1,0 +1,79 @@
+﻿<UserControl
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  x:Class="UserControl">
+  <UserControl.Resources>
+
+    <sys:String x:Key="uiFontFamily">Verdana</sys:String>
+    <sys:Int32 x:Key="uiFontSize">11</sys:Int32>
+    <sys:Int32 x:Key="uiSmallFontSize">9</sys:Int32>
+
+    <Style x:Key="slider" TargetType="fxui:XSlider">
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="Maximum" Value="10" />
+      <Setter Property="Minimum" Value="0" />
+      <Setter Property="Value" Value="0" />
+      <Setter Property="BorderBrush">
+        <Setter.Value>
+          <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFA3AEB9" Offset="0"/>
+            <GradientStop Color="#FF8399A9" Offset="0.375"/>
+            <GradientStop Color="#FF718597" Offset="0.375"/>
+            <GradientStop Color="#FF617584" Offset="1"/>
+          </LinearGradientBrush>
+        </Setter.Value>
+      </Setter>
+      <Setter Property="IsTabStop" Value="False" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="fxui:XSlider">
+            <Grid x:Name="Root">
+              <Grid.Resources>
+                <ControlTemplate x:Key="RepeatButtonTemplate">
+                  <Grid x:Name="Root" Opacity="0" Background="Transparent"/>
+                </ControlTemplate>
+              </Grid.Resources>
+              <vsm:VisualStateManager.VisualStateGroups>
+                <vsm:VisualStateGroup x:Name="CommonStates">
+                  <vsm:VisualState x:Name="Normal"/>
+                  <vsm:VisualState x:Name="MouseOver"/>
+                  <vsm:VisualState x:Name="Disabled">
+                    <Storyboard>
+                      <DoubleAnimation Storyboard.TargetName="Root" Storyboard.TargetProperty="(UIElement.Opacity)" To="0.5"/>
+                    </Storyboard>
+                  </vsm:VisualState>
+                </vsm:VisualStateGroup>
+              </vsm:VisualStateManager.VisualStateGroups>
+
+              <Grid x:Name="HorizontalTemplate" Background="{TemplateBinding Background}">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Rectangle Stroke="#FFA3AEB9" StrokeThickness="{TemplateBinding BorderThickness}" Fill="#FFE6EFF7" Grid.Column="0" Grid.ColumnSpan="3" Height="3" RadiusX="1" RadiusY="1" Margin="5,0,5,5" />
+                <ContentControl Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="4,0,0,0"
+                  FontSize="{StaticResource uiSmallFontSize}" Opacity=".75"
+                  Content="{TemplateBinding Minimum}" />
+                <ContentControl Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,4,0"
+                  FontSize="{StaticResource uiSmallFontSize}" Opacity=".75"
+                  Content="{TemplateBinding Maximum}" />
+
+                <RepeatButton x:Name="HorizontalTrackLargeChangeDecreaseRepeatButton" VerticalAlignment="Top" IsTabStop="False" Template="{StaticResource RepeatButtonTemplate}" Grid.Column="0" Margin="0,0,0,5"/>
+                <Rectangle x:Name="LeftTrack" Grid.Column="0" Grid.Row="1" Fill="#00FFFFFF" Cursor="Hand"/>
+                <Thumb Height="18" x:Name="HorizontalThumb" Width="11" Grid.Column="1" VerticalAlignment="Top" IsTabStop="True" Margin="0,0,0,5"/>
+                <RepeatButton x:Name="HorizontalTrackLargeChangeIncreaseRepeatButton" VerticalAlignment="Top" IsTabStop="False" Template="{StaticResource RepeatButtonTemplate}" Grid.Column="2" Margin="0,0,0,5"/>
+                <Rectangle x:Name="RightTrack" Grid.Column="2" Grid.Row="1" Fill="#00FFFFFF" Cursor="Hand"/>
+              </Grid>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  
+  </UserControl.Resources>
+</UserControl>

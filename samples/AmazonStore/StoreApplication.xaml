@@ -1,0 +1,17 @@
+﻿<fxapp:XApplication
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
+  xmlns:fxdata="clr-namespace:SilverlightFX.Data;assembly=SilverlightFX"
+  x:Class="Store.StoreApplication"
+  WindowName="MainWindow"
+  ThemeName="Default">
+
+  <fxapp:XApplication.Resources>
+    <fxdata:BooleanInverter x:Key="booleanInverter" />
+    <fxdata:CurrencyFormatter x:Key="currencyFormatter" />
+    <fxdata:VisibilityConverter x:Key="visibilityConverter" />
+    <fxdata:ImageLoader x:Key="imageLoader" />
+  </fxapp:XApplication.Resources>
+
+</fxapp:XApplication>

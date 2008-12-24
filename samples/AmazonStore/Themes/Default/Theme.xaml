@@ -1,0 +1,149 @@
+﻿<fxapp:Theme
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  Includes="TextBox, Slider">
+
+  <fxapp:Theme.Resources>
+
+    <!-- backgroundBrush -->
+    <LinearGradientBrush x:Key="backgroundBrush" StartPoint="0,0" EndPoint="0,1">
+      <LinearGradientBrush.GradientStops>
+        <GradientStop Color="#727A7A" Offset="0" />
+        <GradientStop Color="#B2B9B9" Offset="1" />
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+
+    <!-- appTitleText -->
+    <Style x:Key="appTitleText" TargetType="TextBlock">
+      <Setter Property="Foreground" Value="White" />
+      <Setter Property="FontFamily" Value="Tahoma" />
+      <Setter Property="FontSize" Value="20" />
+    </Style>
+
+    <!-- partLayout -->
+    <ControlTemplate x:Key="partLayout">
+      <fxui:XBorder CornerRadius="4" BorderThickness="1" BorderBrush="#20000000"
+        ShadowSpread="4">
+        <fxui:XBorder.ShadowBrush>
+          <LinearGradientBrush>
+            <GradientStop Color="#40000000" Offset="0" />
+            <GradientStop Color="#00000000" Offset="1" />
+          </LinearGradientBrush>
+        </fxui:XBorder.ShadowBrush>
+        <fxui:XGrid Rows="31,*,40" Background="White">
+          <Border Grid.Row="0" BorderThickness="0,0,0,0.5" BorderBrush="#80000000">
+            <Border.Background>
+              <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#E6ECF4" Offset="0" />
+                <GradientStop Color="#EEF1F3" Offset="1" />
+              </LinearGradientBrush>
+            </Border.Background>
+            <ContentPresenter x:Name="header" Margin="4" />
+          </Border>
+          <ContentPresenter x:Name="body" Grid.Row="1" Margin="4" />
+          <Border Grid.Row="2" BorderThickness="0,0.5,0,0" BorderBrush="#80000000">
+            <Border.Background>
+              <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#EEF1F3" Offset="0" />
+                <GradientStop Color="#E6ECF4" Offset="1" />
+              </LinearGradientBrush>
+            </Border.Background>
+            <fxui:XGrid Columns="*,Auto">
+              <ContentPresenter x:Name="footerLeft" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="4,4,2,4" />
+              <ContentPresenter x:Name="footerRight" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Stretch" Margin="2,4,4,4" />
+            </fxui:XGrid>
+          </Border>
+        </fxui:XGrid>
+      </fxui:XBorder>
+    </ControlTemplate>
+
+    <!-- partTitleText -->
+    <Style x:Key="partTitleText" TargetType="TextBlock">
+      <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+
+    <!-- productList -->
+    <Style x:Key="productList" TargetType="fxui:ListView">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="fxui:ListView">
+            <Grid x:Name="RootElement">
+              <ScrollViewer BorderThickness="0" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <Border VerticalAlignment="Stretch">
+                  <fxui:TilePanel x:Name="ItemsPresenter" UseAnimatedLayout="True" TileWidth="200" TileHeight="200" />
+                </Border>
+              </ScrollViewer>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    
+    <!-- removeButton -->
+    <Style x:Key="removeButton" TargetType="Button">
+      <Setter Property="Width" Value="16" />
+      <Setter Property="Height" Value="16" />
+      <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Grid>
+              <vsm:VisualStateManager.VisualStateGroups>
+                <vsm:VisualStateGroup x:Name="CommonStates">
+                  <vsm:VisualStateGroup.Transitions>
+                    <vsm:VisualTransition GeneratedDuration="00:00:00.1" To="MouseOver"/>
+                    <vsm:VisualTransition GeneratedDuration="00:00:00.1" To="Pressed"/>
+                  </vsm:VisualStateGroup.Transitions>
+                  <vsm:VisualState x:Name="Normal"/>
+                  <vsm:VisualState x:Name="MouseOver">
+                    <Storyboard>
+                      <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="shapeElement" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                        <SplineColorKeyFrame KeyTime="00:00:01" Value="#A0FF0000"/>
+                      </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="Pressed">
+                    <Storyboard>
+                      <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="shapeElement" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                        <SplineColorKeyFrame KeyTime="00:00:01" Value="#FFFF0000"/>
+                      </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="Disabled">
+                    <Storyboard>
+                      <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="shapeElement" Storyboard.TargetProperty="(Shape.Fill).(SolidColorBrush.Color)">
+                        <SplineColorKeyFrame KeyTime="00:00:01" Value="#80808080"/>
+                      </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                </vsm:VisualStateGroup>
+                <vsm:VisualStateGroup x:Name="FocusStates">
+                  <vsm:VisualState x:Name="Focused">
+                    <Storyboard>
+                      <ColorAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="shapeElement" Storyboard.TargetProperty="(Shape.Stroke).(SolidColorBrush.Color)">
+                        <SplineColorKeyFrame KeyTime="00:00:01" Value="#80000000"/>
+                      </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                  </vsm:VisualState>
+                  <vsm:VisualState x:Name="Unfocused"/>
+                </vsm:VisualStateGroup>
+              </vsm:VisualStateManager.VisualStateGroups>
+              <Grid x:Name="rootElement">
+                <Path x:Name="shapeElement" HorizontalAlignment="Center" VerticalAlignment="Center"
+                  Width="10" Height="10" Fill="#80FF0000" Stretch="Fill"
+                  Data="M12.027344,8.5960026 C12.1097,9.1510162 12.273519,9.6988678 12.518799,10.239557 C12.764078,10.780248 13.09082,11.313776 13.499023,11.840143 L13.821289,12.248346 L14.079102,11.915339 C14.378093,11.533991 14.670146,11.200312 14.955261,10.914301 C15.240377,10.62829 15.518556,10.389948 15.789796,10.199274 C16.061035,10.0086 16.325338,9.8655949 16.582703,9.7702579 C16.840069,9.674921 17.090496,9.6272526 17.333984,9.6272526 C17.523762,9.6272526 17.702127,9.6632833 17.86908,9.7353458 C18.03603,9.8074083 18.191568,9.9155016 18.335693,10.059626 C18.479818,10.20375 18.61253,10.383905 18.733826,10.600092 C18.855124,10.816278 18.965008,11.068496 19.063477,11.356745 C18.948895,11.342422 18.866535,11.33526 18.816406,11.33526 C18.644531,11.33526 18.437744,11.393 18.196045,11.508478 C17.954346,11.623957 17.677734,11.797174 17.366211,12.028131 C16.743164,12.490046 16.216797,13.011042 15.787109,13.59112 L15.464844,14.031549 L15.776367,14.332331 C16.064617,14.611628 16.355999,14.856012 16.650513,15.065485 C16.945028,15.274958 17.242676,15.449518 17.543459,15.589167 C17.844238,15.728815 18.148153,15.833551 18.4552,15.903376 C18.762249,15.9732 19.07243,16.008112 19.385742,16.008112 C19.217449,16.348282 19.047363,16.645929 18.875488,16.901056 C18.703613,17.156183 18.529949,17.36879 18.354492,17.538874 C18.179037,17.708958 18.001791,17.836521 17.822754,17.921564 C17.643717,18.006607 17.462891,18.049128 17.280273,18.049128 C17.115559,18.049128 16.932495,18.012873 16.731079,17.940363 C16.529663,17.867853 16.309895,17.759089 16.071777,17.614069 C15.833658,17.469049 15.577188,17.287775 15.302368,17.070246 C15.027547,16.852716 14.734375,16.598932 14.422852,16.308893 L13.928711,15.857721 L13.767578,16.083307 C13.488281,16.505833 13.221517,16.875544 12.967285,17.192438 C12.713054,17.509333 12.471354,17.773411 12.242188,17.984674 C12.013021,18.195938 11.796387,18.354385 11.592285,18.460016 C11.388184,18.565647 11.196615,18.618464 11.017578,18.618464 C10.811687,18.618464 10.606689,18.576614 10.402588,18.492914 C10.198486,18.409214 9.9952803,18.283665 9.7929688,18.116266 C9.5906572,17.948868 9.3892412,17.739618 9.1887207,17.48852 C8.9882002,17.237421 8.7885742,16.944473 8.5898438,16.609674 C8.6972656,16.616837 8.776042,16.620417 8.8261719,16.620417 C9.06071,16.620417 9.3019609,16.575657 9.5499268,16.486139 C9.7978926,16.396622 10.052571,16.262344 10.313965,16.083307 C10.575358,15.90427 10.843465,15.680475 11.118286,15.411921 C11.393107,15.143366 11.674642,14.830051 11.962891,14.471979 L12.25293,14.106745 L11.876953,13.698542 C11.61377,13.419245 11.383484,13.150466 11.186096,12.892206 C10.988708,12.633946 10.824219,12.386205 10.692627,12.148981 C10.561035,11.911757 10.462341,11.685053 10.396545,11.468866 C10.33075,11.25268 10.297852,11.047011 10.297852,10.851862 C10.297852,10.692519 10.333882,10.526015 10.405945,10.35235 C10.478007,10.178684 10.586101,9.997858 10.730225,9.8098698 C10.874349,9.6218815 11.054504,9.4267311 11.270691,9.2244205 C11.486877,9.022109 11.739095,8.8126364 12.027344,8.5960026 z" Stroke="#00FFFFFF" StrokeThickness="0.25">
+                </Path>
+              </Grid>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+  </fxapp:Theme.Resources>
+
+</fxapp:Theme>

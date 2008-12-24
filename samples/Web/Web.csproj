@@ -11,7 +11,7 @@
     <RootNamespace>Web</RootNamespace>
     <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <SilverlightApplicationList>{AC2DE467-846C-4621-AFEC-FF35DA1F8062}|..\EffectsSample\EffectsSample.csproj|Effects|False,{E333259B-1F2E-473E-90D4-7306D3E283B4}|..\EffectControl\EffectControl.csproj|Effects|False,{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}|..\TaskList\TaskList.csproj|TaskList|False,{783F6A15-E472-41A9-903C-105DC10F9BF0}|..\ThemeSample\ThemeSample.csproj|Themes|False,{39685CDF-0CB4-424F-BD0A-100AA220CB79}|..\Experiments\Experiments.csproj|Experiments|False,{A9A30F66-5957-4467-B206-3AC96714EAB8}|..\WeatherWidget\WeatherWidget.csproj|Weather|False,{3C606440-9DF0-4A72-A08D-23B3F20F67C4}|..\FlickrTiles\FlickrTiles.csproj|Flickr|False,{6F2D06F0-B548-4D89-8628-A7EB3BE4A8BE}|..\AmazonSearch\AmazonSearch.csproj|Amazon|False</SilverlightApplicationList>
+    <SilverlightApplicationList>{AC2DE467-846C-4621-AFEC-FF35DA1F8062}|..\EffectsSample\EffectsSample.csproj|Effects|False,{E333259B-1F2E-473E-90D4-7306D3E283B4}|..\EffectControl\EffectControl.csproj|Effects|False,{750026A3-3EA6-4D5F-B6DB-EBECDD3A8D3A}|..\TaskList\TaskList.csproj|TaskList|False,{783F6A15-E472-41A9-903C-105DC10F9BF0}|..\ThemeSample\ThemeSample.csproj|Themes|False,{39685CDF-0CB4-424F-BD0A-100AA220CB79}|..\Experiments\Experiments.csproj|Experiments|False,{A9A30F66-5957-4467-B206-3AC96714EAB8}|..\WeatherWidget\WeatherWidget.csproj|Weather|False,{3C606440-9DF0-4A72-A08D-23B3F20F67C4}|..\FlickrTiles\FlickrTiles.csproj|Flickr|False,{6F2D06F0-B548-4D89-8628-A7EB3BE4A8BE}|..\AmazonSearch\AmazonSearch.csproj|Amazon|False,{A8C08DAF-477C-4CEB-9AA8-21C412A06452}|..\AmazonStore\AmazonStore.csproj|Amazon|False</SilverlightApplicationList>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -81,6 +81,8 @@
   <ItemGroup>
     <Content Include="Amazon\AmazonSearch.aspx" />
     <Content Include="Amazon\AmazonSearch.xap" />
+    <Content Include="Amazon\AmazonStore.aspx" />
+    <Content Include="Amazon\AmazonStore.xap" />
     <Content Include="Experiments\CityService.ashx" />
     <Content Include="Flickr\FlickrTiles.aspx" />
     <Content Include="Flickr\FlickrTiles.xap" />
