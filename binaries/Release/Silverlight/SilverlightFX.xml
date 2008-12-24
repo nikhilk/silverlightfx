@@ -2883,6 +2883,15 @@
         <member name="M:SilverlightFX.UserInterface.Screen.OnApplyTemplate">
             <internalonly />
         </member>
+        <member name="M:SilverlightFX.UserInterface.Screen.Show(System.Windows.FrameworkElement)">
+            <summary>
+            Shows the specified content in the screen. Typically the Screen is created and its
+            content is set by the framework internally when you call XApplication.Run.
+            If you create the Screen yourself, you can initialize its content by calling this
+            method.
+            </summary>
+            <param name="screenContent">The content to show on the screen.</param>
+        </member>
         <member name="P:SilverlightFX.UserInterface.Screen.FormBackground">
             <summary>
             The background brush applied as an overlay on top of the previous form

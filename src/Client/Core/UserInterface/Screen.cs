@@ -99,6 +99,40 @@ namespace SilverlightFX.UserInterface {
             }
         }
 
+        internal void Run(Window mainWindow) {
+            if (_mainWindow != null) {
+                throw new InvalidOperationException("The screen already contains content.");
+            }
+            _mainWindow = mainWindow;
+
+            if (_windowPresenter == null) {
+                ApplyTemplate();
+            }
+            else {
+                _windowPresenter.Content = _mainWindow;
+            }
+        }
+
+        /// <summary>
+        /// Shows the specified content in the screen. Typically the Screen is created and its
+        /// content is set by the framework internally when you call XApplication.Run.
+        /// If you create the Screen yourself, you can initialize its content by calling this
+        /// method.
+        /// </summary>
+        /// <param name="screenContent">The content to show on the screen.</param>
+        public void Show(FrameworkElement screenContent) {
+            if (screenContent == null) {
+                throw new ArgumentNullException("screenContent");
+            }
+
+            Window window = screenContent as Window;
+            if (window == null) {
+                window = new Window(screenContent);
+            }
+
+            Run(window);
+        }
+
         internal void Show(Form form) {
             if (_mainWindow == null) {
                 return;
@@ -117,17 +151,6 @@ namespace SilverlightFX.UserInterface {
             }
 
             form.Show(_rootElement, _currentForm, overlayElement);
-        }
-
-        internal void Run(Window mainWindow) {
-            _mainWindow = mainWindow;
-
-            if (_windowPresenter == null) {
-                ApplyTemplate();
-            }
-            else {
-                _windowPresenter.Content = _mainWindow;
-            }
         }
     }
 }
