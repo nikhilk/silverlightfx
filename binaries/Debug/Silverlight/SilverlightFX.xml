@@ -2867,6 +2867,19 @@
             Initializes an instance of a Screen control.
             </summary>
         </member>
+        <member name="M:SilverlightFX.UserInterface.Screen.CreatePopup">
+            <summary>
+            Creates a popup that is correctly parented to the root visual of the
+            application.
+            </summary>
+            <returns>A new Popup instance.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Screen.DisposePopup(System.Windows.Controls.Primitives.Popup)">
+            <summary>
+            Disposes a popup that was created through a call to CreatePopup.
+            </summary>
+            <param name="popup">The popup to dispose.</param>
+        </member>
         <member name="M:SilverlightFX.UserInterface.Screen.OnApplyTemplate">
             <internalonly />
         </member>
@@ -3117,6 +3130,23 @@
             <summary>
             The type of filter applied to the textbox.
             </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ViewUserControl">
+            <summary>
+            Represents a user control within the application's user interface.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ViewUserControl.#ctor">
+            <summary>
+            Initializes an instance of a ViewUserControl.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ViewUserControl.#ctor(System.ComponentModel.Model)">
+            <summary>
+            Initializes an instance of a ViewUserControl with an associated view model.
+            The view model is set as the DataContext of the Form.
+            </summary>
+            <param name="viewModel">The associated view model object.</param>
         </member>
         <member name="T:SilverlightFX.Data.VisibilityConverter">
             <summary>

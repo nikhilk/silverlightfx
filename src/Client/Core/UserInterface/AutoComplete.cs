@@ -194,21 +194,22 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void CloseDropDown() {
-            if ((_popup == null) || !_popup.IsOpen) {
-                return;
+            if (_request != null) {
+                _request.CancelAsync();
+                _request = null;
             }
 
-            AssociatedObject.Dispatcher.BeginInvoke(delegate() {
-                if ((_popup != null) && _popup.IsOpen) {
-                    _dropDown = null;
+            if (_dropDown != null) {
+                _dropDown.SelectionChanged -= OnDropDownSelectionChanged;
+                _dropDown = null;
+            }
 
-                    _popup.IsOpen = false;
-                    if (_request != null) {
-                        _request.CancelAsync();
-                        _request = null;
-                    }
-                }
-            });
+            if (_popup != null) {
+                _popup.IsOpen = false;
+                ((Screen)Application.Current.RootVisual).DisposePopup(_popup);
+
+                _popup = null;
+            }
         }
 
         /// <internalonly />
@@ -403,6 +404,11 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void ShowDropDown(IList items) {
+            Screen screen = Application.Current.RootVisual as Screen;
+            if (screen == null) {
+                throw new InvalidOperationException("AutoComplete requires the root visual to be a Screen.");
+            }
+
             GeneralTransform transform = AssociatedObject.TransformToVisual((UIElement)Application.Current.RootVisual);
             Point transformedPoint = transform.Transform(new Point(0, 0));
 
@@ -416,9 +422,9 @@ namespace SilverlightFX.UserInterface {
                     throw new InvalidOperationException("The DropDownTemplate must contain a ListBox control.");
                 }
             }
-            _dropDown.SelectionChanged += OnDropDownSelectionChanged;
             _dropDown.IsTabStop = false;
             _dropDown.ItemsSource = items;
+            _dropDown.SelectionChanged += OnDropDownSelectionChanged;
 
             _dropDown.Width = AssociatedObject.ActualWidth;
             _dropDown.MaxHeight = AssociatedObject.ActualHeight * 5;
@@ -427,22 +433,18 @@ namespace SilverlightFX.UserInterface {
                 Y = transformedPoint.Y + AssociatedObject.ActualHeight - 1
             };
 
-            if (_popup == null) {
-                _popup = new Popup();
-            }
+            _popup = screen.CreatePopup();
             _popup.Child = _dropDown;
             _popup.IsOpen = true;
-
-            AssociatedObject.Dispatcher.BeginInvoke(delegate() {
-                _ignoreSelectionChange = true;
-                _dropDown.SelectedIndex = 0;
-            });
         }
 
         private void UpdateText() {
-            _ignoreTextChange = true;
-
             object selectedItem = _dropDown.SelectedItem;
+            if (selectedItem == null) {
+                return;
+            }
+
+            _ignoreTextChange = true;
 
             if (_completedHandler != null) {
                 AutoCompleteCompletedEventArgs cea = new AutoCompleteCompletedEventArgs(_prefix, selectedItem);
