@@ -12,6 +12,20 @@ About Silverlight.FX
 Silverlight.FX is an application framework for building Rich Internet
 Applications based on Silverlight 2.
 
+The focus is on enabling applications to be naturally better architected by
+providing the right building blocks including:
+- Promoting separation of view/code through well established patterns like
+  IoC, MVVM, MVC (in progress)
+- Encapsulating functionality into reusable components like behaviors and
+  services
+- Making the right concepts declarative (eg. effects, behaviors)
+- Overall better structuring of the application (eg. themes, controls)
+
+Another focus is on keeping the framework lean and mean and being extremely
+mindful of size - this is all about being a RIA/Web-friendly framework.
+Currently the library comes in at ~55K compressed.
+
+
 You can read more about this framework and its features on various blog
 posts on http://www.nikhilk.net. Its dedicated project page will be at
-http://projects.nikhilk.net/SilverlightFX.
+http://projects.nikhilk.net/SilverlightFX (not yet online).
