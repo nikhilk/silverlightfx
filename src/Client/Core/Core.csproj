@@ -48,9 +48,8 @@
     <Reference Include="System.Windows.Browser" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Applications\ServiceCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Applications\ComponentCollection.cs" />
+    <Compile Include="Applications\IExternalNavigationService.cs" />
     <Compile Include="Applications\Theme.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -60,6 +59,7 @@
     <Compile Include="Data\BooleanInverter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\Binder.cs" />
     <Compile Include="Data\CurrencyFormatter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -319,6 +319,12 @@
     <Compile Include="_System\ComponentModel\CancelEventArgs.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="_System\ComponentModel\ComponentContainer.cs" />
+    <Compile Include="_System\ComponentModel\ComponentCreator.cs" />
+    <Compile Include="_System\ComponentModel\IApplicationIdentity.cs" />
+    <Compile Include="_System\ComponentModel\IComponentContainer.cs" />
+    <Compile Include="_System\ComponentModel\DependencyAttribute.cs" />
+    <Compile Include="_System\ComponentModel\ServiceAttribute.cs" />
     <Compile Include="_System\ComponentModel\Model.cs">
       <SubType>Code</SubType>
     </Compile>

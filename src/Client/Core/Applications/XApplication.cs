@@ -10,6 +10,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
@@ -25,16 +26,15 @@ using System.Windows.Media;
 using System.Windows.Resources;
 using SilverlightFX.UserInterface;
 
-// TODO: Own the root visual with our own control so we can do some interesting stuff
-//       like error reporting
-
 namespace SilverlightFX.Applications {
 
     /// <summary>
     /// Represents an Application with extended functionality including support
-    /// for theming, a main window, settings, services and other features.
+    /// for theming, a main window, settings, components and composition, and other features.
     /// </summary>
-    public abstract class XApplication : Application, IServiceProvider {
+    [Service(typeof(IApplicationIdentity))]
+    [Service(typeof(IExternalNavigationService))]
+    public abstract class XApplication : Application, IServiceProvider, IApplicationIdentity, IExternalNavigationService {
 
         private static XApplication _current;
 
@@ -44,7 +44,8 @@ namespace SilverlightFX.Applications {
         private string _themeName;
         private string _windowName;
         private Style _screenStyle;
-        private ServiceCollection _services;
+        private IComponentContainer _componentContainer;
+        private ComponentCollection _components;
         private object _model;
 
         private Window _mainWindow;
@@ -56,11 +57,27 @@ namespace SilverlightFX.Applications {
         public XApplication() {
             _current = this;
 
+            _componentContainer = new ComponentContainer(this);
+            _componentContainer.RegisterObject(this);
+
             Exit += OnApplicationExit;
             Startup += OnApplicationStartup;
             UnhandledException += OnApplicationUnhandledException;
 
             _uiContext = SynchronizationContext.Current;
+        }
+
+        /// <summary>
+        /// Gets the collection of components declared at the application level.
+        /// </summary>
+        public ComponentCollection Components {
+            get {
+                if (_components == null) {
+                    _components = new ComponentCollection();
+                    _components.CollectionChanged += OnComponentCollectionChanged;
+                }
+                return _components;
+            }
         }
 
         /// <summary>
@@ -94,18 +111,6 @@ namespace SilverlightFX.Applications {
             set {
                 EnsureUnstarted();
                 _screenStyle = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets the collection of services declared at the application level.
-        /// </summary>
-        public ServiceCollection Services {
-            get {
-                if (_services == null) {
-                    _services = new ServiceCollection();
-                }
-                return _services;
             }
         }
 
@@ -213,17 +218,7 @@ namespace SilverlightFX.Applications {
         /// </summary>
         /// <param name="serviceType">The type representing the service contract.</param>
         /// <returns>A service instance if the service is available; null otherwise.</returns>
-        public object GetService(Type serviceType) {
-            if (_services == null) {
-                return null;
-            }
-
-            foreach (object service in _services) {
-                if (serviceType.IsAssignableFrom(service.GetType())) {
-                    return service;
-                }
-            }
-
+        protected virtual object GetService(Type serviceType) {
             return null;
         }
 
@@ -357,6 +352,15 @@ namespace SilverlightFX.Applications {
         protected virtual void OnClosing() {
         }
 
+        private void OnComponentCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
+            if (e.Action == NotifyCollectionChangedAction.Add) {
+                object component = e.NewItems[0];
+
+                _componentContainer.InitializeObject(component);
+                _componentContainer.RegisterObject(component);
+            }
+        }
+
         /// <summary>
         /// Allows the application to perform custom error handling of unhandled exceptions.
         /// </summary>
@@ -419,5 +423,34 @@ namespace SilverlightFX.Applications {
             RootVisual = screen;
             screen.Run(mainWindow);
         }
+
+
+        #region Implementation of IServiceProvider
+        object IServiceProvider.GetService(Type serviceType) {
+            if (serviceType == null) {
+                throw new ArgumentNullException("serviceType");
+            }
+
+            if (serviceType == typeof(IComponentContainer)) {
+                return _componentContainer;
+            }
+
+            return GetService(serviceType);
+        }
+        #endregion
+
+        #region Implementation of IExternalNavigationService
+        bool IExternalNavigationService.CanNavigate {
+            get {
+                return HtmlPage.IsEnabled;
+            }
+        }
+
+        void IExternalNavigationService.Navigate(Uri uri, string targetFrame) {
+            if (HtmlPage.IsEnabled) {
+                HtmlPage.Window.Navigate(uri, targetFrame ?? "_self");
+            }
+        }
+        #endregion
     }
 }

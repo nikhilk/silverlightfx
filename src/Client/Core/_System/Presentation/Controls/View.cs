@@ -10,6 +10,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Reflection;
 using System.Windows;
 
 namespace System.Windows.Controls {
@@ -25,6 +26,8 @@ namespace System.Windows.Controls {
         /// </summary>
         private static readonly DependencyProperty ModelProperty =
             DependencyProperty.RegisterAttached("Model", typeof(object), typeof(View), null);
+
+        private Type _modelType;
 
         /// <summary>
         /// Initializes an instance of a View.
@@ -54,6 +57,45 @@ namespace System.Windows.Controls {
         }
 
         /// <summary>
+        /// Gets or sets the type of the model associated with the view.
+        /// This is used to create an instance of a model via the container
+        /// associated with the current application.
+        /// </summary>
+        [TypeConverter(typeof(TypeTypeConverter))]
+        public Type ModelType {
+            get {
+                if (_modelType != null) {
+                    return _modelType;
+                }
+                if (DataContext != null) {
+                    return DataContext.GetType();
+                }
+                return null;
+            }
+            set {
+                _modelType = value;
+                if ((_modelType != null) && (DataContext == null)) {
+                    Model = CreateModel(_modelType);
+                }
+            }
+        }
+
+        private static object CreateModel(Type type) {
+            IComponentContainer container = null;
+
+            IServiceProvider sp = Application.Current as IServiceProvider;
+            if (sp != null) {
+                container = (IComponentContainer)sp.GetService(typeof(IComponentContainer));
+            }
+
+            if (container != null) {
+                return container.GetObject(type);
+            }
+
+            return Activator.CreateInstance(type);
+        }
+
+        /// <summary>
         /// Gets the model associated with the specified framework element.
         /// This will walk up the parent hierarchy to find a model if the specified
         /// element does not have a model.
@@ -72,6 +114,19 @@ namespace System.Windows.Controls {
                     }
 
                     element = element.GetParentVisual();
+                }
+            }
+
+            if (model == null) {
+                IApplicationIdentity appID = null;
+
+                IServiceProvider sp = Application.Current as IServiceProvider;
+                if (sp != null) {
+                    appID = (IApplicationIdentity)sp.GetService(typeof(IApplicationIdentity));
+                }
+
+                if (appID != null) {
+                    model = appID.Model;
                 }
             }
 
