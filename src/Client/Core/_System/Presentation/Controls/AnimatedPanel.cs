@@ -46,7 +46,6 @@ namespace System.Windows.Controls {
         private ProceduralAnimationEasingFunction _easingFunction;
         private TimeSpan _duration;
         private bool _useAnimation;
-        private bool _initialLayoutCompleted;
 
         private ProceduralAnimation _layoutAnimation;
 
@@ -106,7 +105,7 @@ namespace System.Windows.Controls {
                 _layoutAnimation = null;
             }
 
-            _useAnimation = UseAnimatedLayout && _initialLayoutCompleted;
+            _useAnimation = UseAnimatedLayout;
             _animations = new List<ProceduralAnimation>();
 
             if (_useAnimation) {
@@ -125,7 +124,6 @@ namespace System.Windows.Controls {
             }
 
             _animations = null;
-            _initialLayoutCompleted = true;
         }
 
         private ProceduralAnimationEasingFunction GetEasingFunction() {
@@ -190,18 +188,16 @@ namespace System.Windows.Controls {
                 throw new InvalidOperationException("Calls to ArrangeElement need to be within BeginArrange/EndArrange calls.");
             }
 
-            object currentBounds = element.GetValue(BoundsProperty);
-            if (currentBounds == null) {
-                Rect currentRect = GetInitialRect(DesiredSize, finalRect, element);
-                currentBounds = currentRect;
-
-                element.Arrange(currentRect);
-            }
-
             if (isAnimated && _useAnimation) {
-                Rect initialRect = (Rect)currentBounds;
+                Rect currentBounds = (Rect)element.GetValue(BoundsProperty);
+                if ((currentBounds.Width == 0) && (currentBounds.Height == 0)) {
+                    Rect initialRect = GetInitialRect(DesiredSize, finalRect, element);
+                    element.Arrange(initialRect);
 
-                RectAnimation animation = new RectAnimation(element, initialRect, finalRect, _duration);
+                    currentBounds = initialRect;
+                }
+
+                RectAnimation animation = new RectAnimation(element, currentBounds, finalRect, _duration);
                 animation.EasingFunction = _easingFunction;
 
                 _animations.Add(animation);

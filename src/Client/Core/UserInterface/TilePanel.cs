@@ -115,6 +115,12 @@ namespace SilverlightFX.UserInterface {
         }
 
         /// <internalonly />
+        protected override Rect GetInitialRect(Size panelSize, Rect elementRect, UIElement element) {
+            return new Rect((panelSize.Width - elementRect.Width) / 2, (panelSize.Height - elementRect.Height) / 2,
+                            elementRect.Width, elementRect.Height);
+        }
+
+        /// <internalonly />
         protected override Size MeasureOverride(Size availableSize) {
             if (Children.Count == 0) {
                 return new Size(0, 0);
