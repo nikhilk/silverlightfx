@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -14,7 +15,8 @@ using SilverlightFX.Applications;
 
 namespace Store {
 
-    internal sealed class AmazonService : IStore {
+    [Service(typeof(IStore))]
+    public sealed class AmazonService : IStore {
 
         private const string SearchUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemSearch&SearchIndex=All&SubscriptionId={0}&AssociateTag=myamzn-20&Keywords={1}&ResponseGroup=Images,Small,EditorialReview,ItemAttributes";
         private const string LookupUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemLookup&SubscriptionId={0}&AssociateTag=myamzn-20&ItemId={1}&&ResponseGroup=Images,Small,EditorialReview,ItemAttributes";
@@ -30,9 +32,13 @@ namespace Store {
         private static readonly Regex TagRegex = new Regex("<.*?>", RegexOptions.Multiline);
         private static readonly Regex AsinRegex = new Regex("https?://www\\.amazon\\.[^/]+.*/([A-Z0-9]{10})/?.*", RegexOptions.Singleline);
 
-        public void GetPopularProducts(Action<IEnumerable<Product>> productsCallback) {
-            List<Product> products = new List<Product>();
+        [Dependency]
+        public IApplicationIdentity Application {
+            get;
+            set;
+        }
 
+        public void GetPopularProducts(Action<IEnumerable<Product>, bool> productsCallback) {
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += delegate(object sender, DownloadStringCompletedEventArgs e) {
                 if ((e.Cancelled == false) && (e.Error == null)) {
@@ -45,15 +51,14 @@ namespace Store {
 
                         ParseProductIDs(xml, ids);
                         GetProductsByIDs(ids.ToArray(), (productResults) => {
+                            bool completed = feedIndex == PopularFeedUrls.Length;
+
                             if (productResults != null) {
-                                products.AddRange(productResults);
+                                productsCallback(productResults, completed);
                             }
 
-                            if (feedIndex < PopularFeedUrls.Length) {
+                            if (completed == false) {
                                 ((WebClient)sender).DownloadStringAsync(new Uri(PopularFeedUrls[feedIndex]), feedIndex);
-                            }
-                            else {
-                                productsCallback(products);
                             }
                         });
                     }
@@ -65,12 +70,12 @@ namespace Store {
             webClient.DownloadStringAsync(new Uri(PopularFeedUrls[0]), 0);
         }
 
-        public void GetProducts(string keyword, Action<IEnumerable<Product>> productsCallback) {
+        public void GetProducts(string keyword, Action<IEnumerable<Product>, bool> productsCallback) {
             try {
                 GetProductsByKeyword(keyword, productsCallback);
             }
             catch {
-                productsCallback(null);
+                productsCallback(null, true);
             }
         }
 
@@ -94,7 +99,7 @@ namespace Store {
             webClient.DownloadStringAsync(requestUri);
         }
 
-        private void GetProductsByKeyword(string keyword, Action<IEnumerable<Product>> productsCallback) {
+        private void GetProductsByKeyword(string keyword, Action<IEnumerable<Product>, bool> productsCallback) {
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += delegate(object sender, DownloadStringCompletedEventArgs e) {
                 List<Product> products = new List<Product>();
@@ -107,7 +112,7 @@ namespace Store {
                     }
                 }
 
-                productsCallback(products);
+                productsCallback(products, true);
             };
 
             Uri searchUri = new Uri(String.Format(SearchUriFormat, SubscriptionID, keyword));
@@ -116,7 +121,7 @@ namespace Store {
 
         private string SubscriptionID {
             get {
-                return XApplication.Current.StartupArguments["SubscriptionID"];
+                return Application.StartupArguments["SubscriptionID"];
             }
         }
 

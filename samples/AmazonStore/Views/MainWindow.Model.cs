@@ -5,39 +5,35 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using SilverlightFX.Applications;
 
 namespace Store {
 
     public class MainWindowModel : Model {
 
-        private ShoppingCart _cart;
         private Catalog _catalog;
+        private ShoppingCart _cart;
+        private IExternalNavigationService _navigationService;
 
         private IPredicate<object> _filter;
         private IComparer<object> _sort;
 
         private Product _selectedProduct;
 
-        private string _navigateUrl;
-
-        public MainWindowModel() {
-            _cart = new ShoppingCart();
-            _cart.OrderCheckedOut += OnCartOrderCheckedOut;
-
-            _catalog = new Catalog();
+        public MainWindowModel(Catalog catalog, ShoppingCart cart, IExternalNavigationService navigationService) {
+            _catalog = catalog;
             _catalog.ProductsLoaded += OnProductsLoaded;
             _catalog.LoadPopularProducts();
+
+            _cart = cart;
+            _cart.OrderCheckedOut += OnCartOrderCheckedOut;
+
+            _navigationService = navigationService;
         }
 
         public Catalog Catalog {
             get {
                 return _catalog;
-            }
-        }
-
-        public string NavigateUrl {
-            get {
-                return _navigateUrl;
             }
         }
 
@@ -81,15 +77,8 @@ namespace Store {
             }
         }
 
-        public event EventHandler Navigation;
-
         private void OnCartOrderCheckedOut(object sender, EventArgs e) {
-            _navigateUrl = _cart.CheckoutUrl;
-            RaisePropertyChanged("NavigateUrl");
-
-            if (Navigation != null) {
-                Navigation(this, EventArgs.Empty);
-            }
+            _navigationService.Navigate(new Uri(_cart.CheckoutUrl), "amazon");
         }
 
         private void OnProductsLoaded(object sender, EventArgs e) {

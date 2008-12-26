@@ -3,6 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
   xmlns:fxdata="clr-namespace:SilverlightFX.Data;assembly=SilverlightFX"
+  xmlns:app="clr-namespace:Store"
   x:Class="Store.StoreApplication"
   WindowName="MainWindow"
   ThemeName="Default">
@@ -13,5 +14,9 @@
     <fxdata:VisibilityConverter x:Key="visibilityConverter" />
     <fxdata:ImageLoader x:Key="imageLoader" />
   </fxapp:XApplication.Resources>
+  
+  <fxapp:XApplication.Components>
+    <app:AmazonService />
+  </fxapp:XApplication.Components>
 
 </fxapp:XApplication>

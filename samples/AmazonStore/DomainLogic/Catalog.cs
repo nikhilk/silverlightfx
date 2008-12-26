@@ -15,12 +15,9 @@ namespace Store {
 
         private ObservableCollection<Product> _products;
         private bool _loading;
+        private bool _clear;
 
-        public Catalog()
-            : this(new AmazonService()) {
-        }
-
-        internal Catalog(IStore store) {
+        public Catalog(IStore store) {
             _store = store;
             _products = new ObservableCollection<Product>();
         }
@@ -59,6 +56,7 @@ namespace Store {
 
         public void LoadPopularProducts() {
             _loading = true;
+            _clear = true;
             _store.GetPopularProducts(OnLoadProducts);
 
             RaisePropertyChanged("IsLoading");
@@ -70,14 +68,18 @@ namespace Store {
             }
 
             _loading = true;
+            _clear = true;
             _store.GetProducts(keywords, OnLoadProducts);
 
             RaisePropertyChanged("IsLoading");
         }
 
-        private void OnLoadProducts(IEnumerable<Product> productResults) {
+        private void OnLoadProducts(IEnumerable<Product> productResults, bool completed) {
             if (productResults != null) {
-                _products.Clear();
+                if (_clear) {
+                    _products.Clear();
+                    _clear = false;
+                }
 
                 foreach (Product p in productResults) {
                     _products.Add(p);
@@ -88,8 +90,10 @@ namespace Store {
                 }
             }
 
-            _loading = false;
-            RaisePropertyChanged("PriceRange", "IsLoading");
+            if (completed) {
+                _loading = false;
+                RaisePropertyChanged("PriceRange", "IsLoading");
+            }
         }
     }
 }

@@ -7,22 +7,12 @@
   xmlns:fxeffect="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
   xmlns:fxtransition="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
   xmlns:app="clr-namespace:Store"
-  x:Class="Store.MainWindow">
+  x:Class="Store.MainWindow" ModelType="MainWindowModel">
 
   <fxui:Window.Resources>
     <app:ProductPriceFilterConverter x:Key="priceConverter" />
   </fxui:Window.Resources>
-
-  <fxui:Window.Model>
-    <app:MainWindowModel />
-  </fxui:Window.Model>
   
-  <fxui:Interaction.Triggers>
-    <fxui:EventTrigger SourceName="$model" EventName="Navigation">
-      <fxaction:Navigate NavigateUrl="{Binding NavigateUrl}" Target="amazon" />
-    </fxui:EventTrigger>
-  </fxui:Interaction.Triggers>
-
   <fxui:XGrid Columns="20,*,5,350,20" Rows="20,40,*,5,250,30,20" Background="{StaticResource backgroundBrush}">
 
     <!-- Application Title -->

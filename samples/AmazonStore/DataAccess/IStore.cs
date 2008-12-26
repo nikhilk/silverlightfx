@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace Store {
 
-    internal interface IStore {
+    public interface IStore {
 
-        void GetPopularProducts(Action<IEnumerable<Product>> productsCallback);
+        void GetPopularProducts(Action<IEnumerable<Product>, bool> productsCallback);
 
-        void GetProducts(string keyword, Action<IEnumerable<Product>> productsCallback);
+        void GetProducts(string keyword, Action<IEnumerable<Product>, bool> productsCallback);
 
         void SubmitOrder(Order order, Action<string> purchaseUrlCallback);
     }

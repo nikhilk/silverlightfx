@@ -17,17 +17,13 @@ namespace Store {
         private bool _isCheckingOut;
         private string _checkoutUrl;
 
-        public ShoppingCart()
-            : this(new AmazonService()) {
-        }
-
-        internal ShoppingCart(IStore store) {
+        public ShoppingCart(IStore store) {
             _store = store;
         }
 
         public bool CanCheckout {
             get {
-                return (_order.IsEmpty == false) && !IsCheckingOut;
+                return (_order != null) && (_order.IsEmpty == false) && !IsCheckingOut;
             }
         }
 
