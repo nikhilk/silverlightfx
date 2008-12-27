@@ -17,7 +17,7 @@
         </member>
         <member name="T:System.Windows.Controls.View">
             <summary>
-            Represents a View user control that is associated with a Model.
+            Represents a base class for views that are associated with a Model.
             The associated model is surfaced as the View's DataContext.
             </summary>
         </member>
@@ -1482,25 +1482,6 @@
             Gets or sets the Y scaling factor used by the effect.
             </summary>
         </member>
-        <member name="T:SilverlightFX.UserInterface.ContentLayoutMode">
-            <summary>
-            Indicates the mode of a panel within the template associated
-            with a ContentLayout control.
-            </summary>
-        </member>
-        <member name="F:SilverlightFX.UserInterface.ContentLayoutMode.Replace">
-            <summary>
-            Indicates that the content element matched to a panel
-            should replace or override existing content in the panel.
-            This is the default behavior.
-            </summary>
-        </member>
-        <member name="F:SilverlightFX.UserInterface.ContentLayoutMode.Merge">
-            <summary>
-            Indicates that the content element matched to a panel
-            should be merged along with existing content in the panel.
-            </summary>
-        </member>
         <member name="T:System.Windows.Media.Glitz.EffectEasing">
             <summary>
             Determines how the animation is progressed over time.
@@ -1846,12 +1827,22 @@
             Represents the root visual of the application.
             </summary>
         </member>
+        <member name="F:SilverlightFX.UserInterface.Form.CloseEffectProperty">
+            <summary>
+            Represents the CloseEffect property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Form.ShowEffectProperty">
+            <summary>
+            Represents the ShowEffect property.
+            </summary>
+        </member>
         <member name="M:SilverlightFX.UserInterface.Form.#ctor">
             <summary>
             Initializes an instance of a Form.
             </summary>
         </member>
-        <member name="M:SilverlightFX.UserInterface.Form.#ctor(System.ComponentModel.Model)">
+        <member name="M:SilverlightFX.UserInterface.Form.#ctor(System.Object)">
             <summary>
             Initializes an instance of a Form with an associated view model.
             The view model is set as the DataContext of the Form.
@@ -1869,6 +1860,11 @@
             Shows the Form as a modal dialog.
             </summary>
         </member>
+        <member name="P:SilverlightFX.UserInterface.Form.CloseEffect">
+            <summary>
+            Gets or sets the effect to be played when the form is closing.
+            </summary>
+        </member>
         <member name="P:SilverlightFX.UserInterface.Form.ParentForm">
             <summary>
             Gets the parent Form that logically owns this Form.
@@ -1877,6 +1873,11 @@
         <member name="P:SilverlightFX.UserInterface.Form.Result">
             <summary>
             The result of Form selected when it was closed.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Form.ShowEffect">
+            <summary>
+            Gets or sets the effect to be played when the form is being shown.
             </summary>
         </member>
         <member name="E:SilverlightFX.UserInterface.Form.Closed">
@@ -2144,7 +2145,7 @@
             Initializes an instance of a Page.
             </summary>
         </member>
-        <member name="M:SilverlightFX.UserInterface.Page.#ctor(System.ComponentModel.Model)">
+        <member name="M:SilverlightFX.UserInterface.Page.#ctor(System.Object)">
             <summary>
             Initializes an instance of a Page with an associated view model.
             The view model is set as the DataContext of the Form.
@@ -3468,7 +3469,7 @@
             Initializes an instance of a Window.
             </summary>
         </member>
-        <member name="M:SilverlightFX.UserInterface.Window.#ctor(System.ComponentModel.Model)">
+        <member name="M:SilverlightFX.UserInterface.Window.#ctor(System.Object)">
             <summary>
             Initializes an instance of a Window with an associated view model.
             The view model is set as the DataContext of the Form.
@@ -3812,6 +3813,39 @@
             <param name="container">The container that is requesting the creation of the object.</param>
             <param name="isSingleInstance">Whether the returned object is to be treated as a singleton.</param>
             <returns></returns>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.ShowForm">
+            <summary>
+            An action that transitions from one visual state to another.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.ShowForm.FormModelProperty">
+            <summary>
+            Represents the FormModel property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.ShowForm.FormTypeProperty">
+            <summary>
+            Represents the FormType property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.ShowForm.#ctor">
+            <summary>
+            Initializes an instance of a ShowForm action.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.ShowForm.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormModel">
+            <summary>
+            Gets or sets the model to associate with the Form when it is shown.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormType">
+            <summary>
+            Gets or sets the Form to show.
+            </summary>
         </member>
     </members>
 </doc>
