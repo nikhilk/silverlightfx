@@ -13,10 +13,23 @@
     <app:ProductPriceFilterConverter x:Key="priceConverter" />
   </fxui:Window.Resources>
   
-  <fxui:XGrid Columns="20,*,5,350,20" Rows="20,40,*,5,250,30,20" Background="{StaticResource backgroundBrush}">
+  <fxui:XGrid Columns="20,*,5,350,20" Rows="20,40,*,5,250,20" Background="{StaticResource backgroundBrush}">
 
     <!-- Application Title -->
-    <TextBlock Text="Silverlight Store" Style="{StaticResource appTitleText}" Grid.Column="1" Grid.Row="1" Margin="0,4,0,4" />
+    <Image Source="/Themes/StoreLogo.png" Grid.Column="1" Grid.Row="1" Margin="0,4,0,4" VerticalAlignment="Center" HorizontalAlignment="Left" />
+    
+    <fxui:HStackPanel Grid.Column="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right"
+       ChildSpacing="4" ChildFlow="Right" ChildAlignment="Center">
+      <TextBlock Text="Welcome" />
+      <TextBlock Text="|" />
+      <TextBlock Text="About" Style="{StaticResource appAboutText}">
+      <fxui:Interaction.Triggers>
+        <fxui:MouseTrigger>
+          <fxaction:ShowForm FormType="AboutForm" />
+        </fxui:MouseTrigger>
+      </fxui:Interaction.Triggers>
+      </TextBlock>
+    </fxui:HStackPanel>
 
     <!-- Catalog -->
     <fxui:ContentLayout Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" Template="{StaticResource partLayout}">
@@ -131,15 +144,6 @@
         <TextBlock Text="{Binding ShoppingCart.Order.Total, Converter={StaticResource currencyFormatter}, ConverterParameter=' Total: ', ConverterCulture='en-US'}" />
       </fxui:HStackPanel>
     </fxui:ContentLayout>
-
-    <!-- Logos -->
-    <fxui:HStackPanel Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="3" ChildSpacing="8" ChildFlow="Right" ChildAlignment="Center">
-      <HyperlinkButton Content="http://www.nikhilk.net" Foreground="White"
-        NavigateUri="http://www.nikhilk.net" />
-      <TextBlock Text="|" Foreground="White" />
-      <Image Height="30" Source="/Themes/AmazonLogo.png" />
-      <Image Height="30" Source="/Themes/SilverlightLogo.png" Margin="0,0,4,0" />
-    </fxui:HStackPanel>
 
   </fxui:XGrid>
 </fxui:Window>

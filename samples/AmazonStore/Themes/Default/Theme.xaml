@@ -10,18 +10,18 @@
   <fxapp:Theme.Resources>
 
     <!-- backgroundBrush -->
-    <LinearGradientBrush x:Key="backgroundBrush" StartPoint="0,0" EndPoint="0,1">
-      <LinearGradientBrush.GradientStops>
-        <GradientStop Color="#727A7A" Offset="0" />
-        <GradientStop Color="#B2B9B9" Offset="1" />
-      </LinearGradientBrush.GradientStops>
-    </LinearGradientBrush>
+    <ImageBrush x:Key="backgroundBrush" ImageSource="/Themes/Background.jpg" />
 
-    <!-- appTitleText -->
-    <Style x:Key="appTitleText" TargetType="TextBlock">
-      <Setter Property="Foreground" Value="White" />
-      <Setter Property="FontFamily" Value="Tahoma" />
-      <Setter Property="FontSize" Value="20" />
+    <!-- appAboutText -->
+    <Style x:Key="appAboutText" TargetType="TextBlock">
+      <Setter Property="FontWeight" Value="Bold" />
+      <Setter Property="Cursor" Value="Hand" />
+    </Style>
+
+    <!-- appAboutText -->
+    <Style x:Key="aboutHyperlink" TargetType="HyperlinkButton">
+      <Setter Property="Foreground" Value="Black" />
+      <Setter Property="FontWeight" Value="Bold" />
     </Style>
 
     <!-- partLayout -->
@@ -44,7 +44,9 @@
             </Border.Background>
             <ContentPresenter x:Name="header" Margin="4" />
           </Border>
-          <ContentPresenter x:Name="body" Grid.Row="1" Margin="4" />
+          <Grid Grid.Row="1" Background="{TemplateBinding Background}">
+            <ContentPresenter x:Name="body" Margin="4" />
+          </Grid>
           <Border Grid.Row="2" BorderThickness="0,0.5,0,0" BorderBrush="#80000000">
             <Border.Background>
               <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">

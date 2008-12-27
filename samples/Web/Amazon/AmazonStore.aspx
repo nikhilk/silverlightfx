@@ -4,7 +4,7 @@
 <head runat="server">
   <title>Silverlight Store</title>
 </head>
-<body style="height: 100%; margin: 0;">
+<body style="height: 100%; margin: 0; overflow:hidden" scroll="no">
   <div style="height: 100%;">
     <object style="width: 100%; height: 100%" type="application/x-silverlight">
 	    <param name="source" value="AmazonStore.xap" />
