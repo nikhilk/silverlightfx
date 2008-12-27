@@ -31,14 +31,6 @@ namespace SilverlightFX.UserInterface {
         private static readonly DependencyProperty ContainerProperty =
             DependencyProperty.RegisterAttached("Container", typeof(ContentLayout), typeof(ContentLayout), null);
 
-#if PANEL
-        /// <summary>
-        /// Represents the ContentMode attached property.
-        /// </summary>
-        public static readonly DependencyProperty ContentModeProperty =
-            DependencyProperty.RegisterAttached("ContentMode", typeof(ContentLayoutMode), typeof(ContentLayout), null);
-#endif
-
         /// <summary>
         /// Represents the ContentName attached property.
         /// </summary>
@@ -71,18 +63,6 @@ namespace SilverlightFX.UserInterface {
             return (ContentLayout)o.GetValue(ContainerProperty);
         }
 
-#if PANEL
-        /// <summary>
-        /// Gets the value of the ContentMode attached property.
-        /// </summary>
-        /// <param name="o">The object with the attached property.</param>
-        /// <returns>The mode associated with the specified object.</returns>
-        public static ContentLayoutMode GetContentMode(DependencyObject o) {
-            object value = o.GetValue(ContentModeProperty);
-            return (value == null) ? ContentLayoutMode.Replace : (ContentLayoutMode)value;
-        }
-#endif
-
         /// <summary>
         /// Gets the value of the ContentName attached property.
         /// </summary>
@@ -92,51 +72,32 @@ namespace SilverlightFX.UserInterface {
             return (string)o.GetValue(ContentNameProperty);
         }
 
-#if PANEL
-        private Panel GetPanel(string name) {
-            if (String.IsNullOrEmpty(name) == false) {
-                return GetTemplateChild(name) as Panel;
-            }
-            return null;
-        }
-#else
         private ContentPresenter GetPresenter(string name) {
             if (String.IsNullOrEmpty(name) == false) {
                 return GetTemplateChild(name) as ContentPresenter;
             }
             return null;
         }
-#endif
 
         /// <internalonly />
         public override void OnApplyTemplate() {
             base.OnApplyTemplate();
 
             if (_contentList.Count != 0) {
-                foreach (UIElement content in _contentList) {
-                    string contentName = ContentLayout.GetContentName(content);
-#if PANEL
-                    Panel contentPanel = GetPanel(contentName);
+                Dispatcher.BeginInvoke(delegate() {
+                    foreach (UIElement content in _contentList) {
+                        string contentName = ContentLayout.GetContentName(content);
+                        ContentPresenter contentPresenter = GetPresenter(contentName);
 
-                    if (contentPanel != null) {
-                        ContentLayoutMode mode = GetContentMode(contentPanel);
-                        if (mode == ContentLayoutMode.Replace) {
-                            contentPanel.Children.Clear();
+                        if (contentPresenter != null) {
+                            Grid grid = new Grid();
+                            grid.Children.Add(content);
+
+                            contentPresenter.Content = grid;
+                            grid.UpdateLayout();
                         }
-
-                        contentPanel.Children.Add(content);
                     }
-#else
-                    ContentPresenter contentPresenter = GetPresenter(contentName);
-
-                    if (contentPresenter != null) {
-                        Grid grid = new Grid();
-                        grid.Children.Add(content);
-
-                        contentPresenter.Content = grid;
-                    }
-#endif
-                }
+                });
             }
         }
 
@@ -153,64 +114,28 @@ namespace SilverlightFX.UserInterface {
 
                 string contentName = ContentLayout.GetContentName(content);
 
-#if PANEL
-                Panel contentPanel = GetPanel(contentName);
-                if (contentPanel != null) {
-                    ContentLayoutMode mode = GetContentMode(contentPanel);
-                    if (mode == ContentLayoutMode.Replace) {
-                        contentPanel.Children.Clear();
-                    }
-
-                    contentPanel.Children.Add(content);
-                }
-#else
                 ContentPresenter contentPresenter = GetPresenter(contentName);
                 if (contentPresenter != null) {
                     Grid grid = new Grid();
                     grid.Children.Add(content);
 
                     contentPresenter.Content = grid;
+                    grid.UpdateLayout();
                 }
-#endif
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove) {
                 UIElement content = (UIElement)e.OldItems[0];
 
                 string contentName = ContentLayout.GetContentName(content);
 
-#if PANEL
-                Panel contentPanel = GetPanel(contentName);
-                if (contentPanel != null) {
-                    contentPanel.Children.Remove(content);
-                }
-
-                ContentLayout.SetContainer(content, null);
-#else
                 ContentPresenter contentPresenter = GetPresenter(contentName);
                 if (contentPresenter != null) {
                     contentPresenter.Content = null;
                 }
-#endif
             }
         }
 
         private void OnContentNameChanged(DependencyObject content, string oldName, string newName) {
-#if PANEL
-            Panel oldPanel = GetPanel(oldName);
-            if (oldPanel != null) {
-                oldPanel.Children.Remove((UIElement)content);
-            }
-
-            Panel newPanel = GetPanel(newName);
-            if (newPanel != null) {
-                ContentLayoutMode mode = GetContentMode(newPanel);
-                if (mode == ContentLayoutMode.Replace) {
-                    newPanel.Children.Clear();
-                }
-
-                newPanel.Children.Add((UIElement)content);
-            }
-#else
             ContentPresenter oldPresenter = GetPresenter(oldName);
             if (oldPresenter != null) {
                 oldPresenter.Content = null;
@@ -222,8 +147,8 @@ namespace SilverlightFX.UserInterface {
                 grid.Children.Add((UIElement)content);
 
                 newPresenter.Content = grid;
+                grid.UpdateLayout();
             }
-#endif
         }
 
         private static void OnContentNamePropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e) {
@@ -240,17 +165,6 @@ namespace SilverlightFX.UserInterface {
         internal static void SetContainer(DependencyObject o, ContentLayout value) {
             o.SetValue(ContainerProperty, value);
         }
-
-#if PANEL
-        /// <summary>
-        /// Sets the value of the ContentMode attached property.
-        /// </summary>
-        /// <param name="o">The object to set the mode on.</param>
-        /// <param name="value">The mode to set.</param>
-        public static void SetContentMode(DependencyObject o, ContentLayoutMode value) {
-            o.SetValue(ContentModeProperty, value);
-        }
-#endif
 
         /// <summary>
         /// Sets the value of the ContentName attached property.
