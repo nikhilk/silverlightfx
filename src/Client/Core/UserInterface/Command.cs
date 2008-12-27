@@ -81,7 +81,10 @@ namespace SilverlightFX.UserInterface {
 
         private void OnClick(object sender, RoutedEventArgs e) {
             if ((_command == null) && (_unknownCommand == false)) {
-                _command = AssociatedObject.FindResource(_commandName) as ICommand;
+                _command = AssociatedObject.FindResource(_commandName + "Command") as ICommand;
+                if (_command == null) {
+                    _command = AssociatedObject.FindResource(_commandName) as ICommand;
+                }
 
                 if (_command == null) {
                     // Since there was no static command available, find a command provider

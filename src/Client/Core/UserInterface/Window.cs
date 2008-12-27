@@ -27,7 +27,8 @@ namespace SilverlightFX.UserInterface {
         /// <summary>
         /// Initializes an instance of a Window.
         /// </summary>
-        public Window() {
+        public Window() :
+            this(null) {
         }
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace SilverlightFX.UserInterface {
         /// The view model is set as the DataContext of the Form.
         /// </summary>
         /// <param name="viewModel">The associated view model object.</param>
-        public Window(Model viewModel)
+        public Window(object viewModel)
             : base(viewModel) {
         }
 

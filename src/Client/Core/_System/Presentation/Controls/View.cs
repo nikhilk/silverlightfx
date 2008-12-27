@@ -16,7 +16,7 @@ using System.Windows;
 namespace System.Windows.Controls {
 
     /// <summary>
-    /// Represents a View user control that is associated with a Model.
+    /// Represents a base class for views that are associated with a Model.
     /// The associated model is surfaced as the View's DataContext.
     /// </summary>
     public abstract class View : UserControl {
@@ -40,7 +40,9 @@ namespace System.Windows.Controls {
         /// </summary>
         /// <param name="viewModel">The associated model.</param>
         protected View(object viewModel) {
-            Model = viewModel;
+            if (viewModel != null) {
+                Model = viewModel;
+            }
         }
 
         /// <summary>

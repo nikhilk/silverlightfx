@@ -12,6 +12,8 @@ using System;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media.Glitz;
 
 namespace SilverlightFX.UserInterface {
 
@@ -20,16 +22,33 @@ namespace SilverlightFX.UserInterface {
     /// </summary>
     public class Form : View {
 
+        /// <summary>
+        /// Represents the CloseEffect property.
+        /// </summary>
+        public static readonly DependencyProperty CloseEffectProperty =
+            DependencyProperty.Register("CloseEffect", typeof(Effect), typeof(Form), null);
+
+        /// <summary>
+        /// Represents the ShowEffect property.
+        /// </summary>
+        public static readonly DependencyProperty ShowEffectProperty =
+            DependencyProperty.Register("ShowEffect", typeof(Effect), typeof(Form), null);
+
         private FormResult _formResult;
         private EventHandler _closedHandler;
+        private bool _canClose;
 
         private Form _parentForm;
         private FrameworkElement _overlayElement;
 
+        private DelegateCommand _cancelCommand;
+        private DelegateCommand _okCommand;
+
         /// <summary>
         /// Initializes an instance of a Form.
         /// </summary>
-        public Form() {
+        public Form() :
+            this(null) {
         }
 
         /// <summary>
@@ -37,8 +56,25 @@ namespace SilverlightFX.UserInterface {
         /// The view model is set as the DataContext of the Form.
         /// </summary>
         /// <param name="viewModel">The associated view model object.</param>
-        public Form(Model viewModel)
+        public Form(object viewModel)
             : base(viewModel) {
+            _cancelCommand = new DelegateCommand(OnCancelCommand, /* canExecute */ true);
+            _okCommand = new DelegateCommand(OnOKCommand, /* canExecute */ true);
+
+            Resources.Add("CancelCommand", _cancelCommand);
+            Resources.Add("OKCommand", _okCommand);
+        }
+
+        /// <summary>
+        /// Gets or sets the effect to be played when the form is closing.
+        /// </summary>
+        public Effect CloseEffect {
+            get {
+                return (Effect)GetValue(CloseEffectProperty);
+            }
+            set {
+                SetValue(CloseEffectProperty, value);
+            }
         }
 
         /// <summary>
@@ -60,6 +96,18 @@ namespace SilverlightFX.UserInterface {
         }
 
         /// <summary>
+        /// Gets or sets the effect to be played when the form is being shown.
+        /// </summary>
+        public Effect ShowEffect {
+            get {
+                return (Effect)GetValue(ShowEffectProperty);
+            }
+            set {
+                SetValue(ShowEffectProperty, value);
+            }
+        }
+
+        /// <summary>
         /// Raised when the Form is closed.
         /// </summary>
         public event EventHandler Closed {
@@ -76,8 +124,27 @@ namespace SilverlightFX.UserInterface {
         /// </summary>
         /// <param name="result">The result of the Form.</param>
         public void Close(FormResult result) {
-            _formResult = result;
+            if (_canClose == false) {
+                return;
+            }
 
+            _formResult = result;
+            _canClose = false;
+
+            Effect closeEffect = CloseEffect;
+            if (closeEffect == null) {
+                CloseCore();
+            }
+            else {
+                if (((IAttachedObject)closeEffect).AssociatedObject != this) {
+                    ((IAttachedObject)closeEffect).Attach(this);
+                    closeEffect.Completed += OnCloseEffectCompleted;
+                }
+                closeEffect.PlayEffect(EffectDirection.Forward);
+            }
+        }
+
+        private void CloseCore() {
             Panel parentPanel = (Panel)Parent;
 
             Visibility = Visibility.Collapsed;
@@ -97,6 +164,23 @@ namespace SilverlightFX.UserInterface {
             if (_closedHandler != null) {
                 _closedHandler(this, EventArgs.Empty);
             }
+        }
+
+        private void OnCancelCommand() {
+            Close(FormResult.Cancel);
+        }
+
+        private void OnCloseEffectCompleted(object sender, EventArgs e) {
+            CloseCore();
+        }
+
+        private void OnOKCommand() {
+            Close(FormResult.OK);
+        }
+
+        private void OnShowEffectCompleted(object sender, EventArgs e) {
+            _canClose = true;
+            Focus();
         }
 
         /// <summary>
@@ -123,7 +207,21 @@ namespace SilverlightFX.UserInterface {
             parentPanel.Children.Add(this);
 
             Visibility = Visibility.Visible;
-            Focus();
+
+            Effect showEffect = ShowEffect;
+            if (showEffect == null) {
+                _canClose = true;
+                Focus();
+            }
+            else {
+                _canClose = false;
+
+                if (((IAttachedObject)showEffect).AssociatedObject != this) {
+                    ((IAttachedObject)showEffect).Attach(this);
+                    showEffect.Completed += OnShowEffectCompleted;
+                }
+                showEffect.PlayEffect(EffectDirection.Forward);
+            }
         }
     }
 }
