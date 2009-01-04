@@ -20,7 +20,7 @@ namespace System.Windows.Media.Glitz {
     /// <summary>
     /// Represents an effect that can be associated with an element.
     /// </summary>
-    public abstract class Effect : FrameworkElement, IAttachedObject, IAnimationFactory {
+    public abstract class Effect : FrameworkElement, IAttachedObject, IProceduralAnimationFactory {
 
         private FrameworkElement _associatedObject;
         private FrameworkElement _target;
@@ -321,8 +321,8 @@ namespace System.Windows.Media.Glitz {
         }
         #endregion
 
-        #region Implementation of IAnimationFactory
-        ProceduralAnimation IAnimationFactory.CreateAnimation() {
+        #region Implementation of IProceduralAnimationFactory
+        ProceduralAnimation IProceduralAnimationFactory.CreateAnimation() {
             return CreateEffectAnimation(EffectDirection.Forward);
         }
         #endregion

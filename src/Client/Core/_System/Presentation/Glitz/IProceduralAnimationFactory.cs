@@ -1,4 +1,4 @@
-﻿// IAnimationFactory.cs
+﻿// IProceduralAnimationFactory.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -15,7 +15,7 @@ namespace System.Windows.Media.Glitz {
     /// <summary>
     /// Provides the ability to create animation instances.
     /// </summary>
-    public interface IAnimationFactory {
+    public interface IProceduralAnimationFactory {
 
         /// <summary>
         /// Creates a new animation instance defined by the object.

@@ -196,7 +196,7 @@ namespace SilverlightFX.UserInterface {
                 if (addedEffect != null) {
                     addedEffect.Target = (FrameworkElement)item.Content;
 
-                    ProceduralAnimation addedAnimation = ((IAnimationFactory)addedEffect).CreateAnimation();
+                    ProceduralAnimation addedAnimation = ((IProceduralAnimationFactory)addedEffect).CreateAnimation();
                     addedAnimation.Play(item);
                 }
             }
@@ -377,7 +377,7 @@ namespace SilverlightFX.UserInterface {
             else {
                 removedEffect.Target = (FrameworkElement)item.Content;
                 
-                ProceduralAnimation removeAnimation = ((IAnimationFactory)removedEffect).CreateAnimation();
+                ProceduralAnimation removeAnimation = ((IProceduralAnimationFactory)removedEffect).CreateAnimation();
                 removeAnimation.Stopped += OnItemRemovedAnimationStopped;
 
                 removeAnimation.Play(item);
