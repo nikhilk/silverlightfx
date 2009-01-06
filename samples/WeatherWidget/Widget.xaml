@@ -5,9 +5,15 @@
   xmlns:fxactions="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
   xmlns:fxeffects="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
   xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
+  xmlns:fxglitz="clr-namespace:SilverlightFX.UserInterface.Glitz;assembly=SilverlightFX"
   xmlns:app="clr-namespace:WeatherWidget"
   x:Class="WeatherWidget.Widget"
   Width="240" Height="240">
+  
+  <fxui:Window.Resources>
+    <fxglitz:ElasticInterpolation x:Key="ElasticOut" Mode="EaseOut" />
+    <fxglitz:ElasticInterpolation x:Key="ElasticInOut" Mode="EaseInOut" />
+  </fxui:Window.Resources>
   
   <fxui:Window.Model>
     <app:WidgetModel />
@@ -39,7 +45,7 @@
                   <Border CornerRadius="4" Background="#20000000" Padding="4" Margin="2,0,2,0" HorizontalAlignment="Center" VerticalAlignment="Stretch">
                     <fxui:Interaction.Behaviors>
                       <fxui:HoverEffect>
-                        <fxeffects:ColorFill FillColor="#80000000" Duration="00:00:0.5" Easing="QuadraticInOut" />
+                        <fxeffects:ColorFill FillColor="#80000000" Duration="00:00:0.5" />
                       </fxui:HoverEffect>
                     </fxui:Interaction.Behaviors>
                     <StackPanel Width="40">
@@ -73,7 +79,7 @@
         <Grid Grid.Row="3" Background="#20000000" Opacity="0.5">
           <fxui:Interaction.Behaviors>
             <fxui:HoverEffect>
-              <fxeffects:Fade FadeOpacity="1" Easing="QuadraticInOut" />
+              <fxeffects:Fade FadeOpacity="1" />
             </fxui:HoverEffect>
           </fxui:Interaction.Behaviors>
           <fxui:XButton x:Name="changeLocationButton" Style="{StaticResource flatButton}" Width="100" Height="23" HorizontalAlignment="Left" Margin="4,4,4,4"
@@ -85,7 +91,7 @@
             </fxui:Interaction.Triggers>
             <fxui:Interaction.Behaviors>
               <fxui:ClickEffect>
-                <fxtransitions:Slide Mode="Left" TargetName="layoutGrid" Duration="00:00:1" Reversible="False" Reversed="True" Easing="ElasticOut" />
+                <fxtransitions:Slide Mode="Left" TargetName="layoutGrid" Duration="00:00:1" Reversible="False" Reversed="True" Interpolation="{StaticResource ElasticOut}" />
               </fxui:ClickEffect>
             </fxui:Interaction.Behaviors>
           </fxui:XButton>
@@ -115,7 +121,7 @@
         <StackPanel x:Name="inputPanel" Grid.Row="1" Orientation="Horizontal" Background="#20000000" Opacity="0.5">
           <fxui:Interaction.Behaviors>
             <fxui:HoverEffect>
-              <fxeffects:Fade FadeOpacity="1" Easing="QuadraticInOut" />
+              <fxeffects:Fade FadeOpacity="1" />
             </fxui:HoverEffect>
           </fxui:Interaction.Behaviors>
           <TextBlock Style="{StaticResource labelText}" VerticalAlignment="Center" Margin="60,0,4,0">Zip Code:</TextBlock>
@@ -125,7 +131,7 @@
               <fxui:AutoCommit ButtonName="lookupButton" />
               <fxui:TextFilter Filter="Numbers" />
               <fxui:FocusEffect>
-                <fxeffects:Fade TargetName="inputPanel" FadeOpacity="1" Easing="QuadraticInOut" />
+                <fxeffects:Fade TargetName="inputPanel" FadeOpacity="1" />
               </fxui:FocusEffect>
             </fxui:Interaction.Behaviors>
           </fxui:XTextBox>
@@ -133,7 +139,7 @@
       		  Content="Load" fxui:Interaction.Action="$model.LookupWeather(zipCodeTextBox.Text)">
             <fxui:Interaction.Behaviors>
               <fxui:ClickEffect>
-                <fxtransitions:Slide Mode="Left" TargetName="layoutGrid" Duration="00:00:1.25" Reversible="False" Easing="ElasticInOut" />
+                <fxtransitions:Slide Mode="Left" TargetName="layoutGrid" Duration="00:00:1.25" Reversible="False" Interpolation="{StaticResource ElasticInOut}" />
               </fxui:ClickEffect>
             </fxui:Interaction.Behaviors>
           </fxui:XButton>

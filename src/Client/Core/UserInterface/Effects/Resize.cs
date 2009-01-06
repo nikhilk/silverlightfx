@@ -98,7 +98,7 @@ namespace SilverlightFX.UserInterface.Effects {
                 _initialY = _scaleTransform.ScaleY;
             }
 
-            ProceduralAnimationEasingFunction easing = GetEasingFunction();
+            TweenInterpolation interpolation = GetEffectiveInterpolation();
             DoubleAnimation xAnimation = null;
             DoubleAnimation yAnimation = null;
 
@@ -107,7 +107,7 @@ namespace SilverlightFX.UserInterface.Effects {
 
                 xAnimation = new DoubleAnimation(_scaleTransform, ScaleTransform.ScaleXProperty, Duration,
                                                  targetValue);
-                xAnimation.EasingFunction = easing;
+                xAnimation.Interpolation = interpolation;
             }
 
             if (_scaleYRatio != 1) {
@@ -115,7 +115,7 @@ namespace SilverlightFX.UserInterface.Effects {
 
                 yAnimation = new DoubleAnimation(_scaleTransform, ScaleTransform.ScaleYProperty, Duration,
                                                  targetValue);
-                yAnimation.EasingFunction = easing;
+                yAnimation.Interpolation = interpolation;
             }
 
             if ((xAnimation != null) && (yAnimation != null)) {

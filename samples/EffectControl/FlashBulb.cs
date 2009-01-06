@@ -23,7 +23,7 @@ namespace EffectControl {
             }
 
             TimeSpan halfDuration = TimeSpan.FromMilliseconds(Duration.TotalMilliseconds / 2);
-            ProceduralAnimationEasingFunction easing = GetEasingFunction();
+            TweenInterpolation interpolation = GetEffectiveInterpolation();
 
             // A FlashBulb effect basically grows the element and makes it transparent
             // half way and then restores the element to its initial state during the
@@ -37,9 +37,9 @@ namespace EffectControl {
             DoubleAnimation scaleYAnimation =
                 new DoubleAnimation(scaleTransform, ScaleTransform.ScaleYProperty, halfDuration, 1.1);
 
-            opacityAnimation.EasingFunction = easing;
-            scaleXAnimation.EasingFunction = easing;
-            scaleYAnimation.EasingFunction = easing;
+            opacityAnimation.Interpolation = interpolation;
+            scaleXAnimation.Interpolation = interpolation;
+            scaleYAnimation.Interpolation = interpolation;
 
             // Create a composite animation that plays all three in parallel
             ProceduralAnimation animation =

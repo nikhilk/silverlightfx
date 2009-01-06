@@ -161,9 +161,9 @@ namespace SilverlightFX.UserInterface.Transitions {
                     break;
             }
 
-            ProceduralAnimationEasingFunction easing = GetEasingFunction();
-            topAnimation.EasingFunction = easing;
-            bottomAnimation.EasingFunction = easing;
+            TweenInterpolation interpolation = GetEffectiveInterpolation();
+            topAnimation.Interpolation = interpolation;
+            bottomAnimation.Interpolation = interpolation;
 
             return new ProceduralAnimationSet(slideAnimation, topAnimation, bottomAnimation);
         }

@@ -29,7 +29,8 @@ namespace System.Windows.Media.Glitz {
         private bool _autoReverse;
         private bool _reversible;
         private bool _reversed;
-        private EffectEasing _easing;
+        private bool _useDefaultInterpolation;
+        private TweenInterpolation _interpolation;
 
         private ProceduralAnimation _animation;
         private EffectDirection _direction;
@@ -40,6 +41,7 @@ namespace System.Windows.Media.Glitz {
         protected Effect() {
             _duration = TimeSpan.FromMilliseconds(250);
             _reversible = true;
+            _useDefaultInterpolation = true;
         }
 
         /// <summary>
@@ -88,17 +90,17 @@ namespace System.Windows.Media.Glitz {
         }
 
         /// <summary>
-        /// Gets or sets how the animation is progressed over time.
+        /// Gets or sets how the animation progress is interpolated over time.
+        /// The default is to smoothly interpolate from start to finish, which
+        /// equates to basic easing in and easing out.
         /// </summary>
-        public EffectEasing Easing {
+        public TweenInterpolation Interpolation {
             get {
-                return _easing;
+                return _interpolation;
             }
             set {
-                if ((value < EffectEasing.None) || (value > EffectEasing.ElasticInOut)) {
-                    throw new ArgumentOutOfRangeException("value");
-                }
-                _easing = value;
+                _interpolation = value;
+                _useDefaultInterpolation = false;
             }
         }
 
@@ -173,36 +175,17 @@ namespace System.Windows.Media.Glitz {
         public event EventHandler Completed;
 
         /// <summary>
-        /// Returns an easing delegate matching the selected easing method,
-        /// or null if no easing is selected.
+        /// Gets the effective interpolation to use for animations created by the
+        /// effect.
         /// </summary>
-        /// <returns>An AnimationEasingFunction instance.</returns>
-        protected ProceduralAnimationEasingFunction GetEasingFunction() {
-            switch (_easing) {
-                case EffectEasing.QuadraticIn:
-                    return EasingFunctions.EaseQuadraticIn;
-                case EffectEasing.QuadraticOut:
-                    return EasingFunctions.EaseQuadraticOut;
-                case EffectEasing.QuadraticInOut:
-                    return EasingFunctions.EaseQuadraticInOut;
-                case EffectEasing.BounceIn:
-                    return EasingFunctions.EaseBounceIn;
-                case EffectEasing.BounceOut:
-                    return EasingFunctions.EaseBounceOut;
-                case EffectEasing.BounceInOut:
-                    return EasingFunctions.EaseBounceInOut;
-                case EffectEasing.BackIn:
-                    return EasingFunctions.EaseBackIn;
-                case EffectEasing.BackOut:
-                    return EasingFunctions.EaseBackOut;
-                case EffectEasing.BackInOut:
-                    return EasingFunctions.EaseBackInOut;
-                case EffectEasing.ElasticIn:
-                    return EasingFunctions.EaseElasticIn;
-                case EffectEasing.ElasticOut:
-                    return EasingFunctions.EaseElasticOut;
-                case EffectEasing.ElasticInOut:
-                    return EasingFunctions.EaseElasticInOut;
+        /// <returns>The effective interpolation; null if there is no specific interpolation.</returns>
+        protected TweenInterpolation GetEffectiveInterpolation() {
+            if (_useDefaultInterpolation) {
+                return EasingInterpolation.Default;
+            }
+
+            if ((_interpolation != null) && (_interpolation.IsLinearInterpolation == false)) {
+                return _interpolation;
             }
 
             return null;

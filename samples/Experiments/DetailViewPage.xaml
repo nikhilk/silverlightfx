@@ -55,10 +55,10 @@
         </DataTemplate>
       </fxui:ListView.ItemTemplate>
       <fxui:ListView.ItemAddedEffect>
-        <fxeffects:Highlight Duration="0:0:1" Easing="QuadraticInOut" />
+        <fxeffects:Highlight Duration="0:0:1" />
       </fxui:ListView.ItemAddedEffect>
       <fxui:ListView.ItemRemovedEffect>
-        <fxeffects:Highlight Duration="0:0:0.5" HighlightColor="Red" Easing="QuadraticInOut" />
+        <fxeffects:Highlight Duration="0:0:0.5" HighlightColor="Red" />
       </fxui:ListView.ItemRemovedEffect>
     </fxui:ListView>
     

@@ -222,12 +222,12 @@
             Gets the DependencyObject that this object is attached to.
             </summary>
         </member>
-        <member name="T:System.Windows.Media.Glitz.IAnimationFactory">
+        <member name="T:System.Windows.Media.Glitz.IProceduralAnimationFactory">
             <summary>
             Provides the ability to create animation instances.
             </summary>
         </member>
-        <member name="M:System.Windows.Media.Glitz.IAnimationFactory.CreateAnimation">
+        <member name="M:System.Windows.Media.Glitz.IProceduralAnimationFactory.CreateAnimation">
             <summary>
             Creates a new animation instance defined by the object.
             </summary>
@@ -238,12 +238,12 @@
             Initializes an Effect instance.
             </summary>
         </member>
-        <member name="M:System.Windows.Media.Glitz.Effect.GetEasingFunction">
+        <member name="M:System.Windows.Media.Glitz.Effect.GetEffectiveInterpolation">
             <summary>
-            Returns an easing delegate matching the selected easing method,
-            or null if no easing is selected.
+            Gets the effective interpolation to use for animations created by the
+            effect.
             </summary>
-            <returns>An AnimationEasingFunction instance.</returns>
+            <returns>The effective interpolation; null if there is no specific interpolation.</returns>
         </member>
         <member name="M:System.Windows.Media.Glitz.Effect.GetTarget">
             <summary>
@@ -308,9 +308,11 @@
             Gets or sets the duration over which the effect is played.
             </summary>
         </member>
-        <member name="P:System.Windows.Media.Glitz.Effect.Easing">
+        <member name="P:System.Windows.Media.Glitz.Effect.Interpolation">
             <summary>
-            Gets or sets how the animation is progressed over time.
+            Gets or sets how the animation progress is interpolated over time.
+            The default is to smoothly interpolate from start to finish, which
+            equates to basic easing in and easing out.
             </summary>
         </member>
         <member name="P:System.Windows.Media.Glitz.Effect.IsActive">
@@ -536,10 +538,9 @@
             The duration of time (in ticks) that this animation plays over.
             </summary>
         </member>
-        <member name="P:System.Windows.Media.Glitz.TweenAnimation.EasingFunction">
+        <member name="P:System.Windows.Media.Glitz.TweenAnimation.Interpolation">
             <summary>
-            The easing function used to ease the normal linear progression of
-            the animation from the start to end state.
+            The interpolation used to progress the animation from start to end.
             </summary>
         </member>
         <member name="P:System.Windows.Media.Glitz.TweenAnimation.StartDelay">
@@ -723,6 +724,24 @@
             Any additional themes to include. Each of the additional themes must contain
             a UserControl declaration. The list of themes are processed in order after
             the current theme's resource items have been included.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.Applications.IExternalNavigationService">
+            <summary>
+            Provides the ability to perform a navigation external to the application.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.Applications.IExternalNavigationService.Navigate(System.Uri,System.String)">
+            <summary>
+            Performs an external navigation to the specified URI in an optionally
+            specified frame.
+            </summary>
+            <param name="uri">The URI to navigate to.</param>
+            <param name="targetFrame">The name of the frame to use.</param>
+        </member>
+        <member name="P:SilverlightFX.Applications.IExternalNavigationService.CanNavigate">
+            <summary>
+            Gets whether external navigation can be performed.
             </summary>
         </member>
         <member name="T:System.Windows.Media.Glitz.EffectDirection">
@@ -1197,9 +1216,9 @@
             Represents the Duration property of an AnimatedPanel.
             </summary>
         </member>
-        <member name="F:System.Windows.Controls.AnimatedPanel.EasingProperty">
+        <member name="F:System.Windows.Controls.AnimatedPanel.InterpolationProperty">
             <summary>
-            Represents the Easing property of an AnimatedPanel.
+            Represents the Interpolation property of an AnimatedPanel.
             </summary>
         </member>
         <member name="F:System.Windows.Controls.AnimatedPanel.UseAnimatedLayoutProperty">
@@ -1211,6 +1230,21 @@
             <summary>
             Initializes an instance of an AnimatedPanel.
             </summary>
+        </member>
+        <member name="M:System.Windows.Controls.AnimatedPanel.ArrangeElement(System.Windows.UIElement,System.Windows.Rect)">
+            <summary>
+            Arranges the element by animating it to the specified bounds.
+            </summary>
+            <param name="element">The element to animate and arrange.</param>
+            <param name="finalRect">The bounds that the element should use once it is arranged.</param>
+        </member>
+        <member name="M:System.Windows.Controls.AnimatedPanel.ArrangeElement(System.Windows.UIElement,System.Windows.Rect,System.Boolean)">
+            <summary>
+            Arranges the element by optionally animating it to the specified bounds.
+            </summary>
+            <param name="element">The element to animate and arrange.</param>
+            <param name="finalRect">The bounds that the element should use once it is arranged.</param>
+            <param name="isAnimated">Whether to animate the element or just arrange it immediately.</param>
         </member>
         <member name="M:System.Windows.Controls.AnimatedPanel.BeginArrange">
             <summary>
@@ -1231,29 +1265,14 @@
             <param name="element">The element whose initial bounds are required.</param>
             <returns></returns>
         </member>
-        <member name="M:System.Windows.Controls.AnimatedPanel.ArrangeElement(System.Windows.UIElement,System.Windows.Rect)">
-            <summary>
-            Arranges the element by animating it to the specified bounds.
-            </summary>
-            <param name="element">The element to animate and arrange.</param>
-            <param name="finalRect">The bounds that the element should use once it is arranged.</param>
-        </member>
-        <member name="M:System.Windows.Controls.AnimatedPanel.ArrangeElement(System.Windows.UIElement,System.Windows.Rect,System.Boolean)">
-            <summary>
-            Arranges the element by optionally animating it to the specified bounds.
-            </summary>
-            <param name="element">The element to animate and arrange.</param>
-            <param name="finalRect">The bounds that the element should use once it is arranged.</param>
-            <param name="isAnimated">Whether to animate the element or just arrange it immediately.</param>
-        </member>
         <member name="P:System.Windows.Controls.AnimatedPanel.Duration">
             <summary>
             Gets or sets the duration over which the layout animation is performed.
             </summary>
         </member>
-        <member name="P:System.Windows.Controls.AnimatedPanel.Easing">
+        <member name="P:System.Windows.Controls.AnimatedPanel.Interpolation">
             <summary>
-            Gets or sets the easing effect applied to the layout animation.
+            Gets or sets the interpolation used to progress the layout animation.
             </summary>
         </member>
         <member name="P:System.Windows.Controls.AnimatedPanel.UseAnimatedLayout">
@@ -1362,11 +1381,59 @@
         <member name="M:SilverlightFX.UserInterface.Actions.PlayStoryboard.InvokeAction(System.EventArgs)">
             <internalonly />
         </member>
+        <member name="T:SilverlightFX.UserInterface.Actions.ShowForm">
+            <summary>
+            An action that transitions from one visual state to another.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.ShowForm.FormModelProperty">
+            <summary>
+            Represents the FormModel property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Actions.ShowForm.FormTypeProperty">
+            <summary>
+            Represents the FormType property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.ShowForm.#ctor">
+            <summary>
+            Initializes an instance of a ShowForm action.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.ShowForm.InvokeAction(System.EventArgs)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormModel">
+            <summary>
+            Gets or sets the model to associate with the Form when it is shown.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormType">
+            <summary>
+            Gets or sets the Form to show.
+            </summary>
+        </member>
         <member name="T:SilverlightFX.Data.StringFormatter">
             <summary>
             A value converter that can be used in a binding to generate
             a formatted string representation.
             </summary>
+        </member>
+        <member name="T:SilverlightFX.Applications.ComponentCollection">
+            <summary>
+            Represents a list of components. Components can only be added; they cannot
+            be removed or replaced.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.Applications.ComponentCollection.ClearItems">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.Applications.ComponentCollection.RemoveItem(System.Int32)">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.Applications.ComponentCollection.SetItem(System.Int32,System.Object)">
+            <internalonly />
         </member>
         <member name="T:System.Windows.ParameterCollection">
             <summary>
@@ -1383,6 +1450,23 @@
         </member>
         <member name="M:System.Windows.Interactivity.BehaviorCollection.RemoveItem(System.Int32)">
             <internalonly />
+        </member>
+        <member name="T:System.ComponentModel.ServiceAttribute">
+            <summary>
+            This attribute can be placed on a class to mark it as an implementation of the
+            specified service type.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.ServiceAttribute.#ctor(System.Type)">
+            <summary>
+            Creates an instance of ServiceAttribute.
+            </summary>
+            <param name="serviceType">The type of service this attribute represents.</param>
+        </member>
+        <member name="P:System.ComponentModel.ServiceAttribute.ServiceType">
+            <summary>
+            The type of service associated with this attribute.
+            </summary>
         </member>
         <member name="T:System.Collections.IPageableCollection">
             <summary>
@@ -1482,84 +1566,41 @@
             Gets or sets the Y scaling factor used by the effect.
             </summary>
         </member>
-        <member name="T:System.Windows.Media.Glitz.EffectEasing">
+        <member name="T:SilverlightFX.Data.Binder">
             <summary>
-            Determines how the animation is progressed over time.
+            An object that can be used to simulate element-to-element binding in
+            Silverlight. This object is placed within resources and both elements
+            are then bound to this object's Value property.
             </summary>
         </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.None">
+        <member name="T:System.ComponentModel.Model">
             <summary>
-            Linearly interpolates the animaton from start to finish.
+            Provides a base class for implementing models that encapsulate
+            data and behavior that is independent of the presentation.
             </summary>
         </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.QuadraticIn">
+        <member name="M:System.ComponentModel.Model.#ctor">
             <summary>
-            Accelerates the animation at start and then linearly interpolates
-            the animation to finish.
+            Initializes an instance of a Model.
             </summary>
         </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.QuadraticOut">
+        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String)">
             <summary>
-            Decelerates the animation at finish after linearly interpolating
-            the animation from start.
+            Raises a change notification event to signal a change in the
+            specified property's value.
             </summary>
+            <param name="propertyName">The property that has changed.</param>
         </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.QuadraticInOut">
+        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String[])">
             <summary>
-            Accelerates the animation at start, then linearly interpolates
-            the animation toward the finish, and finally decelerates to the
-            finishing point.
+            Raises a change notification event to signal a change in the
+            specified properties.
             </summary>
+            <param name="propertyNames">The properties that have changed.</param>
         </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.BounceIn">
+        <member name="P:SilverlightFX.Data.Binder.Value">
             <summary>
-            Bounces the animation at the start, and then interpolates the
-            animation toward the finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.BounceOut">
-            <summary>
-            Starts the animation and bounces it toward the finish at the end.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.BounceInOut">
-            <summary>
-            Bounces the animation at the start and toward the finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.BackIn">
-            <summary>
-            Starts the animation by going in reverse direction, and then proceeds
-            towards the finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.BackOut">
-            <summary>
-            Starts the animation and goes beyond the finish and then back to finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.BackInOut">
-            <summary>
-            Starts the animation by going back, then going beyond the finish, and then
-            back to finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.ElasticIn">
-            <summary>
-            Starts the animation by going back and forth at the start and then
-            shooting toward the finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.ElasticOut">
-            <summary>
-            Starts the animation by shooting toward the finish, and then ending by
-            going back and forth.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EffectEasing.ElasticInOut">
-            <summary>
-            Starts the animation by going back and forth at the start, then shooting
-            toward the finish, and ending by going back and forth.
+            The value to be passed from one element to another during binding.
             </summary>
         </member>
         <member name="T:System.ComponentModel.TypeTypeConverter">
@@ -1578,6 +1619,20 @@
         </member>
         <member name="M:System.ComponentModel.TypeTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
             <internalonly />
+        </member>
+        <member name="T:System.ComponentModel.DependencyAttribute">
+            <summary>
+            This attribute can be placed on a property, parameter or constructor.
+            When placed on a property or parameter this can be used to mark a dependency
+            and whether it is optional or not.
+            When placed on a constructor, it marks the constructor as the one to use
+            to inject dependencies if the object has more than one constructor.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.DependencyAttribute.Optional">
+            <summary>
+            Gets or sets whether the dependency is optional.
+            </summary>
         </member>
         <member name="T:SilverlightFX.UserInterface.Transitions.Flip">
             <summary>
@@ -1623,6 +1678,57 @@
             <summary>
             Gets or sets the value to fade to.
             </summary>
+        </member>
+        <member name="T:System.ComponentModel.IComponentContainer">
+            <summary>
+            Encapsulates the functionality of a container that defines a scope of
+            composition where objects can be registered and dependencies can be resolved.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.IComponentContainer.GetObject(System.Type)">
+            <summary>
+            Gets an instance of an object for the specified object type.
+            </summary>
+            <param name="objectType">The type of object to retrieve.</param>
+            <returns>The resulting object; null if the object could not be retrieved.</returns>
+        </member>
+        <member name="M:System.ComponentModel.IComponentContainer.GetObject``1">
+            <summary>
+            Gets an instance of an object for the specified object type.
+            </summary>
+            <typeparam name="TObject">The type of object to retrieve.</typeparam>
+            <returns>The resulting object; null if the object could not be retrieved.</returns>
+        </member>
+        <member name="M:System.ComponentModel.IComponentContainer.InitializeObject(System.Object)">
+            <summary>
+            Initializes an object instance by resolving its dependencies against
+            objects registered in the container.
+            </summary>
+            <param name="objectInstance">The object to initialize.</param>
+            <returns>true if the object could be initialized; false if it couldn't.</returns>
+        </member>
+        <member name="M:System.ComponentModel.IComponentContainer.RegisterObject(System.Object)">
+            <summary>
+            Registers an object instance with the container. If the object is marked
+            with ServiceAttribute metadata, then the object is registered for those
+            service types; otherwise it is registered as the implementation of its own
+            type.
+            </summary>
+            <param name="objectInstance">The object to register.</param>
+        </member>
+        <member name="M:System.ComponentModel.IComponentContainer.RegisterObject(System.Type,System.Object)">
+            <summary>
+            Registers an object instance for the specified type with the container.
+            </summary>
+            <param name="objectType">The type of object this instance corresponds to.</param>
+            <param name="objectInstance">The object to register.</param>
+        </member>
+        <member name="M:System.ComponentModel.IComponentContainer.RegisterObject(System.Type,System.ComponentModel.ComponentCreator)">
+            <summary>
+            Registers an object creator or factory for the specified type with the container.
+            </summary>
+            <param name="objectType">The type of object this factory corresponds to.</param>
+            <param name="objectCreator">The factory to register.</param>
         </member>
         <member name="T:SilverlightFX.UserInterface.ListViewItem">
             <summary>
@@ -1733,31 +1839,6 @@
         </member>
         <member name="M:System.Windows.Interactivity.TriggerActionTypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)">
             <internalonly />
-        </member>
-        <member name="T:System.ComponentModel.Model">
-            <summary>
-            Provides a base class for implementing models that encapsulate
-            data and behavior that is independent of the presentation.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.Model.#ctor">
-            <summary>
-            Initializes an instance of a Model.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String)">
-            <summary>
-            Raises a change notification event to signal a change in the
-            specified property's value.
-            </summary>
-            <param name="propertyName">The property that has changed.</param>
-        </member>
-        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String[])">
-            <summary>
-            Raises a change notification event to signal a change in the
-            specified properties.
-            </summary>
-            <param name="propertyNames">The properties that have changed.</param>
         </member>
         <member name="T:System.Collections.IPredicate">
             <summary>
@@ -2190,6 +2271,167 @@
             A list of content elements.
             </summary>
         </member>
+        <member name="T:System.Windows.Media.Glitz.EasingInterpolation">
+            <summary>
+            An interpolation implementation that eases the linear interpolation at the start,
+            end or both start and end of the animation.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.TweenInterpolation">
+            <summary>
+            Provides the functionality for interpolating an animation from start to finish.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.#ctor">
+            <summary>
+            Initializes an instance of TweenInterpolation.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.#ctor(System.Boolean)">
+            <summary>
+            Initializes an instance of TweenInterpolation.
+            </summary>
+            <param name="isLinear">Whether this instance represents the linear interpolation.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.Interpolate(System.Double)">
+            <summary>
+            Implements a interpolation function that progresses an animation.
+            This represents a function f(t) where t = [0...1] such that
+            it is continuous and f(0) == 0 and f(1) == 1.
+            Interpolation can be used to modify the default linear progression.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.TweenInterpolation.IsLinearInterpolation">
+            <summary>
+            Gets whether this interpolation represents the no-op linear interpolation.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EasingInterpolation.Default">
+            <summary>
+            A default EasingInterpolation that accelerates the animation at the start
+            and decelerates the animation at the end.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.Interpolate(System.Double)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBackIn(System.Double,System.Double,System.Double)">
+            <summary>
+            Performs back interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="amplitude">The relative distance of the backing.</param>
+            <param name="suppression">How quickly the backing is suppressed.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBackOut(System.Double,System.Double,System.Double)">
+            <summary>
+            Performs back interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="amplitude">The relative distance of the backing.</param>
+            <param name="suppression">How quickly the backing is suppressed.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBounceIn(System.Double,System.Int32,System.Double)">
+            <summary>
+            Performs bouncing interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="bounces">The number of bounces to introduce.</param>
+            <param name="bounciness">Determines the height of the bounces.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBounceOut(System.Double,System.Int32,System.Double)">
+            <summary>
+            Performs bouncing interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="bounces">The number of bounces to introduce.</param>
+            <param name="bounciness">Determines the height of the bounces.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateElasticIn(System.Double,System.Int32,System.Double)">
+            <summary>
+            Performs elastic interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="oscillations">The number of oscillations to introduce.</param>
+            <param name="springiness">Determines the strength of the oscillations.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateElasticOut(System.Double,System.Int32,System.Double)">
+            <summary>
+            Performs elastic interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="oscillations">The number of oscillations to introduce.</param>
+            <param name="springiness">Determines the strength of the oscillations.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateExponentialIn(System.Double,System.Double)">
+            <summary>
+            Performs exponential interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="power">The amount of exponential growth.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateExponentialOut(System.Double,System.Double)">
+            <summary>
+            Performs exponential interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="power">The amount of exponential decay.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateIn(System.Double)">
+            <summary>
+            Performs the interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateOut(System.Double)">
+            <summary>
+            Performs the interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateQuadraticIn(System.Double)">
+            <summary>
+            Performs quadratic interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateQuadraticOut(System.Double)">
+            <summary>
+            Performs quadratic interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.EasingInterpolation.Mode">
+            <summary>
+            Gets or sets how the easing should be done by the interpolation.
+            </summary>
+        </member>
         <member name="T:SilverlightFX.UserInterface.Effects.Shake">
             <summary>
             Represents an effect that shakes the associated element left and right.
@@ -2339,24 +2581,6 @@
             The source URI associated with the application instance.
             </summary>
         </member>
-        <member name="T:SilverlightFX.Applications.IExternalNavigationService">
-            <summary>
-            Provides the ability to perform a navigation external to the application.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.Applications.IExternalNavigationService.Navigate(System.Uri,System.String)">
-            <summary>
-            Performs an external navigation to the specified URI in an optionally
-            specified frame.
-            </summary>
-            <param name="uri">The URI to navigate to.</param>
-            <param name="targetFrame">The name of the frame to use.</param>
-        </member>
-        <member name="P:SilverlightFX.Applications.IExternalNavigationService.CanNavigate">
-            <summary>
-            Gets whether external navigation can be performed.
-            </summary>
-        </member>
         <member name="M:SilverlightFX.Applications.XApplication.#ctor">
             <summary>
             Initializes an instance of XApplication.
@@ -2464,6 +2688,15 @@
             - An assembly qualified type name
             - $initParamName|defaultName which allows the selection of a type name from the HTML page
             </summary>
+        </member>
+        <member name="T:System.ComponentModel.ComponentCreator">
+            <summary>
+            Represents a factory method that can create object instances as needed.
+            </summary>
+            <param name="objectType">The type of object to create.</param>
+            <param name="container">The container that is requesting the creation of the object.</param>
+            <param name="isSingleInstance">Whether the returned object is to be treated as a singleton.</param>
+            <returns></returns>
         </member>
         <member name="T:System.Collections.IEditableCollection">
             <summary>
@@ -2776,6 +3009,30 @@
         <member name="M:System.Windows.Media.Glitz.ProceduralAnimationSet.StopCore(System.Boolean,System.Windows.Media.Glitz.ProceduralAnimationStopState)">
             <internalonly />
         </member>
+        <member name="T:System.Windows.Media.Glitz.EasingInterpolationMode">
+            <summary>
+            Defines how a TweenInterpolation performs its interpolation on the start and
+            end of the progression.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EasingInterpolationMode.EaseInOut">
+            <summary>
+            Indicates that the interpolation should perform easing on both the start
+            and end of the animation.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EasingInterpolationMode.EaseIn">
+            <summary>
+            Indicates that the interpolation should perform easing on the start
+            of the animation.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EasingInterpolationMode.EaseOut">
+            <summary>
+            Indicates that the interpolation should perform easing on the end
+            of the animation.
+            </summary>
+        </member>
         <member name="T:System.Windows.Data.DataList">
             <summary>
             An object that abstracts a collection of items and various capabilities
@@ -2863,23 +3120,29 @@
             <param name="index">The index to lookup.</param>
             <returns>The item at the specified index.</returns>
         </member>
+        <member name="T:System.ComponentModel.ComponentContainer">
+            <summary>
+            Encapsulates a scope allowing registering of objects and the facility to create object
+            instances whose dependencies are resolved against the registered objects.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.ComponentContainer.#ctor">
+            <summary>
+            Creates an instance of a CompositionContainer.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.ComponentContainer.#ctor(System.IServiceProvider)">
+            <summary>
+            Creates an instance of a CompositionContainer that automatically
+            provides access to any of the services accessible via the specified
+            service provider.
+            </summary>
+            <param name="serviceProvider">The service provider providing access to inherited services.</param>
+        </member>
         <member name="T:SilverlightFX.Data.BooleanInverter">
             <summary>
             A value converter that inverts the value of a boolean property.
             </summary>
-        </member>
-        <member name="T:System.Windows.Media.Glitz.ProceduralAnimationEasingFunction">
-            <summary>
-            A delegate used to define an easing function that can be used to
-            vary the otherwise normal linear progression of an animation from
-            its start state to end state.
-            An easing function is basically f(t) where t = [0...1] such that
-            it is continuous and f(0) == 0 and f(1) == 1.
-            Easing functions can be used to add the illusion of acceleration
-            and deceleration, as well as other sophisticated movement patterns.
-            </summary>
-            <param name="t">The current progress value derived from linear progression.</param>
-            <returns>The modified value to use as the new progress value.</returns>
         </member>
         <member name="T:System.Windows.Media.Glitz.ColorAnimation">
             <summary>
@@ -3379,86 +3642,6 @@
         <member name="M:System.Windows.Media.Glitz.DoubleAnimation.PerformTweening(System.Double)">
             <internalonly />
         </member>
-        <member name="T:System.Windows.Controls.LayoutEasing">
-            <summary>
-            Determines how the layout is progressed over time.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.None">
-            <summary>
-            Linearly interpolates the layout from start to finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.QuadraticIn">
-            <summary>
-            Accelerates the layout at start and then linearly interpolates
-            the layout to finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.QuadraticOut">
-            <summary>
-            Decelerates the layout at finish after linearly interpolating
-            the layout from start.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.QuadraticInOut">
-            <summary>
-            Accelerates the layout at start, then linearly interpolates
-            the layout toward the finish, and finally decelerates to the
-            finishing point.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.BounceIn">
-            <summary>
-            Bounces the layout at the start, and then interpolates the
-            layout toward the finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.BounceOut">
-            <summary>
-            Starts the layout and bounces it toward the finish at the end.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.BounceInOut">
-            <summary>
-            Bounces the layout at the start and toward the finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.BackIn">
-            <summary>
-            Starts the layout by going in reverse direction, and then proceeds
-            towards the finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.BackOut">
-            <summary>
-            Starts the layout and goes beyond the finish and then back to finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.BackInOut">
-            <summary>
-            Starts the layout by going back, then going beyond the finish, and then
-            back to finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.ElasticIn">
-            <summary>
-            Starts the layout by going back and forth at the start and then
-            shooting toward the finish.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.ElasticOut">
-            <summary>
-            Starts the layout by shooting toward the finish, and then ending by
-            going back and forth.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Controls.LayoutEasing.ElasticInOut">
-            <summary>
-            Starts the layout by going back and forth at the start, then shooting
-            toward the finish, and ending by going back and forth.
-            </summary>
-        </member>
         <member name="T:SilverlightFX.UserInterface.Window">
             <summary>
             Represents the top-most window in an application.
@@ -3677,174 +3860,71 @@
             a formatted string representation for a currency value.
             </summary>
         </member>
-        <member name="T:SilverlightFX.Data.Binder">
+        <member name="T:SilverlightFX.UserInterface.Glitz.LinearInterpolation">
             <summary>
-            An object that can be used to simulate element-to-element binding in
-            Silverlight. This object is placed within resources and both elements
-            are then bound to this object's Value property.
+            Represents a linear or no-op interpolation
             </summary>
         </member>
-        <member name="P:SilverlightFX.Data.Binder.Value">
+        <member name="M:SilverlightFX.UserInterface.Glitz.LinearInterpolation.#ctor">
             <summary>
-            The value to be passed from one element to another during binding.
+            Initializes an instance of a LinearInterpolation.
             </summary>
         </member>
-        <member name="T:System.ComponentModel.ServiceAttribute">
-            <summary>
-            This attribute can be placed on a class to mark it as an implementation of the
-            specified service type.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.ServiceAttribute.#ctor(System.Type)">
-            <summary>
-            Creates an instance of ServiceAttribute.
-            </summary>
-            <param name="serviceType">The type of service this attribute represents.</param>
-        </member>
-        <member name="P:System.ComponentModel.ServiceAttribute.ServiceType">
-            <summary>
-            The type of service associated with this attribute.
-            </summary>
-        </member>
-        <member name="T:System.ComponentModel.DependencyAttribute">
-            <summary>
-            This attribute can be placed on a property, parameter or constructor.
-            When placed on a property or parameter this can be used to mark a dependency
-            and whether it is optional or not.
-            When placed on a constructor, it marks the constructor as the one to use
-            to inject dependencies if the object has more than one constructor.
-            </summary>
-        </member>
-        <member name="P:System.ComponentModel.DependencyAttribute.Optional">
-            <summary>
-            Gets or sets whether the dependency is optional.
-            </summary>
-        </member>
-        <member name="T:SilverlightFX.Applications.ComponentCollection">
-            <summary>
-            Represents a list of components. Components can only be added; they cannot
-            be removed or replaced.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.Applications.ComponentCollection.ClearItems">
+        <member name="M:SilverlightFX.UserInterface.Glitz.LinearInterpolation.Interpolate(System.Double)">
             <internalonly />
         </member>
-        <member name="M:SilverlightFX.Applications.ComponentCollection.RemoveItem(System.Int32)">
+        <member name="T:SilverlightFX.UserInterface.Glitz.BounceInterpolation">
+            <summary>
+            Represents a bounce easing interpolation that starts the animation bouncing
+            or ends the animation bouncing.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.#ctor">
+            <summary>
+            Initializes an instance of a BounceInterpolation.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.InterpolateIn(System.Double)">
             <internalonly />
         </member>
-        <member name="M:SilverlightFX.Applications.ComponentCollection.SetItem(System.Int32,System.Object)">
+        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.InterpolateOut(System.Double)">
             <internalonly />
         </member>
-        <member name="T:System.ComponentModel.IComponentContainer">
+        <member name="P:SilverlightFX.UserInterface.Glitz.BounceInterpolation.Bounces">
             <summary>
-            Encapsulates the functionality of a container that defines a scope of
-            composition where objects can be registered and dependencies can be resolved.
+            Gets or sets the number of bounces.
             </summary>
         </member>
-        <member name="M:System.ComponentModel.IComponentContainer.GetObject(System.Type)">
+        <member name="P:SilverlightFX.UserInterface.Glitz.BounceInterpolation.Bounciness">
             <summary>
-            Gets an instance of an object for the specified object type.
-            </summary>
-            <param name="objectType">The type of object to retrieve.</param>
-            <returns>The resulting object; null if the object could not be retrieved.</returns>
-        </member>
-        <member name="M:System.ComponentModel.IComponentContainer.GetObject``1">
-            <summary>
-            Gets an instance of an object for the specified object type.
-            </summary>
-            <typeparam name="TObject">The type of object to retrieve.</typeparam>
-            <returns>The resulting object; null if the object could not be retrieved.</returns>
-        </member>
-        <member name="M:System.ComponentModel.IComponentContainer.InitializeObject(System.Object)">
-            <summary>
-            Initializes an object instance by resolving its dependencies against
-            objects registered in the container.
-            </summary>
-            <param name="objectInstance">The object to initialize.</param>
-            <returns>true if the object could be initialized; false if it couldn't.</returns>
-        </member>
-        <member name="M:System.ComponentModel.IComponentContainer.RegisterObject(System.Object)">
-            <summary>
-            Registers an object instance with the container. If the object is marked
-            with ServiceAttribute metadata, then the object is registered for those
-            service types; otherwise it is registered as the implementation of its own
-            type.
-            </summary>
-            <param name="objectInstance">The object to register.</param>
-        </member>
-        <member name="M:System.ComponentModel.IComponentContainer.RegisterObject(System.Type,System.Object)">
-            <summary>
-            Registers an object instance for the specified type with the container.
-            </summary>
-            <param name="objectType">The type of object this instance corresponds to.</param>
-            <param name="objectInstance">The object to register.</param>
-        </member>
-        <member name="M:System.ComponentModel.IComponentContainer.RegisterObject(System.Type,System.ComponentModel.ComponentCreator)">
-            <summary>
-            Registers an object creator or factory for the specified type with the container.
-            </summary>
-            <param name="objectType">The type of object this factory corresponds to.</param>
-            <param name="objectCreator">The factory to register.</param>
-        </member>
-        <member name="T:System.ComponentModel.ComponentContainer">
-            <summary>
-            Encapsulates a scope allowing registering of objects and the facility to create object
-            instances whose dependencies are resolved against the registered objects.
+            Gets or sets the relative height of the bounces.
             </summary>
         </member>
-        <member name="M:System.ComponentModel.ComponentContainer.#ctor">
+        <member name="T:SilverlightFX.UserInterface.Glitz.ElasticInterpolation">
             <summary>
-            Creates an instance of a CompositionContainer.
+            Represents an elastic easing interpolation that introduces spring-like start
+            and finish animation.
             </summary>
         </member>
-        <member name="M:System.ComponentModel.ComponentContainer.#ctor(System.IServiceProvider)">
+        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.#ctor">
             <summary>
-            Creates an instance of a CompositionContainer that automatically
-            provides access to any of the services accessible via the specified
-            service provider.
-            </summary>
-            <param name="serviceProvider">The service provider providing access to inherited services.</param>
-        </member>
-        <member name="T:System.ComponentModel.ComponentCreator">
-            <summary>
-            Represents a factory method that can create object instances as needed.
-            </summary>
-            <param name="objectType">The type of object to create.</param>
-            <param name="container">The container that is requesting the creation of the object.</param>
-            <param name="isSingleInstance">Whether the returned object is to be treated as a singleton.</param>
-            <returns></returns>
-        </member>
-        <member name="T:SilverlightFX.UserInterface.Actions.ShowForm">
-            <summary>
-            An action that transitions from one visual state to another.
+            Initializes an instance of a ElasticInterpolation.
             </summary>
         </member>
-        <member name="F:SilverlightFX.UserInterface.Actions.ShowForm.FormModelProperty">
-            <summary>
-            Represents the FormModel property.
-            </summary>
-        </member>
-        <member name="F:SilverlightFX.UserInterface.Actions.ShowForm.FormTypeProperty">
-            <summary>
-            Represents the FormType property.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Actions.ShowForm.#ctor">
-            <summary>
-            Initializes an instance of a ShowForm action.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Actions.ShowForm.InvokeAction(System.EventArgs)">
+        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.InterpolateIn(System.Double)">
             <internalonly />
         </member>
-        <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormModel">
+        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.InterpolateOut(System.Double)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.Oscillations">
             <summary>
-            Gets or sets the model to associate with the Form when it is shown.
+            Gets or sets the number of spring oscillations.
             </summary>
         </member>
-        <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormType">
+        <member name="P:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.Springiness">
             <summary>
-            Gets or sets the Form to show.
+            Gets or sets the relative height of the bounces.
             </summary>
         </member>
     </members>

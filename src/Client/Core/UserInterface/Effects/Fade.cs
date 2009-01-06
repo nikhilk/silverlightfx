@@ -68,7 +68,7 @@ namespace SilverlightFX.UserInterface.Effects {
             }
 
             animation.AutoReverse = AutoReverse;
-            animation.EasingFunction = GetEasingFunction();
+            animation.Interpolation = GetEffectiveInterpolation();
 
             return animation;
         }

@@ -31,10 +31,10 @@ namespace System.Windows.Controls {
             DependencyProperty.Register("Duration", typeof(TimeSpan), typeof(AnimatedPanel), null);
 
         /// <summary>
-        /// Represents the Easing property of an AnimatedPanel.
+        /// Represents the Interpolation property of an AnimatedPanel.
         /// </summary>
-        public static readonly DependencyProperty EasingProperty =
-            DependencyProperty.Register("Easing", typeof(LayoutEasing), typeof(AnimatedPanel), null);
+        public static readonly DependencyProperty InterpolationProperty =
+            DependencyProperty.Register("Interpolation", typeof(TweenInterpolation), typeof(AnimatedPanel), null);
 
         /// <summary>
         /// Represents the UseAnimatedLayout property of an AnimatedPanel.
@@ -43,7 +43,8 @@ namespace System.Windows.Controls {
             DependencyProperty.Register("UseAnimatedLayout", typeof(bool), typeof(AnimatedPanel), null);
 
         private List<ProceduralAnimation> _animations;
-        private ProceduralAnimationEasingFunction _easingFunction;
+        private TweenInterpolation _interpolation;
+        private bool _useDefaultInterpolation;
         private TimeSpan _duration;
         private bool _useAnimation;
 
@@ -53,9 +54,10 @@ namespace System.Windows.Controls {
         /// Initializes an instance of an AnimatedPanel.
         /// </summary>
         protected AnimatedPanel() {
-            Easing = LayoutEasing.None;
             Duration = TimeSpan.FromMilliseconds(500);
             UseAnimatedLayout = false;
+
+            _useDefaultInterpolation = true;
         }
 
         /// <summary>
@@ -71,14 +73,15 @@ namespace System.Windows.Controls {
         }
 
         /// <summary>
-        /// Gets or sets the easing effect applied to the layout animation.
+        /// Gets or sets the interpolation used to progress the layout animation.
         /// </summary>
-        public LayoutEasing Easing {
+        public TweenInterpolation Interpolation {
             get {
-                return (LayoutEasing)GetValue(EasingProperty);
+                return (TweenInterpolation)GetValue(InterpolationProperty);
             }
             set {
-                SetValue(EasingProperty, value);
+                SetValue(InterpolationProperty, value);
+                _useDefaultInterpolation = false;
             }
         }
 
@@ -92,80 +95,6 @@ namespace System.Windows.Controls {
             set {
                 SetValue(UseAnimatedLayoutProperty, value);
             }
-        }
-
-        /// <summary>
-        /// Creates a new layout animation when an arrange pass starts.
-        /// </summary>
-        protected void BeginArrange() {
-            if (_layoutAnimation != null) {
-                if (_layoutAnimation.IsPlaying) {
-                    _layoutAnimation.Stop(ProceduralAnimationStopState.Abort);
-                }
-                _layoutAnimation = null;
-            }
-
-            _useAnimation = UseAnimatedLayout;
-            _animations = new List<ProceduralAnimation>();
-
-            if (_useAnimation) {
-                _easingFunction = GetEasingFunction();
-                _duration = Duration;
-            }
-        }
-
-        /// <summary>
-        /// Plays the current layout animation when an arrange pass is completed.
-        /// </summary>
-        protected void EndArrange() {
-            if ((_animations != null) && (_animations.Count != 0)) {
-                _layoutAnimation = new ProceduralAnimationSet(_animations.ToArray());
-                _layoutAnimation.Play(this);
-            }
-
-            _animations = null;
-        }
-
-        private ProceduralAnimationEasingFunction GetEasingFunction() {
-            switch (Easing) {
-                case LayoutEasing.QuadraticIn:
-                    return EasingFunctions.EaseQuadraticIn;
-                case LayoutEasing.QuadraticOut:
-                    return EasingFunctions.EaseQuadraticOut;
-                case LayoutEasing.QuadraticInOut:
-                    return EasingFunctions.EaseQuadraticInOut;
-                case LayoutEasing.BounceIn:
-                    return EasingFunctions.EaseBounceIn;
-                case LayoutEasing.BounceOut:
-                    return EasingFunctions.EaseBounceOut;
-                case LayoutEasing.BounceInOut:
-                    return EasingFunctions.EaseBounceInOut;
-                case LayoutEasing.BackIn:
-                    return EasingFunctions.EaseBackIn;
-                case LayoutEasing.BackOut:
-                    return EasingFunctions.EaseBackOut;
-                case LayoutEasing.BackInOut:
-                    return EasingFunctions.EaseBackInOut;
-                case LayoutEasing.ElasticIn:
-                    return EasingFunctions.EaseElasticIn;
-                case LayoutEasing.ElasticOut:
-                    return EasingFunctions.EaseElasticOut;
-                case LayoutEasing.ElasticInOut:
-                    return EasingFunctions.EaseElasticInOut;
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// Gets the initial bounds of an element.
-        /// </summary>
-        /// <param name="panelSize">The size of this panel.</param>
-        /// <param name="elementRect">The computed bounds of the panel.</param>
-        /// <param name="element">The element whose initial bounds are required.</param>
-        /// <returns></returns>
-        protected virtual Rect GetInitialRect(Size panelSize, Rect elementRect, UIElement element) {
-            return new Rect(0, 0, elementRect.Width, elementRect.Height);
         }
 
         /// <summary>
@@ -198,7 +127,7 @@ namespace System.Windows.Controls {
                 }
 
                 RectAnimation animation = new RectAnimation(element, currentBounds, finalRect, _duration);
-                animation.EasingFunction = _easingFunction;
+                animation.Interpolation = _interpolation;
 
                 _animations.Add(animation);
             }
@@ -206,6 +135,57 @@ namespace System.Windows.Controls {
                 element.Arrange(finalRect);
                 element.SetValue(BoundsProperty, finalRect);
             }
+        }
+
+        /// <summary>
+        /// Creates a new layout animation when an arrange pass starts.
+        /// </summary>
+        protected void BeginArrange() {
+            if (_layoutAnimation != null) {
+                if (_layoutAnimation.IsPlaying) {
+                    _layoutAnimation.Stop(ProceduralAnimationStopState.Abort);
+                }
+                _layoutAnimation = null;
+            }
+
+            _useAnimation = UseAnimatedLayout;
+            _animations = new List<ProceduralAnimation>();
+
+            if (_useAnimation) {
+                if (_useDefaultInterpolation) {
+                    _interpolation = EasingInterpolation.Default;
+                }
+                else {
+                    _interpolation = Interpolation;
+                    if (_interpolation.IsLinearInterpolation) {
+                        _interpolation = null;
+                    }
+                }
+                _duration = Duration;
+            }
+        }
+
+        /// <summary>
+        /// Plays the current layout animation when an arrange pass is completed.
+        /// </summary>
+        protected void EndArrange() {
+            if ((_animations != null) && (_animations.Count != 0)) {
+                _layoutAnimation = new ProceduralAnimationSet(_animations.ToArray());
+                _layoutAnimation.Play(this);
+            }
+
+            _animations = null;
+        }
+
+        /// <summary>
+        /// Gets the initial bounds of an element.
+        /// </summary>
+        /// <param name="panelSize">The size of this panel.</param>
+        /// <param name="elementRect">The computed bounds of the panel.</param>
+        /// <param name="element">The element whose initial bounds are required.</param>
+        /// <returns></returns>
+        protected virtual Rect GetInitialRect(Size panelSize, Rect elementRect, UIElement element) {
+            return new Rect(0, 0, elementRect.Width, elementRect.Height);
         }
 
 

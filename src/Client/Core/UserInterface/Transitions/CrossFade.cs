@@ -29,17 +29,17 @@ namespace SilverlightFX.UserInterface.Transitions {
 
         /// <internalonly />
         protected override ProceduralAnimation CreateTransitionAnimation(Panel container, EffectDirection direction) {
-            ProceduralAnimationEasingFunction easing = GetEasingFunction();
+            TweenInterpolation interpolation = GetEffectiveInterpolation();
 
             DoubleAnimation frontAnimation =
                 new DoubleAnimation(container.Children[1], UIElement.OpacityProperty, Duration,
                                     (direction == EffectDirection.Forward ? 0 : 1));
-            frontAnimation.EasingFunction = easing;
+            frontAnimation.Interpolation = interpolation;
 
             DoubleAnimation backAnimation =
                 new DoubleAnimation(container.Children[0], UIElement.OpacityProperty, Duration,
                                     (direction == EffectDirection.Forward ? 1 : 0));
-            backAnimation.EasingFunction = easing;
+            backAnimation.Interpolation = interpolation;
 
             return new ProceduralAnimationSet(frontAnimation, backAnimation);
         }

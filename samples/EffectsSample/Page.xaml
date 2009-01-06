@@ -3,7 +3,8 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
   xmlns:fxeffects="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
-  xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX">
+  xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
+  xmlns:fxglitz="clr-namespace:SilverlightFX.UserInterface.Glitz;assembly=SilverlightFX">
   <UserControl.Resources>
     <Style x:Key="headerText" TargetType="TextBlock">
       <Setter Property="FontFamily" Value="Verdana" />
@@ -15,6 +16,8 @@
       <Setter Property="FontSize" Value="11" />
       <Setter Property="HorizontalAlignment" Value="Center" />
     </Style>
+    
+    <fxglitz:LinearInterpolation x:Key="LinearInterpolation" />
   </UserControl.Resources>
 
   <StackPanel Margin="20" Background="White">
@@ -41,7 +44,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxeffects:Fade TargetName="fadeImage" FadeOpacity="0" Duration="00:00:01" Easing="QuadraticInOut" />
+            <fxeffects:Fade TargetName="fadeImage" FadeOpacity="0" Duration="00:00:01" Interpolation="{StaticResource LinearInterpolation}" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Image Source="/Silverlight.png" x:Name="fadeImage" />
@@ -55,7 +58,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxeffects:Highlight TargetName="highlightImage" HighlightColor="Yellow" Duration="00:00:01" Easing="QuadraticInOut" />
+            <fxeffects:Highlight TargetName="highlightImage" HighlightColor="Yellow" Duration="00:00:01" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Border x:Name="highlightImage" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -71,7 +74,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxeffects:Shake ShakeDistance="20" TargetName="shakeImage" Duration="00:00:1" Easing="QuadraticInOut" />
+            <fxeffects:Shake ShakeDistance="20" TargetName="shakeImage" Duration="00:00:1" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Border HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -91,7 +94,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxeffects:Pulsate FadeOpacity="0.25" TargetName="pulsateImage" Duration="00:00:1" Easing="QuadraticInOut" />
+            <fxeffects:Pulsate FadeOpacity="0.25" TargetName="pulsateImage" Duration="00:00:1" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Image x:Name="pulsateImage" Source="/Silverlight.png" />
@@ -105,7 +108,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxeffects:Spin TargetName="spinImage" SpinAngle="360" Duration="00:00:01" Easing="QuadraticInOut" />
+            <fxeffects:Spin TargetName="spinImage" SpinAngle="360" Duration="00:00:01" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Image Source="/Silverlight.png" x:Name="spinImage" RenderTransformOrigin="0.5,0.5">
@@ -123,7 +126,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxeffects:Resize TargetName="resizeImage" ScaleXRatio="0.5" ScaleYRatio="0.5" Duration="00:00:01" Easing="QuadraticInOut" />
+            <fxeffects:Resize TargetName="resizeImage" ScaleXRatio="0.5" ScaleYRatio="0.5" Duration="00:00:01" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Image Source="/Silverlight.png" x:Name="resizeImage" RenderTransformOrigin="0.5,0.5">
@@ -141,7 +144,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxeffects:Move TargetName="moveImage" HorizontalMovement="20" Duration="00:00:01" Easing="QuadraticInOut" />
+            <fxeffects:Move TargetName="moveImage" HorizontalMovement="20" Duration="00:00:01" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Image Source="/Silverlight.png" x:Name="moveImage" RenderTransformOrigin="0.5,0.5">
@@ -160,10 +163,10 @@
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
             <fxeffects:CompositeEffect AutoReverse="True" Composition="Parallel">
-              <fxeffects:Move TargetName="compositeImage" HorizontalMovement="50" Duration="00:00:01" Easing="QuadraticInOut" />
-              <fxeffects:Resize TargetName="compositeImage" ScaleXRatio="0.5" ScaleYRatio="0.5" Duration="00:00:01" Easing="QuadraticInOut" />
-              <fxeffects:Spin TargetName="compositeImage" SpinAngle="360" Duration="00:00:01" Easing="QuadraticInOut" />
-              <fxeffects:Fade TargetName="compositeImage" FadeOpacity="0.5" Duration="00:00:01" Easing="QuadraticInOut" />
+              <fxeffects:Move TargetName="compositeImage" HorizontalMovement="50" Duration="00:00:01" />
+              <fxeffects:Resize TargetName="compositeImage" ScaleXRatio="0.5" ScaleYRatio="0.5" Duration="00:00:01" />
+              <fxeffects:Spin TargetName="compositeImage" SpinAngle="360" Duration="00:00:01" />
+              <fxeffects:Fade TargetName="compositeImage" FadeOpacity="0.5" Duration="00:00:01" />
             </fxeffects:CompositeEffect>
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
@@ -203,7 +206,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxtransitions:CrossFade TargetName="crossFadeContainer" Duration="00:00:1" Easing="QuadraticInOut" />
+            <fxtransitions:CrossFade TargetName="crossFadeContainer" Duration="00:00:1" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Grid x:Name="crossFadeContainer">
@@ -220,7 +223,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxtransitions:Blinds Mode="Up" TargetName="blindsContainer" Duration="00:00:1" Easing="QuadraticInOut" />
+            <fxtransitions:Blinds Mode="Up" TargetName="blindsContainer" Duration="00:00:1" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Grid x:Name="blindsContainer">
@@ -237,7 +240,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxtransitions:Slide Mode="Left" TargetName="horzSlideContainer" Duration="00:00:1" Easing="QuadraticInOut" />
+            <fxtransitions:Slide Mode="Left" TargetName="horzSlideContainer" Duration="00:00:1" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Grid x:Name="horzSlideContainer">
@@ -254,7 +257,7 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxtransitions:Flip TargetName="flipContainer" Duration="00:00:1" Easing="QuadraticInOut" />
+            <fxtransitions:Flip TargetName="flipContainer" Duration="00:00:1" />
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Grid x:Name="flipContainer">

@@ -97,7 +97,7 @@ namespace SilverlightFX.UserInterface.Transitions {
             scaleTransform.CenterX = container.ActualWidth / 2;
             scaleTransform.CenterY = container.ActualHeight / 2;
 
-            ProceduralAnimationEasingFunction easing = GetEasingFunction();
+            TweenInterpolation interpolation = GetEffectiveInterpolation();
             DoubleAnimation scaleXAnimation;
             DoubleAnimation scaleYAnimation;
             DoubleAnimation fadeAnimation;
@@ -113,9 +113,9 @@ namespace SilverlightFX.UserInterface.Transitions {
                 scaleYAnimation = new DoubleAnimation(scaleTransform, ScaleTransform.ScaleYProperty, Duration, _initialScaleY);
             }
 
-            scaleXAnimation.EasingFunction = easing;
-            scaleYAnimation.EasingFunction = easing;
-            fadeAnimation.EasingFunction = easing;
+            scaleXAnimation.Interpolation = interpolation;
+            scaleYAnimation.Interpolation = interpolation;
+            fadeAnimation.Interpolation = interpolation;
 
             return new ProceduralAnimationSet(scaleXAnimation, scaleYAnimation, fadeAnimation);
         }

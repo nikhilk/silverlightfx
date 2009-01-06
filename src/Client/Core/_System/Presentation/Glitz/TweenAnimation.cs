@@ -25,7 +25,7 @@ namespace System.Windows.Media.Glitz {
 
         private TimeSpan _duration;
         private TimeSpan _startDelay;
-        private ProceduralAnimationEasingFunction _easingFunction;
+        private TweenInterpolation _interpolation;
 
         private DateTime _startTimeStamp;
         private bool _isStarting;
@@ -51,15 +51,14 @@ namespace System.Windows.Media.Glitz {
         }
 
         /// <summary>
-        /// The easing function used to ease the normal linear progression of
-        /// the animation from the start to end state.
+        /// The interpolation used to progress the animation from start to end.
         /// </summary>
-        public ProceduralAnimationEasingFunction EasingFunction {
+        public TweenInterpolation Interpolation {
             get {
-                return _easingFunction;
+                return _interpolation;
             }
             set {
-                _easingFunction = value;
+                _interpolation = value;
             }
         }
 
@@ -125,8 +124,8 @@ namespace System.Windows.Media.Glitz {
                     frame = Math.Max(0f, frame);
                 }
 
-                if ((completed == false) && (_easingFunction != null)) {
-                    frame = _easingFunction(frame);
+                if ((completed == false) && (_interpolation != null)) {
+                    frame = _interpolation.Interpolate(frame);
                 }
             }
             else {

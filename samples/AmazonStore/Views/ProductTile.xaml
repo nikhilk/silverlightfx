@@ -12,7 +12,7 @@
     </fxui:Interaction.Triggers>
     <fxui:Interaction.Behaviors>
       <fxui:HoverEffect>
-        <fxeffects:ColorFill Duration="0:0:0.5" Easing="QuadraticInOut" FillColor="#408CCBFB" />
+        <fxeffects:ColorFill Duration="0:0:0.5" FillColor="#408CCBFB" />
       </fxui:HoverEffect>
     </fxui:Interaction.Behaviors>
     <fxui:XGrid Rows="*,Auto,Auto" HorizontalAlignment="Center" Margin="5">

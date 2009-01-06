@@ -139,6 +139,9 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\Glitz\BounceInterpolation.cs" />
+    <Compile Include="UserInterface\Glitz\ElasticInterpolation.cs" />
+    <Compile Include="UserInterface\Glitz\LinearInterpolation.cs" />
     <Compile Include="UserInterface\ViewUserControl.cs" />
     <Compile Include="UserInterface\DetailView.cs">
       <SubType>Code</SubType>
@@ -338,9 +341,6 @@
     <Compile Include="_System\Presentation\Controls\IAdornableControl.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_System\Presentation\Controls\LayoutEasing.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="_System\Presentation\Controls\View.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -365,10 +365,10 @@
     <Compile Include="_System\Presentation\Glitz\ColorAnimation.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="_System\Presentation\Glitz\EasingInterpolationMode.cs" />
+    <Compile Include="_System\Presentation\Glitz\EasingInterpolation.cs" />
+    <Compile Include="_System\Presentation\Glitz\TweenInterpolation.cs" />
     <Compile Include="_System\Presentation\Glitz\DoubleAnimation.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="_System\Presentation\Glitz\EasingFunctions.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_System\Presentation\Glitz\Effect.cs">
@@ -380,9 +380,6 @@
     <Compile Include="_System\Presentation\Glitz\EffectDirection.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_System\Presentation\Glitz\EffectEasing.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="_System\Presentation\Glitz\IProceduralAnimationFactory.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -392,7 +389,6 @@
     <Compile Include="_System\Presentation\Glitz\ProceduralAnimationController.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_System\Presentation\Glitz\ProceduralAnimationEasingFunction.cs" />
     <Compile Include="_System\Presentation\Glitz\ProceduralAnimationSequence.cs">
       <SubType>Code</SubType>
     </Compile>

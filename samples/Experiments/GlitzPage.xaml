@@ -4,7 +4,11 @@
     xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
     xmlns:fxeffects="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
     xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
+    xmlns:fxglitz="clr-namespace:SilverlightFX.UserInterface.Glitz;assembly=SilverlightFX"
     xmlns:app="clr-namespace:Experiments;assembly=Experiments">
+  <UserControl.Resources>
+    <fxglitz:ElasticInterpolation x:Key="ElasticIn" Mode="EaseIn" />
+  </UserControl.Resources>
   <Grid x:Name="LayoutRoot" Background="White">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="300" />
@@ -19,7 +23,7 @@
 
       <fxui:Interaction.Behaviors>
         <fxui:HoverEffect>
-          <fxeffects:Fade Duration="0:0:1" Easing="QuadraticInOut" />
+          <fxeffects:Fade Duration="0:0:1" />
         </fxui:HoverEffect>
       </fxui:Interaction.Behaviors>
     </Rectangle>
@@ -67,7 +71,7 @@
       </Ellipse.RenderTransform>
       <fxui:Interaction.Behaviors>
         <fxui:ClickEffect>
-          <fxeffects:Move VerticalMovement="200" Easing="ElasticIn" Duration="0:0:5" />
+          <fxeffects:Move VerticalMovement="200" Interpolation="{StaticResource ElasticIn}" Duration="0:0:5" />
         </fxui:ClickEffect>
       </fxui:Interaction.Behaviors>
     </Ellipse>
@@ -98,7 +102,7 @@
           </fxeffects:CompositeEffect>
         </fxui:TimedEffect>
         <fxui:ClickEffect>
-          <fxeffects:Move HorizontalMovement="100" AutoReverse="true" Duration="0:0:3" Easing="QuadraticInOut" />
+          <fxeffects:Move HorizontalMovement="100" AutoReverse="true" Duration="0:0:3" />
         </fxui:ClickEffect>
       </fxui:Interaction.Behaviors>
     </Ellipse>
@@ -112,7 +116,7 @@
     <Button Grid.Column="2" Height="23" HorizontalAlignment="Center" Margin="0,4,0,1" VerticalAlignment="Bottom" Width="75" Content="Flip">
       <fxui:Interaction.Behaviors>
         <fxui:ClickEffect>
-          <fxtransitions:Flip TargetName="screens" Easing="QuadraticInOut" />
+          <fxtransitions:Flip TargetName="screens" />
         </fxui:ClickEffect>
       </fxui:Interaction.Behaviors>
     </Button>

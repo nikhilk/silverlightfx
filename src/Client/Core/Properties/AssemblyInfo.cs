@@ -44,3 +44,6 @@ using System.Windows.Markup;
 
 [assembly: XmlnsPrefix("clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX", "fxtransition")]
 [assembly: XmlnsDefinition("clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX", "SilverlightFX.UserInterface.Transitions")]
+
+[assembly: XmlnsPrefix("clr-namespace:SilverlightFX.UserInterface.Glitz;assembly=SilverlightFX", "fxglitz")]
+[assembly: XmlnsDefinition("clr-namespace:SilverlightFX.UserInterface.Glitz;assembly=SilverlightFX", "SilverlightFX.UserInterface.Glitz")]

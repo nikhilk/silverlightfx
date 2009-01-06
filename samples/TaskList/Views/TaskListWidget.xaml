@@ -59,7 +59,7 @@
           <Border CornerRadius="2">
             <fxui:Interaction.Behaviors>
               <fxui:HoverEffect>
-                <fxeffects:ColorFill FillColor="#406795D1" Duration="0:0:0.25" Easing="QuadraticInOut" />
+                <fxeffects:ColorFill FillColor="#406795D1" Duration="0:0:0.25" />
               </fxui:HoverEffect>
             </fxui:Interaction.Behaviors>
             <app:TaskView Visibility="{Binding IsVisible, Converter={StaticResource visibilityConverter}}" />
@@ -67,10 +67,10 @@
         </DataTemplate>
       </fxui:ListView.ItemTemplate>
       <fxui:ListView.ItemAddedEffect>
-        <fxeffects:Highlight HighlightColor="#FFE396" Duration="0:0:1"  Easing="QuadraticInOut" />
+        <fxeffects:Highlight HighlightColor="#FFE396" Duration="0:0:1" />
       </fxui:ListView.ItemAddedEffect>
       <fxui:ListView.ItemRemovedEffect>
-        <fxeffects:Fade FadeOpacity="0" Duration="0:0:0.75" Easing="QuadraticInOut" />
+        <fxeffects:Fade FadeOpacity="0" Duration="0:0:0.75" />
       </fxui:ListView.ItemRemovedEffect>
     </fxui:ListView>
   </fxui:XGrid>

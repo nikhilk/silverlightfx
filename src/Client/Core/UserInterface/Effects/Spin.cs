@@ -72,7 +72,7 @@ namespace SilverlightFX.UserInterface.Effects {
                 double targetValue = direction == EffectDirection.Forward ? _initialAngle + _spinAngle : _initialAngle;
                 DoubleAnimation animation = new DoubleAnimation(_rotateTransform, RotateTransform.AngleProperty,
                                                                 Duration, targetValue);
-                animation.EasingFunction = GetEasingFunction();
+                animation.Interpolation = GetEffectiveInterpolation();
                 animation.AutoReverse = AutoReverse;
 
                 return animation;

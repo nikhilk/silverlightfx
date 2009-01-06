@@ -74,7 +74,7 @@ namespace SilverlightFX.UserInterface.Effects {
 
             HighlightAnimation animation = new HighlightAnimation(Duration, brush, _highlightColor);
             animation.AutoReverse = AutoReverse;
-            animation.EasingFunction = GetEasingFunction();
+            animation.Interpolation = GetEffectiveInterpolation();
 
             return animation;
         }

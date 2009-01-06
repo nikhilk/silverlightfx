@@ -58,7 +58,7 @@
           </DataTemplate>
         </fxui:ListView.ItemTemplate>
         <fxui:ListView.ItemRemovedEffect>
-          <fxeffect:Fade FadeOpacity="0.1" Duration="0:0:0.5" Easing="QuadraticInOut" />
+          <fxeffect:Fade FadeOpacity="0.1" Duration="0:0:0.5" />
         </fxui:ListView.ItemRemovedEffect>
       </fxui:ListView>
       <fxui:HStackPanel fxui:ContentLayout.ContentName="footerLeft" Grid.Column="1" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
@@ -91,7 +91,7 @@
           </DataTemplate>
         </fxui:DetailView.ItemTemplate>
         <fxui:DetailView.ItemTransition>
-          <fxtransition:Slide Mode="Left" Duration="0:0:0.5" Easing="QuadraticInOut" />
+          <fxtransition:Slide Mode="Left" Duration="0:0:0.5" />
         </fxui:DetailView.ItemTransition>
       </fxui:DetailView>
       <fxui:HStackPanel fxui:ContentLayout.ContentName="footerRight" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">

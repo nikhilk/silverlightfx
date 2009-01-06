@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Experiments.BouncePage"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:fxeffect="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
+  xmlns:fxglitz="clr-namespace:SilverlightFX.UserInterface.Glitz;assembly=SilverlightFX"
+  xmlns:app="clr-namespace:Experiments"
+  Width="400" Height="300">
+  
+  <UserControl.Resources>
+    <fxglitz:BounceInterpolation x:Key="bounce1" Bounces="2" Mode="EaseOut" />
+    <fxglitz:BounceInterpolation x:Key="bounce2" Bounces="4" Mode="EaseInOut" />
+  </UserControl.Resources>
+  <fxui:XGrid x:Name="LayoutRoot" Background="White" Margin="20" Columns="5*,5*">
+    
+
+    <Rectangle Width="100" Height="100" Fill="Red" VerticalAlignment="Top">
+      <Rectangle.RenderTransform>
+        <TranslateTransform />
+      </Rectangle.RenderTransform>
+      <fxui:Interaction.Behaviors>
+        <fxui:ClickEffect>
+          <fxeffect:Move VerticalMovement="400" Duration="0:0:5" Interpolation="{StaticResource bounce1}" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Rectangle>
+
+    <Rectangle Width="100" Height="100" Fill="Blue" VerticalAlignment="Top" Grid.Column="1">
+      <Rectangle.RenderTransform>
+        <TranslateTransform />
+      </Rectangle.RenderTransform>
+      <fxui:Interaction.Behaviors>
+        <fxui:ClickEffect>
+          <fxeffect:Move VerticalMovement="400" Duration="0:0:5" Interpolation="{StaticResource bounce2}" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Rectangle>
+  
+  </fxui:XGrid>
+</UserControl>

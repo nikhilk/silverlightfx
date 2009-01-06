@@ -55,7 +55,7 @@ namespace SilverlightFX.UserInterface.Effects {
             FrameworkElement target = GetTarget();
 
             PulsateAnimation animation = new PulsateAnimation(target, Duration, _fadeOpacity);
-            animation.EasingFunction = GetEasingFunction();
+            animation.Interpolation = GetEffectiveInterpolation();
 
             return animation;
         }

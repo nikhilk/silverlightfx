@@ -70,7 +70,7 @@
             </fxui:Interaction.Triggers>
             <fxui:Interaction.Behaviors>
               <fxui:HoverEffect>
-                <fxeffects:Resize ScaleXRatio="1.1" ScaleYRatio="1.1" Easing="QuadraticInOut" Duration="0:0:.25" />
+                <fxeffects:Resize ScaleXRatio="1.1" ScaleYRatio="1.1" Duration="0:0:.25" />
               </fxui:HoverEffect>
             </fxui:Interaction.Behaviors>
             <Grid>
@@ -83,7 +83,7 @@
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
           <fxui:TilePanel TileHeight="103" TileWidth="103"
-            UseAnimatedLayout="True" Easing="QuadraticOut" />
+            UseAnimatedLayout="True" />
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
     </ItemsControl>
@@ -94,14 +94,14 @@
       HorizontalContentAlignment="Center" VerticalContentAlignment="Top"
       Margin="0,10,0,0">
       <fxui:ContentView.ContentTransition>
-        <fxtransitions:Explode Easing="QuadraticInOut" Duration="0:0:0.5" />
+        <fxtransitions:Explode Duration="0:0:0.5" />
       </fxui:ContentView.ContentTransition>
       <fxui:ContentView.ContentTemplate>
         <DataTemplate>
           <Grid>
             <fxui:Interaction.Behaviors>
               <fxui:HoverEffect>
-                <fxeffects:Fade TargetName="infoPanel" FadeOpacity="1" Easing="QuadraticInOut" Duration="0:0:0.25" />
+                <fxeffects:Fade TargetName="infoPanel" FadeOpacity="1" Duration="0:0:0.25" />
               </fxui:HoverEffect>
             </fxui:Interaction.Behaviors>
             

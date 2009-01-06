@@ -80,7 +80,7 @@ namespace SilverlightFX.UserInterface.Effects {
             }
 
             ShakeAnimation animation = new ShakeAnimation(_translateTransform, Duration, _shakeDistance);
-            animation.EasingFunction = GetEasingFunction();
+            animation.Interpolation = GetEffectiveInterpolation();
 
             return animation;
         }

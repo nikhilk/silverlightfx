@@ -50,6 +50,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\binaries\Debug\Silverlight\SilverlightFX.dll</HintPath>
     </Reference>
+    <Reference Include="SilverlightFX.HtmlLite, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\binaries\Debug\Silverlight\SilverlightFX.HtmlLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="mscorlib" />
     <Reference Include="system" />

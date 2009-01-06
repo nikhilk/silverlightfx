@@ -65,6 +65,9 @@
     <Compile Include="BackFace.xaml.cs">
       <DependentUpon>BackFace.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BouncePage.xaml.cs">
+      <DependentUpon>BouncePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ContentListPage.xaml.cs">
       <DependentUpon>ContentListPage.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,10 @@
     <Page Include="BackFace.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="BouncePage.xaml">
+      <SubType>Page</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="ContentTransitionPage.xaml">
       <SubType>Page</SubType>

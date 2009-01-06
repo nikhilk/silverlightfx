@@ -38,24 +38,24 @@ namespace SilverlightFX.UserInterface.Transitions {
                 container.RenderTransformOrigin = new Point(0.5, 0.5);
             }
 
-            ProceduralAnimationEasingFunction easing = GetEasingFunction();
+            TweenInterpolation interpolation = GetEffectiveInterpolation();
             TimeSpan shortDuration = TimeSpan.FromMilliseconds(Duration.TotalMilliseconds / 3);
 
             FlipScaleAnimation scaleAnimation =
                 new FlipScaleAnimation(Duration, _scaleTransform,
                                        (direction == EffectDirection.Forward ? 180 : -180));
-            scaleAnimation.EasingFunction = easing;
+            scaleAnimation.Interpolation = interpolation;
 
             DoubleAnimation frontAnimation =
                 new DoubleAnimation(container.Children[1], UIElement.OpacityProperty, shortDuration,
                                     (direction == EffectDirection.Forward ? 0 : 1));
-            frontAnimation.EasingFunction = easing;
+            frontAnimation.Interpolation = interpolation;
             frontAnimation.StartDelay = shortDuration;
 
             DoubleAnimation backAnimation =
                 new DoubleAnimation(container.Children[0], UIElement.OpacityProperty, shortDuration,
                                     (direction == EffectDirection.Forward ? 1 : 0));
-            backAnimation.EasingFunction = easing;
+            backAnimation.Interpolation = interpolation;
             backAnimation.StartDelay = shortDuration;
 
             return new ProceduralAnimationSet(scaleAnimation, frontAnimation, backAnimation);

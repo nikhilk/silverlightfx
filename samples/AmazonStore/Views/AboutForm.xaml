@@ -6,10 +6,10 @@
   x:Class="Store.AboutForm" Width="400" Height="300"
   Opacity="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,45,15,0">
   <fxui:Form.ShowEffect>
-    <fxeffect:Fade FadeOpacity="1" Easing="QuadraticIn" Duration="0:0:0.75" />
+    <fxeffect:Fade FadeOpacity="1" Duration="0:0:0.75" />
   </fxui:Form.ShowEffect>
   <fxui:Form.CloseEffect>
-    <fxeffect:Fade FadeOpacity="0" Easing="QuadraticIn" Duration="0:0:0.5" />
+    <fxeffect:Fade FadeOpacity="0" Duration="0:0:0.5" />
   </fxui:Form.CloseEffect>
   <fxui:ContentLayout Template="{StaticResource partLayout}" Background="{StaticResource backgroundBrush}">
     <TextBlock fxui:ContentLayout.ContentName="header" Style="{StaticResource partTitleText}"

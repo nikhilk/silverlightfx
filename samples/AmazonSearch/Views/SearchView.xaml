@@ -40,7 +40,7 @@
       <ItemsControl.ItemsPanel>
         <ItemsPanelTemplate>
           <fxui:TilePanel TileHeight="180" TileWidth="180"
-            UseAnimatedLayout="True" Easing="QuadraticOut" />
+            UseAnimatedLayout="True" />
         </ItemsPanelTemplate>
       </ItemsControl.ItemsPanel>
     </ItemsControl>

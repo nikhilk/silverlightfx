@@ -50,7 +50,7 @@ namespace SilverlightFX.UserInterface.Transitions {
             FrameworkElement bottomContent = (FrameworkElement)container.Children[0];
 
             BlindsAnimation animation = new BlindsAnimation(topContent, bottomContent, Duration, _mode, direction == EffectDirection.Forward);
-            animation.EasingFunction = GetEasingFunction();
+            animation.Interpolation = GetEffectiveInterpolation();
 
             return animation;
         }

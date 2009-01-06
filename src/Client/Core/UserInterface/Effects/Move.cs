@@ -84,20 +84,20 @@ namespace SilverlightFX.UserInterface.Effects {
                 _initialY = _translateTransform.Y;
             }
 
-            ProceduralAnimationEasingFunction easing = GetEasingFunction();
+            TweenInterpolation interpolation = GetEffectiveInterpolation();
             DoubleAnimation xAnimation = null;
             DoubleAnimation yAnimation = null;
 
             if (_horizontalMovement != 0) {
                 double targetValue = direction == EffectDirection.Forward ? _horizontalMovement : _initialX;
                 xAnimation = new DoubleAnimation(_translateTransform, TranslateTransform.XProperty, Duration, targetValue);
-                xAnimation.EasingFunction = easing;
+                xAnimation.Interpolation = interpolation;
             }
 
             if (_verticalMovement != 0) {
                 double targetValue = direction == EffectDirection.Forward ? _verticalMovement : _initialY;
                 yAnimation = new DoubleAnimation(_translateTransform, TranslateTransform.YProperty, Duration, targetValue);
-                yAnimation.EasingFunction = easing;
+                yAnimation.Interpolation = interpolation;
             }
 
             if ((xAnimation != null) && (yAnimation != null)) {
