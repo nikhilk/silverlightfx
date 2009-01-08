@@ -139,6 +139,7 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\MouseWheelScroll.cs" />
     <Compile Include="UserInterface\Glitz\BounceInterpolation.cs" />
     <Compile Include="UserInterface\Glitz\ElasticInterpolation.cs" />
     <Compile Include="UserInterface\Glitz\LinearInterpolation.cs" />

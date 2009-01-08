@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="Experiments.MouseWheelPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX">
+  
+  <fxui:XGrid Columns="5*,20,5*" Background="White" Margin="20">
+
+    <TextBox AcceptsReturn="True" TextWrapping="Wrap"
+      VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+      <fxui:Interaction.Behaviors>
+        <fxui:MouseWheelScroll ScrollSize="3" />
+      </fxui:Interaction.Behaviors>
+    </TextBox>
+    
+    <ScrollViewer Grid.Column="2"
+      VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
+      <fxui:Interaction.Behaviors>
+        <fxui:MouseWheelScroll />
+      </fxui:Interaction.Behaviors>
+      <Grid Margin="8">
+        <Rectangle Height="1000" Stroke="Black" StrokeThickness="4" RadiusX="10" RadiusY="10">
+          <Rectangle.Fill>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+              <GradientStop Offset="0" Color="Black" />
+              <GradientStop Offset="1" Color="White" />
+            </LinearGradientBrush>
+          </Rectangle.Fill>
+        </Rectangle>
+      </Grid>
+    </ScrollViewer>
+    
+  </fxui:XGrid>
+</UserControl>
