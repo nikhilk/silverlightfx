@@ -22,6 +22,7 @@ namespace SilverlightFX.UserInterface {
     /// </summary>
     public sealed class Command : Behavior<ButtonBase> {
 
+        private string _commandTarget;
         private string _commandName;
         private object _commandParameter;
 
@@ -54,17 +55,62 @@ namespace SilverlightFX.UserInterface {
             }
         }
 
+        /// <summary>
+        /// Gets or sets the object that surfaces the command to be invoke.
+        /// By default this is empty, which is used to select the object with which
+        /// this behavior is associated.
+        /// </summary>
+        public string CommandTarget {
+            get {
+                return _commandTarget;
+            }
+            set {
+                _commandTarget = value;
+            }
+        }
+
+        private ICommand GetCommand() {
+            FrameworkElement target = AssociatedObject;
+            if (String.IsNullOrEmpty(_commandTarget) == false) {
+                target = target.FindNameRecursive(_commandTarget) as FrameworkElement;
+                if (target == null) {
+                    throw new InvalidOperationException("Could not find command target.");
+                }
+            }
+
+            ICommand command = target.FindResource(_commandName + "Command") as ICommand;
+            if (command == null) {
+                command = target.FindResource(_commandName) as ICommand;
+            }
+
+            if (command == null) {
+                // Since there was no static command available, find a command provider
+                // in the visual tree.
+
+                FrameworkElement element = target.Parent as FrameworkElement;
+                while (element != null) {
+                    ICommandContainer commandProvider = element as ICommandContainer;
+                    if (commandProvider != null) {
+                        command = commandProvider.GetCommand(_commandName);
+                        if (command != null) {
+                            break;
+                        }
+                    }
+
+                    element = element.Parent as FrameworkElement;
+                }
+            }
+
+            return command;
+        }
+
         /// <internalonly />
         protected override void OnAttach() {
             base.OnAttach();
 
             AssociatedObject.Dispatcher.BeginInvoke(delegate() {
                 if (String.IsNullOrEmpty(_commandName) == false) {
-                    _command = AssociatedObject.FindResource(_commandName + "Command") as ICommand;
-                    if (_command == null) {
-                        _command = AssociatedObject.FindResource(_commandName) as ICommand;
-                    }
-
+                    _command = GetCommand();
                     if (_command != null) {
                         _command.CanExecuteChanged += OnCommandCanExecuteChanged;
                         UpdateAssociatedObject();
@@ -77,28 +123,7 @@ namespace SilverlightFX.UserInterface {
 
         private void OnClick(object sender, RoutedEventArgs e) {
             if ((_command == null) && (_unknownCommand == false)) {
-                _command = AssociatedObject.FindResource(_commandName + "Command") as ICommand;
-                if (_command == null) {
-                    _command = AssociatedObject.FindResource(_commandName) as ICommand;
-                }
-
-                if (_command == null) {
-                    // Since there was no static command available, find a command provider
-                    // in the visual tree.
-
-                    FrameworkElement element = AssociatedObject.Parent as FrameworkElement;
-                    while (element != null) {
-                        ICommandContainer commandProvider = element as ICommandContainer;
-                        if (commandProvider != null) {
-                            _command = commandProvider.GetCommand(_commandName);
-                            if (_command != null) {
-                                break;
-                            }
-                        }
-
-                        element = element.Parent as FrameworkElement;
-                    }
-                }
+                _command = GetCommand();
                 if (_command == null) {
                     _unknownCommand = true;
                 }
