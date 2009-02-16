@@ -13,13 +13,16 @@ namespace Store {
 
         private IStore _store;
 
-        private ObservableCollection<Product> _products;
+        private ObservableCollection<Product> _popularProducts;
+        private ObservableCollection<Product> _bargainProducts;
+        private ObservableCollection<Product> _searchedProducts;
+
+        private IEnumerable<Product> _products;
         private bool _loading;
         private bool _clear;
 
         public Catalog(IStore store) {
             _store = store;
-            _products = new ObservableCollection<Product>();
         }
 
         public bool IsLoading {
@@ -31,6 +34,12 @@ namespace Store {
         public IEnumerable<Product> Products {
             get {
                 return _products;
+            }
+            private set {
+                if (_products != value) {
+                    _products = value;
+                    RaisePropertyChanged("Products");
+                }
             }
         }
 
@@ -54,10 +63,28 @@ namespace Store {
 
         public event EventHandler ProductsLoaded;
 
-        public void LoadPopularProducts() {
+        public void LoadBargainProducts() {
+            if (_bargainProducts != null) {
+                Products = _bargainProducts;
+                return;
+            }
+
+            _bargainProducts = new ObservableCollection<Product>();
             _loading = true;
-            _clear = true;
-            _store.GetPopularProducts(OnLoadProducts);
+            _store.GetBargainProducts(OnLoadBargainProducts);
+
+            RaisePropertyChanged("IsLoading");
+        }
+
+        public void LoadPopularProducts() {
+            if (_popularProducts != null) {
+                Products = _popularProducts;
+                return;
+            }
+
+            _popularProducts = new ObservableCollection<Product>();
+            _loading = true;
+            _store.GetPopularProducts(OnLoadPopularProducts);
 
             RaisePropertyChanged("IsLoading");
         }
@@ -67,27 +94,47 @@ namespace Store {
                 return;
             }
 
+            if (_searchedProducts == null) {
+                _searchedProducts = new ObservableCollection<Product>();
+            }
+            else {
+                _clear = true;
+            }
+
             _loading = true;
-            _clear = true;
             _store.GetProducts(keywords, OnLoadProducts);
 
             RaisePropertyChanged("IsLoading");
         }
 
+        private void OnLoadBargainProducts(IEnumerable<Product> productResults, bool completed) {
+            UpdateProducts(_bargainProducts, productResults, completed);
+        }
+
+        private void OnLoadPopularProducts(IEnumerable<Product> productResults, bool completed) {
+            UpdateProducts(_popularProducts, productResults, completed);
+        }
+
         private void OnLoadProducts(IEnumerable<Product> productResults, bool completed) {
+            UpdateProducts(_searchedProducts, productResults, completed);
+        }
+
+        private void UpdateProducts(ObservableCollection<Product> productList, IEnumerable<Product> productResults, bool completed) {
             if (productResults != null) {
                 if (_clear) {
-                    _products.Clear();
+                    productList.Clear();
                     _clear = false;
                 }
 
                 foreach (Product p in productResults) {
-                    _products.Add(p);
+                    productList.Add(p);
                 }
+            }
 
-                if (ProductsLoaded != null) {
-                    ProductsLoaded(this, EventArgs.Empty);
-                }
+            Products = productList;
+
+            if (ProductsLoaded != null) {
+                ProductsLoaded(this, EventArgs.Empty);
             }
 
             if (completed) {

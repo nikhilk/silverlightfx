@@ -8,6 +8,8 @@ namespace Store {
 
     public interface IStore {
 
+        void GetBargainProducts(Action<IEnumerable<Product>, bool> productsCallback);
+
         void GetPopularProducts(Action<IEnumerable<Product>, bool> productsCallback);
 
         void GetProducts(string keyword, Action<IEnumerable<Product>, bool> productsCallback);

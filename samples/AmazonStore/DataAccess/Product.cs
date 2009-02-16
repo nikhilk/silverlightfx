@@ -8,23 +8,12 @@ namespace Store {
 
     public sealed class Product : Model {
 
-        private string _asin;
+        private string _id;
         private string _description;
         private string _imageUri;
         private decimal _price;
         private string _productUri;
         private string _title;
-
-        public string ASIN {
-            get {
-                return _asin;
-            }
-            set {
-                if (_asin != value) {
-                    _asin = value;
-                }
-            }
-        }
 
         public string Description {
             get {
@@ -34,6 +23,17 @@ namespace Store {
                 if (_description != value) {
                     _description = value;
                     RaisePropertyChanged("Description");
+                }
+            }
+        }
+
+        public string ID {
+            get {
+                return _id;
+            }
+            set {
+                if (_id != value) {
+                    _id = value;
                 }
             }
         }

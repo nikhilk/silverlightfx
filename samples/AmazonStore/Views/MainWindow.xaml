@@ -37,7 +37,15 @@
         <TextBlock Style="{StaticResource partTitleText}" VerticalAlignment="Center"
            Text="Catalog" />
         <fxui:HStackPanel Grid.Column="1" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
-          <fxui:XTextBox x:Name="searchTextBox" Style="{StaticResource adornableTextBox}" Width="200" Height="23">
+          <fxui:XButton x:Name="popularButton" Style="{StaticResource LinkButton}" Height="23"
+            Content="What's Popular"
+            IsEnabled="{Binding Catalog.IsLoading, Converter={StaticResource booleanInverter}}"
+            fxui:Interaction.Action="$model.Catalog.LoadPopularProducts()"/>
+          <fxui:XButton x:Name="bargainsButton" Style="{StaticResource LinkButton}" Height="23"
+            Content="Today's Bargains"
+            IsEnabled="{Binding Catalog.IsLoading, Converter={StaticResource booleanInverter}}"
+            fxui:Interaction.Action="$model.Catalog.LoadBargainProducts()"/>
+          <fxui:XTextBox x:Name="searchTextBox" Style="{StaticResource adornableTextBox}" Width="150" Height="23">
             <fxui:Interaction.Behaviors>
               <fxui:AutoCommit ButtonName="searchButton" />
               <fxui:Watermark PromptText="Enter some keywords" PromptStyle="{StaticResource watermark}" />

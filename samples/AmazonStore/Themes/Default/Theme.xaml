@@ -5,7 +5,7 @@
   xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
   xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
   xmlns:sys="clr-namespace:System;assembly=mscorlib"
-  Includes="TextBox, Slider">
+  Includes="Button, TextBox, Slider">
 
   <fxapp:Theme.Resources>
 

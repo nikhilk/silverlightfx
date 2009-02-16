@@ -18,8 +18,8 @@ namespace Store {
     [Service(typeof(IStore))]
     public sealed class AmazonService : IStore {
 
-        private const string SearchUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemSearch&SearchIndex=All&SubscriptionId={0}&AssociateTag=myamzn-20&Keywords={1}&ResponseGroup=Images,Small,EditorialReview,ItemAttributes";
-        private const string LookupUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemLookup&SubscriptionId={0}&AssociateTag=myamzn-20&ItemId={1}&&ResponseGroup=Images,Small,EditorialReview,ItemAttributes";
+        private const string SearchUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemSearch&SearchIndex=All&SubscriptionId={0}&AssociateTag=myamzn-20&Keywords={1}&ResponseGroup=Images,Small,EditorialReview,ItemAttributes,OfferSummary";
+        private const string LookupUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemLookup&SubscriptionId={0}&AssociateTag=myamzn-20&ItemId={1}&&ResponseGroup=Images,Small,EditorialReview,ItemAttributes,OfferSummary";
         private const string CartUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=CartCreate&SubscriptionId={0}&AssociateTag=myamzn-20{1}";
         private static readonly string[] PopularFeedUrls =
             new string[] {
@@ -28,6 +28,8 @@ namespace Store {
                 "http://pipes.yahooapis.com/pipes/pipe.run?_id=YAchPx7R3RG_yuOK1JzWFw&_render=rss&feedUrl=http%3A%2F%2Frssfeeds.s3.amazonaws.com%2Ftopdvd",
                 "http://pipes.yahooapis.com/pipes/pipe.run?_id=YAchPx7R3RG_yuOK1JzWFw&_render=rss&feedUrl=http%3A%2F%2Frssfeeds.s3.amazonaws.com%2Ftopelectronics"
             };
+        private static readonly string BargainFeedUrl =
+            "http://pipes.yahooapis.com/pipes/pipe.run?_id=e2b4c973b81b4963b60060d6a32a3f40&_render=rss&feedUrl=http%3A%2F%2Frssfeeds.s3.amazonaws.com%2Fgoldbox&count=5";
 
         private static readonly Regex TagRegex = new Regex("<.*?>", RegexOptions.Multiline);
         private static readonly Regex AsinRegex = new Regex("https?://www\\.amazon\\.[^/]+.*/([A-Z0-9]{10})/?.*", RegexOptions.Singleline);
@@ -36,6 +38,29 @@ namespace Store {
         public IApplicationIdentity Application {
             get;
             set;
+        }
+
+        public void GetBargainProducts(Action<IEnumerable<Product>, bool> productsCallback) {
+            WebClient webClient = new WebClient();
+            webClient.DownloadStringCompleted += delegate(object sender, DownloadStringCompletedEventArgs e) {
+                if ((e.Cancelled == false) && (e.Error == null)) {
+                    string xml = e.Result;
+                    try {
+                        List<string> ids = new List<string>();
+
+                        ParseProductIDs(xml, ids);
+                        GetProductsByIDs(ids.ToArray(), /* lookupOffers */ true, (productResults) => {
+                            if (productResults != null) {
+                                productsCallback(productResults, true);
+                            }
+                        });
+                    }
+                    catch {
+                    }
+                }
+            };
+
+            webClient.DownloadStringAsync(new Uri(BargainFeedUrl));
         }
 
         public void GetPopularProducts(Action<IEnumerable<Product>, bool> productsCallback) {
@@ -50,7 +75,7 @@ namespace Store {
                         List<string> ids = new List<string>();
 
                         ParseProductIDs(xml, ids);
-                        GetProductsByIDs(ids.ToArray(), (productResults) => {
+                        GetProductsByIDs(ids.ToArray(), /* lookupOffers */ false, (productResults) => {
                             bool completed = feedIndex == PopularFeedUrls.Length;
 
                             if (productResults != null) {
@@ -79,7 +104,7 @@ namespace Store {
             }
         }
 
-        private void GetProductsByIDs(string[] ids, Action<IEnumerable<Product>> productsCallback) {
+        private void GetProductsByIDs(string[] ids, bool lookupOffers, Action<IEnumerable<Product>> productsCallback) {
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += delegate(object sender, DownloadStringCompletedEventArgs e) {
                 List<Product> products = new List<Product>();
@@ -88,7 +113,7 @@ namespace Store {
                     string xml = e.Result;
 
                     if (String.IsNullOrEmpty(xml) == false) {
-                        ParseProducts(xml, products);
+                        ParseProducts(xml, lookupOffers, products);
                     }
                 }
 
@@ -108,7 +133,7 @@ namespace Store {
                     string xml = e.Result;
 
                     if (String.IsNullOrEmpty(xml) == false) {
-                        ParseProducts(xml, products);
+                        ParseProducts(xml, /* lookupOffers */ false, products);
                     }
                 }
 
@@ -150,26 +175,38 @@ namespace Store {
             }
         }
 
-        private void ParseProducts(string xml, List<Product> products) {
+        private void ParseProducts(string xml, bool lookupOffers, List<Product> products) {
             xml = xml.Replace(@"xmlns=""http://webservices.amazon.com/AWSECommerceService/2005-03-23""", String.Empty);
             XDocument doc = XDocument.Parse(xml);
 
             foreach (XElement itemElement in doc.Descendants("Item")) {
                 try {
                     XElement imageElement = itemElement.Element("MediumImage");
+                    XElement priceElement = itemElement.Element("ItemAttributes").Element("ListPrice");
                     XElement reviewsElement = itemElement.Element("EditorialReviews");
                     XElement descriptionElement = (reviewsElement != null) ? reviewsElement.Descendants("Content").FirstOrDefault() : null;
 
                     Product p = new Product {
-                        ASIN = itemElement.Element("ASIN").Value,
+                        ID = itemElement.Element("ASIN").Value,
                         Title = itemElement.Element("ItemAttributes").Element("Title").Value,
-                        Price = Int32.Parse(itemElement.Element("ItemAttributes").Element("ListPrice").Element("Amount").Value) / 100m,
+                        Price = (priceElement != null) ? Int32.Parse(priceElement.Element("Amount").Value) / 100m : 0m,
                         ProductUri = itemElement.Element("DetailPageURL").Value,
                         ImageUri = (imageElement != null) ? imageElement.Element("URL").Value : null,
                         Description = (descriptionElement != null) ? TagRegex.Replace(descriptionElement.Value, String.Empty) : null
                     };
 
-                    products.Add(p);
+                    if (lookupOffers || (priceElement == null)) {
+                        XElement offerSummaryElement = itemElement.Element("OfferSummary");
+                        priceElement = (offerSummaryElement != null) ? offerSummaryElement.Element("LowestNewPrice") : null;
+
+                        if (priceElement != null) {
+                            p.Price = Int32.Parse(priceElement.Element("Amount").Value) / 100m;
+                        }
+                    }
+
+                    if (p.Price != 0m) {
+                        products.Add(p);
+                    }
                 }
                 catch {
                 }
@@ -211,7 +248,7 @@ namespace Store {
             int itemNumber = 1;
             foreach (OrderItem item in order.Items) {
                 sb.AppendFormat(CultureInfo.InvariantCulture, "&Item.{0}.ASIN={1}&Item.{0}.Quantity={2}",
-                                itemNumber, item.Product.ASIN, item.Quantity);
+                                itemNumber, item.Product.ID, item.Quantity);
                 itemNumber++;
             }
 
