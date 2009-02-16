@@ -38,6 +38,18 @@ namespace System.Windows {
 #endif
         }
 
+        public static object FindRecursive(this FrameworkElement element, Type type) {
+            while (element != null) {
+                element = element.GetParentVisual();
+
+                if ((element != null) && type.IsAssignableFrom(element.GetType())) {
+                    return element;
+                }
+            }
+
+            return null;
+        }
+
         public static object FindResource(this FrameworkElement element, string key) {
             while (element != null) {
                 object value = element.Resources[key];

@@ -1,0 +1,24 @@
+﻿<UserControl
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX"
+  x:Class="Experiments.FrameWindow">
+  <fxui:XGrid Rows="Auto,10,*" Background="White" Margin="10">
+    <fxui:HStackPanel ChildSpacing="4" ChildFlow="Center">
+      <Button Content="Back">
+        <fxui:Interaction.Behaviors>
+          <fxui:Command CommandName="Back" CommandTarget="mainFrame" />
+        </fxui:Interaction.Behaviors>
+      </Button>
+      <Button Content="Forward">
+        <fxui:Interaction.Behaviors>
+          <fxui:Command CommandName="Forward" CommandTarget="mainFrame" />
+        </fxui:Interaction.Behaviors>
+      </Button>
+    </fxui:HStackPanel>
+    <Border Grid.Row="2" BorderThickness="4" BorderBrush="#DFDFDF" CornerRadius="4">
+      <fxnav:PageFrame x:Name="mainFrame" />
+    </Border>
+  </fxui:XGrid>
+</UserControl>

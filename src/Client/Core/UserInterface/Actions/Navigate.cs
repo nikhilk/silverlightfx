@@ -11,9 +11,12 @@
 using System;
 using System.Windows;
 using System.Windows.Browser;
+using System.Windows.Controls;
 using System.Windows.Interactivity;
 
 namespace SilverlightFX.UserInterface.Actions {
+
+    // TODO: Switch default of External and rename to Browser?
 
     /// <summary>
     /// An action that navigates to a selected URI.
@@ -31,6 +34,28 @@ namespace SilverlightFX.UserInterface.Actions {
         /// </summary>
         public static readonly DependencyProperty TargetProperty =
             DependencyProperty.Register("Target", typeof(string), typeof(Navigate), null);
+
+        private bool _externalNavigation;
+
+        /// <summary>
+        /// Initializes an instance of Navigate.
+        /// </summary>
+        public Navigate() {
+            _externalNavigation = true;
+        }
+
+        /// <summary>
+        /// Gets or sets the whether the navigation should be internal to the application
+        /// or external, i.e. at the level of HTML page containing the application.
+        /// </summary>
+        public bool ExternalNavigation {
+            get {
+                return _externalNavigation;
+            }
+            set {
+                _externalNavigation = value;
+            }
+        }
 
         /// <summary>
         /// Gets or sets the URL to navigate to.
@@ -58,8 +83,28 @@ namespace SilverlightFX.UserInterface.Actions {
 
         /// <internalonly />
         protected override void InvokeAction(EventArgs e) {
-            if (HtmlPage.IsEnabled) {
-                HtmlPage.Window.Navigate(new Uri(NavigateUrl, UriKind.RelativeOrAbsolute), Target ?? "_self");
+            string targetFrame = Target;
+            Uri navigateUri = new Uri(NavigateUrl, UriKind.RelativeOrAbsolute);
+
+            if (_externalNavigation == false) {
+                INavigationTarget target = null;
+
+                if (String.IsNullOrEmpty(targetFrame) == false) {
+                    target = AssociatedObject.FindNameRecursive(targetFrame) as INavigationTarget;
+                }
+                else {
+                    target = (INavigationTarget)AssociatedObject.FindRecursive(typeof(INavigationTarget));
+                }
+
+                if (target != null) {
+                    target.Navigate(navigateUri);
+                }
+                else {
+                    throw new InvalidOperationException("Did not find a target to navigate.");
+                }
+            }
+            else if (HtmlPage.IsEnabled) {
+                HtmlPage.Window.Navigate(navigateUri, targetFrame ?? "_self");
             }
         }
     }

@@ -2,7 +2,8 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
-  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX">
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX">
 
   <!-- Label -->
   <Style TargetType="fxui:Label">
@@ -35,7 +36,8 @@
       </Setter.Value>
     </Setter>
   </Style>
-  
+
+  <!-- Screen -->
   <Style TargetType="fxui:Screen">
     <Setter Property="Background" Value="White" />
     <Setter Property="FormBackground" Value="#20000000" />
@@ -160,6 +162,19 @@
             <ContentPresenter x:Name="FrontPresenter"
               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- PageFrame -->
+  <Style TargetType="fxnav:PageFrame">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="fxnav:PageFrame">
+          <Grid>
+            <fxui:ContentView x:Name="ContentView" ContentTransition="{TemplateBinding Transition}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
