@@ -227,7 +227,18 @@ namespace SilverlightFX.UserInterface.Navigation {
                 return;
             }
 
-            NavigatingEventArgs ne = new NavigatingEventArgs(navigationState.uri, /* canCancel */ true);
+            // TODO: False if we don't own journal - later
+            bool canCancel = true;
+
+            Page currentPage = Page;
+            if (currentPage != null) {
+                bool cancel = !currentPage.OnDeactivating(canCancel);
+                if (canCancel && cancel) {
+                    return;
+                }
+            }
+
+            NavigatingEventArgs ne = new NavigatingEventArgs(navigationState.uri, canCancel);
             OnNavigating(ne);
             if (ne.CanCancel && ne.Canceled) {
                 return;
@@ -329,6 +340,8 @@ namespace SilverlightFX.UserInterface.Navigation {
 
             _backCommand.UpdateStatus(_journal.CanGoBack);
             _forwardCommand.UpdateStatus(_journal.CanGoForward);
+
+            page.OnActivated(!navigationState.cachedPage);
 
             OnNavigated(new NavigatedEventArgs(navigationState.uri, page is ErrorPage));
         }

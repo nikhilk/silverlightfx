@@ -74,5 +74,28 @@ namespace SilverlightFX.UserInterface.Navigation {
                 _uri = value;
             }
         }
+
+        /// <summary>
+        /// Allows a page to perform initialization upon being activated as a result
+        /// of being navigated to. A page may be activated multiple times as a result
+        /// of being cached and navigated to again.
+        /// </summary>
+        /// <param name="firstNavigation">Whether this is the first time the page is being activated.</param>
+        protected internal virtual void OnActivated(bool firstNavigation) {
+            // TODO: Forward to view model - how?
+        }
+
+        /// <summary>
+        /// Allows a page to perform any work before it is deactivated as a result
+        /// of being navigated away from. A page may cancel deactivation if the
+        /// hosting PageFrame supports it. The default implementation does not cancel
+        /// deactivation, and lets the PageFrame proceed with navigation.
+        /// </summary>
+        /// <param name="canCancelNavigation">Whether deactivation can be canceled.</param>
+        /// <returns>true if the page can be deactivated; false otherwise.</returns>
+        protected internal virtual bool OnDeactivating(bool canCancelNavigation) {
+            // TODO: Forward to view model - how?
+            return true;
+        }
     }
 }
