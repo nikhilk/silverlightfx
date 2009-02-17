@@ -32,9 +32,9 @@
     </fxui:HStackPanel>
 
     <!-- Catalog -->
-    <fxui:ContentLayout Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" Template="{StaticResource partLayout}">
-      <fxui:XGrid fxui:ContentLayout.ContentName="header" Columns="*,Auto">
-        <TextBlock Style="{StaticResource partTitleText}" VerticalAlignment="Center"
+    <app:SectionLayout Grid.Column="1" Grid.Row="2" Grid.RowSpan="3">
+      <fxui:XGrid fxui:LayoutControl.ContentName="header" Columns="*,Auto">
+        <TextBlock Style="{StaticResource sectionTitleText}" VerticalAlignment="Center"
            Text="Catalog" />
         <fxui:HStackPanel Grid.Column="1" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
           <fxui:XButton x:Name="popularButton" Style="{StaticResource LinkButton}" Height="23"
@@ -57,7 +57,7 @@
             fxui:Interaction.Action="$model.Catalog.LoadProducts(searchTextBox.Text)"/>
         </fxui:HStackPanel>
       </fxui:XGrid>
-      <fxui:ListView Style="{StaticResource productList}" fxui:ContentLayout.ContentName="body"
+      <fxui:ListView Style="{StaticResource productList}" fxui:LayoutControl.ContentName="body"
         DataSource="{Binding Catalog.Products}"
         ItemFilter="{Binding ProductFilter}" ItemSort="{Binding ProductSort}">
         <fxui:ListView.ItemTemplate>
@@ -69,7 +69,7 @@
           <fxeffect:Fade FadeOpacity="0.1" Duration="0:0:0.5" />
         </fxui:ListView.ItemRemovedEffect>
       </fxui:ListView>
-      <fxui:HStackPanel fxui:ContentLayout.ContentName="footerLeft" Grid.Column="1" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
+      <fxui:HStackPanel fxui:LayoutControl.ContentName="footerLeft" Grid.Column="1" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
         <TextBlock Text="Sort:" />
         <ComboBox Width="150" Height="21"
           SelectedItem="{Binding ProductSort, Mode=TwoWay}">
@@ -84,13 +84,13 @@
           Minimum="0" Maximum="{Binding Catalog.PriceRange}"
           Value="{Binding ProductFilter, Mode=TwoWay, Converter={StaticResource priceConverter}}" />
       </fxui:HStackPanel>
-    </fxui:ContentLayout>
+    </app:SectionLayout>
 
     <!-- Product Detail -->
-    <fxui:ContentLayout Grid.Column="3" Grid.Row="2" Template="{StaticResource partLayout}">
-      <TextBlock fxui:ContentLayout.ContentName="header" Style="{StaticResource partTitleText}"
+    <app:SectionLayout Grid.Column="3" Grid.Row="2">
+      <TextBlock fxui:LayoutControl.ContentName="header" Style="{StaticResource sectionTitleText}"
         Text="Product Details" VerticalAlignment="Center" />
-      <fxui:DetailView x:Name="productView" fxui:ContentLayout.ContentName="body"
+      <fxui:DetailView x:Name="productView" fxui:LayoutControl.ContentName="body"
         HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
         DataSource="{Binding SelectedProduct}">
         <fxui:DetailView.ItemTemplate>
@@ -102,7 +102,7 @@
           <fxtransition:Slide Mode="Left" Duration="0:0:0.5" />
         </fxui:DetailView.ItemTransition>
       </fxui:DetailView>
-      <fxui:HStackPanel fxui:ContentLayout.ContentName="footerRight" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
+      <fxui:HStackPanel fxui:LayoutControl.ContentName="footerRight" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
         <TextBlock Text="Quantity:" />
         <fxui:XTextBox x:Name="quantityTextBox" Style="{StaticResource textBox}" Text="1" Width="50" Height="23">
           <fxui:Interaction.Behaviors>
@@ -113,13 +113,13 @@
           Content="Add to Cart"
           fxui:Interaction.Action="$model.ShoppingCart.AddItem(productView.Item.DataContext, quantityTextBox.Text)"/>
       </fxui:HStackPanel>
-    </fxui:ContentLayout>
+    </app:SectionLayout>
 
     <!-- Shopping Cart -->
-    <fxui:ContentLayout Grid.Column="3" Grid.Row="4" Template="{StaticResource partLayout}">
-      <TextBlock fxui:ContentLayout.ContentName="header" Style="{StaticResource partTitleText}" VerticalAlignment="Center"
+    <app:SectionLayout Grid.Column="3" Grid.Row="4">
+      <TextBlock fxui:LayoutControl.ContentName="header" Style="{StaticResource sectionTitleText}" VerticalAlignment="Center"
         Text="Shopping Cart" />
-      <dc:DataGrid x:Name="cartDataGrid" fxui:ContentLayout.ContentName="body"
+      <dc:DataGrid x:Name="cartDataGrid" fxui:LayoutControl.ContentName="body"
         AutoGenerateColumns="False" CanUserReorderColumns="False" SelectionMode="Single"
         ItemsSource="{Binding ShoppingCart.Order.Items}">
         <dc:DataGrid.Columns>
@@ -144,14 +144,14 @@
           </dc:DataGridTextColumn>
         </dc:DataGrid.Columns>
       </dc:DataGrid>
-      <fxui:HStackPanel fxui:ContentLayout.ContentName="footerRight" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
+      <fxui:HStackPanel fxui:LayoutControl.ContentName="footerRight" ChildFlow="Right" ChildAlignment="Center" ChildSpacing="4">
         <Button Height="23" Width="75"
           Content="Checkout"
           IsEnabled="{Binding ShoppingCart.CanCheckout}"
           fxui:Interaction.Action="$model.ShoppingCart.Checkout()" />
         <TextBlock Text="{Binding ShoppingCart.Order.Total, Converter={StaticResource currencyFormatter}, ConverterParameter=' Total: ', ConverterCulture='en-US'}" />
       </fxui:HStackPanel>
-    </fxui:ContentLayout>
+    </app:SectionLayout>
 
   </fxui:XGrid>
 </fxui:Window>

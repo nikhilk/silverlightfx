@@ -130,15 +130,10 @@
     <Compile Include="UserInterface\Command.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserInterface\ContentCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UserInterface\ContentLayout.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\LayoutControl.cs" />
     <Compile Include="UserInterface\Navigation\PageCache.cs" />
     <Compile Include="UserInterface\Navigation\PageJournal.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatedEventArgs.cs" />
