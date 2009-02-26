@@ -91,9 +91,6 @@
     <Compile Include="Views\ProductTile.xaml.cs">
       <DependentUpon>ProductTile.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SectionLayout.xaml.cs">
-      <DependentUpon>SectionLayout.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
@@ -130,10 +127,6 @@
     <Page Include="Views\ProductTile.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\SectionLayout.xaml">
-      <SubType>Page</SubType>
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

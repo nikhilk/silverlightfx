@@ -11,8 +11,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
 namespace Experiments {
-    public partial class LayoutControlPage : UserControl {
-        public LayoutControlPage() {
+    public partial class TemplatePanelPage : UserControl {
+        public TemplatePanelPage() {
             InitializeComponent();
         }
     }

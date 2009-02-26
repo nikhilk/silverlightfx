@@ -61,7 +61,7 @@
     <Content Include="Effects\EffectControl.xap" />
     <Content Include="Effects\EffectsSample.xap" />
     <Content Include="Experiments\AutoCommitSample.aspx" />
-    <Content Include="Experiments\LayoutControlSample.aspx" />
+    <Content Include="Experiments\TemplatePanelSample.aspx" />
     <Content Include="Experiments\ContentTransitionSample.aspx" />
     <Content Include="Experiments\DataEntrySample.aspx" />
     <Content Include="Experiments\DetailView.aspx" />

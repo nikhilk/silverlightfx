@@ -68,8 +68,8 @@
     <Compile Include="BouncePage.xaml.cs">
       <DependentUpon>BouncePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LayoutControlPage.xaml.cs">
-      <DependentUpon>LayoutControlPage.xaml</DependentUpon>
+    <Compile Include="TemplatePanelPage.xaml.cs">
+      <DependentUpon>TemplatePanelPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ContentTransitionPage.xaml.cs">
       <DependentUpon>ContentTransitionPage.xaml</DependentUpon>
@@ -106,9 +106,6 @@
     </Compile>
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Sections.xaml.cs">
-      <DependentUpon>Sections.xaml</DependentUpon>
     </Compile>
     <Compile Include="SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
@@ -151,7 +148,7 @@
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="LayoutControlPage.xaml">
+    <Page Include="TemplatePanelPage.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -194,10 +191,6 @@
     <Page Include="SearchPage.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Sections.xaml">
-      <SubType>Page</SubType>
-      <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
     <Page Include="SettingsPage.xaml">
       <SubType>Page</SubType>

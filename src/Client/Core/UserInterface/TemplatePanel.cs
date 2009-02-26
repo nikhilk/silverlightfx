@@ -1,4 +1,4 @@
-﻿// LayoutControl.cs
+﻿// TemplatePanel.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -21,32 +21,29 @@ using System.Windows.Markup;
 namespace SilverlightFX.UserInterface {
 
     /// <summary>
-    /// A control that presents a list of multiple individual content elements arranged
-    /// in a layout defined by a set of ContentPresenter elements. This layout itself is
-    /// defined in the same way a UserControl's content is defined.
-    /// Content elements are matched to associated ContentPresenter elements
-    /// via the attached ContentName property.
+    /// A panel-like control that presents its children arranged within a template.
+    /// Each child is matched to its associated ContentPresenter element in this
+    /// control's template via an attached ContentName property.
     /// </summary>
     [ContentProperty("ContentList")]
-    public class LayoutControl : UserControl {
+    public class TemplatePanel : Control {
 
         private static readonly DependencyProperty ContainerProperty =
-            DependencyProperty.RegisterAttached("Container", typeof(LayoutControl), typeof(LayoutControl), null);
+            DependencyProperty.RegisterAttached("Container", typeof(TemplatePanel), typeof(TemplatePanel), null);
 
         /// <summary>
         /// Represents the ContentName attached property.
         /// </summary>
         public static readonly DependencyProperty ContentNameProperty =
-            DependencyProperty.RegisterAttached("ContentName", typeof(string), typeof(LayoutControl),
+            DependencyProperty.RegisterAttached("ContentName", typeof(string), typeof(TemplatePanel),
                                                 new PropertyMetadata(OnContentNamePropertyChanged));
 
         private ObservableCollection<UIElement> _contentList;
-        private bool _loaded;
 
         /// <summary>
-        /// Initializes an instance of a LayoutControl.
+        /// Initializes an instance of a TemplatePanel.
         /// </summary>
-        public LayoutControl() {
+        public TemplatePanel() {
             _contentList = new ObservableCollection<UIElement>();
             _contentList.CollectionChanged += OnContentListCollectionChanged;
 
@@ -62,8 +59,8 @@ namespace SilverlightFX.UserInterface {
             }
         }
 
-        internal static LayoutControl GetContainer(DependencyObject o) {
-            return (LayoutControl)o.GetValue(ContainerProperty);
+        internal static TemplatePanel GetContainer(DependencyObject o) {
+            return (TemplatePanel)o.GetValue(ContainerProperty);
         }
 
         /// <summary>
@@ -77,41 +74,59 @@ namespace SilverlightFX.UserInterface {
 
         private ContentPresenter GetPresenter(string name) {
             if (String.IsNullOrEmpty(name) == false) {
-                return FindName(name) as ContentPresenter;
+                return GetTemplateChild(name) as ContentPresenter;
             }
             return null;
         }
 
-        private void OnContentListCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
-            if (_loaded == false) {
-                return;
-            }
+        /// <internalonly />
+        public override void OnApplyTemplate() {
+            base.OnApplyTemplate();
 
+            if (_contentList.Count != 0) {
+                Dispatcher.BeginInvoke(delegate() {
+                    foreach (UIElement content in _contentList) {
+                        string contentName = TemplatePanel.GetContentName(content);
+                        ContentPresenter contentPresenter = GetPresenter(contentName);
+
+                        if (contentPresenter != null) {
+                            Grid grid = new Grid();
+                            grid.Children.Add(content);
+
+                            contentPresenter.Content = grid;
+                            grid.UpdateLayout();
+                        }
+                    }
+                });
+            }
+        }
+
+        private void OnContentListCollectionChanged(object sender, NotifyCollectionChangedEventArgs e) {
             if (e.Action == NotifyCollectionChangedAction.Add) {
                 UIElement content = (UIElement)e.NewItems[0];
 
-                LayoutControl currentOwner = LayoutControl.GetContainer(content);
+                TemplatePanel currentOwner = TemplatePanel.GetContainer(content);
                 if (currentOwner != null) {
                     currentOwner.ContentList.Remove(content);
                 }
 
-                LayoutControl.SetContainer(content, this);
+                TemplatePanel.SetContainer(content, this);
 
-                string contentName = LayoutControl.GetContentName(content);
+                string contentName = TemplatePanel.GetContentName(content);
 
                 ContentPresenter contentPresenter = GetPresenter(contentName);
                 if (contentPresenter != null) {
                     Grid grid = new Grid();
-                    contentPresenter.Content = grid;
-
                     grid.Children.Add(content);
+
+                    contentPresenter.Content = grid;
                     grid.UpdateLayout();
                 }
             }
             else if (e.Action == NotifyCollectionChangedAction.Remove) {
                 UIElement content = (UIElement)e.OldItems[0];
 
-                string contentName = LayoutControl.GetContentName(content);
+                string contentName = TemplatePanel.GetContentName(content);
 
                 ContentPresenter contentPresenter = GetPresenter(contentName);
                 if (contentPresenter != null) {
@@ -137,42 +152,17 @@ namespace SilverlightFX.UserInterface {
         }
 
         private static void OnContentNamePropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e) {
-            LayoutControl currentOwner = GetContainer(o);
+            TemplatePanel currentOwner = GetContainer(o);
             if (currentOwner != null) {
                 currentOwner.OnContentNameChanged(o, (string)e.OldValue, (string)e.NewValue);
             }
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e) {
-            if (_contentList.Count != 0) {
-                Dispatcher.BeginInvoke(delegate() {
-                    bool layoutContentAdded = false;
-
-                    foreach (UIElement content in _contentList) {
-                        if (layoutContentAdded == false) {
-                            Content = content;
-                            layoutContentAdded = true;
-                            continue;
-                        }
-
-                        string contentName = LayoutControl.GetContentName(content);
-                        ContentPresenter contentPresenter = GetPresenter(contentName);
-
-                        if (contentPresenter != null) {
-                            Grid grid = new Grid();
-                            grid.Children.Add(content);
-
-                            contentPresenter.Content = grid;
-                            grid.UpdateLayout();
-                        }
-                    }
-                });
-            }
-
-            _loaded = true;
+            ApplyTemplate();
         }
 
-        internal static void SetContainer(DependencyObject o, LayoutControl value) {
+        internal static void SetContainer(DependencyObject o, TemplatePanel value) {
             o.SetValue(ContainerProperty, value);
         }
 

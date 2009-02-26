@@ -13,23 +13,22 @@
     <fxeffect:Fade FadeOpacity="0" Duration="0:0:0.5" />
   </fxui:Form.CloseEffect>
   
-  <app:SectionLayout>
-    <TextBlock fxui:LayoutControl.ContentName="header" Style="{StaticResource sectionTitleText}"
+  <fxui:TemplatePanel Style="{StaticResource sectionStyle}" Background="{StaticResource backgroundBrush}">
+    <TextBlock fxui:TemplatePanel.ContentName="header" Style="{StaticResource sectionTitleText}"
         Text="About Silverlight Store" VerticalAlignment="Center" />
-    <Grid fxui:LayoutControl.ContentName="body" Background="{StaticResource backgroundBrush}" Margin="-4">
-      <fxui:VStackPanel ChildSpacing="4" ChildFlow="Top" ChildAlignment="Left" Margin="8">
-        <fxui:HStackPanel ChildSpacing="8" ChildFlow="Center" ChildAlignment="Center" Margin="0,0,0,16" HorizontalAlignment="Stretch">
-          <Image Height="58" Source="/Themes/SilverlightLogo.png" />
-          <Image Height="58" Source="/Themes/AmazonLogo.png" />
-        </fxui:HStackPanel>
-        <TextBlock Text="Silverlight Store is a sample application demonstrating building an Amazon mashup using Silverlight 2 and Silverlight.FX."
-          TextWrapping="Wrap" Margin="0,0,0,16" />
-        <HyperlinkButton Style="{StaticResource aboutHyperlink}" Content="Nikhil Kothari's Blog..." NavigateUri="http://www.nikhilk.net" />
-        <HyperlinkButton Style="{StaticResource aboutHyperlink}" Content="How this application was developed..." NavigateUri="http://www.nikhilk.net/Silverlight-Store-Sample.aspx" />
-        <HyperlinkButton Style="{StaticResource aboutHyperlink}" Content="About Silverlight.FX..." NavigateUri="http://projects.nikhilk.net/SilverlightFX" />
-      </fxui:VStackPanel>
-    </Grid>
-    <Button fxui:LayoutControl.ContentName="footerRight" Height="23" Width="75"
+    <fxui:VStackPanel fxui:TemplatePanel.ContentName="body"
+      ChildSpacing="4" ChildFlow="Top" ChildAlignment="Left" Margin="8">
+      <fxui:HStackPanel ChildSpacing="8" ChildFlow="Center" ChildAlignment="Center" Margin="0,0,0,16" HorizontalAlignment="Stretch">
+        <Image Height="58" Source="/Themes/SilverlightLogo.png" />
+        <Image Height="58" Source="/Themes/AmazonLogo.png" />
+      </fxui:HStackPanel>
+      <TextBlock Text="Silverlight Store is a sample application demonstrating building an Amazon mashup using Silverlight 2 and Silverlight.FX."
+        TextWrapping="Wrap" Margin="0,0,0,16" />
+      <HyperlinkButton Style="{StaticResource aboutHyperlink}" Content="Nikhil Kothari's Blog..." NavigateUri="http://www.nikhilk.net" />
+      <HyperlinkButton Style="{StaticResource aboutHyperlink}" Content="How this application was developed..." NavigateUri="http://www.nikhilk.net/Silverlight-Store-Sample.aspx" />
+      <HyperlinkButton Style="{StaticResource aboutHyperlink}" Content="About Silverlight.FX..." NavigateUri="http://projects.nikhilk.net/SilverlightFX" />
+    </fxui:VStackPanel>
+    <Button fxui:TemplatePanel.ContentName="footerRight" Height="23" Width="75"
         Content="OK" fxui:Interaction.Command="OK" />
-  </app:SectionLayout>
+  </fxui:TemplatePanel>
 </fxui:Form>
