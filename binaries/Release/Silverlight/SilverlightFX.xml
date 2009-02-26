@@ -548,6 +548,221 @@
             Gets or sets the delay for starting the animation.
             </summary>
         </member>
+        <member name="T:SilverlightFX.UserInterface.Glitz.ElasticInterpolation">
+            <summary>
+            Represents an elastic easing interpolation that introduces spring-like start
+            and finish animation.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.EasingInterpolation">
+            <summary>
+            An interpolation implementation that eases the linear interpolation at the start,
+            end or both start and end of the animation.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Media.Glitz.TweenInterpolation">
+            <summary>
+            Provides the functionality for interpolating an animation from start to finish.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.#ctor">
+            <summary>
+            Initializes an instance of TweenInterpolation.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.#ctor(System.Boolean)">
+            <summary>
+            Initializes an instance of TweenInterpolation.
+            </summary>
+            <param name="isLinear">Whether this instance represents the linear interpolation.</param>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.Interpolate(System.Double)">
+            <summary>
+            Implements a interpolation function that progresses an animation.
+            This represents a function f(t) where t = [0...1] such that
+            it is continuous and f(0) == 0 and f(1) == 1.
+            Interpolation can be used to modify the default linear progression.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.TweenInterpolation.IsLinearInterpolation">
+            <summary>
+            Gets whether this interpolation represents the no-op linear interpolation.
+            </summary>
+        </member>
+        <member name="F:System.Windows.Media.Glitz.EasingInterpolation.Default">
+            <summary>
+            A default EasingInterpolation that accelerates the animation at the start
+            and decelerates the animation at the end.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.Interpolate(System.Double)">
+            <internalonly />
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBackIn(System.Double,System.Double,System.Double)">
+            <summary>
+            Performs back interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="amplitude">The relative distance of the backing.</param>
+            <param name="suppression">How quickly the backing is suppressed.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBackOut(System.Double,System.Double,System.Double)">
+            <summary>
+            Performs back interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="amplitude">The relative distance of the backing.</param>
+            <param name="suppression">How quickly the backing is suppressed.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBounceIn(System.Double,System.Int32,System.Double)">
+            <summary>
+            Performs bouncing interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="bounces">The number of bounces to introduce.</param>
+            <param name="bounciness">Determines the height of the bounces.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBounceOut(System.Double,System.Int32,System.Double)">
+            <summary>
+            Performs bouncing interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="bounces">The number of bounces to introduce.</param>
+            <param name="bounciness">Determines the height of the bounces.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateElasticIn(System.Double,System.Int32,System.Double)">
+            <summary>
+            Performs elastic interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="oscillations">The number of oscillations to introduce.</param>
+            <param name="springiness">Determines the strength of the oscillations.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateElasticOut(System.Double,System.Int32,System.Double)">
+            <summary>
+            Performs elastic interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="oscillations">The number of oscillations to introduce.</param>
+            <param name="springiness">Determines the strength of the oscillations.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateExponentialIn(System.Double,System.Double)">
+            <summary>
+            Performs exponential interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="power">The amount of exponential growth.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateExponentialOut(System.Double,System.Double)">
+            <summary>
+            Performs exponential interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <param name="power">The amount of exponential decay.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateIn(System.Double)">
+            <summary>
+            Performs the interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateOut(System.Double)">
+            <summary>
+            Performs the interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateQuadraticIn(System.Double)">
+            <summary>
+            Performs quadratic interpolation when the selected easing mode is set to EaseIn
+            or during the first half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateQuadraticOut(System.Double)">
+            <summary>
+            Performs quadratic interpolation when the selected easing mode is set to EaseOut
+            or during the second half of an EaseInOut interpolation.
+            </summary>
+            <param name="t">The current progress value based on linear interpolation.</param>
+            <returns>The modified value to use as the new progress value.</returns>
+        </member>
+        <member name="P:System.Windows.Media.Glitz.EasingInterpolation.Mode">
+            <summary>
+            Gets or sets how the easing should be done by the interpolation.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.#ctor">
+            <summary>
+            Initializes an instance of a ElasticInterpolation.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.InterpolateIn(System.Double)">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.InterpolateOut(System.Double)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.Oscillations">
+            <summary>
+            Gets or sets the number of spring oscillations.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.Springiness">
+            <summary>
+            Gets or sets the relative height of the bounces.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Controls.NavigatingEventArgs">
+            <summary>
+            Represents the event information for a Navigating event.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.CancelEventArgs">
+            <summary>
+            Represents the event argument associated with a cancelable action.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.CancelEventArgs.Canceled">
+            <summary>
+            Whether the action is to be canceled.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Controls.NavigatingEventArgs.CanCancel">
+            <summary>
+            Gets whether the navigation can be canceled or not.
+            A navigation might not be cancelable if an external journal
+            is causing the navigation.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Controls.NavigatingEventArgs.Uri">
+            <summary>
+            Gets the URI being navigated to.
+            </summary>
+        </member>
         <member name="T:SilverlightFX.UserInterface.ContentView">
             <summary>
             A derived ContentControl that supports transitions to animate from
@@ -1004,9 +1219,10 @@
             The Label is placed on the top of its associated control.
             </summary>
         </member>
-        <member name="T:SilverlightFX.UserInterface.AutoCommit">
+        <member name="T:SilverlightFX.UserInterface.MouseWheelScroll">
             <summary>
-            A behavior that can be associated with the TextBox control to add commit semantics.
+            A behavior that can be associated with an element that supports
+            vertical scrolling.
             </summary>
         </member>
         <member name="T:System.Windows.Interactivity.Behavior`1">
@@ -1035,6 +1251,28 @@
         <member name="P:System.Windows.Interactivity.Behavior`1.AssociatedObject">
             <summary>
             The object associated with the trigger.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.MouseWheelScroll.#ctor">
+            <summary>
+            Initializes an instance of a MouseWheelScroll.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.MouseWheelScroll.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.MouseWheelScroll.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.MouseWheelScroll.ScrollSize">
+            <summary>
+            Gets or sets the number of scroll units the control should be
+            scrolled per mouse wheel turn.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.AutoCommit">
+            <summary>
+            A behavior that can be associated with the TextBox control to add commit semantics.
             </summary>
         </member>
         <member name="M:SilverlightFX.UserInterface.AutoCommit.#ctor">
@@ -1355,6 +1593,102 @@
             Gets or sets the nature of the transition.
             </summary>
         </member>
+        <member name="T:SilverlightFX.UserInterface.Navigation.ErrorPage">
+            <summary>
+            Represents a page that can display error information.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Navigation.Page">
+            <summary>
+            Represents a page within the application's user interface.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Navigation.Page.KeepAliveProperty">
+            <summary>
+            Represents the Disposition property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.Page.#ctor">
+            <summary>
+            Initializes an instance of a Page.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.Page.#ctor(System.Object)">
+            <summary>
+            Initializes an instance of a Page with an associated view model.
+            The view model is set as the DataContext of the Form.
+            </summary>
+            <param name="viewModel">The associated view model object.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.Page.OnNavigated(SilverlightFX.UserInterface.Navigation.PageNavigatedEventArgs)">
+            <summary>
+            Raises the Navigated event.
+            </summary>
+            <param name="e">The data associated with the event.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.Page.OnNavigating(SilverlightFX.UserInterface.Navigation.PageNavigatingEventArgs)">
+            <summary>
+            Raises the Navigating event.
+            </summary>
+            <param name="e">The data associated with the event.</param>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.Page.KeepAlive">
+            <summary>
+            Gets or sets the how the page should be cached or preserved when it
+            is no longer the active page the PageFrame it is hosted in.
+            True implies it must be preserved. False implies it should not be
+            preserved. The default, null, implies that the PageFrame can cache
+            it according to its own policy.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.Page.Uri">
+            <summary>
+            Gets the URI associated with this page instance, if the Page is being
+            hosted within a PageFrame.
+            </summary>
+        </member>
+        <member name="E:SilverlightFX.UserInterface.Navigation.Page.Navigated">
+            <summary>
+            Raised when the page has been navigated to.
+            </summary>
+        </member>
+        <member name="E:SilverlightFX.UserInterface.Navigation.Page.Navigating">
+            <summary>
+            Raised when the page is being navigated away from.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.ErrorPage.#ctor">
+            <summary>
+            Initializes an instance of a ErrorPage.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.ErrorPage.#ctor(System.Object)">
+            <summary>
+            Initializes an instance of a Page with an associated view model.
+            The view model is set as the DataContext of the Form.
+            </summary>
+            <param name="viewModel">The associated view model object.</param>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.ErrorPage.Error">
+            <summary>
+            Gets the error associated with this ErrorPage instance.
+            </summary>
+        </member>
+        <member name="T:System.Windows.Controls.NavigatedEventArgs">
+            <summary>
+            Represents the event information for a Navigated event.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Controls.NavigatedEventArgs.HasError">
+            <summary>
+            Gets whether an error was encountered navigating to the URI.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Controls.NavigatedEventArgs.Uri">
+            <summary>
+            Gets the URI that was navigated to.
+            </summary>
+        </member>
         <member name="T:SilverlightFX.UserInterface.AutoCompleteCompletedEventArgs">
             <summary>
             The event data associated with the AutoComplete behavior's Completed event.
@@ -1603,6 +1937,33 @@
             The value to be passed from one element to another during binding.
             </summary>
         </member>
+        <member name="T:System.Windows.Controls.INavigationTarget">
+            <summary>
+            Represents a control that provides navigation semantics. Typically implemented
+            by Frame controls.
+            </summary>
+        </member>
+        <member name="M:System.Windows.Controls.INavigationTarget.Navigate(System.Uri)">
+            <summary>
+            Navigates the control to the specified URI.
+            </summary>
+            <param name="uri">The URI to navigate to.</param>
+        </member>
+        <member name="P:System.Windows.Controls.INavigationTarget.Uri">
+            <summary>
+            Gets the URI to which the control has been navigated to.
+            </summary>
+        </member>
+        <member name="E:System.Windows.Controls.INavigationTarget.Navigated">
+            <summary>
+            Raised to indicate that the control has completed a navigation.
+            </summary>
+        </member>
+        <member name="E:System.Windows.Controls.INavigationTarget.Navigating">
+            <summary>
+            Raised to indicate that the control is performing a navigation.
+            </summary>
+        </member>
         <member name="T:System.ComponentModel.TypeTypeConverter">
             <summary>
             Converts between Type and String.
@@ -1677,6 +2038,70 @@
         <member name="P:SilverlightFX.UserInterface.Effects.Pulsate.FadeOpacity">
             <summary>
             Gets or sets the value to fade to.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Navigation.PageLoader">
+            <summary>
+            Represents an object that can load pages given a URI.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageLoader.BeginLoadPage(System.Uri,SilverlightFX.UserInterface.Navigation.Page,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins loading a page for the specified URI.
+            </summary>
+            <param name="uri">The URI to be loaded.</param>
+            <param name="uriContext">The current Page if one is available as context.</param>
+            <param name="callback">The callback to be invoked once the page is available.</param>
+            <param name="userState">Contextual information to be passed to the callback.</param>
+            <returns>An async result representing the load operation.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageLoader.BeginLoadUri(System.Uri,SilverlightFX.UserInterface.Navigation.Page,System.AsyncCallback,System.Object)">
+            <summary>
+            Begins loading the data for the specified URI. The default implementation
+            interprets the URI as the type name of a page within the application.
+            </summary>
+            <param name="uri">The URI to be loaded.</param>
+            <param name="uriContext">The current Page if one is available as context.</param>
+            <param name="callback">The callback to be invoked once the data is available.</param>
+            <param name="userState">Contextual information to be passed to the callback.</param>
+            <returns>An async result representing the load operation.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageLoader.CreatePage(System.Object)">
+            <summary>
+            Creates a page instance from the specified data. The default implementation
+            tries to interpret the data as the page instance itself.
+            </summary>
+            <param name="data">The data to use to create the frame.</param>
+            <returns>The result page.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageLoader.EndLoadPage(System.IAsyncResult,System.Uri@)">
+            <summary>
+            Ends loading a page.
+            </summary>
+            <param name="asyncResult">The async result representing the load operation.</param>
+            <param name="redirectUri">The URI to redirect to if a redirect must be performed.</param>
+            <returns>The loaded page.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageLoader.EndLoadUri(System.IAsyncResult,System.Uri@)">
+            <summary>
+            Ends loading the data.
+            </summary>
+            <param name="asyncResult">The async result representing the load operation.</param>
+            <param name="redirectUri">The URI to redirect to if a redirect must be performed.</param>
+            <returns>The loaded data.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageLoader.MapUri(System.Uri,SilverlightFX.UserInterface.Navigation.Page)">
+            <summary>
+            Maps a given URI (typically a canonical URI) into a specific URI that can be
+            loaded. The default implementation simply returns the URI as-is.
+            </summary>
+            <param name="uri">The URI to map.</param>
+            <param name="uriContext">The current Page if one is available as context.</param>
+            <returns>The mapped URI; null if the URI cannot be mapped.</returns>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageLoader.Frame">
+            <summary>
+            Gets the PageFrame owning this PageLoader.
             </summary>
         </member>
         <member name="T:System.ComponentModel.IComponentContainer">
@@ -2216,23 +2641,6 @@
             Gets or sets the specific mode of slide behavior to use for the transition.
             </summary>
         </member>
-        <member name="T:SilverlightFX.UserInterface.Page">
-            <summary>
-            Represents a page within the application's user interface.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Page.#ctor">
-            <summary>
-            Initializes an instance of a Page.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Page.#ctor(System.Object)">
-            <summary>
-            Initializes an instance of a Page with an associated view model.
-            The view model is set as the DataContext of the Form.
-            </summary>
-            <param name="viewModel">The associated view model object.</param>
-        </member>
         <member name="T:SilverlightFX.UserInterface.FormResult">
             <summary>
             Represents the result of a Form instance when it is closed.
@@ -2266,171 +2674,18 @@
             Gets or sets the final value of the opacity that this effect should animate to.
             </summary>
         </member>
-        <member name="T:SilverlightFX.UserInterface.ContentCollection">
+        <member name="T:SilverlightFX.UserInterface.Glitz.LinearInterpolation">
             <summary>
-            A list of content elements.
+            Represents a linear or no-op interpolation
             </summary>
         </member>
-        <member name="T:System.Windows.Media.Glitz.EasingInterpolation">
+        <member name="M:SilverlightFX.UserInterface.Glitz.LinearInterpolation.#ctor">
             <summary>
-            An interpolation implementation that eases the linear interpolation at the start,
-            end or both start and end of the animation.
+            Initializes an instance of a LinearInterpolation.
             </summary>
         </member>
-        <member name="T:System.Windows.Media.Glitz.TweenInterpolation">
-            <summary>
-            Provides the functionality for interpolating an animation from start to finish.
-            </summary>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.#ctor">
-            <summary>
-            Initializes an instance of TweenInterpolation.
-            </summary>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.#ctor(System.Boolean)">
-            <summary>
-            Initializes an instance of TweenInterpolation.
-            </summary>
-            <param name="isLinear">Whether this instance represents the linear interpolation.</param>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.TweenInterpolation.Interpolate(System.Double)">
-            <summary>
-            Implements a interpolation function that progresses an animation.
-            This represents a function f(t) where t = [0...1] such that
-            it is continuous and f(0) == 0 and f(1) == 1.
-            Interpolation can be used to modify the default linear progression.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="P:System.Windows.Media.Glitz.TweenInterpolation.IsLinearInterpolation">
-            <summary>
-            Gets whether this interpolation represents the no-op linear interpolation.
-            </summary>
-        </member>
-        <member name="F:System.Windows.Media.Glitz.EasingInterpolation.Default">
-            <summary>
-            A default EasingInterpolation that accelerates the animation at the start
-            and decelerates the animation at the end.
-            </summary>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.Interpolate(System.Double)">
+        <member name="M:SilverlightFX.UserInterface.Glitz.LinearInterpolation.Interpolate(System.Double)">
             <internalonly />
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBackIn(System.Double,System.Double,System.Double)">
-            <summary>
-            Performs back interpolation when the selected easing mode is set to EaseIn
-            or during the first half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <param name="amplitude">The relative distance of the backing.</param>
-            <param name="suppression">How quickly the backing is suppressed.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBackOut(System.Double,System.Double,System.Double)">
-            <summary>
-            Performs back interpolation when the selected easing mode is set to EaseOut
-            or during the second half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <param name="amplitude">The relative distance of the backing.</param>
-            <param name="suppression">How quickly the backing is suppressed.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBounceIn(System.Double,System.Int32,System.Double)">
-            <summary>
-            Performs bouncing interpolation when the selected easing mode is set to EaseIn
-            or during the first half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <param name="bounces">The number of bounces to introduce.</param>
-            <param name="bounciness">Determines the height of the bounces.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateBounceOut(System.Double,System.Int32,System.Double)">
-            <summary>
-            Performs bouncing interpolation when the selected easing mode is set to EaseOut
-            or during the second half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <param name="bounces">The number of bounces to introduce.</param>
-            <param name="bounciness">Determines the height of the bounces.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateElasticIn(System.Double,System.Int32,System.Double)">
-            <summary>
-            Performs elastic interpolation when the selected easing mode is set to EaseIn
-            or during the first half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <param name="oscillations">The number of oscillations to introduce.</param>
-            <param name="springiness">Determines the strength of the oscillations.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateElasticOut(System.Double,System.Int32,System.Double)">
-            <summary>
-            Performs elastic interpolation when the selected easing mode is set to EaseOut
-            or during the second half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <param name="oscillations">The number of oscillations to introduce.</param>
-            <param name="springiness">Determines the strength of the oscillations.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateExponentialIn(System.Double,System.Double)">
-            <summary>
-            Performs exponential interpolation when the selected easing mode is set to EaseIn
-            or during the first half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <param name="power">The amount of exponential growth.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateExponentialOut(System.Double,System.Double)">
-            <summary>
-            Performs exponential interpolation when the selected easing mode is set to EaseOut
-            or during the second half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <param name="power">The amount of exponential decay.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateIn(System.Double)">
-            <summary>
-            Performs the interpolation when the selected easing mode is set to EaseIn
-            or during the first half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateOut(System.Double)">
-            <summary>
-            Performs the interpolation when the selected easing mode is set to EaseOut
-            or during the second half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateQuadraticIn(System.Double)">
-            <summary>
-            Performs quadratic interpolation when the selected easing mode is set to EaseIn
-            or during the first half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="M:System.Windows.Media.Glitz.EasingInterpolation.InterpolateQuadraticOut(System.Double)">
-            <summary>
-            Performs quadratic interpolation when the selected easing mode is set to EaseOut
-            or during the second half of an EaseInOut interpolation.
-            </summary>
-            <param name="t">The current progress value based on linear interpolation.</param>
-            <returns>The modified value to use as the new progress value.</returns>
-        </member>
-        <member name="P:System.Windows.Media.Glitz.EasingInterpolation.Mode">
-            <summary>
-            Gets or sets how the easing should be done by the interpolation.
-            </summary>
         </member>
         <member name="T:SilverlightFX.UserInterface.Effects.Shake">
             <summary>
@@ -2912,43 +3167,31 @@
             Labels are right-aligned.
             </summary>
         </member>
-        <member name="T:SilverlightFX.UserInterface.ContentLayout">
+        <member name="T:SilverlightFX.UserInterface.Glitz.BounceInterpolation">
             <summary>
-            A control that presents a list of content elements with a template.
-            Content elements are matched to associated Panel elements
-            via the attached ContentName property.
+            Represents a bounce easing interpolation that starts the animation bouncing
+            or ends the animation bouncing.
             </summary>
         </member>
-        <member name="F:SilverlightFX.UserInterface.ContentLayout.ContentNameProperty">
+        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.#ctor">
             <summary>
-            Represents the ContentName attached property.
+            Initializes an instance of a BounceInterpolation.
             </summary>
         </member>
-        <member name="M:SilverlightFX.UserInterface.ContentLayout.#ctor">
-            <summary>
-            Initializes an instance of a ContentListControl.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.ContentLayout.GetContentName(System.Windows.DependencyObject)">
-            <summary>
-            Gets the value of the ContentName attached property.
-            </summary>
-            <param name="o">The object with the attached property.</param>
-            <returns>The name if it has been set; null otherwise.</returns>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.ContentLayout.OnApplyTemplate">
+        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.InterpolateIn(System.Double)">
             <internalonly />
         </member>
-        <member name="M:SilverlightFX.UserInterface.ContentLayout.SetContentName(System.Windows.DependencyObject,System.String)">
-            <summary>
-            Sets the value of the ContentName attached property.
-            </summary>
-            <param name="o">The object to attach a name to.</param>
-            <param name="value">The name to set.</param>
+        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.InterpolateOut(System.Double)">
+            <internalonly />
         </member>
-        <member name="P:SilverlightFX.UserInterface.ContentLayout.ContentList">
+        <member name="P:SilverlightFX.UserInterface.Glitz.BounceInterpolation.Bounces">
             <summary>
-            The list of content elements within the control.
+            Gets or sets the number of bounces.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Glitz.BounceInterpolation.Bounciness">
+            <summary>
+            Gets or sets the relative height of the bounces.
             </summary>
         </member>
         <member name="T:SilverlightFX.UserInterface.Command">
@@ -2971,6 +3214,13 @@
             <summary>
             Gets or sets the object to use as the parameter when invoking
             the command.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Command.CommandTarget">
+            <summary>
+            Gets or sets the object that surfaces the command to be invoke.
+            By default this is empty, which is used to select the object with which
+            this behavior is associated.
             </summary>
         </member>
         <member name="T:System.Windows.Interactivity.TriggerActionCollection">
@@ -3138,6 +3388,16 @@
             service provider.
             </summary>
             <param name="serviceProvider">The service provider providing access to inherited services.</param>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Navigation.PageNavigatingEventArgs">
+            <summary>
+            The event arguments associated with the Navigating event.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageNavigatingEventArgs.CanCancel">
+            <summary>
+            Whether the navigation can be canceled or not.
+            </summary>
         </member>
         <member name="T:SilverlightFX.Data.BooleanInverter">
             <summary>
@@ -3364,6 +3624,100 @@
             Gets or sets the color of the highlight.
             </summary>
         </member>
+        <member name="T:SilverlightFX.UserInterface.Navigation.PageFrame">
+            <summary>
+            A derived ContentControl that supports transitions to animate from
+            initial content to another content.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Navigation.PageFrame.DefaultUriProperty">
+            <summary>
+            Represents the DefaultUri property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Navigation.PageFrame.ErrorPageTypeProperty">
+            <summary>
+            Represents the ErrorPageType property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Navigation.PageFrame.TransitionProperty">
+            <summary>
+            Represents the Transition property.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.Navigation.PageFrame.UriProperty">
+            <summary>
+            Represents the Uri property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageFrame.#ctor">
+            <summary>
+            Initializes an instance of a PageFrame.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageFrame.Navigate(System.Uri)">
+            <summary>
+            Naviates the frame to the specified URI.
+            </summary>
+            <param name="uri">The URI to navigate to.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageFrame.OnApplyTemplate">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageFrame.OnNavigated(System.Windows.Controls.NavigatedEventArgs)">
+            <summary>
+            Raises the Navigated event.
+            </summary>
+            <param name="e">The data associated with the event.</param>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Navigation.PageFrame.OnNavigating(System.Windows.Controls.NavigatingEventArgs)">
+            <summary>
+            Raises the Navigating event.
+            </summary>
+            <param name="e">The data associated with the event.</param>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.DefaultUri">
+            <summary>
+            Gets or sets the default URI to navigate to when the Uri property
+            is not set. By default, this is simply "Default".
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.ErrorPageType">
+            <summary>
+            Gets or sets the type of the error page to use when there is an error.
+            If there is no error page, a default one is used.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.Loader">
+            <summary>
+            Gets or sets the loader used to load pages to be shown in the PageFrame.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.Page">
+            <summary>
+            Gets the currently loaded page if there is one; null otherwise.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.Transition">
+            <summary>
+            Gets or sets the transition to play when navigating from one page to another.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.Uri">
+            <summary>
+            Gets or sets the current Uri property.
+            </summary>
+        </member>
+        <member name="E:SilverlightFX.UserInterface.Navigation.PageFrame.Navigated">
+            <summary>
+            Raised when a new Uri has been navigated to by the frame.
+            </summary>
+        </member>
+        <member name="E:SilverlightFX.UserInterface.Navigation.PageFrame.Navigating">
+            <summary>
+            Raised when a new Uri is being navigated to by the frame.
+            </summary>
+        </member>
         <member name="T:SilverlightFX.UserInterface.Actions.Navigate">
             <summary>
             An action that navigates to a selected URI.
@@ -3379,8 +3733,19 @@
             Represents the Target property.
             </summary>
         </member>
+        <member name="M:SilverlightFX.UserInterface.Actions.Navigate.#ctor">
+            <summary>
+            Initializes an instance of Navigate.
+            </summary>
+        </member>
         <member name="M:SilverlightFX.UserInterface.Actions.Navigate.InvokeAction(System.EventArgs)">
             <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.Navigate.ExternalNavigation">
+            <summary>
+            Gets or sets the whether the navigation should be internal to the application
+            or external, i.e. at the level of HTML page containing the application.
+            </summary>
         </member>
         <member name="P:SilverlightFX.UserInterface.Actions.Navigate.NavigateUrl">
             <summary>
@@ -3724,16 +4089,6 @@
         <member name="M:System.Windows.Interactivity.TriggerCollection.RemoveItem(System.Int32)">
             <internalonly />
         </member>
-        <member name="T:System.ComponentModel.CancelEventArgs">
-            <summary>
-            Represents the event argument associated with a cancelable action.
-            </summary>
-        </member>
-        <member name="P:System.ComponentModel.CancelEventArgs.Canceled">
-            <summary>
-            Whether the action is to be canceled.
-            </summary>
-        </member>
         <member name="T:System.ComponentModel.CancelEventHandler">
             <summary>
             Represents the signature of an cancelable event handler.
@@ -3854,77 +4209,60 @@
             Gets or sets the amount to move in the vertical direction.
             </summary>
         </member>
+        <member name="T:SilverlightFX.UserInterface.Navigation.PageNavigatedEventArgs">
+            <summary>
+            The event arguments associated with the Navigated event.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageNavigatedEventArgs.IsFirstNavigation">
+            <summary>
+            Whether this is the first time a page is being navigated to, or is
+            being navigated to from a page cache.
+            </summary>
+        </member>
         <member name="T:SilverlightFX.Data.CurrencyFormatter">
             <summary>
             A value converter that can be used in a binding to generate
             a formatted string representation for a currency value.
             </summary>
         </member>
-        <member name="T:SilverlightFX.UserInterface.Glitz.LinearInterpolation">
+        <member name="T:SilverlightFX.UserInterface.TemplatePanel">
             <summary>
-            Represents a linear or no-op interpolation
+            A panel-like control that presents its children arranged within a template.
+            Each child is matched to its associated ContentPresenter element in this
+            control's template via an attached ContentName property.
             </summary>
         </member>
-        <member name="M:SilverlightFX.UserInterface.Glitz.LinearInterpolation.#ctor">
+        <member name="F:SilverlightFX.UserInterface.TemplatePanel.ContentNameProperty">
             <summary>
-            Initializes an instance of a LinearInterpolation.
+            Represents the ContentName attached property.
             </summary>
         </member>
-        <member name="M:SilverlightFX.UserInterface.Glitz.LinearInterpolation.Interpolate(System.Double)">
+        <member name="M:SilverlightFX.UserInterface.TemplatePanel.#ctor">
+            <summary>
+            Initializes an instance of a TemplatePanel.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TemplatePanel.GetContentName(System.Windows.DependencyObject)">
+            <summary>
+            Gets the value of the ContentName attached property.
+            </summary>
+            <param name="o">The object with the attached property.</param>
+            <returns>The name if it has been set; null otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.TemplatePanel.OnApplyTemplate">
             <internalonly />
         </member>
-        <member name="T:SilverlightFX.UserInterface.Glitz.BounceInterpolation">
+        <member name="M:SilverlightFX.UserInterface.TemplatePanel.SetContentName(System.Windows.DependencyObject,System.String)">
             <summary>
-            Represents a bounce easing interpolation that starts the animation bouncing
-            or ends the animation bouncing.
+            Sets the value of the ContentName attached property.
             </summary>
+            <param name="o">The object to attach a name to.</param>
+            <param name="value">The name to set.</param>
         </member>
-        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.#ctor">
+        <member name="P:SilverlightFX.UserInterface.TemplatePanel.ContentList">
             <summary>
-            Initializes an instance of a BounceInterpolation.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.InterpolateIn(System.Double)">
-            <internalonly />
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Glitz.BounceInterpolation.InterpolateOut(System.Double)">
-            <internalonly />
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Glitz.BounceInterpolation.Bounces">
-            <summary>
-            Gets or sets the number of bounces.
-            </summary>
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Glitz.BounceInterpolation.Bounciness">
-            <summary>
-            Gets or sets the relative height of the bounces.
-            </summary>
-        </member>
-        <member name="T:SilverlightFX.UserInterface.Glitz.ElasticInterpolation">
-            <summary>
-            Represents an elastic easing interpolation that introduces spring-like start
-            and finish animation.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.#ctor">
-            <summary>
-            Initializes an instance of a ElasticInterpolation.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.InterpolateIn(System.Double)">
-            <internalonly />
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.InterpolateOut(System.Double)">
-            <internalonly />
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.Oscillations">
-            <summary>
-            Gets or sets the number of spring oscillations.
-            </summary>
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.Springiness">
-            <summary>
-            Gets or sets the relative height of the bounces.
+            The list of content elements within the control.
             </summary>
         </member>
     </members>
