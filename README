@@ -21,11 +21,11 @@ providing the right building blocks including:
 - Making the right concepts declarative (eg. effects, behaviors)
 - Overall better structuring of the application (eg. themes, controls)
 
-Another focus is on keeping the framework lean and mean and being extremely
-mindful of size - this is all about being a RIA/Web-friendly framework.
-Currently the library comes in at ~55K compressed.
+Another equally important focus is on keeping the framework lean and mean
+and being mindful of size - this is all about being a RIA/Web-friendly
+framework. Currently the library comes in at ~60K compressed.
 
 
 You can read more about this framework and its features on various blog
 posts on http://www.nikhilk.net. Its dedicated project page will be at
-http://projects.nikhilk.net/SilverlightFX (not yet online).
+http://projects.nikhilk.net/SilverlightFX.
