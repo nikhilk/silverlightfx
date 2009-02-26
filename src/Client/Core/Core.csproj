@@ -133,7 +133,9 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserInterface\LayoutControl.cs" />
+    <Compile Include="UserInterface\TemplatePanel.cs" />
+    <Compile Include="UserInterface\Navigation\PageNavigatingEventArgs.cs" />
+    <Compile Include="UserInterface\Navigation\PageNavigatedEventArgs.cs" />
     <Compile Include="UserInterface\Navigation\PageCache.cs" />
     <Compile Include="UserInterface\Navigation\PageJournal.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatedEventArgs.cs" />

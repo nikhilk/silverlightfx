@@ -33,7 +33,7 @@ namespace SilverlightFX.UserInterface.Navigation {
                 return;
             }
 
-            string cacheKey = page.Uri.ToString();
+            string cacheKey = GetCacheKey(page.Uri);
 
             if ((_pages.ContainsKey(cacheKey) == false) &&
                 (_keepAlivePages.ContainsKey(cacheKey) == false)) {
@@ -48,8 +48,12 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
         }
 
+        private string GetCacheKey(Uri pageUri) {
+            return pageUri.ToString();
+        }
+
         public Page GetPage(Uri uri) {
-            string cacheKey = uri.ToString();
+            string cacheKey = GetCacheKey(uri);
             Page page = null;
 
             if (_keepAlivePages.TryGetValue(cacheKey, out page)) {
@@ -73,7 +77,7 @@ namespace SilverlightFX.UserInterface.Navigation {
         }
 
         public void RemovePageReference(Page page) {
-            string cacheKey = page.Uri.ToString();
+            string cacheKey = GetCacheKey(page.Uri);
 
             if (page.KeepAlive == true) {
                 if (_pages.ContainsKey(cacheKey)) {

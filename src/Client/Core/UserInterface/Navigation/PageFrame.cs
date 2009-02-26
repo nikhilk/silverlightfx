@@ -17,6 +17,12 @@ using System.Windows.Media.Glitz;
 
 namespace SilverlightFX.UserInterface.Navigation {
 
+    // TODO: Support for external journaling and browser history integration
+    //       Add LoadedUri to Page - this is the URI after mapping and is set by PageLoader
+    //       Fragment navigation
+    //       Add IsNavigating property once DependencyProperty supports change notification
+    //       in SL3
+
     /// <summary>
     /// A derived ContentControl that supports transitions to animate from
     /// initial content to another content.
@@ -227,20 +233,23 @@ namespace SilverlightFX.UserInterface.Navigation {
                 return;
             }
 
-            // TODO: False if we don't own journal - later
+            // TODO: False if we don't own journal and this navigation request is
+            //       because of a browser-based back/fwd/address change gesture
             bool canCancel = true;
 
             Page currentPage = Page;
             if (currentPage != null) {
-                bool cancel = !currentPage.OnDeactivating(canCancel);
-                if (canCancel && cancel) {
+                PageNavigatingEventArgs e = new PageNavigatingEventArgs(canCancel);
+                currentPage.OnNavigating(e);
+
+                if (canCancel && e.Canceled) {
                     return;
                 }
             }
 
             NavigatingEventArgs ne = new NavigatingEventArgs(navigationState.uri, canCancel);
             OnNavigating(ne);
-            if (ne.CanCancel && ne.Canceled) {
+            if (canCancel && ne.Canceled) {
                 return;
             }
 
@@ -314,6 +323,9 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// </summary>
         /// <param name="e">The data associated with the event.</param>
         protected virtual void OnNavigating(NavigatingEventArgs e) {
+            if (e.CanCancel && e.Canceled) {
+                return;
+            }
             if (_navigatingHandler != null) {
                 _navigatingHandler(this, e);
             }
@@ -341,7 +353,7 @@ namespace SilverlightFX.UserInterface.Navigation {
             _backCommand.UpdateStatus(_journal.CanGoBack);
             _forwardCommand.UpdateStatus(_journal.CanGoForward);
 
-            page.OnActivated(!navigationState.cachedPage);
+            page.OnNavigated(new PageNavigatedEventArgs(!navigationState.cachedPage));
 
             OnNavigated(new NavigatedEventArgs(navigationState.uri, page is ErrorPage));
         }

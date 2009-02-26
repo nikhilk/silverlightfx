@@ -29,6 +29,9 @@ namespace SilverlightFX.UserInterface.Navigation {
 
         private Uri _uri;
 
+        private EventHandler<PageNavigatedEventArgs> _navigatedHandler;
+        private EventHandler<PageNavigatingEventArgs> _navigatingHandler;
+
         /// <summary>
         /// Initializes an instance of a Page.
         /// </summary>
@@ -76,26 +79,50 @@ namespace SilverlightFX.UserInterface.Navigation {
         }
 
         /// <summary>
-        /// Allows a page to perform initialization upon being activated as a result
-        /// of being navigated to. A page may be activated multiple times as a result
-        /// of being cached and navigated to again.
+        /// Raised when the page has been navigated to.
         /// </summary>
-        /// <param name="firstNavigation">Whether this is the first time the page is being activated.</param>
-        protected internal virtual void OnActivated(bool firstNavigation) {
-            // TODO: Forward to view model - how?
+        public event EventHandler<PageNavigatedEventArgs> Navigated {
+            add {
+                _navigatedHandler = (EventHandler<PageNavigatedEventArgs>)Delegate.Combine(_navigatedHandler, value);
+            }
+            remove {
+                _navigatedHandler = (EventHandler<PageNavigatedEventArgs>)Delegate.Remove(_navigatedHandler, value);
+            }
         }
 
         /// <summary>
-        /// Allows a page to perform any work before it is deactivated as a result
-        /// of being navigated away from. A page may cancel deactivation if the
-        /// hosting PageFrame supports it. The default implementation does not cancel
-        /// deactivation, and lets the PageFrame proceed with navigation.
+        /// Raised when the page is being navigated away from.
         /// </summary>
-        /// <param name="canCancelNavigation">Whether deactivation can be canceled.</param>
-        /// <returns>true if the page can be deactivated; false otherwise.</returns>
-        protected internal virtual bool OnDeactivating(bool canCancelNavigation) {
-            // TODO: Forward to view model - how?
-            return true;
+        public event EventHandler<PageNavigatingEventArgs> Navigating {
+            add {
+                _navigatingHandler = (EventHandler<PageNavigatingEventArgs>)Delegate.Combine(_navigatingHandler, value);
+            }
+            remove {
+                _navigatingHandler = (EventHandler<PageNavigatingEventArgs>)Delegate.Remove(_navigatingHandler, value);
+            }
+        }
+
+        /// <summary>
+        /// Raises the Navigated event.
+        /// </summary>
+        /// <param name="e">The data associated with the event.</param>
+        protected internal virtual void OnNavigated(PageNavigatedEventArgs e) {
+            if (_navigatedHandler != null) {
+                _navigatedHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Raises the Navigating event.
+        /// </summary>
+        /// <param name="e">The data associated with the event.</param>
+        protected internal virtual void OnNavigating(PageNavigatingEventArgs e) {
+            if (e.CanCancel && e.Canceled) {
+                return;
+            }
+            if (_navigatingHandler != null) {
+                _navigatingHandler(this, e);
+            }
         }
     }
 }
