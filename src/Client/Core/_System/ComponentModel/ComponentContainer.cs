@@ -105,10 +105,10 @@ namespace System.ComponentModel {
         private object GetObject(Type objectType) {
             object instance;
             if (_registeredTypes.TryGetValue(objectType, out instance)) {
-                ComponentCreator creator = instance as ComponentCreator;
+                IComponentCreator creator = instance as IComponentCreator;
                 if (creator != null) {
                     bool singleInstance = false;
-                    instance = creator(objectType, this, out singleInstance);
+                    instance = creator.CreateInstance(objectType, this, out singleInstance);
 
                     if (instance != null) {
                         if (((IComponentContainer)this).InitializeObject(instance) == false) {
@@ -199,7 +199,13 @@ namespace System.ComponentModel {
             if ((attrs != null) && (attrs.Length != 0)) {
                 for (int i = 0; i < attrs.Length; i++) {
                     ServiceAttribute service = (ServiceAttribute)attrs[i];
-                    ((IComponentContainer)this).RegisterObject(service.ServiceType, objectInstance);
+
+                    if (objectInstance is IComponentCreator) {
+                        ((IComponentContainer)this).RegisterCreator(service.ServiceType, (IComponentCreator)objectInstance);
+                    }
+                    else {
+                        ((IComponentContainer)this).RegisterObject(service.ServiceType, objectInstance);
+                    }
                 }
             }
             else {
@@ -218,7 +224,7 @@ namespace System.ComponentModel {
             _registeredTypes[objectType] = objectInstance;
         }
 
-        void IComponentContainer.RegisterObject(Type objectType, ComponentCreator objectCreator) {
+        void IComponentContainer.RegisterCreator(Type objectType, IComponentCreator objectCreator) {
             if (objectType == null) {
                 throw new ArgumentNullException("objectType");
             }

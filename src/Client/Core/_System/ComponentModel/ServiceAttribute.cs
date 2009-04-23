@@ -15,6 +15,8 @@ namespace System.ComponentModel {
     /// <summary>
     /// This attribute can be placed on a class to mark it as an implementation of the
     /// specified service type.
+    /// If the class implements IComponentFactory, it is considered to be a factory of
+    /// the specified service type, rather than the implementation itself.
     /// </summary>
     [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
     public sealed class ServiceAttribute : Attribute {

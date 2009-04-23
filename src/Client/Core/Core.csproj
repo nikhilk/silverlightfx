@@ -326,7 +326,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_System\ComponentModel\ComponentContainer.cs" />
-    <Compile Include="_System\ComponentModel\ComponentCreator.cs" />
+    <Compile Include="_System\ComponentModel\IComponentCreator.cs" />
     <Compile Include="_System\ComponentModel\IApplicationIdentity.cs" />
     <Compile Include="_System\ComponentModel\IComponentContainer.cs" />
     <Compile Include="_System\ComponentModel\DependencyAttribute.cs" />

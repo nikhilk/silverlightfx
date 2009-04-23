@@ -61,6 +61,6 @@ namespace System.ComponentModel {
         /// </summary>
         /// <param name="objectType">The type of object this factory corresponds to.</param>
         /// <param name="objectCreator">The factory to register.</param>
-        void RegisterObject(Type objectType, ComponentCreator objectCreator);
+        void RegisterCreator(Type objectType, IComponentCreator objectCreator);
     }
 }
