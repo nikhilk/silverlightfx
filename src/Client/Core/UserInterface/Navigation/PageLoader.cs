@@ -52,11 +52,6 @@ namespace SilverlightFX.UserInterface.Navigation {
                 throw new ArgumentNullException("callback");
             }
 
-            uri = MapUri(uri, uriContext);
-            if (uri == null) {
-                return null;
-            }
-
             return BeginLoadUri(uri, uriContext, callback, userState);
         }
 
@@ -192,17 +187,6 @@ namespace SilverlightFX.UserInterface.Navigation {
 
         internal void Initialize(PageFrame ownerFrame) {
             _frame = ownerFrame;
-        }
-
-        /// <summary>
-        /// Maps a given URI (typically a canonical URI) into a specific URI that can be
-        /// loaded. The default implementation simply returns the URI as-is.
-        /// </summary>
-        /// <param name="uri">The URI to map.</param>
-        /// <param name="uriContext">The current Page if one is available as context.</param>
-        /// <returns>The mapped URI; null if the URI cannot be mapped.</returns>
-        protected virtual Uri MapUri(Uri uri, Page uriContext) {
-            return uri;
         }
 
 

@@ -28,28 +28,35 @@ namespace SilverlightFX.UserInterface.Navigation {
             _keys = new List<string>();
         }
 
-        public void AddPageReference(Page page) {
-            if (page.KeepAlive == false) {
+        public void AddPage(Page page, Uri pageUri) {
+            if (page.Cache.HasValue && (page.Cache == false)) {
                 return;
             }
 
-            string cacheKey = GetCacheKey(page.Uri);
+            string cacheKey = GetCacheKey(pageUri);
 
-            if ((_pages.ContainsKey(cacheKey) == false) &&
-                (_keepAlivePages.ContainsKey(cacheKey) == false)) {
-                if (_keys.Count >= _cacheSize) {
-                    string evictCacheKey = _keys[_keys.Count - 1];
-
-                    _pages.Remove(evictCacheKey);
-                }
-
-                _pages[cacheKey] = page;
-                _keys.Add(cacheKey);
+            if (page.Cache.HasValue && (page.Cache == true)) {
+                _keepAlivePages.Add(cacheKey, page);
+                return;
             }
+
+            if (_keys.Count >= _cacheSize) {
+                _pages.Remove(_keys[_keys.Count - 1]);
+                _keys.RemoveAt(_keys.Count - 1);
+            }
+
+            _keys.Insert(0, cacheKey);
+            _pages.Add(cacheKey, page);
         }
 
         private string GetCacheKey(Uri pageUri) {
-            return pageUri.ToString();
+            string url = pageUri.ToString();
+            int fragmentIndex = url.IndexOf('#');
+
+            if (fragmentIndex > 0) {
+                url = url.Substring(0, fragmentIndex);
+            }
+            return url;
         }
 
         public Page GetPage(Uri uri) {
@@ -62,31 +69,18 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
 
             if (_pages.TryGetValue(cacheKey, out page)) {
+                _pages.Remove(cacheKey);
+
                 int index = _keys.IndexOf(cacheKey);
-                if (index != 0) {
-                    for (int i = index; i > 0; i--) {
-                        _keys[i] = _keys[i - 1];
-                    }
-                    _keys[0] = cacheKey;
+                for (int i = index + 1; i < _keys.Count; i++) {
+                    _keys[i - 1] = _keys[i];
                 }
+                _keys.RemoveAt(_keys.Count - 1);
 
                 return page;
             }
 
             return null;
-        }
-
-        public void RemovePageReference(Page page) {
-            string cacheKey = GetCacheKey(page.Uri);
-
-            if (page.KeepAlive == true) {
-                if (_pages.ContainsKey(cacheKey)) {
-                    _pages.Remove(cacheKey);
-                    _keys.Remove(cacheKey);
-                }
-
-                _keepAlivePages[cacheKey] = page;
-            }
         }
     }
 }

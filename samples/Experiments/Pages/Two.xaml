@@ -6,7 +6,7 @@
   xmlns:fxactions="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
   x:Class="Experiments.Pages.Two">
   <StackPanel>
-    <TextBlock Text="This is Page 2" />
+    <TextBlock Text="This is Page 2. This page can be cached." />
     <Button Content="Home">
       <fxui:Interaction.Action>
         <fxactions:Navigate NavigateUrl="Default" ExternalNavigation="False" />

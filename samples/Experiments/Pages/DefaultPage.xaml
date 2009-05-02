@@ -5,9 +5,10 @@
   xmlns:fxactions="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
   xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX"
   x:Class="Experiments.Pages.DefaultPage"
-  KeepAlive="true">
+  Cache="true">
   <StackPanel>
-    <TextBlock Text="Hello World! This is a navigation sample" />
+    <TextBlock Text="Hello World! This is a navigation sample. This page is cached." />
+    <TextBox Width="200" />
     <Button Content="Page 1">
       <fxui:Interaction.Action>
         <fxactions:Navigate NavigateUrl="One" ExternalNavigation="False" />

@@ -23,14 +23,16 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// <summary>
         /// Represents the Disposition property.
         /// </summary>
-        public static readonly DependencyProperty KeepAliveProperty =
-            DependencyProperty.Register("KeepAlive", typeof(bool?), typeof(Page),
+        public static readonly DependencyProperty CacheProperty =
+            DependencyProperty.Register("Cache", typeof(bool?), typeof(Page),
                                         new PropertyMetadata((bool?)null));
 
         private Uri _uri;
+        private Uri _originalUri;
 
         private EventHandler<PageNavigatedEventArgs> _navigatedHandler;
         private EventHandler<PageNavigatingEventArgs> _navigatingHandler;
+        private EventHandler<PageStateEventArgs> _stateChangedHandler;
 
         /// <summary>
         /// Initializes an instance of a Page.
@@ -56,12 +58,21 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// it according to its own policy.
         /// </summary>
         [TypeConverter(typeof(NullableBoolConverter))]
-        public bool? KeepAlive {
+        public bool? Cache {
             get {
-                return (bool?)GetValue(KeepAliveProperty);
+                return (bool?)GetValue(CacheProperty);
             }
             set {
-                SetValue(KeepAliveProperty, value);
+                SetValue(CacheProperty, value);
+            }
+        }
+
+        internal Uri OriginalUri {
+            get {
+                return _originalUri;
+            }
+            set {
+                _originalUri = value;
             }
         }
 
@@ -103,6 +114,18 @@ namespace SilverlightFX.UserInterface.Navigation {
         }
 
         /// <summary>
+        /// Raised when the page state has changed.
+        /// </summary>
+        public event EventHandler<PageStateEventArgs> StateChanged {
+            add {
+                _stateChangedHandler = (EventHandler<PageStateEventArgs>)Delegate.Combine(_stateChangedHandler, value);
+            }
+            remove {
+                _stateChangedHandler = (EventHandler<PageStateEventArgs>)Delegate.Remove(_stateChangedHandler, value);
+            }
+        }
+
+        /// <summary>
         /// Raises the Navigated event.
         /// </summary>
         /// <param name="e">The data associated with the event.</param>
@@ -122,6 +145,16 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
             if (_navigatingHandler != null) {
                 _navigatingHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Raises the StateChanged event.
+        /// </summary>
+        /// <param name="e">The data associated with the event.</param>
+        protected internal virtual void OnStateChanged(PageStateEventArgs e) {
+            if (_stateChangedHandler != null) {
+                _stateChangedHandler(this, e);
             }
         }
     }

@@ -133,6 +133,8 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\Navigation\PageStateEventArgs.cs" />
+    <Compile Include="UserInterface\Navigation\PageUriMapper.cs" />
     <Compile Include="UserInterface\TemplatePanel.cs" />
     <Compile Include="UserInterface\Navigation\PageNavigatingEventArgs.cs" />
     <Compile Include="UserInterface\Navigation\PageNavigatedEventArgs.cs" />

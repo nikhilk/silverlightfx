@@ -5,9 +5,10 @@
   xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX"
   xmlns:fxactions="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
   x:Class="Experiments.Pages.One"
-  KeepAlive="false">
+  Cache="false">
   <StackPanel>
-    <TextBlock Text="This is Page 1" />
+    <TextBlock Text="This is Page 1. This is never cached." />
+    <TextBox Width="200" />
     <Button Content="Page 2">
       <fxui:Interaction.Action>
         <fxactions:Navigate NavigateUrl="Two" ExternalNavigation="False" />

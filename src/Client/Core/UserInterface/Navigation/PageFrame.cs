@@ -18,10 +18,6 @@ using System.Windows.Media.Glitz;
 namespace SilverlightFX.UserInterface.Navigation {
 
     // TODO: Support for external journaling and browser history integration
-    //       Add LoadedUri to Page - this is the URI after mapping and is set by PageLoader
-    //       Fragment navigation
-    //       Add IsNavigating property once DependencyProperty supports change notification
-    //       in SL3
 
     /// <summary>
     /// A derived ContentControl that supports transitions to animate from
@@ -46,6 +42,13 @@ namespace SilverlightFX.UserInterface.Navigation {
             DependencyProperty.Register("ErrorPageType", typeof(Type), typeof(PageFrame), null);
 
         /// <summary>
+        /// Represents the IsNavigating property.
+        /// </summary>
+        public static readonly DependencyProperty IsNavigatingProperty =
+            DependencyProperty.Register("IsNavigating", typeof(bool), typeof(PageFrame),
+                                        new PropertyMetadata(false));
+
+        /// <summary>
         /// Represents the Transition property.
         /// </summary>
         public static readonly DependencyProperty TransitionProperty =
@@ -59,8 +62,10 @@ namespace SilverlightFX.UserInterface.Navigation {
                                         new PropertyMetadata(OnUriPropertyChanged));
 
         private bool _loaded;
+        private bool _ignoreUriChange;
         private bool _redirecting;
         private ContentView _contentView;
+        private PageUriMapper _uriMapper;
         private PageLoader _loader;
         private PageJournal _journal;
         private PageCache _cache;
@@ -118,6 +123,22 @@ namespace SilverlightFX.UserInterface.Navigation {
         }
 
         /// <summary>
+        /// Gets whether the frame is currently performing a navigation.
+        /// </summary>
+        public bool IsNavigating {
+            get {
+                return (bool)GetValue(IsNavigatingProperty);
+            }
+            private set {
+                if (value != IsNavigating) {
+                    SetValue(IsNavigatingProperty, value);
+                    VisualStateManager.GoToState(this, value ? "Navigating" : "Navigated",
+                                                 /* useTransitions */ true);
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the loader used to load pages to be shown in the PageFrame.
         /// </summary>
         public PageLoader Loader {
@@ -170,6 +191,23 @@ namespace SilverlightFX.UserInterface.Navigation {
         }
 
         /// <summary>
+        /// Gets or sets the mapper used to map logical page URIs into actual URIs to be
+        /// loaded into the PageFrame.
+        /// </summary>
+        public PageUriMapper UriMapper {
+            get {
+                return _uriMapper;
+            }
+            set {
+                if (_loaded) {
+                    throw new InvalidOperationException("UriMapper can only be set declaratively.");
+                }
+
+                _uriMapper = value;
+            }
+        }
+
+        /// <summary>
         /// Raised when a new Uri has been navigated to by the frame.
         /// </summary>
         public event EventHandler<NavigatedEventArgs> Navigated {
@@ -207,19 +245,6 @@ namespace SilverlightFX.UserInterface.Navigation {
             };
         }
 
-        private void InitiateNavigation(NavigationState navigationState) {
-            try {
-                _navigateResult = _loader.BeginLoadPage(navigationState.uri, Page, OnPageLoadCallback, navigationState);
-            }
-            catch (Exception e) {
-                Page page = GetErrorPage(e);
-
-                Dispatcher.BeginInvoke(delegate() {
-                    OnNavigationCompleted(navigationState, page);
-                });
-            }
-        }
-
         /// <summary>
         /// Naviates the frame to the specified URI.
         /// </summary>
@@ -228,42 +253,99 @@ namespace SilverlightFX.UserInterface.Navigation {
             SetValue(UriProperty, uri);
         }
 
-        private void NavigateInternal(NavigationState navigationState) {
+        private bool NavigateInternal(NavigationState navigationState) {
+            if (navigationState.uri.IsAbsoluteUri == true) {
+                throw new ArgumentException("The URI must be a relative URI.");
+            }
             if (_contentView == null) {
-                return;
+                return true;
             }
 
-            // TODO: False if we don't own journal and this navigation request is
-            //       because of a browser-based back/fwd/address change gesture
-            bool canCancel = true;
-
             Page currentPage = Page;
-            if (currentPage != null) {
-                PageNavigatingEventArgs e = new PageNavigatingEventArgs(canCancel);
-                currentPage.OnNavigating(e);
 
-                if (canCancel && e.Canceled) {
-                    return;
+            string url = navigationState.originalUri.ToString();
+
+            int fragmentIndex = url.IndexOf('#');
+            if (url.Length <= fragmentIndex + 1) {
+                throw new ArgumentException("Invalid URL");
+            }
+            string fragment = url.Substring(fragmentIndex + 1);
+
+            if (fragmentIndex > 0) {
+                navigationState.fragment = fragment;
+                navigationState.uri = new Uri(url.Substring(0, fragmentIndex), UriKind.Relative);
+            }
+            else if (fragmentIndex == 0) {
+                if (currentPage != null) {
+                    string currentUrl = currentPage.OriginalUri.ToString();
+                    int currentFragmentIndex = currentUrl.IndexOf('#');
+
+                    if (currentFragmentIndex > 0) {
+                        currentUrl = currentUrl.Substring(0, currentFragmentIndex);
+                    }
+
+                    url = currentUrl + "#" + fragment;
+
+                    _journal.AddEntry(new Uri(url, UriKind.Relative));
+                    _backCommand.UpdateStatus(_journal.CanGoBack);
+                    _forwardCommand.UpdateStatus(_journal.CanGoForward);
+
+                    currentPage.OnStateChanged(new PageStateEventArgs(fragment));
+
+                    return true;
+                }
+
+                return false;
+            }
+
+            if (_redirecting == false) {
+                // TODO: False if we don't own journal and this navigation request is
+                //       because of a browser-based back/fwd/address change gesture
+                bool canCancel = true;
+
+                if (currentPage != null) {
+                    PageNavigatingEventArgs e = new PageNavigatingEventArgs(canCancel);
+                    currentPage.OnNavigating(e);
+
+                    if (canCancel && e.Canceled) {
+                        return false;
+                    }
+                }
+
+                NavigatingEventArgs ne = new NavigatingEventArgs(navigationState.originalUri, canCancel);
+                OnNavigating(ne);
+                if (canCancel && ne.Canceled) {
+                    return false;
                 }
             }
 
-            NavigatingEventArgs ne = new NavigatingEventArgs(navigationState.uri, canCancel);
-            OnNavigating(ne);
-            if (canCancel && ne.Canceled) {
-                return;
-            }
-
-            Page page = _cache.GetPage(navigationState.uri);
+            Page page = _cache.GetPage(navigationState.originalUri);
             if (page != null) {
                 navigationState.cachedPage = true;
                 Dispatcher.BeginInvoke(delegate() {
                     OnNavigationCompleted(navigationState, page);
                 });
-                return;
+                return true;
             }
 
-            VisualStateManager.GoToState(this, "Navigating", /* useTransitions */ true);
-            InitiateNavigation(navigationState);
+            if (_uriMapper != null) {
+                navigationState.uri = _uriMapper.MapPageUri(navigationState.uri);
+            }
+
+            IsNavigating = true;
+
+            try {
+                _navigateResult = _loader.BeginLoadPage(navigationState.uri, Page, OnPageLoadCallback, navigationState);
+            }
+            catch (Exception e) {
+                Page errorPage = GetErrorPage(e);
+
+                Dispatcher.BeginInvoke(delegate() {
+                    OnNavigationCompleted(navigationState, errorPage);
+                });
+            }
+
+            return true;
         }
 
         private void NavigateInternal(Page page) {
@@ -333,39 +415,41 @@ namespace SilverlightFX.UserInterface.Navigation {
 
         private void OnNavigationCompleted(NavigationState navigationState, Page page) {
             Page currentPage = Page;
-            if (currentPage != null) {
-                _cache.RemovePageReference(currentPage);
+            if ((currentPage != null) && !(currentPage is ErrorPage)) {
+                _cache.AddPage(currentPage, currentPage.OriginalUri);
             }
 
             page.Uri = navigationState.uri;
+            page.OriginalUri = navigationState.originalUri;
 
             if (navigationState.cachedPage == false) {
-                if (!(page is ErrorPage)) {
-                    _cache.AddPageReference(page);
-                }
-                VisualStateManager.GoToState(this, "Navigated", /* useTransitions */ true);
+                IsNavigating = false;
             }
             NavigateInternal(page);
             if (navigationState.journalNavigation) {
-                _journal.AddEntry(navigationState.uri);
+                _journal.AddEntry(navigationState.originalUri);
             }
 
             _backCommand.UpdateStatus(_journal.CanGoBack);
             _forwardCommand.UpdateStatus(_journal.CanGoForward);
 
             page.OnNavigated(new PageNavigatedEventArgs(!navigationState.cachedPage));
+            if (String.IsNullOrEmpty(navigationState.fragment) == false) {
+                page.OnStateChanged(new PageStateEventArgs(navigationState.fragment));
+            }
 
-            OnNavigated(new NavigatedEventArgs(navigationState.uri, page is ErrorPage));
+            OnNavigated(new NavigatedEventArgs(navigationState.originalUri, page is ErrorPage));
         }
 
         private void OnPageLoadCallback(IAsyncResult asyncResult) {
             if (asyncResult != _navigateResult) {
                 return;
             }
-
-            Uri redirectUri = null;
+            _navigateResult = null;
 
             NavigationState navigationState = (NavigationState)asyncResult.AsyncState;
+            Uri redirectUri = null;
+
             Page page = null;
             try {
                 page = _loader.EndLoadPage(asyncResult, out redirectUri);
@@ -379,20 +463,26 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
             else {
                 Dispatcher.BeginInvoke(delegate() {
-                    _redirecting = true;
-                    SetValue(UriProperty, redirectUri);
-                    _redirecting = false;
-
-                    navigationState.uri = redirectUri;
-                    InitiateNavigation(navigationState);
+                    try {
+                        _redirecting = true;
+                        SetValue(UriProperty, redirectUri);
+                    }
+                    finally {
+                        _redirecting = false;
+                    }
                 });
             }
         }
 
         private static void OnUriPropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e) {
             PageFrame frame = (PageFrame)o;
-            if (frame._loaded && !frame._redirecting) {
-                frame.NavigateInternal(new NavigationState((Uri)e.NewValue));
+            if (frame._loaded && (frame._ignoreUriChange == false)) {
+                bool navigated = frame.NavigateInternal(new NavigationState((Uri)e.NewValue));
+                if (navigated == false) {
+                    frame._ignoreUriChange = true;
+                    frame.SetValue(UriProperty, e.OldValue);
+                    frame._ignoreUriChange = false;
+                }
             }
         }
 
@@ -430,11 +520,14 @@ namespace SilverlightFX.UserInterface.Navigation {
         private sealed class NavigationState {
 
             public Uri uri;
+            public Uri originalUri;
             public bool journalNavigation;
             public bool cachedPage;
+            public string fragment;
 
             public NavigationState(Uri uri) {
                 this.uri = uri;
+                this.originalUri = uri;
                 this.journalNavigation = true;
             }
         }
