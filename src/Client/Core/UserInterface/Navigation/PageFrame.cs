@@ -65,7 +65,6 @@ namespace SilverlightFX.UserInterface.Navigation {
         private bool _ignoreUriChange;
         private bool _redirecting;
         private ContentView _contentView;
-        private PageUriMapper _uriMapper;
         private PageLoader _loader;
         private PageJournal _journal;
         private PageCache _cache;
@@ -191,23 +190,6 @@ namespace SilverlightFX.UserInterface.Navigation {
         }
 
         /// <summary>
-        /// Gets or sets the mapper used to map logical page URIs into actual URIs to be
-        /// loaded into the PageFrame.
-        /// </summary>
-        public PageUriMapper UriMapper {
-            get {
-                return _uriMapper;
-            }
-            set {
-                if (_loaded) {
-                    throw new InvalidOperationException("UriMapper can only be set declaratively.");
-                }
-
-                _uriMapper = value;
-            }
-        }
-
-        /// <summary>
         /// Raised when a new Uri has been navigated to by the frame.
         /// </summary>
         public event EventHandler<NavigatedEventArgs> Navigated {
@@ -250,52 +232,52 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// </summary>
         /// <param name="uri">The URI to navigate to.</param>
         public void Navigate(Uri uri) {
+            if (uri == null) {
+                throw new ArgumentNullException("uri");
+            }
+            if (uri.IsAbsoluteUri) {
+                throw new ArgumentException("The uri to navigate to must not be absolute.");
+            }
+
             SetValue(UriProperty, uri);
         }
 
         private bool NavigateInternal(NavigationState navigationState) {
-            if (navigationState.uri.IsAbsoluteUri == true) {
-                throw new ArgumentException("The URI must be a relative URI.");
-            }
             if (_contentView == null) {
                 return true;
+            }
+            if (_navigateResult != null) {
+                ((NavigationState)_navigateResult.AsyncState).canceled = true;
+                _navigateResult = null;
             }
 
             Page currentPage = Page;
 
-            string url = navigationState.originalUri.ToString();
+            string fragment;
+            if (navigationState.uri.TryGetFragment(out fragment)) {
+                if (navigationState.uri.GetPath() == null) {
+                    // Fragment navigation
 
-            int fragmentIndex = url.IndexOf('#');
-            if (url.Length <= fragmentIndex + 1) {
-                throw new ArgumentException("Invalid URL");
-            }
-            string fragment = url.Substring(fragmentIndex + 1);
+                    if (currentPage != null) {
+                        UriData currentUri = new UriData(currentPage.OriginalUri);
+                        currentUri.SetFragment(fragment);
 
-            if (fragmentIndex > 0) {
-                navigationState.fragment = fragment;
-                navigationState.uri = new Uri(url.Substring(0, fragmentIndex), UriKind.Relative);
-            }
-            else if (fragmentIndex == 0) {
-                if (currentPage != null) {
-                    string currentUrl = currentPage.OriginalUri.ToString();
-                    int currentFragmentIndex = currentUrl.IndexOf('#');
+                        Uri newUri = currentUri.GetUri();
+                        _journal.AddEntry(newUri);
+                        _backCommand.UpdateStatus(_journal.CanGoBack);
+                        _forwardCommand.UpdateStatus(_journal.CanGoForward);
 
-                    if (currentFragmentIndex > 0) {
-                        currentUrl = currentUrl.Substring(0, currentFragmentIndex);
+                        currentPage.OnStateChanged(new PageStateEventArgs(fragment));
+
+                        return true;
                     }
 
-                    url = currentUrl + "#" + fragment;
-
-                    _journal.AddEntry(new Uri(url, UriKind.Relative));
-                    _backCommand.UpdateStatus(_journal.CanGoBack);
-                    _forwardCommand.UpdateStatus(_journal.CanGoForward);
-
-                    currentPage.OnStateChanged(new PageStateEventArgs(fragment));
-
-                    return true;
+                    return false;
                 }
-
-                return false;
+                else {
+                    navigationState.fragment = fragment;
+                    navigationState.uri.SetFragment(null);
+                }
             }
 
             if (_redirecting == false) {
@@ -312,14 +294,14 @@ namespace SilverlightFX.UserInterface.Navigation {
                     }
                 }
 
-                NavigatingEventArgs ne = new NavigatingEventArgs(navigationState.originalUri, canCancel);
+                NavigatingEventArgs ne = new NavigatingEventArgs(navigationState.uri.OriginalUri, canCancel);
                 OnNavigating(ne);
                 if (canCancel && ne.Canceled) {
                     return false;
                 }
             }
 
-            Page page = _cache.GetPage(navigationState.originalUri);
+            Page page = _cache.GetPage(navigationState.uri.OriginalUri);
             if (page != null) {
                 navigationState.cachedPage = true;
                 Dispatcher.BeginInvoke(delegate() {
@@ -328,14 +310,13 @@ namespace SilverlightFX.UserInterface.Navigation {
                 return true;
             }
 
-            if (_uriMapper != null) {
-                navigationState.uri = _uriMapper.MapPageUri(navigationState.uri);
-            }
-
-            IsNavigating = true;
-
             try {
-                _navigateResult = _loader.BeginLoadPage(navigationState.uri, Page, OnPageLoadCallback, navigationState);
+                IAsyncResult navigateResult = _loader.BeginLoadPage(navigationState.uri.GetUri(), Page,
+                                                                    OnPageLoadCallback, navigationState);
+                if (navigateResult.CompletedSynchronously == false) {
+                    _navigateResult = navigateResult;
+                    IsNavigating = true;
+                }
             }
             catch (Exception e) {
                 Page errorPage = GetErrorPage(e);
@@ -419,15 +400,15 @@ namespace SilverlightFX.UserInterface.Navigation {
                 _cache.AddPage(currentPage, currentPage.OriginalUri);
             }
 
-            page.Uri = navigationState.uri;
-            page.OriginalUri = navigationState.originalUri;
+            page.Uri = navigationState.uri.GetUri();
+            page.OriginalUri = navigationState.uri.OriginalUri;
 
             if (navigationState.cachedPage == false) {
                 IsNavigating = false;
             }
             NavigateInternal(page);
             if (navigationState.journalNavigation) {
-                _journal.AddEntry(navigationState.originalUri);
+                _journal.AddEntry(navigationState.uri.OriginalUri);
             }
 
             _backCommand.UpdateStatus(_journal.CanGoBack);
@@ -438,31 +419,28 @@ namespace SilverlightFX.UserInterface.Navigation {
                 page.OnStateChanged(new PageStateEventArgs(navigationState.fragment));
             }
 
-            OnNavigated(new NavigatedEventArgs(navigationState.originalUri, page is ErrorPage));
+            OnNavigated(new NavigatedEventArgs(navigationState.uri.OriginalUri, page is ErrorPage));
         }
 
         private void OnPageLoadCallback(IAsyncResult asyncResult) {
-            if (asyncResult != _navigateResult) {
-                return;
-            }
             _navigateResult = null;
 
-            NavigationState navigationState = (NavigationState)asyncResult.AsyncState;
-            Uri redirectUri = null;
+            Dispatcher.BeginInvoke(delegate() {
+                NavigationState navigationState = (NavigationState)asyncResult.AsyncState;
+                Uri redirectUri = null;
 
-            Page page = null;
-            try {
-                page = _loader.EndLoadPage(asyncResult, out redirectUri);
-            }
-            catch (Exception e) {
-                page = GetErrorPage(e);
-            }
+                Page page = null;
+                try {
+                    page = _loader.EndLoadPage(asyncResult, out redirectUri);
+                }
+                catch (Exception e) {
+                    page = GetErrorPage(e);
+                }
 
-            if (redirectUri == null) {
-                OnNavigationCompleted(navigationState, page);
-            }
-            else {
-                Dispatcher.BeginInvoke(delegate() {
+                if (redirectUri == null) {
+                    OnNavigationCompleted(navigationState, page);
+                }
+                else {
                     try {
                         _redirecting = true;
                         SetValue(UriProperty, redirectUri);
@@ -470,11 +448,15 @@ namespace SilverlightFX.UserInterface.Navigation {
                     finally {
                         _redirecting = false;
                     }
-                });
-            }
+                }
+            });
         }
 
         private static void OnUriPropertyChanged(DependencyObject o, DependencyPropertyChangedEventArgs e) {
+            if ((e.NewValue == null) || ((Uri)e.NewValue).IsAbsoluteUri) {
+                throw new InvalidOperationException("The uri cannot be null or absolute.");
+            }
+
             PageFrame frame = (PageFrame)o;
             if (frame._loaded && (frame._ignoreUriChange == false)) {
                 bool navigated = frame.NavigateInternal(new NavigationState((Uri)e.NewValue));
@@ -519,15 +501,14 @@ namespace SilverlightFX.UserInterface.Navigation {
 
         private sealed class NavigationState {
 
-            public Uri uri;
-            public Uri originalUri;
+            public UriData uri;
             public bool journalNavigation;
             public bool cachedPage;
             public string fragment;
+            public bool canceled;
 
             public NavigationState(Uri uri) {
-                this.uri = uri;
-                this.originalUri = uri;
+                this.uri = new UriData(uri);
                 this.journalNavigation = true;
             }
         }

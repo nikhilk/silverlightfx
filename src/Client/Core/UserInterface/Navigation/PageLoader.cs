@@ -42,9 +42,9 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// <param name="uri">The URI to be loaded.</param>
         /// <param name="uriContext">The current Page if one is available as context.</param>
         /// <param name="callback">The callback to be invoked once the page is available.</param>
-        /// <param name="userState">Contextual information to be passed to the callback.</param>
+        /// <param name="asyncState">Contextual information to be passed to the callback.</param>
         /// <returns>An async result representing the load operation.</returns>
-        public IAsyncResult BeginLoadPage(Uri uri, Page uriContext, AsyncCallback callback, object userState) {
+        public IAsyncResult BeginLoadPage(Uri uri, Page uriContext, AsyncCallback callback, object asyncState) {
             if (uri == null) {
                 throw new ArgumentNullException("uri");
             }
@@ -52,7 +52,7 @@ namespace SilverlightFX.UserInterface.Navigation {
                 throw new ArgumentNullException("callback");
             }
 
-            return BeginLoadUri(uri, uriContext, callback, userState);
+            return BeginLoadUri(uri, uriContext, callback, asyncState);
         }
 
         /// <summary>
@@ -62,15 +62,11 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// <param name="uri">The URI to be loaded.</param>
         /// <param name="uriContext">The current Page if one is available as context.</param>
         /// <param name="callback">The callback to be invoked once the data is available.</param>
-        /// <param name="userState">Contextual information to be passed to the callback.</param>
+        /// <param name="asyncState">Contextual information to be passed to the callback.</param>
         /// <returns>An async result representing the load operation.</returns>
-        protected virtual IAsyncResult BeginLoadUri(Uri uri, Page uriContext, AsyncCallback callback, object userState) {
-            SimpleAsyncResult asyncResult = new SimpleAsyncResult(uri, uriContext, userState);
-
-            _frame.Dispatcher.BeginInvoke(delegate() {
-                asyncResult.Complete();
-                callback(asyncResult);
-            });
+        protected virtual IAsyncResult BeginLoadUri(Uri uri, Page uriContext, AsyncCallback callback, object asyncState) {
+            IAsyncResult asyncResult = new SimpleAsyncResult(uri, uriContext, asyncState);
+            callback(asyncResult);
 
             return asyncResult;
         }
@@ -122,21 +118,19 @@ namespace SilverlightFX.UserInterface.Navigation {
 
             redirectUri = null;
 
-            Type pageType = null;
-
-            string typeName = simpleAsyncResult.Uri.ToString();
-
-            int queryStringIndex = typeName.IndexOf('?');
-            if (queryStringIndex >= 0) {
-                typeName = typeName.Substring(queryStringIndex);
+            string typeName = null;
+            UriData uriData = new UriData(simpleAsyncResult.Uri);
+            IList<string> path = uriData.GetPath();
+            if ((path != null) && (path.Count == 1)) {
+                typeName = path[0];
             }
 
-            if (typeName.Length != 0) {
+            if (String.IsNullOrEmpty(typeName) == false) {
                 Type referenceType = (simpleAsyncResult.UriContext ?? _frame.GetRootVisual()).GetType();
-                pageType = GetPageType(typeName, referenceType);
+                return GetPageType(typeName, referenceType);
             }
 
-            return pageType;
+            return null;
         }
 
         private Type GetPageType(string typeName, Type referenceType) {
@@ -195,7 +189,6 @@ namespace SilverlightFX.UserInterface.Navigation {
             private Uri _uri;
             private Page _uriContext;
             private object _asyncState;
-            private bool _completed;
 
             public SimpleAsyncResult(Uri uri, Page uriContext, object asyncState) {
                 _uri = uri;
@@ -217,13 +210,13 @@ namespace SilverlightFX.UserInterface.Navigation {
 
             public bool CompletedSynchronously {
                 get {
-                    return false;
+                    return true;
                 }
             }
 
             public bool IsCompleted {
                 get {
-                    return _completed;
+                    return true;
                 }
             }
 
@@ -237,10 +230,6 @@ namespace SilverlightFX.UserInterface.Navigation {
                 get {
                     return _uriContext;
                 }
-            }
-
-            internal void Complete() {
-                _completed = true;
             }
         }
     }

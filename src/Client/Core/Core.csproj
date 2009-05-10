@@ -60,6 +60,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\Binder.cs" />
+    <Compile Include="Data\DateFormatter.cs" />
     <Compile Include="Data\CurrencyFormatter.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -133,13 +134,25 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\Navigation\UriData.cs" />
+    <Compile Include="UserInterface\Navigation\MvcPageLoader.cs" />
     <Compile Include="UserInterface\Navigation\PageStateEventArgs.cs" />
-    <Compile Include="UserInterface\Navigation\PageUriMapper.cs" />
     <Compile Include="UserInterface\TemplatePanel.cs" />
     <Compile Include="UserInterface\Navigation\PageNavigatingEventArgs.cs" />
     <Compile Include="UserInterface\Navigation\PageNavigatedEventArgs.cs" />
     <Compile Include="UserInterface\Navigation\PageCache.cs" />
     <Compile Include="UserInterface\Navigation\PageJournal.cs" />
+    <Compile Include="_System\ComponentModel\Task.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\Controller.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\ActionResult.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\ControllerDescriptor.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\ActionDescriptor.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\ActionInvocation.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\ErrorActionResult.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\ViewActionResult.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\ObjectActionResult.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\RedirectActionResult.cs" />
+    <Compile Include="_System\ComponentModel\Navigation\IController.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatedEventArgs.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatingEventArgs.cs" />
     <Compile Include="UserInterface\Navigation\ErrorPage.cs" />
