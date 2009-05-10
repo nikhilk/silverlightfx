@@ -8,7 +8,7 @@
     <TextBox AcceptsReturn="True" TextWrapping="Wrap"
       VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Disabled">
       <fxui:Interaction.Behaviors>
-        <fxui:MouseWheelScroll ScrollSize="3" />
+        <fxui:MouseWheelScroll />
       </fxui:Interaction.Behaviors>
     </TextBox>
     
