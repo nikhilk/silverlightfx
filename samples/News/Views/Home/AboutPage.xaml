@@ -1,0 +1,22 @@
+﻿<fxnav:Page
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX"
+  x:Class="NewsWidget.Views.Home.AboutPage">
+  <fxui:VStackPanel ChildSpacing="6" ChildFlow="Top" Margin="10,0,10,0">
+    <TextBlock Style="{StaticResource headerText}" Text="About this News Widget" />
+    
+    <TextBlock Style="{StaticResource contentText}" TextWrapping="Wrap">
+      <Run>Check out the latest articles from the Times Newswire service available from the New York Times.</Run>
+      <LineBreak />
+      <LineBreak />
+      <Run>This application is a sample demonstrating Silverlight.FX, a framework for building Silverlight-based RIAs using MVC, ViewModel, IoC, Behaviors and more.</Run>
+      <LineBreak />
+      <LineBreak />
+      <Run>Written by Nikhil Kothari</Run>
+      <LineBreak />
+      <Run>http://www.nikhilk.net</Run>
+    </TextBlock>
+  </fxui:VStackPanel>
+</fxnav:Page>
