@@ -83,8 +83,13 @@ namespace SilverlightFX.UserInterface.Actions {
 
         /// <internalonly />
         protected override void InvokeAction(EventArgs e) {
+            string navigateUrl = NavigateUrl;
+            if (String.IsNullOrEmpty(navigateUrl)) {
+                return;
+            }
+
             string targetFrame = Target;
-            Uri navigateUri = new Uri(NavigateUrl, UriKind.RelativeOrAbsolute);
+            Uri navigateUri = new Uri(navigateUrl, UriKind.RelativeOrAbsolute);
 
             if (_externalNavigation == false) {
                 INavigationTarget target = null;
