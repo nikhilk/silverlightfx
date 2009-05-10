@@ -31,29 +31,10 @@ namespace SilverlightFX.UserInterface {
         private IScrollProvider _scrollProvider;
         private bool _activated;
 
-        private int _scrollSize;
-
         /// <summary>
         /// Initializes an instance of a MouseWheelScroll.
         /// </summary>
         public MouseWheelScroll() {
-            _scrollSize = 1;
-        }
-
-        /// <summary>
-        /// Gets or sets the number of scroll units the control should be
-        /// scrolled per mouse wheel turn.
-        /// </summary>
-        public int ScrollSize {
-            get {
-                return _scrollSize;
-            }
-            set {
-                if (value < 1) {
-                    throw new ArgumentOutOfRangeException("value");
-                }
-                _scrollSize = value;
-            }
         }
 
         private ScrollViewer GetChildScrollViewer(DependencyObject parentObject) {
@@ -167,9 +148,7 @@ namespace SilverlightFX.UserInterface {
 
         private void UpdateScrollOffset(double delta) {
             ScrollAmount verticalScroll = delta < 0.0 ? ScrollAmount.SmallIncrement : ScrollAmount.SmallDecrement;
-            for (int i = 0; i < _scrollSize; i++) {
-                _scrollProvider.Scroll(ScrollAmount.NoAmount, verticalScroll);
-            }
+            _scrollProvider.Scroll(ScrollAmount.NoAmount, verticalScroll);
         }
     }
 }
