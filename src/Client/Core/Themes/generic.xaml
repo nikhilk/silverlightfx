@@ -174,7 +174,10 @@
       <Setter.Value>
         <ControlTemplate TargetType="fxnav:PageFrame">
           <Grid>
-            <fxui:ContentView x:Name="ContentView" ContentTransition="{TemplateBinding Transition}" />
+            <fxui:ContentView x:Name="ContentView"
+              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+              ContentTransition="{TemplateBinding Transition}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>
