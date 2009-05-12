@@ -202,7 +202,7 @@ namespace SilverlightFX.UserInterface.Navigation {
                 return actionResult;
             }
 
-            return base.EndLoadPage(asyncResult, out redirectUri);
+            return base.EndLoadUri(asyncResult, out redirectUri);
         }
     }
 }

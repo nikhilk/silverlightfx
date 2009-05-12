@@ -111,7 +111,7 @@ namespace System.ComponentModel {
                     instance = creator.CreateInstance(objectType, this, out singleInstance);
 
                     if (instance != null) {
-                        if (((IComponentContainer)this).InitializeObject(instance) == false) {
+                        if (((IComponentContainer)this).InitializeObject(instance)) {
                             if (singleInstance) {
                                 _registeredTypes[objectType] = instance;
                             }
