@@ -28,17 +28,24 @@ namespace SilverlightFX.Data {
                 throw new ArgumentOutOfRangeException("targetType", "VisibilityConverter can only convert to Visibility");
             }
 
+            Visibility visibility = Visibility.Visible;
+
             if (value == null) {
-                return Visibility.Collapsed;
+                visibility = Visibility.Collapsed;
             }
             if (value is bool) {
-                return (bool)value ? Visibility.Visible : Visibility.Collapsed;
+                visibility = (bool)value ? Visibility.Visible : Visibility.Collapsed;
             }
             if (value is string) {
-                return String.IsNullOrEmpty((string)value) ? Visibility.Collapsed : Visibility.Visible;
+                visibility = String.IsNullOrEmpty((string)value) ? Visibility.Collapsed : Visibility.Visible;
             }
 
-            return Visibility.Visible;
+            if ((parameter is string) &&
+                (String.Compare((string)parameter, "Inverse", StringComparison.OrdinalIgnoreCase) == 0)) {
+                visibility = (visibility == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
+            }
+
+            return visibility;
         }
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

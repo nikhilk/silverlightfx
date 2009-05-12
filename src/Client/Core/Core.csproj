@@ -60,6 +60,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\Binder.cs" />
+    <Compile Include="Data\IndexToNumberConverter.cs" />
     <Compile Include="Data\DateFormatter.cs" />
     <Compile Include="Data\CurrencyFormatter.cs">
       <SubType>Code</SubType>
