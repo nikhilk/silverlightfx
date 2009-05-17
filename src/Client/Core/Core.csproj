@@ -143,6 +143,8 @@
     <Compile Include="UserInterface\Navigation\PageNavigatedEventArgs.cs" />
     <Compile Include="UserInterface\Navigation\PageCache.cs" />
     <Compile Include="UserInterface\Navigation\PageJournal.cs" />
+    <Compile Include="Applications\ComponentFactory.cs" />
+    <Compile Include="_System\ComponentModel\IGenericComponentCreator.cs" />
     <Compile Include="_System\ComponentModel\Task.cs" />
     <Compile Include="_System\ComponentModel\Navigation\Controller.cs" />
     <Compile Include="_System\ComponentModel\Navigation\ActionResult.cs" />

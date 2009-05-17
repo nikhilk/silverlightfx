@@ -193,23 +193,30 @@ namespace System.ComponentModel {
                 throw new ArgumentNullException("objectInstance");
             }
 
-            Type objectType = objectInstance.GetType();
-            object[] attrs = objectType.GetCustomAttributes(typeof(ServiceAttribute), /* inherit */ true);
-
-            if ((attrs != null) && (attrs.Length != 0)) {
-                for (int i = 0; i < attrs.Length; i++) {
-                    ServiceAttribute service = (ServiceAttribute)attrs[i];
-
-                    if (objectInstance is IComponentCreator) {
-                        ((IComponentContainer)this).RegisterCreator(service.ServiceType, (IComponentCreator)objectInstance);
-                    }
-                    else {
-                        ((IComponentContainer)this).RegisterObject(service.ServiceType, objectInstance);
-                    }
-                }
+            IGenericComponentCreator genericObjectCreator = objectInstance as IGenericComponentCreator;
+            if (genericObjectCreator != null) {
+                ((IComponentContainer)this).RegisterCreator(genericObjectCreator.ComponentType,
+                                                            (IComponentCreator)objectInstance);
             }
             else {
-                ((IComponentContainer)this).RegisterObject(objectType, objectInstance);
+                Type objectType = objectInstance.GetType();
+                object[] attrs = objectType.GetCustomAttributes(typeof(ServiceAttribute), /* inherit */ true);
+
+                if ((attrs != null) && (attrs.Length != 0)) {
+                    for (int i = 0; i < attrs.Length; i++) {
+                        ServiceAttribute service = (ServiceAttribute)attrs[i];
+
+                        if (objectInstance is IComponentCreator) {
+                            ((IComponentContainer)this).RegisterCreator(service.ServiceType, (IComponentCreator)objectInstance);
+                        }
+                        else {
+                            ((IComponentContainer)this).RegisterObject(service.ServiceType, objectInstance);
+                        }
+                    }
+                }
+                else {
+                    ((IComponentContainer)this).RegisterObject(objectType, objectInstance);
+                }
             }
         }
 
