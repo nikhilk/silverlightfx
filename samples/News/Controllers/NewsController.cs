@@ -28,9 +28,9 @@ namespace NewsWidget.Controllers {
 
         private void OnNewsItemsAvailable(IEnumerable<NewsItem> newsItems, object userState) {
             IEnumerable<NewsItem> orderedItems = newsItems.AsQueryable().OrderByDescending(i => i.PublishDate);
-            IEnumerable<NewsItem> viewModel = orderedItems.ToArray();
 
-            ViewActionResult result = new ViewActionResult("List", viewModel);
+            ViewActionResult result = View("List");
+            result.ViewData["Items"] = orderedItems.ToArray();
 
             Task<ActionResult> task = (Task<ActionResult>)userState;
             task.Complete(result);

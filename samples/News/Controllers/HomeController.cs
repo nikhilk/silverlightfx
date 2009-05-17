@@ -10,7 +10,7 @@ namespace NewsWidget.Controllers {
     public sealed class HomeController : Controller {
 
         public ActionResult About() {
-            return new ViewActionResult("About");
+            return View("About");
         }
     }
 }

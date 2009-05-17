@@ -45,8 +45,8 @@
       </Button>
     </fxui:HStackPanel>
    
-    <fxnav:PageFrame x:Name="mainFrame" Grid.Column="1" Grid.Row="5"
-      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+    <fxnav:PageFrame x:Name="mainFrame" Style="{StaticResource pageFrameStyle}"
+      Grid.Column="1" Grid.Row="5">
       <fxnav:PageFrame.Loader>
         <fxnav:MvcPageLoader />
       </fxnav:PageFrame.Loader>

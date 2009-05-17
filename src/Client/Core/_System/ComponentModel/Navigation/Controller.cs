@@ -33,6 +33,16 @@ namespace System.ComponentModel.Navigation {
             }
         }
 
+        /// <summary>
+        /// Creates an ErrorActionResult that specifies the error that occurred in
+        /// completing the action.
+        /// </summary>
+        /// <param name="error">The error that occurred.</param>
+        /// <returns>The ErrorActionResult containing error information.</returns>
+        protected ErrorActionResult Error(Exception error) {
+            return new ErrorActionResult(error);
+        }
+
         private void OnActionCompleted(object sender, EventArgs e) {
             Task<ActionResult> task = (Task<ActionResult>)sender;
             if (task.HasError) {
@@ -41,6 +51,47 @@ namespace System.ComponentModel.Navigation {
             else {
                 _asyncResult.Complete(task.Result);
             }
+        }
+
+        /// <summary>
+        /// Creates a RedirectActionResult that results in a redirect to the specified action.
+        /// </summary>
+        /// <param name="actionName">The name of the action on this controller to redirect to.</param>
+        /// <returns>The RedirectActionResult containing information about the redirect to perform.</returns>
+        protected RedirectActionResult Redirect(string actionName) {
+            return Redirect(GetType(), actionName, null);
+        }
+
+        /// <summary>
+        /// Creates a RedirectActionResult that results in a redirect to the specified action along
+        /// with any specified parameters.
+        /// </summary>
+        /// <param name="actionName">The name of the action on this controller to redirect to.</param>
+        /// <param name="parameters">The parameters to pass into the redirect.</param>
+        /// <returns>The RedirectActionResult containing information about the redirect to perform.</returns>
+        protected RedirectActionResult Redirect(string actionName, params string[] parameters) {
+            return Redirect(GetType(), actionName, parameters);
+        }
+
+        /// <summary>
+        /// Creates a RedirectActionResult that results in a redirect to the specified controller and
+        /// action along with any specified parameters.
+        /// </summary>
+        /// <param name="controllerType">The controller to redirect to.</param>
+        /// <param name="actionName">The name of the action on the specified controller to redirect to.</param>
+        /// <param name="parameters">The parameters to pass into the redirect.</param>
+        /// <returns>The RedirectActionResult containing information about the redirect to perform.</returns>
+        protected RedirectActionResult Redirect(Type controllerType, string actionName, params string[] parameters) {
+            return new RedirectActionResult(controllerType, actionName, parameters);
+        }
+
+        /// <summary>
+        /// Creates a ViewActionResult that results in the specified view being created.
+        /// </summary>
+        /// <param name="viewName">The name of the view to create.</param>
+        /// <returns>The ViewActionResult containing information about the view to create.</returns>
+        protected ViewActionResult View(string viewName) {
+            return new ViewActionResult(viewName);
         }
 
         #region Implementation of IController

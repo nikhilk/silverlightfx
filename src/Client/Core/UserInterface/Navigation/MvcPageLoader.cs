@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Navigation;
 using System.Reflection;
+using System.Text;
 using System.Threading;
 using System.Windows;
 
@@ -134,12 +135,14 @@ namespace SilverlightFX.UserInterface.Navigation {
                 Page page = null;
 
                 string viewName = null;
-                object viewModel = null;
+                IDictionary<string, object> viewData = null;
 
                 ViewActionResult viewResult = actionResult as ViewActionResult;
                 if (viewResult != null) {
                     viewName = viewResult.ViewName;
-                    viewModel = viewResult.ViewModel;
+                    if (viewResult.HasViewData) {
+                        viewData = viewResult.ViewData;
+                    }
                 }
 
                 ErrorActionResult errorResult = actionResult as ErrorActionResult;
@@ -162,8 +165,20 @@ namespace SilverlightFX.UserInterface.Navigation {
 
                     if ((viewType != null) && typeof(Page).IsAssignableFrom(viewType)) {
                         page = (Page)Activator.CreateInstance(viewType);
-                        if (viewResult.ViewModel != null) {
-                            page.Model = viewResult.ViewModel;
+                        if (viewData != null) {
+                            object viewModel = page.Model;
+                            if (viewModel != null) {
+                                Type viewModelType = viewModel.GetType();
+                                BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance |
+                                                            BindingFlags.FlattenHierarchy;
+
+                                foreach (KeyValuePair<string, object> viewDataItem in viewData) {
+                                    PropertyInfo pi = viewModelType.GetProperty(viewDataItem.Key, bindingFlags);
+                                    if ((pi != null) && pi.CanWrite) {
+                                        pi.SetValue(viewModel, viewDataItem.Value, null);
+                                    }
+                                }
+                            }
                         }
 
                         if ((page is ErrorPage) && (errorResult != null)) {
@@ -193,7 +208,34 @@ namespace SilverlightFX.UserInterface.Navigation {
 
                     RedirectActionResult redirectResult = actionResult as RedirectActionResult;
                     if (redirectResult != null) {
-                        redirectUri = redirectResult.RedirectUri;
+                        StringBuilder uriBuilder = new StringBuilder("/");
+
+                        if (_controllerType == null) {
+                            string controllerName = redirectResult.ControllerType.Name;
+                            if (controllerName.EndsWith("Controller", StringComparison.Ordinal)) {
+                                controllerName = controllerName.Substring(0, controllerName.Length - 10);
+                            }
+                            uriBuilder.Append(controllerName);
+                            uriBuilder.Append("/");
+                        }
+
+                        uriBuilder.Append(redirectResult.ActionName);
+
+                        if (redirectResult.Parameters != null) {
+                            foreach (string parameter in redirectResult.Parameters) {
+                                uriBuilder.Append("/");
+                                uriBuilder.Append(parameter);
+                            }
+                        }
+
+                        if (redirectResult.HasNamedParameters) {
+                            uriBuilder.Append("?");
+                            foreach (KeyValuePair<string, string> parameter in redirectResult.NamedParmeters) {
+                                uriBuilder.AppendFormat("{0}={1}&", parameter.Key, parameter.Value);
+                            }
+                        }
+
+                        redirectUri = new Uri(uriBuilder.ToString(), UriKind.Relative);
                     }
                 }
                 finally {

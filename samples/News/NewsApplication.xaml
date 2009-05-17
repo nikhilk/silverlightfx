@@ -9,6 +9,7 @@
 
   <fxapp:XApplication.Resources>
     <fxdata:DateFormatter x:Key="dateFormatter" />
+    <fxdata:VisibilityConverter x:Key="visibilityConverter" />
   </fxapp:XApplication.Resources>
 
   <fxapp:XApplication.Components>

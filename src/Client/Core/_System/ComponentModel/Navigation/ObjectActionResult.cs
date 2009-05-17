@@ -19,11 +19,7 @@ namespace System.ComponentModel.Navigation {
 
         private object _value;
 
-        /// <summary>
-        /// Initializes an instance of an ObjectActionResult with the specified value.
-        /// </summary>
-        /// <param name="value">The value representing the result.</param>
-        public ObjectActionResult(object value) {
+        internal ObjectActionResult(object value) {
             if (value == null) {
                 throw new ArgumentNullException("value");
             }

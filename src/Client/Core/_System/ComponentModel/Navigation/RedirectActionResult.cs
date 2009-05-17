@@ -9,6 +9,7 @@
 //
 
 using System;
+using System.Collections.Generic;
 
 namespace System.ComponentModel.Navigation {
 
@@ -17,29 +18,74 @@ namespace System.ComponentModel.Navigation {
     /// </summary>
     public sealed class RedirectActionResult : ActionResult {
 
-        private Uri _redirectUri;
+        private Type _controllerType;
+        private string _actionName;
+        private string[] _parameters;
+        private Dictionary<string, string> _namedParameters;
 
-        /// <summary>
-        /// Initializes an instance of a RedirectActionResult with the specified URI.
-        /// </summary>
-        /// <param name="redirectUri">The URI to redirect to.</param>
-        public RedirectActionResult(Uri redirectUri) {
-            if (redirectUri == null) {
-                throw new ArgumentNullException("redirectUri");
+        internal RedirectActionResult(Type controllerType, string actionName, params string[] parameters) {
+            if (controllerType == null) {
+                throw new ArgumentNullException("controllerType");
             }
-            if (redirectUri.IsAbsoluteUri) {
-                throw new ArgumentException("URI must be relative.");
+            if (typeof(Controller).IsAssignableFrom(controllerType) == false) {
+                throw new ArgumentException("The specified type is not a Controller type.", "controllerType");
+            }
+            if (String.IsNullOrEmpty(actionName)) {
+                throw new ArgumentNullException("actionName");
             }
 
-            _redirectUri = redirectUri;
+            _controllerType = controllerType;
+            _actionName = actionName;
+            _parameters = parameters;
         }
 
         /// <summary>
-        /// Gets the URI to redirect to.
+        /// Gets the name of the action to redirect to.
         /// </summary>
-        public Uri RedirectUri {
+        public string ActionName {
             get {
-                return _redirectUri;
+                return _actionName;
+            }
+        }
+
+        /// <summary>
+        /// Gets the type of the controller to redirect to.
+        /// </summary>
+        public Type ControllerType {
+            get {
+                return _controllerType;
+            }
+        }
+
+        /// <summary>
+        /// Gets whether there are any named parameters.
+        /// </summary>
+        public bool HasNamedParameters {
+            get {
+                return _namedParameters != null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the set of named parameters that should be passed in into the redirected
+        /// action.
+        /// </summary>
+        public IDictionary<string, string> NamedParmeters {
+            get {
+                if (_namedParameters == null) {
+                    _namedParameters = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                }
+                return _namedParameters;
+            }
+        }
+
+        /// <summary>
+        /// Gets the list of parameters that should be passed in into the redirected
+        /// action.
+        /// </summary>
+        public string[] Parameters {
+            get {
+                return _parameters;
             }
         }
     }

@@ -19,11 +19,7 @@ namespace System.ComponentModel.Navigation {
 
         private Exception _error;
 
-        /// <summary>
-        /// Initializes an instance of a ErrorActionResult with the specified error.
-        /// </summary>
-        /// <param name="error">The error that occurred..</param>
-        public ErrorActionResult(Exception error) {
+        internal ErrorActionResult(Exception error) {
             if (error == null) {
                 throw new ArgumentNullException("error");
             }

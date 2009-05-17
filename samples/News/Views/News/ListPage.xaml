@@ -5,9 +5,9 @@
   xmlns:fxeffect="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
   xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX"
   xmlns:fxaction="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
-  x:Class="NewsWidget.Views.News.ListPage">
+  x:Class="NewsWidget.Views.News.ListPage" ModelType="NewsWidget.Views.News.ListPageModel">
   <Grid>
-    <fxui:ListView Style="{StaticResource newsItemListStyle}" DataSource="{Binding}">
+    <fxui:ListView Style="{StaticResource newsItemListStyle}" DataSource="{Binding Items}">
       <fxui:ListView.ItemTemplate>
         <DataTemplate>
           <Border CornerRadius="4" Cursor="Hand">
