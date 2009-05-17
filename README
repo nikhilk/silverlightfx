@@ -1,5 +1,5 @@
 Silverlight.FX
-Copyright (c) 2008, Nikhil Kothari (http://www.nikhilk.net)
+Copyright (c) 2009, Nikhil Kothari (http://www.nikhilk.net)
 All Rights Reserved.
 
 Silverlight.FX is licensed under the BSD License. See License.txt within
@@ -15,7 +15,7 @@ Applications based on Silverlight 2.
 The focus is on enabling applications to be naturally better architected by
 providing the right building blocks including:
 - Promoting separation of view/code through well established patterns like
-  IoC, MVVM, MVC (in progress)
+  IoC, MVVM, MVC
 - Encapsulating functionality into reusable components like behaviors and
   services
 - Making the right concepts declarative (eg. effects, behaviors)
@@ -23,9 +23,9 @@ providing the right building blocks including:
 
 Another equally important focus is on keeping the framework lean and mean
 and being mindful of size - this is all about being a RIA/Web-friendly
-framework. Currently the library comes in at ~60K compressed.
+framework. Currently the library comes in at ~70K compressed.
 
 
 You can read more about this framework and its features on various blog
-posts on http://www.nikhilk.net. Its dedicated project page will be at
+posts on http://www.nikhilk.net. Its dedicated project page is at
 http://projects.nikhilk.net/SilverlightFX.
