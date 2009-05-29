@@ -72,10 +72,7 @@ namespace SilverlightFX.UserInterface.Navigation {
                 _pages.Remove(cacheKey);
 
                 int index = _keys.IndexOf(cacheKey);
-                for (int i = index + 1; i < _keys.Count; i++) {
-                    _keys[i - 1] = _keys[i];
-                }
-                _keys.RemoveAt(_keys.Count - 1);
+                _keys.RemoveAt(index);
 
                 return page;
             }
