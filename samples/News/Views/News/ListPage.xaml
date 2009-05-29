@@ -6,8 +6,8 @@
   xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX"
   xmlns:fxaction="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
   x:Class="NewsWidget.Views.News.ListPage" ModelType="NewsWidget.Views.News.ListPageModel">
-  <Grid>
-    <fxui:ListView Style="{StaticResource newsItemListStyle}" DataSource="{Binding Items}">
+  <fxui:XGrid Rows="*,Auto">
+    <fxui:ListView Style="{StaticResource newsItemListStyle}" DataSource="{Binding ListItems}">
       <fxui:ListView.ItemTemplate>
         <DataTemplate>
           <Border CornerRadius="4" Cursor="Hand">
@@ -47,5 +47,9 @@
         <fxui:MouseWheelScroll />
       </fxui:Interaction.Behaviors>
     </fxui:ListView>
-  </Grid>
+
+    <CheckBox Grid.Row="1" HorizontalAlignment="Center"
+      IsChecked="{Binding FilterToday, Mode=TwoWay}"
+      Content="Show only today's news" />
+  </fxui:XGrid>
 </fxnav:Page>
