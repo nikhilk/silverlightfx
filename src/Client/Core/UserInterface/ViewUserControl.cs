@@ -31,7 +31,7 @@ namespace SilverlightFX.UserInterface {
         /// The view model is set as the DataContext of the Form.
         /// </summary>
         /// <param name="viewModel">The associated view model object.</param>
-        public ViewUserControl(Model viewModel)
+        public ViewUserControl(object viewModel)
             : base(viewModel) {
         }
     }
