@@ -10,6 +10,7 @@
     <param name="initParams" value="NewswireApiKey=<asp:Literal runat="server" Text="<%$ appSettings:timesNewswireApiKey%>" />,SearchApiKey=<asp:Literal runat="server" Text="<%$ appSettings:timesSearchApiKey %>" />" />
     <param name="version" value="3.0" />
     <param name="enableHtmlAccess" value="true" />
-  </object>  
+  </object>
+  <iframe id="_sl_historyFrame" style="visibility:hidden;height:0px;width:0px;border:0px"></iframe>
 </body>
 </html>

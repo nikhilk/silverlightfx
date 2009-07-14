@@ -17,8 +17,6 @@ using System.Windows.Media.Glitz;
 
 namespace SilverlightFX.UserInterface.Navigation {
 
-    // TODO: Support for external journaling and browser history integration
-
     /// <summary>
     /// A derived ContentControl that supports transitions to animate from
     /// initial content to another content.
@@ -68,6 +66,7 @@ namespace SilverlightFX.UserInterface.Navigation {
         private PageLoader _loader;
         private PageJournal _journal;
         private PageCache _cache;
+        private bool _integrateWithBrowser;
 
         private DelegateCommand _backCommand;
         private DelegateCommand _forwardCommand;
@@ -118,6 +117,22 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
             set {
                 SetValue(ErrorPageTypeProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Whether the frame should integrate with the browser's history stack.
+        /// </summary>
+        public bool IsIntegratedWithBrowser {
+            get {
+                return _integrateWithBrowser;
+            }
+            set {
+                if (_loaded) {
+                    throw new InvalidOperationException("IsIntegratedWithBrowser can only be set declaratively.");
+                }
+
+                _integrateWithBrowser = value;
             }
         }
 
@@ -281,9 +296,7 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
 
             if (_redirecting == false) {
-                // TODO: False if we don't own journal and this navigation request is
-                //       because of a browser-based back/fwd/address change gesture
-                bool canCancel = true;
+                bool canCancel = !_journal.IsIntegratedWithBrowser;
 
                 if (currentPage != null) {
                     PageNavigatingEventArgs e = new PageNavigatingEventArgs(canCancel);
@@ -350,6 +363,13 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
         }
 
+        private void OnJournalNavigation(Uri uri) {
+            NavigationState navigationState = new NavigationState(uri) {
+                                                  journalNavigation = false,
+                                              };
+            NavigateInternal(navigationState);
+        }
+
         private void OnLoaded(object sender, RoutedEventArgs e) {
             if (_loader == null) {
                 Loader = PageLoader.Default;
@@ -361,6 +381,10 @@ namespace SilverlightFX.UserInterface.Navigation {
             ApplyTemplate();
 
             _loaded = true;
+
+            if (_journal.CanIntegrateWithBrowser && _integrateWithBrowser) {
+                _journal.IntegrateWithBrowser(OnJournalNavigation);
+            }
             NavigateInternal(new NavigationState(Uri));
         }
 

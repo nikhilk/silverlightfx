@@ -46,6 +46,7 @@
     </fxui:HStackPanel>
    
     <fxnav:PageFrame x:Name="mainFrame" Style="{StaticResource pageFrameStyle}"
+      IsIntegratedWithBrowser="True"
       Grid.Column="1" Grid.Row="5">
       <fxnav:PageFrame.Loader>
         <fxnav:MvcPageLoader />
