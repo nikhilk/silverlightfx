@@ -18,9 +18,9 @@ using System.Windows.Media.Glitz;
 namespace System.Windows.Media.Glitz {
 
     /// <summary>
-    /// Represents an effect that can be associated with an element.
+    /// Represents an animation that can be associated with an element.
     /// </summary>
-    public abstract class Effect : FrameworkElement, IAttachedObject, IProceduralAnimationFactory {
+    public abstract class AnimationEffect : FrameworkElement, IAttachedObject, IProceduralAnimationFactory {
 
         private FrameworkElement _associatedObject;
         private FrameworkElement _target;
@@ -33,12 +33,12 @@ namespace System.Windows.Media.Glitz {
         private TweenInterpolation _interpolation;
 
         private ProceduralAnimation _animation;
-        private EffectDirection _direction;
+        private AnimationEffectDirection _direction;
 
         /// <summary>
-        /// Initializes an Effect instance.
+        /// Initializes an AnimationEffect instance.
         /// </summary>
-        protected Effect() {
+        protected AnimationEffect() {
             _duration = TimeSpan.FromMilliseconds(250);
             _reversible = true;
             _useDefaultInterpolation = true;
@@ -70,7 +70,7 @@ namespace System.Windows.Media.Glitz {
         /// Gets the direction that the effect is currently playing while it is
         /// active or has just completed.
         /// </summary>
-        public EffectDirection Direction {
+        public AnimationEffectDirection Direction {
             get {
                 return _direction;
             }
@@ -226,7 +226,7 @@ namespace System.Windows.Media.Glitz {
         /// </summary>
         /// <param name="direction">The direction of the animation.</param>
         /// <returns>The animation to be played to play the effect.</returns>
-        protected internal abstract ProceduralAnimation CreateEffectAnimation(EffectDirection direction);
+        protected internal abstract ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction);
 
         private void OnAnimationStopped(object sender, EventArgs e) {
             OnCompleted();
@@ -251,7 +251,7 @@ namespace System.Windows.Media.Glitz {
         /// Indicates that the effect should start playing.
         /// </summary>
         /// <param name="direction">Indicates whether to play the direction in forward direction or reverse direction.</param>
-        public void PlayEffect(EffectDirection direction) {
+        public void PlayEffect(AnimationEffectDirection direction) {
             if (_animation != null) {
                 _animation.Stopped -= OnAnimationStopped;
                 if (_animation.IsPlaying) {
@@ -260,11 +260,12 @@ namespace System.Windows.Media.Glitz {
                 _animation = null;
             }
 
-            if ((direction == EffectDirection.Reverse) && (AutoReverse || (Reversible == false))) {
-                direction = EffectDirection.Forward;
+            if ((direction == AnimationEffectDirection.Reverse) && (AutoReverse || (Reversible == false))) {
+                direction = AnimationEffectDirection.Forward;
             }
             if (_reversed) {
-                direction = (direction == EffectDirection.Forward) ? EffectDirection.Reverse : EffectDirection.Forward;
+                direction = (direction == AnimationEffectDirection.Forward) ? AnimationEffectDirection.Reverse :
+                                                                              AnimationEffectDirection.Forward;
             }
 
             _animation = CreateEffectAnimation(direction);
@@ -306,7 +307,7 @@ namespace System.Windows.Media.Glitz {
 
         #region Implementation of IProceduralAnimationFactory
         ProceduralAnimation IProceduralAnimationFactory.CreateAnimation() {
-            return CreateEffectAnimation(EffectDirection.Forward);
+            return CreateEffectAnimation(AnimationEffectDirection.Forward);
         }
         #endregion
     }

@@ -1,4 +1,4 @@
-﻿// EffectComposition.cs
+﻿// AnimationEffectCollection.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -9,22 +9,14 @@
 //
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
-namespace SilverlightFX.UserInterface.Effects {
+namespace System.Windows.Media.Glitz {
 
     /// <summary>
-    /// Represents how a set of effects are composed together.
+    /// Represents a collection of AnimationEffect objects.
     /// </summary>
-    public enum EffectComposition {
-
-        /// <summary>
-        /// Runs the set of effects one after another.
-        /// </summary>
-        Sequence = 0,
-
-        /// <summary>
-        /// Runs the set of effects together at the same time.
-        /// </summary>
-        Parallel = 1
+    public sealed class AnimationEffectCollection : Collection<AnimationEffect> {
     }
 }

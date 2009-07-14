@@ -12,6 +12,24 @@
     <AssemblyName>SilverlightFX</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <SilverlightApplication>false</SilverlightApplication>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,17 +67,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Applications\ComponentCollection.cs" />
+    <Compile Include="Applications\ApplicationContext.cs" />
     <Compile Include="Applications\IExternalNavigationService.cs" />
     <Compile Include="Applications\Theme.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Applications\XApplication.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\BooleanInverter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Data\Binder.cs" />
     <Compile Include="Data\IndexToNumberConverter.cs" />
     <Compile Include="Data\DateFormatter.cs" />
     <Compile Include="Data\CurrencyFormatter.cs">
@@ -172,16 +187,16 @@
     <Compile Include="UserInterface\DetailViewItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserInterface\EffectBehavior.cs">
+    <Compile Include="UserInterface\AnimationEffectBehavior.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Effects\ColorFill.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserInterface\Effects\CompositeEffect.cs">
+    <Compile Include="UserInterface\Effects\CompositeAnimation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserInterface\Effects\EffectComposition.cs">
+    <Compile Include="UserInterface\Effects\AnimationComposition.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Effects\Fade.cs">
@@ -340,12 +355,9 @@
     <Compile Include="_System\Collections\IPredicate.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_System\ComponentModel\CancelEventArgs.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="_System\ComponentModel\ComponentContainer.cs" />
     <Compile Include="_System\ComponentModel\IComponentCreator.cs" />
-    <Compile Include="_System\ComponentModel\IApplicationIdentity.cs" />
+    <Compile Include="_System\ComponentModel\IApplicationContext.cs" />
     <Compile Include="_System\ComponentModel\IComponentContainer.cs" />
     <Compile Include="_System\ComponentModel\DependencyAttribute.cs" />
     <Compile Include="_System\ComponentModel\ServiceAttribute.cs" />
@@ -395,13 +407,13 @@
     <Compile Include="_System\Presentation\Glitz\DoubleAnimation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_System\Presentation\Glitz\Effect.cs">
+    <Compile Include="_System\Presentation\Glitz\AnimationEffect.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_System\Presentation\Glitz\EffectCollection.cs">
+    <Compile Include="_System\Presentation\Glitz\AnimationEffectCollection.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="_System\Presentation\Glitz\EffectDirection.cs">
+    <Compile Include="_System\Presentation\Glitz\AnimationEffectDirection.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_System\Presentation\Glitz\IProceduralAnimationFactory.cs">
@@ -472,9 +484,42 @@
   <ItemGroup>
     <Resource Include="Themes\generic.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Resource>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v2.0\Microsoft.Silverlight.CSharp.targets" />
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight\v3.0\Microsoft.Silverlight.CSharp.targets" Condition="" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

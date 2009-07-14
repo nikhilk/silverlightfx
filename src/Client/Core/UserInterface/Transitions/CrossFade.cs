@@ -24,17 +24,17 @@ namespace SilverlightFX.UserInterface.Transitions {
     public class CrossFade : Transition {
 
         /// <internalonly />
-        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, EffectDirection direction) {
+        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, AnimationEffectDirection direction) {
             TweenInterpolation interpolation = GetEffectiveInterpolation();
 
             DoubleAnimation frontAnimation =
                 new DoubleAnimation(container.Children[1], UIElement.OpacityProperty, Duration,
-                                    (direction == EffectDirection.Forward ? 0 : 1));
+                                    (direction == AnimationEffectDirection.Forward ? 0 : 1));
             frontAnimation.Interpolation = interpolation;
 
             DoubleAnimation backAnimation =
                 new DoubleAnimation(container.Children[0], UIElement.OpacityProperty, Duration,
-                                    (direction == EffectDirection.Forward ? 1 : 0));
+                                    (direction == AnimationEffectDirection.Forward ? 1 : 0));
             backAnimation.Interpolation = interpolation;
 
             return new ProceduralAnimationSet(frontAnimation, backAnimation);

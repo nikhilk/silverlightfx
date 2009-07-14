@@ -20,7 +20,7 @@ namespace SilverlightFX.UserInterface.Effects {
     /// <summary>
     /// Represents a colored background fill effect.
     /// </summary>
-    public class ColorFill : Effect {
+    public class ColorFill : AnimationEffect {
 
         private Color _fillColor;
         private Color _initialColor;
@@ -46,7 +46,7 @@ namespace SilverlightFX.UserInterface.Effects {
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             if (_brush == null) {
                 FrameworkElement target = GetTarget();
 
@@ -85,7 +85,7 @@ namespace SilverlightFX.UserInterface.Effects {
             }
 
             ColorFillAnimation animation;
-            if (direction == EffectDirection.Forward) {
+            if (direction == AnimationEffectDirection.Forward) {
                 animation = new ColorFillAnimation(Duration, _brush, _initialColor, _fillColor);
             }
             else {

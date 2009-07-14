@@ -10,9 +10,9 @@ using System.Windows.Media.Glitz;
 
 namespace EffectControl {
 
-    public class FlashBulb : Effect {
+    public class FlashBulb : AnimationEffect {
 
-        protected override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             FrameworkElement target = GetTarget();
 
             ScaleTransform scaleTransform = target.RenderTransform as ScaleTransform;

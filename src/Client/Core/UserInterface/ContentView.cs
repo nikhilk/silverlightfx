@@ -191,7 +191,7 @@ namespace SilverlightFX.UserInterface {
                     AddContent(newContent);
 
                     contentTransition.Target = _contentGrid;
-                    contentTransition.PlayEffect(EffectDirection.Forward);
+                    contentTransition.PlayEffect(AnimationEffectDirection.Forward);
                 }
             }
         }

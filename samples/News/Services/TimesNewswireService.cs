@@ -22,14 +22,14 @@ namespace NewsWidget.Services {
         private const string SearchUriFormat = "http://api.nytimes.com/svc/search/v1/article?query={0}&api-key={1}";
 
         [Dependency]
-        public IApplicationIdentity Application {
+        public IApplicationContext ApplicationContext {
             get;
             set;
         }
 
         public void GetNews(bool limitToLastDay, Action<IEnumerable<NewsItem>, object> newsItemsCallback, object userState) {
             string timeFrame = limitToLastDay ? "last24hours" : "recent";
-            string url = String.Format(RecentNewsUriFormat, timeFrame, Application.StartupArguments["NewswireApiKey"]);
+            string url = String.Format(RecentNewsUriFormat, timeFrame, ApplicationContext.StartupArguments["NewswireApiKey"]);
 
             Uri requestUri = new Uri(url, UriKind.Absolute);
 
@@ -76,7 +76,7 @@ namespace NewsWidget.Services {
         }
 
         public void Search(string query, Action<IEnumerable<NewsItem>, object> newsItemsCallback, object userState) {
-            string url = String.Format(SearchUriFormat, query, Application.StartupArguments["SearchApiKey"]);
+            string url = String.Format(SearchUriFormat, query, ApplicationContext.StartupArguments["SearchApiKey"]);
 
             Uri requestUri = new Uri(url, UriKind.Absolute);
 

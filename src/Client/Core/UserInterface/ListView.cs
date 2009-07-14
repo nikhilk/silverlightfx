@@ -31,7 +31,7 @@ namespace SilverlightFX.UserInterface {
         /// Represents the ItemAddedEffect property on a ListView control.
         /// </summary>
         public static readonly DependencyProperty ItemAddedEffectProperty =
-            DependencyProperty.Register("ItemAddedEffect", typeof(Effect), typeof(ListView), null);
+            DependencyProperty.Register("ItemAddedEffect", typeof(AnimationEffect), typeof(ListView), null);
 
         /// <summary>
         /// Represents the ItemContainerStyle property on a ListView control.
@@ -51,7 +51,7 @@ namespace SilverlightFX.UserInterface {
         /// Represents the ItemRemovedEffect property on a ListView control.
         /// </summary>
         public static readonly DependencyProperty ItemRemovedEffectProperty =
-            DependencyProperty.Register("ItemRemovedEffect", typeof(Effect), typeof(ListView), null);
+            DependencyProperty.Register("ItemRemovedEffect", typeof(AnimationEffect), typeof(ListView), null);
 
         /// <summary>
         /// Represents the ItemSort property on a ListView control.
@@ -94,9 +94,9 @@ namespace SilverlightFX.UserInterface {
         /// <summary>
         /// Gets or sets the effect applied to items when they are added to the list.
         /// </summary>
-        public Effect ItemAddedEffect {
+        public AnimationEffect ItemAddedEffect {
             get {
-                return (Effect)GetValue(ItemAddedEffectProperty);
+                return (AnimationEffect)GetValue(ItemAddedEffectProperty);
             }
             set {
                 SetValue(ItemAddedEffectProperty, value);
@@ -130,9 +130,9 @@ namespace SilverlightFX.UserInterface {
         /// <summary>
         /// Gets or sets the effect applied to items when they are removed from the list.
         /// </summary>
-        public Effect ItemRemovedEffect {
+        public AnimationEffect ItemRemovedEffect {
             get {
-                return (Effect)GetValue(ItemRemovedEffectProperty);
+                return (AnimationEffect)GetValue(ItemRemovedEffectProperty);
             }
             set {
                 SetValue(ItemRemovedEffectProperty, value);
@@ -188,7 +188,7 @@ namespace SilverlightFX.UserInterface {
             if (item != null) {
                 _itemsPresenter.Children.Insert(index, item);
 
-                Effect addedEffect = ItemAddedEffect;
+                AnimationEffect addedEffect = ItemAddedEffect;
                 if (addedEffect != null) {
                     addedEffect.Target = (FrameworkElement)item.Content;
 
@@ -366,7 +366,7 @@ namespace SilverlightFX.UserInterface {
             _items.Remove(item);
             _itemMap.Remove(dataItem);
 
-            Effect removedEffect = ItemRemovedEffect;
+            AnimationEffect removedEffect = ItemRemovedEffect;
             if (removedEffect == null) {
                 _itemsPresenter.Children.Remove(item);
             }

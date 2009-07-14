@@ -202,8 +202,6 @@ namespace SilverlightFX.UserInterface {
 
             if (_popup != null) {
                 _popup.IsOpen = false;
-                ((Screen)Application.Current.RootVisual).DisposePopup(_popup);
-
                 _popup = null;
             }
         }
@@ -400,11 +398,6 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void ShowDropDown(IList items) {
-            Screen screen = Application.Current.RootVisual as Screen;
-            if (screen == null) {
-                throw new InvalidOperationException("AutoComplete requires the root visual to be a Screen.");
-            }
-
             GeneralTransform transform = AssociatedObject.TransformToVisual((UIElement)Application.Current.RootVisual);
             Point transformedPoint = transform.Transform(new Point(0, 0));
 
@@ -429,7 +422,9 @@ namespace SilverlightFX.UserInterface {
                 Y = transformedPoint.Y + AssociatedObject.ActualHeight - 1
             };
 
-            _popup = screen.CreatePopup();
+            if (_popup == null) {
+                _popup = new Popup();
+            }
             _popup.Child = _dropDown;
             _popup.IsOpen = true;
         }

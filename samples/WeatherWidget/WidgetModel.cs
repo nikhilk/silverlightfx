@@ -17,7 +17,7 @@ namespace WeatherWidget {
 
         public WidgetModel() {
             string zipCode;
-            if (XApplication.Current.Settings.TryGetValue("ZipCode", out zipCode)) {
+            if (ApplicationContext.Current.Settings.TryGetValue("ZipCode", out zipCode)) {
                 if (String.IsNullOrEmpty(zipCode) == false) {
                     LookupWeather(zipCode);
                 }
@@ -75,7 +75,7 @@ namespace WeatherWidget {
 
                 _weather = weatherService.EndGetWeather(asyncResult);
                 if (_weather != null) {
-                    XApplication.Current.Settings["ZipCode"] = _zipCode;
+                    ApplicationContext.Current.Settings["ZipCode"] = _zipCode;
                 }
 
                 RaisePropertyChanged("Weather", "IsLoading", "Status", "ZipCode");

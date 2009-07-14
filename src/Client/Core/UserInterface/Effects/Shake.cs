@@ -20,7 +20,7 @@ namespace SilverlightFX.UserInterface.Effects {
     /// <summary>
     /// Represents an effect that shakes the associated element left and right.
     /// </summary>
-    public class Shake : Effect {
+    public class Shake : AnimationEffect {
 
         private double _shakeDistance;
         private TranslateTransform _translateTransform;
@@ -48,7 +48,7 @@ namespace SilverlightFX.UserInterface.Effects {
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             FrameworkElement target = GetTarget();
 
             if (_translateTransform == null) {

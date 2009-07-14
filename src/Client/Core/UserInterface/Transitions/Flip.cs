@@ -26,7 +26,7 @@ namespace SilverlightFX.UserInterface.Transitions {
         private ScaleTransform _scaleTransform;
 
         /// <internalonly />
-        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, EffectDirection direction) {
+        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, AnimationEffectDirection direction) {
             if (_scaleTransform == null) {
                 _scaleTransform = new ScaleTransform();
                 container.RenderTransform = _scaleTransform;
@@ -39,18 +39,18 @@ namespace SilverlightFX.UserInterface.Transitions {
 
             FlipScaleAnimation scaleAnimation =
                 new FlipScaleAnimation(Duration, _scaleTransform,
-                                       (direction == EffectDirection.Forward ? 180 : -180));
+                                       (direction == AnimationEffectDirection.Forward ? 180 : -180));
             scaleAnimation.Interpolation = interpolation;
 
             DoubleAnimation frontAnimation =
                 new DoubleAnimation(container.Children[1], UIElement.OpacityProperty, shortDuration,
-                                    (direction == EffectDirection.Forward ? 0 : 1));
+                                    (direction == AnimationEffectDirection.Forward ? 0 : 1));
             frontAnimation.Interpolation = interpolation;
             frontAnimation.StartDelay = shortDuration;
 
             DoubleAnimation backAnimation =
                 new DoubleAnimation(container.Children[0], UIElement.OpacityProperty, shortDuration,
-                                    (direction == EffectDirection.Forward ? 1 : 0));
+                                    (direction == AnimationEffectDirection.Forward ? 1 : 0));
             backAnimation.Interpolation = interpolation;
             backAnimation.StartDelay = shortDuration;
 

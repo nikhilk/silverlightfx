@@ -20,7 +20,7 @@ namespace SilverlightFX.UserInterface {
     /// Plays an effect whenever the mouse enters or leaves the
     /// associated element.
     /// </summary>
-    public class HoverEffect : EffectBehavior {
+    public class HoverEffect : AnimationEffectBehavior {
 
         /// <internalonly />
         protected override void OnAttach() {
@@ -39,11 +39,11 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnMouseEnter(object sender, MouseEventArgs e) {
-            PlayEffect(EffectDirection.Forward);
+            PlayEffect(AnimationEffectDirection.Forward);
         }
 
         private void OnMouseLeave(object sender, MouseEventArgs e) {
-            PlayEffect(EffectDirection.Reverse);
+            PlayEffect(AnimationEffectDirection.Reverse);
         }
     }
 }

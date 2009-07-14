@@ -18,7 +18,7 @@ namespace SilverlightFX.UserInterface {
     /// Plays an effect whenever the associated element gets or loses
     /// focus.
     /// </summary>
-    public class FocusEffect : EffectBehavior {
+    public class FocusEffect : AnimationEffectBehavior {
 
         /// <internalonly />
         protected override void OnAttach() {
@@ -37,11 +37,11 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnGotFocus(object sender, RoutedEventArgs e) {
-            PlayEffect(EffectDirection.Forward);
+            PlayEffect(AnimationEffectDirection.Forward);
         }
 
         private void OnLostFocus(object sender, RoutedEventArgs e) {
-            PlayEffect(EffectDirection.Reverse);
+            PlayEffect(AnimationEffectDirection.Reverse);
         }
     }
 }

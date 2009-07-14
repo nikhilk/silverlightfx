@@ -3,20 +3,13 @@
 
 using System;
 using System.Windows;
-using SilverlightFX.Applications;
 
 namespace Experiments {
 
-    public partial class App : XApplication {
+    public partial class App : Application {
 
         public App() {
             InitializeComponent();
-        }
-
-        public new static App Current {
-            get {
-                return Application.Current as App;
-            }
         }
     }
 }

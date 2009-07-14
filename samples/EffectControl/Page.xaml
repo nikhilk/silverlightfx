@@ -6,9 +6,9 @@
   <Grid Background="White">
 
     <app:Sprite Image="/Silverlight.png" Margin="10">
-      <app:Sprite.Effect>
+      <app:Sprite.AnimationEffect>
         <app:FlashBulb Duration="0:0:1" />
-      </app:Sprite.Effect>
+      </app:Sprite.AnimationEffect>
     </app:Sprite>
     
   </Grid>

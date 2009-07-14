@@ -256,7 +256,7 @@ namespace SilverlightFX.UserInterface {
                     itemTransition.Completed += OnItemTransitionCompleted;
                 }
 
-                itemTransition.PlayEffect(EffectDirection.Forward);
+                itemTransition.PlayEffect(AnimationEffectDirection.Forward);
             }
 
             if (dataItem != null) {

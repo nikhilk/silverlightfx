@@ -140,7 +140,7 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// </summary>
         /// <param name="e">The data associated with the event.</param>
         protected internal virtual void OnNavigating(PageNavigatingEventArgs e) {
-            if (e.CanCancel && e.Canceled) {
+            if (e.CanCancel && e.Cancel) {
                 return;
             }
             if (_navigatingHandler != null) {

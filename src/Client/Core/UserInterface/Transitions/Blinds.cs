@@ -41,11 +41,11 @@ namespace SilverlightFX.UserInterface.Transitions {
         }
 
         /// <internalonly />
-        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, EffectDirection direction) {
+        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, AnimationEffectDirection direction) {
             FrameworkElement topContent = (FrameworkElement)container.Children[1];
             FrameworkElement bottomContent = (FrameworkElement)container.Children[0];
 
-            BlindsAnimation animation = new BlindsAnimation(topContent, bottomContent, Duration, _mode, direction == EffectDirection.Forward);
+            BlindsAnimation animation = new BlindsAnimation(topContent, bottomContent, Duration, _mode, direction == AnimationEffectDirection.Forward);
             animation.Interpolation = GetEffectiveInterpolation();
 
             return animation;

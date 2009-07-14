@@ -20,7 +20,7 @@ namespace SilverlightFX.UserInterface.Effects {
     /// <summary>
     /// Represents an effect that fades in and out the associated element.
     /// </summary>
-    public class Pulsate : Effect {
+    public class Pulsate : AnimationEffect {
 
         private double _fadeOpacity;
 
@@ -47,7 +47,7 @@ namespace SilverlightFX.UserInterface.Effects {
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             FrameworkElement target = GetTarget();
 
             PulsateAnimation animation = new PulsateAnimation(target, Duration, _fadeOpacity);

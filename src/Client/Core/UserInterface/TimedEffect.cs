@@ -20,7 +20,7 @@ namespace SilverlightFX.UserInterface {
     /// Plays an effect whenever the associated element is
     /// loaded.
     /// </summary>
-    public class TimedEffect : EffectBehavior {
+    public class TimedEffect : AnimationEffectBehavior {
 
         private bool _forward;
         private DispatcherTimer _dispatcherTimer;
@@ -65,14 +65,14 @@ namespace SilverlightFX.UserInterface {
 
         private void OnLoaded(object sender, RoutedEventArgs e) {
             _forward = true;
-            PlayEffect(EffectDirection.Forward);
+            PlayEffect(AnimationEffectDirection.Forward);
 
             _dispatcherTimer.Start();
         }
 
         private void OnTick(object sender, EventArgs e) {
             _forward = !_forward;
-            PlayEffect(_forward ? EffectDirection.Forward : EffectDirection.Reverse);
+            PlayEffect(_forward ? AnimationEffectDirection.Forward : AnimationEffectDirection.Reverse);
         }
     }
 }

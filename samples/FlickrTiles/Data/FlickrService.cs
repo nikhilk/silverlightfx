@@ -22,7 +22,7 @@ namespace FlickrTiles.Data {
             "http://www.flickr.com/photos/{0}/{1}";
 
         public void SearchPhotos(string tag, Action<string, IEnumerable<Photo>> photosCallback) {
-            string apiKey = XApplication.Current.StartupArguments["ApiKey"];
+            string apiKey = ApplicationContext.Current.StartupArguments["ApiKey"];
             Uri searchUri = new Uri(String.Format(SearchUrlFormat, apiKey, tag));
 
             WebClient webClient = new WebClient();

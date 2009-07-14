@@ -1,13 +1,17 @@
-﻿<fxapp:XApplication
+﻿<Application
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
   xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
   xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
   xmlns:sys="clr-namespace:System;assembly=mscorlib"
-  x:Class="AmazonSearch.App"
-  WindowName="AmazonSearch.Views.SearchView">
-  <fxapp:XApplication.Resources>
+  x:Class="AmazonSearch.App">
+  
+  <Application.ApplicationLifetimeObjects>
+    <fxapp:ApplicationContext x:Name="appContext" WindowName="AmazonSearch.Views.SearchView" />
+  </Application.ApplicationLifetimeObjects>
+  
+  <Application.Resources>
 
     <sys:String x:Key="uiFontFamily">Verdana</sys:String>
     <sys:Int32 x:Key="uiFontSize">11</sys:Int32>
@@ -183,5 +187,5 @@
       </Setter>
     </Style>
 
-  </fxapp:XApplication.Resources>
-</fxapp:XApplication>
+  </Application.Resources>
+</Application>

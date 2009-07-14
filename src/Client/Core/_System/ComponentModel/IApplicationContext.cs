@@ -1,4 +1,4 @@
-﻿// IApplicationIdentity.cs
+﻿// IApplicationContext.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -14,9 +14,9 @@ using System.Collections.Generic;
 namespace System.ComponentModel {
 
     /// <summary>
-    /// Defines an application's identity.
+    /// Defines contextual information about the current application.
     /// </summary>
-    public interface IApplicationIdentity {
+    public interface IApplicationContext {
 
         /// <summary>
         /// Gets the model associated with the application instance.

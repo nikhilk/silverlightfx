@@ -1,4 +1,4 @@
-﻿// Effect.cs
+﻿// CompositeAnimation.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -23,24 +23,24 @@ namespace SilverlightFX.UserInterface.Effects {
     /// Represents an effect that contains a set of nested effects.
     /// </summary>
     [ContentProperty("Effects")]
-    public class CompositeEffect : Effect {
+    public class CompositeAnimation : AnimationEffect {
 
-        private EffectCollection _effects;
-        private EffectComposition _composition;
+        private AnimationEffectCollection _effects;
+        private AnimationComposition _composition;
 
         private bool _childrenInitialized;
 
         /// <summary>
-        /// Initializes an instance of a CompositeEffect.
+        /// Initializes an instance of a CompositeAnimation.
         /// </summary>
-        public CompositeEffect() {
-            _effects = new EffectCollection();
+        public CompositeAnimation() {
+            _effects = new AnimationEffectCollection();
         }
 
         /// <summary>
         /// The composition method used to play the child effects.
         /// </summary>
-        public EffectComposition Composition {
+        public AnimationComposition Composition {
             get {
                 return _composition;
             }
@@ -52,20 +52,20 @@ namespace SilverlightFX.UserInterface.Effects {
         /// <summary>
         /// The list of effects to be composed.
         /// </summary>
-        public EffectCollection Effects {
+        public AnimationEffectCollection Effects {
             get {
                 return _effects;
             }
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             if (_effects.Count == 0) {
                 throw new InvalidOperationException("A CompositeEffect must have more than 1 nested child effect.");
             }
 
             if (_childrenInitialized == false) {
-                foreach (Effect childEffect in _effects) {
+                foreach (AnimationEffect childEffect in _effects) {
                     ((IAttachedObject)childEffect).Attach(AssociatedObject);
                 }
 
@@ -73,10 +73,10 @@ namespace SilverlightFX.UserInterface.Effects {
             }
 
             List<ProceduralAnimation> animations = new List<ProceduralAnimation>(_effects.Count);
-            foreach (Effect childEffect in _effects) {
-                EffectDirection childDirection = direction;
+            foreach (AnimationEffect childEffect in _effects) {
+                AnimationEffectDirection childDirection = direction;
                 if (childEffect.AutoReverse) {
-                    childDirection = EffectDirection.Forward;
+                    childDirection = AnimationEffectDirection.Forward;
                 }
 
                 ProceduralAnimation childAnimation = childEffect.CreateEffectAnimation(childDirection);
@@ -88,7 +88,7 @@ namespace SilverlightFX.UserInterface.Effects {
             if (animations.Count != 0) {
                 ProceduralAnimation[] animationItems = animations.ToArray();
 
-                if (_composition == EffectComposition.Parallel) {
+                if (_composition == AnimationComposition.Parallel) {
                     ProceduralAnimationSet animation = new ProceduralAnimationSet(animationItems);
                     animation.AutoReverse = AutoReverse;
 

@@ -1,8 +1,11 @@
-﻿<fxa:XApplication
+﻿<Application
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
-  xmlns:fxa="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
-  x:Class="EffectsSample.App"
-  WindowName="Page">
-</fxa:XApplication>
+  xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
+  x:Class="EffectsSample.App">
+  
+  <Application.ApplicationLifetimeObjects>
+    <fxapp:ApplicationContext x:Name="appContext" WindowName="Page" />
+  </Application.ApplicationLifetimeObjects>
+</Application>

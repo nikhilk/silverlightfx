@@ -26,13 +26,13 @@ namespace SilverlightFX.UserInterface {
         /// Represents the CloseEffect property.
         /// </summary>
         public static readonly DependencyProperty CloseEffectProperty =
-            DependencyProperty.Register("CloseEffect", typeof(Effect), typeof(Form), null);
+            DependencyProperty.Register("CloseEffect", typeof(AnimationEffect), typeof(Form), null);
 
         /// <summary>
         /// Represents the ShowEffect property.
         /// </summary>
         public static readonly DependencyProperty ShowEffectProperty =
-            DependencyProperty.Register("ShowEffect", typeof(Effect), typeof(Form), null);
+            DependencyProperty.Register("ShowEffect", typeof(AnimationEffect), typeof(Form), null);
 
         private FormResult _formResult;
         private EventHandler _closedHandler;
@@ -68,9 +68,9 @@ namespace SilverlightFX.UserInterface {
         /// <summary>
         /// Gets or sets the effect to be played when the form is closing.
         /// </summary>
-        public Effect CloseEffect {
+        public AnimationEffect CloseEffect {
             get {
-                return (Effect)GetValue(CloseEffectProperty);
+                return (AnimationEffect)GetValue(CloseEffectProperty);
             }
             set {
                 SetValue(CloseEffectProperty, value);
@@ -98,9 +98,9 @@ namespace SilverlightFX.UserInterface {
         /// <summary>
         /// Gets or sets the effect to be played when the form is being shown.
         /// </summary>
-        public Effect ShowEffect {
+        public AnimationEffect ShowEffect {
             get {
-                return (Effect)GetValue(ShowEffectProperty);
+                return (AnimationEffect)GetValue(ShowEffectProperty);
             }
             set {
                 SetValue(ShowEffectProperty, value);
@@ -131,7 +131,7 @@ namespace SilverlightFX.UserInterface {
             _formResult = result;
             _canClose = false;
 
-            Effect closeEffect = CloseEffect;
+            AnimationEffect closeEffect = CloseEffect;
             if (closeEffect == null) {
                 CloseCore();
             }
@@ -140,7 +140,7 @@ namespace SilverlightFX.UserInterface {
                     ((IAttachedObject)closeEffect).Attach(this);
                     closeEffect.Completed += OnCloseEffectCompleted;
                 }
-                closeEffect.PlayEffect(EffectDirection.Forward);
+                closeEffect.PlayEffect(AnimationEffectDirection.Forward);
             }
         }
 
@@ -208,7 +208,7 @@ namespace SilverlightFX.UserInterface {
 
             Visibility = Visibility.Visible;
 
-            Effect showEffect = ShowEffect;
+            AnimationEffect showEffect = ShowEffect;
             if (showEffect == null) {
                 _canClose = true;
                 Focus();
@@ -220,7 +220,7 @@ namespace SilverlightFX.UserInterface {
                     ((IAttachedObject)showEffect).Attach(this);
                     showEffect.Completed += OnShowEffectCompleted;
                 }
-                showEffect.PlayEffect(EffectDirection.Forward);
+                showEffect.PlayEffect(AnimationEffectDirection.Forward);
             }
         }
     }

@@ -17,7 +17,7 @@ namespace SilverlightFX.UserInterface.Effects {
     /// <summary>
     /// Represents a spin effect that rotates the associated element
     /// </summary>
-    public class Spin : Effect {
+    public class Spin : AnimationEffect {
 
         private RotateTransform _rotateTransform;
         private double _spinAngle;
@@ -37,7 +37,7 @@ namespace SilverlightFX.UserInterface.Effects {
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             if (_rotateTransform == null) {
                 Transform existingTransform = GetTarget().RenderTransform;
                 if (existingTransform != null) {
@@ -65,7 +65,7 @@ namespace SilverlightFX.UserInterface.Effects {
             }
 
             if (_spinAngle != 0) {
-                double targetValue = direction == EffectDirection.Forward ? _initialAngle + _spinAngle : _initialAngle;
+                double targetValue = direction == AnimationEffectDirection.Forward ? _initialAngle + _spinAngle : _initialAngle;
                 DoubleAnimation animation = new DoubleAnimation(_rotateTransform, RotateTransform.AngleProperty,
                                                                 Duration, targetValue);
                 animation.Interpolation = GetEffectiveInterpolation();

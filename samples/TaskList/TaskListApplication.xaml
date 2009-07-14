@@ -1,16 +1,19 @@
-﻿<fxapp:XApplication
+﻿<Application
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
   xmlns:fxdata="clr-namespace:SilverlightFX.Data;assembly=SilverlightFX"
   xmlns:app="clr-namespace:TaskList"
-  x:Class="TaskList.TaskListApplication"
-  WindowName="TaskListWidget" ThemeName="Default">
+  x:Class="TaskList.TaskListApplication">
 
-  <fxapp:XApplication.Resources>
+  <Application.Resources>
     <fxdata:StringFormatter x:Key="stringFormatter" />
     <fxdata:VisibilityConverter x:Key="visibilityConverter" />
     <app:TaskColorConverter x:Key="taskColorConverter" />
-  </fxapp:XApplication.Resources>
+  </Application.Resources>
   
-</fxapp:XApplication>
+  <Application.ApplicationLifetimeObjects>
+    <fxapp:ApplicationContext x:Name="appContext" WindowName="TaskListWidget" ThemeName="Default" />
+  </Application.ApplicationLifetimeObjects>
+  
+</Application>

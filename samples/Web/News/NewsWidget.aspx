@@ -8,7 +8,7 @@
   <object style="width: 340px; height: 480px; margin: 10px" type="application/x-silverlight">
     <param name="source" value="NewsWidget.xap" />
     <param name="initParams" value="NewswireApiKey=<asp:Literal runat="server" Text="<%$ appSettings:timesNewswireApiKey%>" />,SearchApiKey=<asp:Literal runat="server" Text="<%$ appSettings:timesSearchApiKey %>" />" />
-    <param name="version" value="2.0" />
+    <param name="version" value="3.0" />
     <param name="enableHtmlAccess" value="true" />
   </object>  
 </body>

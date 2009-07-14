@@ -162,12 +162,12 @@
         </Grid.RowDefinitions>
         <fxui:Interaction.Behaviors>
           <fxui:ClickEffect>
-            <fxeffects:CompositeEffect AutoReverse="True" Composition="Parallel">
+            <fxeffects:CompositeAnimation AutoReverse="True" Composition="Parallel">
               <fxeffects:Move TargetName="compositeImage" HorizontalMovement="50" Duration="00:00:01" />
               <fxeffects:Resize TargetName="compositeImage" ScaleXRatio="0.5" ScaleYRatio="0.5" Duration="00:00:01" />
               <fxeffects:Spin TargetName="compositeImage" SpinAngle="360" Duration="00:00:01" />
               <fxeffects:Fade TargetName="compositeImage" FadeOpacity="0.5" Duration="00:00:01" />
-            </fxeffects:CompositeEffect>
+            </fxeffects:CompositeAnimation>
           </fxui:ClickEffect>
         </fxui:Interaction.Behaviors>
         <Image Source="/Silverlight.png" x:Name="compositeImage" RenderTransformOrigin="0.5,0.5">

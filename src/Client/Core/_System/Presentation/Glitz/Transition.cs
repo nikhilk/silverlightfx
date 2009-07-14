@@ -21,7 +21,7 @@ namespace System.Windows.Media.Glitz {
     /// Represents a transition effect that can be attached to a container
     /// with two child elements. The transition shows one element and hides the other.
     /// </summary>
-    public abstract class Transition : Effect {
+    public abstract class Transition : AnimationEffect {
 
         /// <summary>
         /// Creates the animation associated with the transition for the specified direction.
@@ -31,10 +31,10 @@ namespace System.Windows.Media.Glitz {
         /// <param name="container">The container that contains the controls to transition.</param>
         /// <param name="direction">The direction of the transition.</param>
         /// <returns>The animation representing the transition.</returns>
-        protected abstract ProceduralAnimation CreateTransitionAnimation(Panel container, EffectDirection direction);
+        protected abstract ProceduralAnimation CreateTransitionAnimation(Panel container, AnimationEffectDirection direction);
 
         /// <internalonly />
-        protected internal sealed override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal sealed override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             Panel container = GetTarget() as Panel;
             if (container == null) {
                 throw new InvalidOperationException("A FlipEffect's target must be a Panel.");
@@ -56,7 +56,7 @@ namespace System.Windows.Media.Glitz {
                 UIElement topContent = container.Children[1];
                 UIElement bottomContent = container.Children[0];
 
-                if (Direction == EffectDirection.Forward) {
+                if (Direction == AnimationEffectDirection.Forward) {
                     topContent.Visibility = Visibility.Collapsed;
                     topContent.IsHitTestVisible = false;
                     bottomContent.IsHitTestVisible = true;

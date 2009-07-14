@@ -1,8 +1,11 @@
-﻿<fxapp:XApplication
+﻿<Application
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
   xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
-  x:Class="ThemeSample.App"
-  ThemeName="$theme|Green" WindowName="$page|Page">
-</fxapp:XApplication>
+  x:Class="ThemeSample.App">
+  
+  <Application.ApplicationLifetimeObjects>
+    <fxapp:ApplicationContext x:Name="appContext" ThemeName="$theme|Green" WindowName="$page|Page" />
+  </Application.ApplicationLifetimeObjects>
+</Application>

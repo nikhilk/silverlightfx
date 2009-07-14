@@ -3,11 +3,10 @@
 
 using System;
 using System.Windows;
-using SilverlightFX.Applications;
 
 namespace TaskList {
 
-    public partial class TaskListApplication : XApplication {
+    public partial class TaskListApplication : Application {
 
         public TaskListApplication() {
             InitializeComponent();

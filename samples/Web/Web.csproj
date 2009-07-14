@@ -74,7 +74,6 @@
     <Content Include="Experiments\ViewModelSample.aspx" />
     <Content Include="Experiments\VSMSample.aspx" />
     <Content Include="TaskList\TaskList.aspx" />
-    <Content Include="TaskList\TaskList.xap" />
     <Content Include="Themes\ThemeSample.aspx" />
     <Content Include="Themes\ThemeSample.xap" />
   </ItemGroup>
@@ -91,6 +90,7 @@
     <Content Include="Flickr\FlickrTiles.xap" />
     <Content Include="News\NewsWidget.aspx" />
     <Content Include="News\NewsWidget.xap" />
+    <Content Include="TaskList\TaskList.xap" />
     <Content Include="Weather\Images\0.png" />
     <Content Include="Weather\Images\01.png" />
     <Content Include="Weather\Images\02.png" />

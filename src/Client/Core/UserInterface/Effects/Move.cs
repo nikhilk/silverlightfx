@@ -17,7 +17,7 @@ namespace SilverlightFX.UserInterface.Effects {
     /// <summary>
     /// Represents an effect that moves the associated element
     /// </summary>
-    public class Move : Effect {
+    public class Move : AnimationEffect {
 
         private TranslateTransform _translateTransform;
 
@@ -52,7 +52,7 @@ namespace SilverlightFX.UserInterface.Effects {
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             if (_translateTransform == null) {
                 Transform existingTransform = GetTarget().RenderTransform;
                 if (existingTransform != null) {
@@ -85,13 +85,13 @@ namespace SilverlightFX.UserInterface.Effects {
             DoubleAnimation yAnimation = null;
 
             if (_horizontalMovement != 0) {
-                double targetValue = direction == EffectDirection.Forward ? _horizontalMovement : _initialX;
+                double targetValue = direction == AnimationEffectDirection.Forward ? _horizontalMovement : _initialX;
                 xAnimation = new DoubleAnimation(_translateTransform, TranslateTransform.XProperty, Duration, targetValue);
                 xAnimation.Interpolation = interpolation;
             }
 
             if (_verticalMovement != 0) {
-                double targetValue = direction == EffectDirection.Forward ? _verticalMovement : _initialY;
+                double targetValue = direction == AnimationEffectDirection.Forward ? _verticalMovement : _initialY;
                 yAnimation = new DoubleAnimation(_translateTransform, TranslateTransform.YProperty, Duration, targetValue);
                 yAnimation.Interpolation = interpolation;
             }

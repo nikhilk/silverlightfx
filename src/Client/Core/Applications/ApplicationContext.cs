@@ -1,4 +1,4 @@
-﻿// XApplication.cs
+﻿// ApplicationContext.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -29,14 +29,15 @@ using SilverlightFX.UserInterface;
 namespace SilverlightFX.Applications {
 
     /// <summary>
-    /// Represents an Application with extended functionality including support
-    /// for theming, a main window, settings, components and composition, and other features.
+    /// Represents Application-level functionality including support including the
+    /// main window, theming, settings, components and composition and more.
     /// </summary>
-    [Service(typeof(IApplicationIdentity))]
+    [Service(typeof(IApplicationContext))]
     [Service(typeof(IExternalNavigationService))]
-    public abstract class XApplication : Application, IServiceProvider, IApplicationIdentity, IExternalNavigationService {
+    [ContentProperty("Components")]
+    public class ApplicationContext : IApplicationService, IApplicationLifetimeAware, IServiceProvider, IApplicationContext, IExternalNavigationService {
 
-        private static XApplication _current;
+        private static ApplicationContext _current;
 
         private SynchronizationContext _uiContext;
 
@@ -52,17 +53,13 @@ namespace SilverlightFX.Applications {
         private bool _started;
 
         /// <summary>
-        /// Initializes an instance of XApplication.
+        /// Initializes an instance of ApplicationContext.
         /// </summary>
-        public XApplication() {
+        public ApplicationContext() {
             _current = this;
 
             _componentContainer = new ComponentContainer(this);
             _componentContainer.RegisterObject(this);
-
-            Exit += OnApplicationExit;
-            Startup += OnApplicationStartup;
-            UnhandledException += OnApplicationUnhandledException;
 
             _uiContext = SynchronizationContext.Current;
         }
@@ -81,9 +78,9 @@ namespace SilverlightFX.Applications {
         }
 
         /// <summary>
-        /// Gets the current XApplication instance for the running application.
+        /// Gets the current ApplicationContext instance for the running application.
         /// </summary>
-        public new static XApplication Current {
+        public static ApplicationContext Current {
             get {
                 return _current;
             }
@@ -175,7 +172,7 @@ namespace SilverlightFX.Applications {
         /// </summary>
         public Uri Uri {
             get {
-                return Host.Source;
+                return Application.Current.Host.Source;
             }
         }
 
@@ -254,7 +251,7 @@ namespace SilverlightFX.Applications {
                 return;
             }
 
-            Theme.LoadTheme(Resources, name);
+            Theme.LoadTheme(Application.Current.Resources, name);
         }
 
         private void InitializeWindow() {
@@ -288,7 +285,7 @@ namespace SilverlightFX.Applications {
             Window mainWindow = null;
             if (String.IsNullOrEmpty(name) == false) {
                 try {
-                    Type windowType = TypeTypeConverter.ParseTypeName(this, name);
+                    Type windowType = TypeTypeConverter.ParseTypeName(Application.Current, name);
                     if (windowType == null) {
                         throw new InvalidOperationException("The window named '" + name + "' could not be found.");
                     }
@@ -329,17 +326,6 @@ namespace SilverlightFX.Applications {
             if (mainWindow != null) {
                 Run(mainWindow);
             }
-        }
-
-        private void OnApplicationExit(object sender, EventArgs e) {
-            OnClosing();
-        }
-
-        private void OnApplicationStartup(object sender, StartupEventArgs e) {
-            _started = true;
-            _startupArguments = e.InitParams;
-
-            OnStarting();
         }
 
         private void OnApplicationUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
@@ -420,7 +406,7 @@ namespace SilverlightFX.Applications {
             Screen screen = new Screen();
             screen.Style = ScreenStyle;
 
-            RootVisual = screen;
+            Application.Current.RootVisual = screen;
             screen.Run(mainWindow);
         }
 
@@ -450,6 +436,34 @@ namespace SilverlightFX.Applications {
             if (HtmlPage.IsEnabled) {
                 HtmlPage.Window.Navigate(uri, targetFrame ?? "_self");
             }
+        }
+        #endregion
+
+        #region IApplicationService Members
+        void IApplicationService.StartService(ApplicationServiceContext context) {
+            _startupArguments = context.ApplicationInitParams;
+
+            Application.Current.UnhandledException += OnApplicationUnhandledException;
+        }
+
+        void IApplicationService.StopService() {
+        }
+        #endregion
+
+        #region IApplicationLifetimeAware Members
+        void IApplicationLifetimeAware.Exited() {
+        }
+
+        void IApplicationLifetimeAware.Exiting() {
+            OnClosing();
+        }
+
+        void IApplicationLifetimeAware.Started() {
+        }
+
+        void IApplicationLifetimeAware.Starting() {
+            _started = true;
+            OnStarting();
         }
         #endregion
     }

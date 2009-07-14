@@ -53,7 +53,7 @@ namespace SilverlightFX.UserInterface.Transitions {
         }
 
         /// <internalonly />
-        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, EffectDirection direction) {
+        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, AnimationEffectDirection direction) {
             FrameworkElement topElement = (FrameworkElement)container.Children[1];
             FrameworkElement bottomElement = (FrameworkElement)container.Children[0];
             ScaleTransform scaleTransform = null;
@@ -98,7 +98,7 @@ namespace SilverlightFX.UserInterface.Transitions {
             DoubleAnimation scaleYAnimation;
             DoubleAnimation fadeAnimation;
 
-            if (direction == EffectDirection.Forward) {
+            if (direction == AnimationEffectDirection.Forward) {
                 fadeAnimation = new DoubleAnimation(topElement, UIElement.OpacityProperty, Duration, 0);
                 scaleXAnimation = new DoubleAnimation(scaleTransform, ScaleTransform.ScaleXProperty, Duration, _initialScaleX * _scaleRatio);
                 scaleYAnimation = new DoubleAnimation(scaleTransform, ScaleTransform.ScaleYProperty, Duration, _initialScaleY * _scaleRatio);

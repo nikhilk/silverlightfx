@@ -1,4 +1,4 @@
-﻿// EffectDirection.cs
+﻿// AnimationComposition.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -10,21 +10,21 @@
 
 using System;
 
-namespace System.Windows.Media.Glitz {
+namespace SilverlightFX.UserInterface.Effects {
 
     /// <summary>
-    /// Whether to play the effect in the forward or reverse direction.
+    /// Represents how a set of AnimationEffects are composed together.
     /// </summary>
-    public enum EffectDirection {
+    public enum AnimationComposition {
 
         /// <summary>
-        /// Plays an effect in the forward direction.
+        /// Runs the set of effects one after another.
         /// </summary>
-        Forward = 0,
+        Sequence = 0,
 
         /// <summary>
-        /// Plays an effect in the reverse direction.
+        /// Runs the set of effects together at the same time.
         /// </summary>
-        Reverse = 1
+        Parallel = 1
     }
 }

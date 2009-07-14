@@ -39,8 +39,8 @@ namespace SilverlightFX.UserInterface.Transitions {
         }
 
         /// <internalonly />
-        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, EffectDirection direction) {
-            bool forward = direction == EffectDirection.Forward;
+        protected override ProceduralAnimation CreateTransitionAnimation(Panel container, AnimationEffectDirection direction) {
+            bool forward = direction == AnimationEffectDirection.Forward;
             double width = container.ActualWidth;
             double height = container.ActualHeight;
 

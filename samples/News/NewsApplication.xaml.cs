@@ -3,11 +3,10 @@
 
 using System;
 using System.Windows;
-using SilverlightFX.Applications;
 
 namespace NewsWidget {
 
-    public partial class NewsApplication : XApplication {
+    public partial class NewsApplication : Application {
 
         public NewsApplication() {
             InitializeComponent();

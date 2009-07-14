@@ -67,26 +67,6 @@ namespace SilverlightFX.UserInterface {
             }
         }
 
-        /// <summary>
-        /// Creates a popup that is correctly parented to the root visual of the
-        /// application.
-        /// </summary>
-        /// <returns>A new Popup instance.</returns>
-        public Popup CreatePopup() {
-            Popup popup = new Popup();
-            _rootElement.Children.Add(popup);
-
-            return popup;
-        }
-
-        /// <summary>
-        /// Disposes a popup that was created through a call to CreatePopup.
-        /// </summary>
-        /// <param name="popup">The popup to dispose.</param>
-        public void DisposePopup(Popup popup) {
-            _rootElement.Children.Remove(popup);
-        }
-
         /// <internalonly />
         public override void OnApplyTemplate() {
             base.OnApplyTemplate();

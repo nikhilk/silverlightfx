@@ -20,6 +20,8 @@ namespace System.ComponentModel {
     /// </summary>
     public sealed class ComponentContainer : IComponentContainer {
 
+        private static ComponentContainer _global;
+
         private IServiceProvider _serviceProvider;
         private Dictionary<Type, object> _registeredTypes;
 
@@ -37,10 +39,23 @@ namespace System.ComponentModel {
         /// </summary>
         /// <param name="serviceProvider">The service provider providing access to inherited services.</param>
         public ComponentContainer(IServiceProvider serviceProvider) {
+            if (_global == null) {
+                _global = this;
+            }
+
             _serviceProvider = serviceProvider;
 
             _registeredTypes = new Dictionary<Type, object>();
             _registeredTypes[typeof(IComponentContainer)] = this;
+        }
+
+        /// <summary>
+        /// Gets the global ComponentContainer within the application.
+        /// </summary>
+        public static IComponentContainer Global {
+            get {
+                return _global;
+            }
         }
 
         private object CreateObject(Type objectType) {

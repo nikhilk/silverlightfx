@@ -46,10 +46,10 @@
       </Ellipse.RenderTransform>
       <fxui:Interaction.Behaviors>
         <fxui:ClickEffect>
-          <fxeffects:CompositeEffect AutoReverse="True" Composition="Parallel">
+          <fxeffects:CompositeAnimation AutoReverse="True" Composition="Parallel">
             <fxeffects:Move VerticalMovement="200" />
             <fxeffects:Resize ScaleXRatio="2" ScaleYRatio="2" Duration="0:0:2" />
-          </fxeffects:CompositeEffect>
+          </fxeffects:CompositeAnimation>
         </fxui:ClickEffect>
         <fxui:TimedEffect Interval="0:0:5">
           <fxeffects:Spin SpinAngle="360" AutoReverse="True" Duration="0:0:5" />
@@ -93,13 +93,13 @@
       </Ellipse.RenderTransform>
       <fxui:Interaction.Behaviors>
         <fxui:TimedEffect Interval="0:0:5">
-          <fxeffects:CompositeEffect Composition="Parallel" AutoReverse="True">
+          <fxeffects:CompositeAnimation Composition="Parallel" AutoReverse="True">
             <fxeffects:Fade FadeOpacity="0.5" />
-            <fxeffects:CompositeEffect Composition="Sequence">
+            <fxeffects:CompositeAnimation Composition="Sequence">
               <fxeffects:Move HorizontalMovement="40" />
               <fxeffects:Move VerticalMovement="40" />
-            </fxeffects:CompositeEffect>
-          </fxeffects:CompositeEffect>
+            </fxeffects:CompositeAnimation>
+          </fxeffects:CompositeAnimation>
         </fxui:TimedEffect>
         <fxui:ClickEffect>
           <fxeffects:Move HorizontalMovement="100" AutoReverse="true" Duration="0:0:3" />

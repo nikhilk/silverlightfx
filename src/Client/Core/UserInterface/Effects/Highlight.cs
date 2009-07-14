@@ -20,7 +20,7 @@ namespace SilverlightFX.UserInterface.Effects {
     /// <summary>
     /// Represents a colored background highlight effect.
     /// </summary>
-    public class Highlight : Effect {
+    public class Highlight : AnimationEffect {
 
         private Color _highlightColor;
 
@@ -44,7 +44,7 @@ namespace SilverlightFX.UserInterface.Effects {
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             SolidColorBrush brush;
 
             FrameworkElement target = GetTarget();

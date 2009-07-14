@@ -16,22 +16,22 @@ namespace EffectControl {
         private static readonly DependencyProperty ImageProperty =
             DependencyProperty.Register("Image", typeof(ImageSource), typeof(Sprite), null);
 
-        private static readonly DependencyProperty EffectProperty =
-            DependencyProperty.Register("Effect", typeof(Effect), typeof(Sprite), null);
+        private static readonly DependencyProperty AnimationEffectProperty =
+            DependencyProperty.Register("AnimationEffect", typeof(AnimationEffect), typeof(Sprite), null);
 
-        private EffectDirection _direction;
+        private AnimationEffectDirection _direction;
 
         public Sprite() {
             DefaultStyleKey = typeof(Sprite);
             MouseLeftButtonDown += OnMouseLeftButtonDown;
         }
 
-        public Effect Effect {
+        public AnimationEffect AnimationEffect {
             get {
-                return (Effect)GetValue(EffectProperty);
+                return (AnimationEffect)GetValue(AnimationEffectProperty);
             }
             set {
-                SetValue(EffectProperty, value);
+                SetValue(AnimationEffectProperty, value);
             }
         }
 
@@ -45,7 +45,7 @@ namespace EffectControl {
         }
 
         private void OnMouseLeftButtonDown(object sender, MouseButtonEventArgs e) {
-            Effect effect = Effect;
+            AnimationEffect effect = AnimationEffect;
             if (effect != null) {
                 if (effect.IsActive) {
                     return;
@@ -59,8 +59,9 @@ namespace EffectControl {
                     effect.Target = (Image)GetTemplateChild("ImagePresenter");
                 }
 
-                EffectDirection direction = _direction;
-                _direction = _direction == EffectDirection.Forward ? EffectDirection.Reverse : EffectDirection.Forward;
+                AnimationEffectDirection direction = _direction;
+                _direction = _direction == AnimationEffectDirection.Forward ? AnimationEffectDirection.Reverse :
+                                                                              AnimationEffectDirection.Forward;
 
                 effect.PlayEffect(direction);
             }

@@ -289,14 +289,14 @@ namespace SilverlightFX.UserInterface.Navigation {
                     PageNavigatingEventArgs e = new PageNavigatingEventArgs(canCancel);
                     currentPage.OnNavigating(e);
 
-                    if (canCancel && e.Canceled) {
+                    if (canCancel && e.Cancel) {
                         return false;
                     }
                 }
 
                 NavigatingEventArgs ne = new NavigatingEventArgs(navigationState.uri.OriginalUri, canCancel);
                 OnNavigating(ne);
-                if (canCancel && ne.Canceled) {
+                if (canCancel && ne.Cancel) {
                     return false;
                 }
             }
@@ -386,7 +386,7 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// </summary>
         /// <param name="e">The data associated with the event.</param>
         protected virtual void OnNavigating(NavigatingEventArgs e) {
-            if (e.CanCancel && e.Canceled) {
+            if (e.CanCancel && e.Cancel) {
                 return;
             }
             if (_navigatingHandler != null) {

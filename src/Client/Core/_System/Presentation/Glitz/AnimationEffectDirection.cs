@@ -1,4 +1,4 @@
-﻿// EffectCollection.cs
+﻿// AnimationEffectDirection.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -9,14 +9,22 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace System.Windows.Media.Glitz {
 
     /// <summary>
-    /// Represents a collection of Effect objects.
+    /// Whether to play the AnimationEffect in the forward or reverse direction.
     /// </summary>
-    public sealed class EffectCollection : Collection<Effect> {
+    public enum AnimationEffectDirection {
+
+        /// <summary>
+        /// Plays an effect in the forward direction.
+        /// </summary>
+        Forward = 0,
+
+        /// <summary>
+        /// Plays an effect in the reverse direction.
+        /// </summary>
+        Reverse = 1
     }
 }

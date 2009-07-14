@@ -39,7 +39,7 @@ namespace System.Windows.Media.Glitz {
         /// Raised before the animation is repeated. This event can
         /// be used to cancel further repeatitions.
         /// </summary>
-        public event CancelEventHandler Repeating;
+        public event EventHandler<CancelEventArgs> Repeating;
 
         /// <summary>
         /// Raised before the animation is started and performs
@@ -243,7 +243,7 @@ namespace System.Windows.Media.Glitz {
                     CancelEventArgs ce = new CancelEventArgs();
                     Repeating(this, ce);
 
-                    completed = ce.Canceled;
+                    completed = ce.Cancel;
                 }
 
                 if (completed == false) {

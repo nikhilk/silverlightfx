@@ -1,4 +1,4 @@
-﻿// EffectBehavior.cs
+﻿// AnimationEffectBehavior.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -20,20 +20,20 @@ namespace SilverlightFX.UserInterface {
     /// <summary>
     /// A base class for behaviors that play effects.
     /// </summary>
-    [ContentProperty("Effect")]
-    public abstract class EffectBehavior : Behavior<FrameworkElement> {
+    [ContentProperty("AnimationEffect")]
+    public abstract class AnimationEffectBehavior : Behavior<FrameworkElement> {
 
-        private Effect _effect;
+        private AnimationEffect _animationEffect;
 
         /// <summary>
         /// Gets or sets the effect to be played by the behavior.
         /// </summary>
-        public Effect Effect {
+        public AnimationEffect AnimationEffect {
             get {
-                return _effect;
+                return _animationEffect;
             }
             set {
-                _effect = value;
+                _animationEffect = value;
 
                 if (AssociatedObject != null) {
                     if (((IAttachedObject)value).AssociatedObject != AssociatedObject) {
@@ -46,11 +46,11 @@ namespace SilverlightFX.UserInterface {
 
         /// <internalonly />
         protected override void OnAttach() {
-            if (_effect != null) {
-                if (((IAttachedObject)_effect).AssociatedObject != null) {
-                    ((IAttachedObject)_effect).Detach();
+            if (_animationEffect != null) {
+                if (((IAttachedObject)_animationEffect).AssociatedObject != null) {
+                    ((IAttachedObject)_animationEffect).Detach();
                 }
-                ((IAttachedObject)_effect).Attach(AssociatedObject);
+                ((IAttachedObject)_animationEffect).Attach(AssociatedObject);
             }
 
             base.OnAttach();
@@ -58,8 +58,8 @@ namespace SilverlightFX.UserInterface {
 
         /// <internalonly />
         protected override void OnDetach() {
-            if (_effect != null) {
-                ((IAttachedObject)_effect).Detach();
+            if (_animationEffect != null) {
+                ((IAttachedObject)_animationEffect).Detach();
             }
 
             base.OnDetach();
@@ -69,9 +69,9 @@ namespace SilverlightFX.UserInterface {
         /// Plays the effect in the specified direction.
         /// </summary>
         /// <param name="direction">The direction to play the effect in.</param>
-        protected void PlayEffect(EffectDirection direction) {
-            if (_effect != null) {
-                _effect.PlayEffect(direction);
+        protected void PlayEffect(AnimationEffectDirection direction) {
+            if (_animationEffect != null) {
+                _animationEffect.PlayEffect(direction);
             }
         }
     }

@@ -35,7 +35,7 @@ namespace Store {
         private static readonly Regex AsinRegex = new Regex("https?://www\\.amazon\\.[^/]+.*/([A-Z0-9]{10})/?.*", RegexOptions.Singleline);
 
         [Dependency]
-        public IApplicationIdentity Application {
+        public IApplicationContext ApplicationContext {
             get;
             set;
         }
@@ -146,7 +146,7 @@ namespace Store {
 
         private string SubscriptionID {
             get {
-                return Application.StartupArguments["SubscriptionID"];
+                return ApplicationContext.StartupArguments["SubscriptionID"];
             }
         }
 

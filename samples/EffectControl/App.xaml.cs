@@ -3,11 +3,10 @@
 
 using System;
 using System.Windows;
-using SilverlightFX.Applications;
 
 namespace EffectControl {
 
-    public partial class App : XApplication {
+    public partial class App : Application {
 
         public App() {
             InitializeComponent();

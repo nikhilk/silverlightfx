@@ -17,7 +17,7 @@ namespace SilverlightFX.UserInterface.Effects {
     /// <summary>
     /// Represents a fade effect that fades in the associated element
     /// </summary>
-    public class Resize : Effect {
+    public class Resize : AnimationEffect {
 
         private ScaleTransform _scaleTransform;
 
@@ -66,7 +66,7 @@ namespace SilverlightFX.UserInterface.Effects {
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             if (_scaleTransform == null) {
                 Transform existingTransform = GetTarget().RenderTransform;
                 if (existingTransform != null) {
@@ -99,7 +99,7 @@ namespace SilverlightFX.UserInterface.Effects {
             DoubleAnimation yAnimation = null;
 
             if (_scaleXRatio != 1) {
-                double targetValue = direction == EffectDirection.Forward ? _initialX * _scaleXRatio : _initialX;
+                double targetValue = direction == AnimationEffectDirection.Forward ? _initialX * _scaleXRatio : _initialX;
 
                 xAnimation = new DoubleAnimation(_scaleTransform, ScaleTransform.ScaleXProperty, Duration,
                                                  targetValue);
@@ -107,7 +107,7 @@ namespace SilverlightFX.UserInterface.Effects {
             }
 
             if (_scaleYRatio != 1) {
-                double targetValue = direction == EffectDirection.Forward ? _initialY * _scaleYRatio : _initialY;
+                double targetValue = direction == AnimationEffectDirection.Forward ? _initialY * _scaleYRatio : _initialY;
 
                 yAnimation = new DoubleAnimation(_scaleTransform, ScaleTransform.ScaleYProperty, Duration,
                                                  targetValue);

@@ -83,15 +83,8 @@ namespace System.Windows.Controls {
         }
 
         private static object CreateModel(Type type) {
-            IComponentContainer container = null;
-
-            IServiceProvider sp = Application.Current as IServiceProvider;
-            if (sp != null) {
-                container = (IComponentContainer)sp.GetService(typeof(IComponentContainer));
-            }
-
-            if (container != null) {
-                return container.GetObject(type);
+            if (ComponentContainer.Global != null) {
+                return ComponentContainer.Global.GetObject(type);
             }
 
             return Activator.CreateInstance(type);
@@ -120,15 +113,13 @@ namespace System.Windows.Controls {
             }
 
             if (model == null) {
-                IApplicationIdentity appID = null;
-
-                IServiceProvider sp = Application.Current as IServiceProvider;
-                if (sp != null) {
-                    appID = (IApplicationIdentity)sp.GetService(typeof(IApplicationIdentity));
+                IApplicationContext appContext = null;
+                if (ComponentContainer.Global != null) {
+                    appContext = ComponentContainer.Global.GetObject<IApplicationContext>();
                 }
 
-                if (appID != null) {
-                    model = appID.Model;
+                if (appContext != null) {
+                    model = appContext.Model;
                 }
             }
 

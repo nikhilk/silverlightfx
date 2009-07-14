@@ -19,7 +19,7 @@ namespace SilverlightFX.UserInterface.Effects {
     /// <summary>
     /// Represents a fade effect that fades in the associated element
     /// </summary>
-    public class Fade : Effect {
+    public class Fade : AnimationEffect {
 
         private double _fadeOpacity;
         private double _initialOpacity;
@@ -48,7 +48,7 @@ namespace SilverlightFX.UserInterface.Effects {
         }
 
         /// <internalonly />
-        protected internal override ProceduralAnimation CreateEffectAnimation(EffectDirection direction) {
+        protected internal override ProceduralAnimation CreateEffectAnimation(AnimationEffectDirection direction) {
             FrameworkElement target = GetTarget();
 
             if (_initialOpacity == -1) {
@@ -56,7 +56,7 @@ namespace SilverlightFX.UserInterface.Effects {
             }
 
             DoubleAnimation animation;
-            if (direction == EffectDirection.Forward) {
+            if (direction == AnimationEffectDirection.Forward) {
                 animation = new DoubleAnimation(target, UIElement.OpacityProperty, Duration, _fadeOpacity);
             }
             else {

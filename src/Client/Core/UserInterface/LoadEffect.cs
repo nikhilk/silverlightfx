@@ -20,7 +20,7 @@ namespace SilverlightFX.UserInterface {
     /// Plays an effect whenever the associated element is
     /// loaded.
     /// </summary>
-    public class LoadEffect : EffectBehavior {
+    public class LoadEffect : AnimationEffectBehavior {
 
         /// <internalonly />
         protected override void OnAttach() {
@@ -37,7 +37,7 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnLoaded(object sender, RoutedEventArgs e) {
-            PlayEffect(EffectDirection.Forward);
+            PlayEffect(AnimationEffectDirection.Forward);
         }
     }
 }

@@ -113,15 +113,8 @@ namespace SilverlightFX.UserInterface.Navigation {
         }
 
         private Controller CreateController(Type controllerType) {
-            IComponentContainer container = null;
-
-            IServiceProvider sp = Application.Current as IServiceProvider;
-            if (sp != null) {
-                container = (IComponentContainer)sp.GetService(typeof(IComponentContainer));
-            }
-
-            if (container != null) {
-                return (Controller)container.GetObject(controllerType);
+            if (ComponentContainer.Global != null) {
+                return (Controller)ComponentContainer.Global.GetObject(controllerType);
             }
 
             return (Controller)Activator.CreateInstance(controllerType);

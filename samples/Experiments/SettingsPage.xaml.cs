@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using SilverlightFX.Applications;
 
 namespace Experiments {
 
@@ -19,16 +20,16 @@ namespace Experiments {
 
             string name;
             string age;
-            App.Current.Settings.TryGetValue("name", out name);
-            App.Current.Settings.TryGetValue("age", out age);
+            ApplicationContext.Current.Settings.TryGetValue("name", out name);
+            ApplicationContext.Current.Settings.TryGetValue("age", out age);
 
             nameTextBox.Text = name ?? String.Empty;
             ageTextBox.Text = age ?? String.Empty;
         }
 
         private void OnOKButtonClick(object sender, RoutedEventArgs e) {
-            App.Current.Settings["name"] = nameTextBox.Text.Trim();
-            App.Current.Settings["age"] = ageTextBox.Text.Trim();
+            ApplicationContext.Current.Settings["name"] = nameTextBox.Text.Trim();
+            ApplicationContext.Current.Settings["age"] = ageTextBox.Text.Trim();
         }
     }
 }

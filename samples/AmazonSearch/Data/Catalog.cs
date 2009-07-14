@@ -15,7 +15,7 @@ namespace AmazonSearch.Data {
         private const string SearchUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemSearch&SubscriptionId={0}&AssociateTag=myamzn-20&SearchIndex=Books&Keywords={1}&Sort=relevancerank&ResponseGroup=Images,Small";
 
         public void SelectProducts(string keyword, Action<string, IEnumerable<Product>> productsCallback) {
-            string subscriptionID = XApplication.Current.StartupArguments["SubscriptionID"];
+            string subscriptionID = ApplicationContext.Current.StartupArguments["SubscriptionID"];
             Uri searchUri = new Uri(String.Format(SearchUriFormat, subscriptionID, keyword));
 
             WebClient webClient = new WebClient();

@@ -22,7 +22,7 @@ namespace SilverlightFX.UserInterface {
     /// <summary>
     /// Plays an effect whenever the associated element is clicked.
     /// </summary>
-    public class ClickEffect : EffectBehavior {
+    public class ClickEffect : AnimationEffectBehavior {
 
         private bool _forward;
         private DispatcherTimer _clickTimer;
@@ -43,7 +43,7 @@ namespace SilverlightFX.UserInterface {
 
         private void OnButtonClick(object sender, RoutedEventArgs e) {
             _forward = !_forward;
-            PlayEffect(_forward ? EffectDirection.Forward : EffectDirection.Reverse);
+            PlayEffect(_forward ? AnimationEffectDirection.Forward : AnimationEffectDirection.Reverse);
         }
 
         private void OnClickTimerTick(object sender, EventArgs e) {
@@ -77,7 +77,7 @@ namespace SilverlightFX.UserInterface {
                 StopClickTimer();
 
                 _forward = !_forward;
-                PlayEffect(_forward ? EffectDirection.Forward : EffectDirection.Reverse);
+                PlayEffect(_forward ? AnimationEffectDirection.Forward : AnimationEffectDirection.Reverse);
             }
         }
 
