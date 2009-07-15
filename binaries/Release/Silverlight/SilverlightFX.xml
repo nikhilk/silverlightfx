@@ -2076,7 +2076,7 @@
             Initializes an instance of a ViewUserControl.
             </summary>
         </member>
-        <member name="M:SilverlightFX.UserInterface.ViewUserControl.#ctor(System.ComponentModel.Model)">
+        <member name="M:SilverlightFX.UserInterface.ViewUserControl.#ctor(System.Object)">
             <summary>
             Initializes an instance of a ViewUserControl with an associated view model.
             The view model is set as the DataContext of the Form.
@@ -4367,6 +4367,11 @@
             <summary>
             Gets or sets the type of the error page to use when there is an error.
             If there is no error page, a default one is used.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.IsIntegratedWithBrowser">
+            <summary>
+            Whether the frame should integrate with the browser's history stack.
             </summary>
         </member>
         <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.IsNavigating">

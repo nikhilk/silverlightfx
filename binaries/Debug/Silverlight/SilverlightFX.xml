@@ -4369,6 +4369,11 @@
             If there is no error page, a default one is used.
             </summary>
         </member>
+        <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.IsIntegratedWithBrowser">
+            <summary>
+            Whether the frame should integrate with the browser's history stack.
+            </summary>
+        </member>
         <member name="P:SilverlightFX.UserInterface.Navigation.PageFrame.IsNavigating">
             <summary>
             Gets whether the frame is currently performing a navigation.
