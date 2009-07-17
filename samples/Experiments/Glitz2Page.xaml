@@ -1,0 +1,118 @@
+﻿<UserControl x:Class="Experiments.Glitz2Page"
+    xmlns="http://schemas.microsoft.com/client/2007" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+    xmlns:fxeffects="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
+    xmlns:app="clr-namespace:Experiments;assembly=Experiments">
+  <UserControl.Resources>
+    <Style x:Key="borderStyle" TargetType="Border">
+      <Setter Property="Margin" Value="5" />
+      <Setter Property="BorderThickness" Value="0" />
+      <Setter Property="Cursor" Value="Hand" />
+    </Style>
+  </UserControl.Resources>
+  <fxui:XGrid Background="White" Margin="20" Rows="100,100,100,Auto" Columns="100,100,100">
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="0" Grid.Row="0" Background="Black">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundXAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="1" Grid.Row="0" Background="White" BorderThickness="1" BorderBrush="Black">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundYAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="2" Grid.Row="0" Background="Silver">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundZAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="0" Grid.Row="1" Background="#E8171B">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundXAxis="True" SpinAroundYAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="1" Grid.Row="1" Background="#71D618">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundYAxis="True" SpinAroundZAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="2" Grid.Row="1" Background="#197FD8">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundXAxis="True" SpinAroundZAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="0" Grid.Row="2" Background="#FCD123">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundXAxis="True" SpinAroundYAxis="True" SpinAroundZAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="1" Grid.Row="2" Background="#C40A70">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundXAxis="True" SpinAroundYAxis="True" SpinAroundZAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+
+    <Border Style="{StaticResource borderStyle}" Grid.Column="2" Grid.Row="2" Background="#ED971F">
+      <fxui:Interaction.Behaviors>
+        <fxui:HoverEffect>
+          <fxeffects:Float Distance="100" ShadowLength="10" />
+        </fxui:HoverEffect>
+        <fxui:ClickEffect>
+          <fxeffects:Spin3D SpinAroundXAxis="True" SpinAroundYAxis="True" SpinAroundZAxis="True" Duration="00:00:02" />
+        </fxui:ClickEffect>
+      </fxui:Interaction.Behaviors>
+    </Border>
+    
+    <TextBlock Grid.Row="3" Grid.ColumnSpan="3" Text="Hover to float the rectangle; click to spin it..." />
+
+  </fxui:XGrid>
+</UserControl>

@@ -83,6 +83,7 @@
     <Content Include="Amazon\AmazonStore.aspx" />
     <Content Include="Amazon\AmazonStore.xap" />
     <Content Include="Experiments\CityService.ashx" />
+    <Content Include="Experiments\Glitz2Sample.aspx" />
     <Content Include="Experiments\NavigationSample.aspx" />
     <Content Include="Experiments\MouseWheelSample.aspx" />
     <Content Include="Experiments\InterpolatorSample.aspx" />

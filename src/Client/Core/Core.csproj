@@ -150,6 +150,8 @@
     <Compile Include="UserInterface\ContentView.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\Effects\Spin3D.cs" />
+    <Compile Include="UserInterface\Effects\Float.cs" />
     <Compile Include="UserInterface\Navigation\UriData.cs" />
     <Compile Include="UserInterface\Navigation\MvcPageLoader.cs" />
     <Compile Include="UserInterface\Navigation\PageStateEventArgs.cs" />

@@ -4583,5 +4583,49 @@
         <member name="M:SilverlightFX.UserInterface.Actions.PlayStoryboard.InvokeAction(System.EventArgs)">
             <internalonly />
         </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Float">
+            <summary>
+            Represents an effect that floats an element by projecting it forward and
+            adding a shadow.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Float.CreateEffectAnimation(System.Windows.Media.Glitz.AnimationEffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Float.Distance">
+            <summary>
+            Gets or sets the distance by which the element is floated.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Float.ShadowLength">
+            <summary>
+            Gets or sets the length of the shadow to create when the element
+            is floated.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Spin3D">
+            <summary>
+            Represents a spin effect that rotates the associated element along the
+            X, Y or Z axes.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Spin3D.CreateEffectAnimation(System.Windows.Media.Glitz.AnimationEffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundXAxis">
+            <summary>
+            Gets or sets whether the element should be spun around the x-axis.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundYAxis">
+            <summary>
+            Gets or sets whether the element should be spun around the y-axis.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundZAxis">
+            <summary>
+            Gets or sets whether the element should be spun around the z-axis.
+            </summary>
+        </member>
     </members>
 </doc>
