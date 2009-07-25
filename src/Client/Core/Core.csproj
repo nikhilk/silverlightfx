@@ -72,6 +72,8 @@
     <Compile Include="Applications\Theme.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\DataEventTrigger.cs" />
+    <Compile Include="UserInterface\ModelEventTrigger.cs" />
     <Compile Include="UserInterface\XTooltipService.cs" />
     <Compile Include="Data\BooleanInverter.cs">
       <SubType>Code</SubType>

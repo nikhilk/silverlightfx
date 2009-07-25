@@ -8,6 +8,8 @@
   binding expressions and share the DataContext of their associated element.
 - PageFrame now implements INavigate from SL3, which allows the standard
   HyperlinkButton to target PageFrame for its navigation.
+- Add ModelEventTrigger and DataEventTrigger to listen to trigger actions based
+  on events raised by associated view model and data context respectively.
 - Navigate action breaking changes
   ExternalNavigation -> NavigateBrowser (now defaults to False)
   NavigateUrl (string) -> Uri (Uri)

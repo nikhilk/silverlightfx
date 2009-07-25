@@ -16,6 +16,9 @@ using System.Windows.Interactivity;
 
 namespace SilverlightFX.UserInterface {
 
+    // TODO: Remove support for $model and $dataContext and instead require
+    //       ModelEventTrigger and DataEventTrigger?
+
     /// <summary>
     /// A base class for triggers that can be associated with a specific event.
     /// </summary>
@@ -47,7 +50,7 @@ namespace SilverlightFX.UserInterface {
         /// Gets the source of the event that this EventTrigger is subscribed to.
         /// </summary>
         /// <returns>The source of the event.</returns>
-        protected object GetSource() {
+        protected virtual object GetSource() {
             if (_source == null) {
                 if (String.IsNullOrEmpty(_sourceName)) {
                     _source = AssociatedObject;

@@ -17,7 +17,7 @@ namespace SilverlightFX.UserInterface {
     /// <summary>
     /// A trigger that can be associated with a specific event.
     /// </summary>
-    public sealed class EventTrigger : EventTriggerBase<DependencyObject> {
+    public class EventTrigger : EventTriggerBase<DependencyObject> {
 
         private string _eventName;
 
