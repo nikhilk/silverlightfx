@@ -72,6 +72,7 @@
     <Compile Include="Applications\Theme.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInterface\XTooltipService.cs" />
     <Compile Include="Data\BooleanInverter.cs">
       <SubType>Code</SubType>
     </Compile>

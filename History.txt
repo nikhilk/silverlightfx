@@ -1,8 +1,11 @@
 0.3.2 Release
 ===============================================================================
-- Add ISupportInitialize - this allows view models instantiated and initialized
-                           in the MVC scenario to know when they are fully
-                           initialized.
+- Add ISupportInitialize
+  This allows view models instantiated and initialized in the MVC scenario to
+  know when they are fully initialized.
+- Add XToolTipService
+  This is a tooltip service that supports creating tooltips that contain
+  binding expressions and share the DataContext of their associated element.
 
 
 0.3.1 Release (7/16/2009)
