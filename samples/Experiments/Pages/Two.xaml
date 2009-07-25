@@ -9,12 +9,12 @@
     <TextBlock Text="This is Page 2. This page can be cached." />
     <Button Content="Home">
       <fxui:Interaction.Action>
-        <fxactions:Navigate NavigateUrl="Default" ExternalNavigation="False" />
+        <fxactions:Navigate Uri="Default" />
       </fxui:Interaction.Action>
     </Button>
     <Button Content="Page 1">
       <fxui:Interaction.Action>
-        <fxactions:Navigate NavigateUrl="One" ExternalNavigation="False" />
+        <fxactions:Navigate Uri="One" />
       </fxui:Interaction.Action>
     </Button>
   </StackPanel>

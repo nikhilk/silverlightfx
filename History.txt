@@ -8,6 +8,9 @@
   binding expressions and share the DataContext of their associated element.
 - PageFrame now implements INavigate from SL3, which allows the standard
   HyperlinkButton to target PageFrame for its navigation.
+- Navigate action breaking changes
+  ExternalNavigation -> NavigateBrowser (now defaults to False)
+  NavigateUrl (string) -> Uri (Uri)
 
 
 0.3.1 Release (7/16/2009)

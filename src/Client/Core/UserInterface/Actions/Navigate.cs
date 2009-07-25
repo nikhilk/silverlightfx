@@ -1,4 +1,4 @@
-﻿// NavigateAction.cs
+﻿// Navigate.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -16,18 +16,17 @@ using System.Windows.Interactivity;
 
 namespace SilverlightFX.UserInterface.Actions {
 
-    // TODO: Switch default of External and rename to Browser?
-
     /// <summary>
     /// An action that navigates to a selected URI.
     /// </summary>
     public class Navigate : TriggerAction<FrameworkElement> {
 
         /// <summary>
-        /// Represents the NavigateUrl property.
+        /// Represents the NavigateBrowser property.
         /// </summary>
-        public static readonly DependencyProperty NavigateUrlProperty =
-            DependencyProperty.Register("NavigateUrl", typeof(string), typeof(Navigate), null);
+        public static readonly DependencyProperty NavigateBrowserProperty =
+            DependencyProperty.Register("NavigateBrowser", typeof(bool), typeof(Navigate),
+                                        new PropertyMetadata(false));
 
         /// <summary>
         /// Represents the Target property.
@@ -35,37 +34,22 @@ namespace SilverlightFX.UserInterface.Actions {
         public static readonly DependencyProperty TargetProperty =
             DependencyProperty.Register("Target", typeof(string), typeof(Navigate), null);
 
-        private bool _externalNavigation;
-
         /// <summary>
-        /// Initializes an instance of Navigate.
+        /// Represents the Uri property.
         /// </summary>
-        public Navigate() {
-            _externalNavigation = true;
-        }
+        public static readonly DependencyProperty UriProperty =
+            DependencyProperty.Register("Uri", typeof(Uri), typeof(Navigate), null);
 
         /// <summary>
         /// Gets or sets the whether the navigation should be internal to the application
         /// or external, i.e. at the level of HTML page containing the application.
         /// </summary>
-        public bool ExternalNavigation {
+        public bool NavigateBrowser {
             get {
-                return _externalNavigation;
+                return (bool)GetValue(NavigateBrowserProperty);
             }
             set {
-                _externalNavigation = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the URL to navigate to.
-        /// </summary>
-        public string NavigateUrl {
-            get {
-                return (string)GetValue(NavigateUrlProperty);
-            }
-            set {
-                SetValue(NavigateUrlProperty, value);
+                SetValue(NavigateBrowserProperty, value);
             }
         }
 
@@ -81,17 +65,28 @@ namespace SilverlightFX.UserInterface.Actions {
             }
         }
 
+        /// <summary>
+        /// Gets or sets the URL to navigate to.
+        /// </summary>
+        public Uri Uri {
+            get {
+                return (Uri)GetValue(UriProperty);
+            }
+            set {
+                SetValue(UriProperty, value);
+            }
+        }
+
         /// <internalonly />
         protected override void InvokeAction(EventArgs e) {
-            string navigateUrl = NavigateUrl;
-            if (String.IsNullOrEmpty(navigateUrl)) {
+            Uri navigateUri = Uri;
+            if (navigateUri == null) {
                 return;
             }
 
             string targetFrame = Target;
-            Uri navigateUri = new Uri(navigateUrl, UriKind.RelativeOrAbsolute);
 
-            if (_externalNavigation == false) {
+            if ((NavigateBrowser == false) && (navigateUri.IsAbsoluteUri == false)) {
                 INavigationTarget target = null;
 
                 if (String.IsNullOrEmpty(targetFrame) == false) {

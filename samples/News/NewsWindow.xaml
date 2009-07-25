@@ -24,7 +24,7 @@
           Content="Search">
         <fxui:Interaction.Triggers>
           <fxui:EventTrigger EventName="Click">
-            <fxaction:Navigate Target="mainFrame" NavigateUrl="{Binding SearchUrl}" ExternalNavigation="False" />
+            <fxaction:Navigate Target="mainFrame" Uri="{Binding SearchUrl}" />
           </fxui:EventTrigger>
         </fxui:Interaction.Triggers>
       </Button>
@@ -32,14 +32,14 @@
       <Button Content="Latest News" Style="{StaticResource linkButton}">
         <fxui:Interaction.Triggers>
           <fxui:EventTrigger EventName="Click">
-            <fxaction:Navigate Target="mainFrame" NavigateUrl="/News/List" ExternalNavigation="False" />
+            <fxaction:Navigate Target="mainFrame" Uri="/News/List" />
           </fxui:EventTrigger>
         </fxui:Interaction.Triggers>
       </Button>
       <Button Content="About" Style="{StaticResource linkButton}">
         <fxui:Interaction.Triggers>
           <fxui:EventTrigger EventName="Click">
-            <fxaction:Navigate Target="mainFrame" NavigateUrl="/Home/About" ExternalNavigation="False" />
+            <fxaction:Navigate Target="mainFrame" Uri="/Home/About" />
           </fxui:EventTrigger>
         </fxui:Interaction.Triggers>
       </Button>

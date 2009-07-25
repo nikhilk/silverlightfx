@@ -22,12 +22,12 @@ namespace NewsWidget {
             }
         }
 
-        public string SearchUrl {
+        public Uri SearchUrl {
             get {
                 if (String.IsNullOrEmpty(_searchText)) {
                     return null;
                 }
-                return "/News/Search?query=" + _searchText;
+                return new Uri("/News/Search?query=" + _searchText, UriKind.Relative);
             }
         }
     }

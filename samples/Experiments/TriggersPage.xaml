@@ -9,7 +9,7 @@
     <Button Content="Click Me!">
       <fxui:Interaction.Triggers>
         <fxui:EventTrigger EventName="Click">
-          <fxaction:Navigate NavigateUrl="http://www.nikhilk.net" Target="_new" />
+          <fxaction:Navigate Uri="http://www.nikhilk.net" Target="_blank" NavigateBrowser="True" />
         </fxui:EventTrigger>
       </fxui:Interaction.Triggers>
     </Button>

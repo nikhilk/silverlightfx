@@ -11,7 +11,7 @@
     <TextBox Width="200" />
     <Button Content="Page 2">
       <fxui:Interaction.Action>
-        <fxactions:Navigate NavigateUrl="Two" ExternalNavigation="False" />
+        <fxactions:Navigate Uri="Two" />
       </fxui:Interaction.Action>
     </Button>
   </StackPanel>

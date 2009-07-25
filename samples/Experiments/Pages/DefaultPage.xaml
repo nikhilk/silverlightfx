@@ -11,12 +11,12 @@
     <TextBox Width="200" />
     <Button Content="Page 1">
       <fxui:Interaction.Action>
-        <fxactions:Navigate NavigateUrl="One" ExternalNavigation="False" />
+        <fxactions:Navigate Uri="One" />
       </fxui:Interaction.Action>
     </Button>
     <Button Content="Page 2">
       <fxui:Interaction.Action>
-        <fxactions:Navigate NavigateUrl="Two" ExternalNavigation="False" />
+        <fxactions:Navigate Uri="Two" />
       </fxui:Interaction.Action>
     </Button>
   </StackPanel>

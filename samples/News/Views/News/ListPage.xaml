@@ -18,7 +18,7 @@
             </fxui:Interaction.Behaviors>
             <fxui:Interaction.Triggers>
               <fxui:EventTrigger EventName="MouseLeftButtonDown">
-                <fxaction:Navigate NavigateUrl="{Binding Uri}" Target="NewYorkTimes" />
+                <fxaction:Navigate Uri="{Binding Uri}" Target="NewYorkTimes" NavigateBrowser="True" />
               </fxui:EventTrigger>
             </fxui:Interaction.Triggers>
             
