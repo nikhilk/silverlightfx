@@ -1,0 +1,10 @@
+0.3.2 Release
+===============================================================================
+- Add ISupportInitialize - this allows view models instantiated and initialized
+                           in the MVC scenario to know when they are fully
+                           initialized.
+
+
+0.3.1 Release (7/16/2009)
+===============================================================================
+- Initial release of Silverlight.FX sync'd to Silverlight 3

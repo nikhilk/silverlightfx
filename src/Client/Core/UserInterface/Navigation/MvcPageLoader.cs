@@ -161,6 +161,11 @@ namespace SilverlightFX.UserInterface.Navigation {
                         if (viewData != null) {
                             object viewModel = page.Model;
                             if (viewModel != null) {
+                                ISupportInitialize batchInitialize = viewModel as ISupportInitialize;
+                                if (batchInitialize != null) {
+                                    batchInitialize.BeginInit();
+                                }
+
                                 Type viewModelType = viewModel.GetType();
                                 BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance |
                                                             BindingFlags.FlattenHierarchy;
@@ -170,6 +175,10 @@ namespace SilverlightFX.UserInterface.Navigation {
                                     if ((pi != null) && pi.CanWrite) {
                                         pi.SetValue(viewModel, viewDataItem.Value, null);
                                     }
+                                }
+
+                                if (batchInitialize != null) {
+                                    batchInitialize.EndInit();
                                 }
                             }
                         }
