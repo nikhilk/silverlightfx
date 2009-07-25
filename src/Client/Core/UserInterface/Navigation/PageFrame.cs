@@ -24,7 +24,7 @@ namespace SilverlightFX.UserInterface.Navigation {
     [TemplatePart(Name = "ContentView", Type = typeof(ContentView))]
     [TemplateVisualState(GroupName = "NavigationStates", Name = "Navigating")]
     [TemplateVisualState(GroupName = "NavigationStates", Name = "Navigated")]
-    public class PageFrame : Control, INavigationTarget {
+    public class PageFrame : Control, INavigationTarget, INavigate {
 
         /// <summary>
         /// Represents the DefaultUri property.
@@ -102,6 +102,9 @@ namespace SilverlightFX.UserInterface.Navigation {
                 return (Uri)GetValue(DefaultUriProperty);
             }
             set {
+                if ((value != null) && value.IsAbsoluteUri) {
+                    throw new ArgumentException("DefaultUri must be set to a relative URI.", "value");
+                }
                 SetValue(DefaultUriProperty, value);
             }
         }
@@ -246,15 +249,16 @@ namespace SilverlightFX.UserInterface.Navigation {
         /// Naviates the frame to the specified URI.
         /// </summary>
         /// <param name="uri">The URI to navigate to.</param>
-        public void Navigate(Uri uri) {
+        public bool Navigate(Uri uri) {
             if (uri == null) {
                 throw new ArgumentNullException("uri");
             }
             if (uri.IsAbsoluteUri) {
-                throw new ArgumentException("The uri to navigate to must not be absolute.");
+                return false;
             }
 
             SetValue(UriProperty, uri);
+            return true;
         }
 
         private bool NavigateInternal(NavigationState navigationState) {
@@ -517,8 +521,14 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
         }
 
-        void INavigationTarget.Navigate(Uri uri) {
-            Navigate(uri);
+        bool INavigationTarget.Navigate(Uri uri) {
+            return Navigate(uri);
+        }
+        #endregion
+
+        #region INavigate Members
+        bool INavigate.Navigate(Uri uri) {
+            return Navigate(uri);
         }
         #endregion
 

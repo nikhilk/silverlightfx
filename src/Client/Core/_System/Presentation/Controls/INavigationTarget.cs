@@ -39,6 +39,7 @@ namespace System.Windows.Controls {
         /// Navigates the control to the specified URI.
         /// </summary>
         /// <param name="uri">The URI to navigate to.</param>
-        void Navigate(Uri uri);
+        /// <returns>True if the control could handle the navigation; false otherwise.</returns>
+        bool Navigate(Uri uri);
     }
 }

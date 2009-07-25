@@ -6,6 +6,8 @@
 - Add XToolTipService
   This is a tooltip service that supports creating tooltips that contain
   binding expressions and share the DataContext of their associated element.
+- PageFrame now implements INavigate from SL3, which allows the standard
+  HyperlinkButton to target PageFrame for its navigation.
 
 
 0.3.1 Release (7/16/2009)
