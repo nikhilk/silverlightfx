@@ -147,7 +147,7 @@
     <Compile Include="UserInterface\ClickTrigger.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserInterface\Command.cs">
+    <Compile Include="UserInterface\CommandBehavior.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\ContentView.cs">

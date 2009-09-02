@@ -90,7 +90,7 @@ namespace SilverlightFX.UserInterface {
             BehaviorCollection behaviors = (BehaviorCollection)button.GetValue(BehaviorsProperty);
             if (behaviors != null) {
                 foreach (Behavior behavior in behaviors) {
-                    Command commandBehavior = behavior as Command;
+                    CommandBehavior commandBehavior = behavior as CommandBehavior;
                     if (commandBehavior != null) {
                         return commandBehavior.CommandName;
                     }
@@ -155,7 +155,7 @@ namespace SilverlightFX.UserInterface {
         public static void SetCommand(ButtonBase button, string commandName) {
             BehaviorCollection behaviors = GetBehaviors(button);
             foreach (Behavior behavior in behaviors) {
-                Command commandBehavior = behavior as Command;
+                CommandBehavior commandBehavior = behavior as CommandBehavior;
                 if (commandBehavior != null) {
                     if (String.IsNullOrEmpty(commandName)) {
                         behaviors.Remove(commandBehavior);
@@ -168,7 +168,7 @@ namespace SilverlightFX.UserInterface {
             }
 
             if (String.IsNullOrEmpty(commandName) == false) {
-                Command commandBehavior = new Command();
+                CommandBehavior commandBehavior = new CommandBehavior();
                 commandBehavior.CommandName = commandName;
 
                 behaviors.Add(commandBehavior);
