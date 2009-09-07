@@ -166,7 +166,7 @@
     <Compile Include="Applications\ComponentFactory.cs" />
     <Compile Include="_System\ComponentModel\ISupportInitialize.cs" />
     <Compile Include="_System\ComponentModel\IGenericComponentCreator.cs" />
-    <Compile Include="_System\ComponentModel\Task.cs" />
+    <Compile Include="_System\ComponentModel\Async.cs" />
     <Compile Include="_System\ComponentModel\Navigation\Controller.cs" />
     <Compile Include="_System\ComponentModel\Navigation\ActionResult.cs" />
     <Compile Include="_System\ComponentModel\Navigation\ControllerDescriptor.cs" />

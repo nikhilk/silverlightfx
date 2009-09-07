@@ -8,8 +8,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Browser;
 using System.Xml.Linq;
 using SilverlightFX.Applications;
 
@@ -18,9 +20,11 @@ namespace Store {
     [Service(typeof(IStore))]
     public sealed class AmazonService : IStore {
 
-        private const string SearchUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemSearch&SearchIndex=All&SubscriptionId={0}&AssociateTag=myamzn-20&Keywords={1}&ResponseGroup=Images,Small,EditorialReview,ItemAttributes,OfferSummary";
-        private const string LookupUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=ItemLookup&SubscriptionId={0}&AssociateTag=myamzn-20&ItemId={1}&&ResponseGroup=Images,Small,EditorialReview,ItemAttributes,OfferSummary";
-        private const string CartUriFormat = "http://ecs.amazonaws.com/onca/xml?Service=AWSECommerceService&Version=2005-03-23&Operation=CartCreate&SubscriptionId={0}&AssociateTag=myamzn-20{1}";
+        private const string SearchQueryFormat = "Service=AWSECommerceService&Version=2009-03-31&Operation=ItemSearch&SearchIndex=All&AssociateTag=myamzn-20&Keywords={0}&ResponseGroup=Images,Small,EditorialReview,ItemAttributes,OfferSummary";
+        private const string LookupQueryFormat = "Service=AWSECommerceService&Version=2009-03-31&Operation=ItemLookup&AssociateTag=myamzn-20&ItemId={0}&&ResponseGroup=Images,Small,EditorialReview,ItemAttributes,OfferSummary";
+        private const string CartQueryFormat = "Service=AWSECommerceService&Version=2009-03-31&Operation=CartCreate&AssociateTag=myamzn-20{0}";
+        private const string ServiceDomain = "ecs.amazonaws.com";
+
         private static readonly string[] PopularFeedUrls =
             new string[] {
                 "http://pipes.yahooapis.com/pipes/pipe.run?_id=YAchPx7R3RG_yuOK1JzWFw&_render=rss&feedUrl=http%3A%2F%2Frssfeeds.s3.amazonaws.com%2Ftopbooks",
@@ -38,6 +42,16 @@ namespace Store {
         public IApplicationContext ApplicationContext {
             get;
             set;
+        }
+
+        private Uri CreateUri(string query) {
+            SignedRequestHelper signer =
+                new SignedRequestHelper(ApplicationContext.StartupArguments["AccessKey"],
+                                        ApplicationContext.StartupArguments["SecretKey"],
+                                        ServiceDomain);
+
+            string url = signer.Sign(query);
+            return new Uri(url, UriKind.Absolute);
         }
 
         public void GetBargainProducts(Action<IEnumerable<Product>, bool> productsCallback) {
@@ -120,7 +134,7 @@ namespace Store {
                 productsCallback(products);
             };
 
-            Uri requestUri = new Uri(String.Format(LookupUriFormat, SubscriptionID, String.Join(",", ids)));
+            Uri requestUri = CreateUri(String.Format(LookupQueryFormat, String.Join(",", ids)));
             webClient.DownloadStringAsync(requestUri);
         }
 
@@ -140,14 +154,8 @@ namespace Store {
                 productsCallback(products, true);
             };
 
-            Uri searchUri = new Uri(String.Format(SearchUriFormat, SubscriptionID, keyword));
+            Uri searchUri = CreateUri(String.Format(SearchQueryFormat, keyword.Replace(' ', '+')));
             webClient.DownloadStringAsync(searchUri);
-        }
-
-        private string SubscriptionID {
-            get {
-                return ApplicationContext.StartupArguments["SubscriptionID"];
-            }
         }
 
         private void ParseProductIDs(string feedXml, List<string> ids) {
@@ -176,7 +184,7 @@ namespace Store {
         }
 
         private void ParseProducts(string xml, bool lookupOffers, List<Product> products) {
-            xml = xml.Replace(@"xmlns=""http://webservices.amazon.com/AWSECommerceService/2005-03-23""", String.Empty);
+            xml = xml.Replace(@"xmlns=""http://webservices.amazon.com/AWSECommerceService/2009-03-31""", String.Empty);
             XDocument doc = XDocument.Parse(xml);
 
             foreach (XElement itemElement in doc.Descendants("Item")) {
@@ -190,8 +198,8 @@ namespace Store {
                         ID = itemElement.Element("ASIN").Value,
                         Title = itemElement.Element("ItemAttributes").Element("Title").Value,
                         Price = (priceElement != null) ? Int32.Parse(priceElement.Element("Amount").Value) / 100m : 0m,
-                        ProductUri = itemElement.Element("DetailPageURL").Value,
-                        ImageUri = (imageElement != null) ? imageElement.Element("URL").Value : null,
+                        ProductUri = new Uri(itemElement.Element("DetailPageURL").Value, UriKind.Absolute),
+                        ImageUri = (imageElement != null) ? new Uri(imageElement.Element("URL").Value, UriKind.Absolute) : null,
                         Description = (descriptionElement != null) ? TagRegex.Replace(descriptionElement.Value, String.Empty) : null
                     };
 
@@ -226,7 +234,7 @@ namespace Store {
             WebClient webClient = new WebClient();
             webClient.DownloadStringCompleted += delegate(object sender, DownloadStringCompletedEventArgs e) {
                 if ((e.Cancelled == false) && (e.Error == null)) {
-                    string xml = e.Result.Replace(@"xmlns=""http://webservices.amazon.com/AWSECommerceService/2005-03-23""", String.Empty);
+                    string xml = e.Result.Replace(@"xmlns=""http://webservices.amazon.com/AWSECommerceService/2009-03-31""", String.Empty);
 
                     if (String.IsNullOrEmpty(xml) == false) {
                         XDocument doc = XDocument.Parse(xml);
@@ -252,7 +260,7 @@ namespace Store {
                 itemNumber++;
             }
 
-            Uri requestUri = new Uri(String.Format(CartUriFormat, SubscriptionID, sb.ToString()));
+            Uri requestUri = CreateUri(String.Format(CartQueryFormat, sb.ToString()));
             webClient.DownloadStringAsync(requestUri);
         }
     }

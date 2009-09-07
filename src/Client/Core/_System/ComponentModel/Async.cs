@@ -13,10 +13,11 @@ using System;
 namespace System.ComponentModel {
 
     /// <summary>
-    /// Represents asynchronous work and its result.
+    /// Represents an asynchronous result and the associated task that
+    /// produces the result.
     /// </summary>
     /// <typeparam name="TResult">The type of the result.</typeparam>
-    public class Task<TResult> : Model {
+    public class Async<TResult> : Model {
 
         private TResult _result;
         private bool _completed;
@@ -24,24 +25,24 @@ namespace System.ComponentModel {
         private Exception _error;
 
         private EventHandler _completedHandler;
-        private Action<Task<TResult>, object> _cancelAction;
+        private Action<Async<TResult>, object> _cancelAction;
         private object _taskState;
 
         private object _userData;
 
         /// <summary>
-        /// Initializes an instance of an async Task. The task is not cancelable.
+        /// Initializes an instance of an async result and task. The task is not cancelable.
         /// </summary>
-        public Task() {
+        public Async() {
         }
 
         /// <summary>
-        /// Initializes an instance of an async Task. The task is cancelable using the
+        /// Initializes an instance of an async result and task. The task is cancelable using the
         /// specified cancel Action.
         /// </summary>
         /// <param name="cancelAction">The action to perform when the task is canceled.</param>
         /// <param name="taskState">Optional contextual state associated with the task.</param>
-        public Task(Action<Task<TResult>, object> cancelAction, object taskState) {
+        public Async(Action<Async<TResult>, object> cancelAction, object taskState) {
             if (cancelAction == null) {
                 throw new ArgumentNullException("cancelAction");
             }
@@ -50,7 +51,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Gets whether the task can be canceled.
+        /// Gets whether the associated task can be canceled.
         /// </summary>
         public bool CanCancel {
             get {
@@ -59,7 +60,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Gets the error that occurred while completing the task.
+        /// Gets the error that occurred while completing the associated task.
         /// </summary>
         public Exception Error {
             get {
@@ -68,7 +69,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Gets whether there was an error that occurred while completing the task.
+        /// Gets whether there was an error that occurred while completing the associated task.
         /// </summary>
         public bool HasError {
             get {
@@ -77,7 +78,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Gets whether the task was canceled.
+        /// Gets whether the associated task was canceled.
         /// </summary>
         public bool IsCanceled {
             get {
@@ -86,7 +87,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Gets whether the task has been completed.
+        /// Gets whether the associated task has been completed.
         /// </summary>
         public bool IsCompleted {
             get {
@@ -95,7 +96,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Gets the result of completing the task.
+        /// Gets the result of completing the associated task.
         /// </summary>
         public TResult Result {
             get {
@@ -104,7 +105,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Gets or sets any data that the task caller wants to track along with the task.
+        /// Gets or sets any data that the associated task initiator wants to track along with the task.
         /// </summary>
         public object UserData {
             get {
@@ -116,7 +117,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// The event raised when the task is completed, either with a result, with an error
+        /// The event raised when the associated task is completed, either with a result, with an error
         /// or because of cancelation.
         /// </summary>
         public event EventHandler Completed {
@@ -129,7 +130,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Cancels the completion of the task.
+        /// Cancels the completion of the associated task.
         /// </summary>
         public void Cancel() {
             if (CanCancel == false) {
@@ -148,7 +149,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Completes the task with the specified result.
+        /// Completes the associated task with the specified result.
         /// </summary>
         /// <param name="result">The result of completing the task.</param>
         public void Complete(TResult result) {
@@ -156,7 +157,7 @@ namespace System.ComponentModel {
         }
 
         /// <summary>
-        /// Completes the task with the specified error.
+        /// Completes the associated task with the specified error.
         /// </summary>
         /// <param name="error">The error that occurred while completing the task.</param>
         public void Complete(Exception error) {

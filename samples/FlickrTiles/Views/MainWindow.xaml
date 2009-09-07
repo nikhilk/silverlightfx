@@ -124,7 +124,7 @@
                 Source="/Assets/FlickrIcon.png" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,10,10">
                 <fxui:Interaction.Triggers>
                   <fxui:MouseTrigger>
-                    <fxactions:Navigate NavigateUrl="{Binding Photo.PageUrl}" Target="_new" />
+                    <fxactions:Navigate Uri="{Binding Photo.PageUri}" Target="_blank" />
                   </fxui:MouseTrigger>
                 </fxui:Interaction.Triggers>
               </Image>

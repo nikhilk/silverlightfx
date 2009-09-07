@@ -8,10 +8,22 @@
   <div style="height: 100%;">
     <object style="width: 100%; height: 100%" type="application/x-silverlight">
 	    <param name="source" value="AmazonSearch.xap" />
-	    <param name="initParams" value="SubscriptionID=<asp:Literal runat="server" Text="<%$ appSettings:amazonSubscritionID %>" />" />
+	    <param name="initParams" value="<%= InitParams %>" />
 	    <param name="version" value="2.0" />
 	    <param name="enableHtmlAccess" value="true" />
     </object>  
   </div>
 </body>
 </html>
+
+<script runat="server">
+  
+  private string InitParams {
+    get {
+      var appSettings = ConfigurationManager.AppSettings;
+      return "AccessKey=" + appSettings["amazonAccessKey"] + "," +
+             "SecretKey=" + appSettings["amazonSecretKey"];
+    }
+  }
+
+</script>

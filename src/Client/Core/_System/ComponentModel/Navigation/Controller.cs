@@ -44,12 +44,12 @@ namespace System.ComponentModel.Navigation {
         }
 
         private void OnActionCompleted(object sender, EventArgs e) {
-            Task<ActionResult> task = (Task<ActionResult>)sender;
-            if (task.HasError) {
-                _asyncResult.Complete(new ErrorActionResult(task.Error));
+            Async<ActionResult> asyncActionResult = (Async<ActionResult>)sender;
+            if (asyncActionResult.HasError) {
+                _asyncResult.Complete(new ErrorActionResult(asyncActionResult.Error));
             }
             else {
-                _asyncResult.Complete(task.Result);
+                _asyncResult.Complete(asyncActionResult.Result);
             }
         }
 
@@ -116,8 +116,8 @@ namespace System.ComponentModel.Navigation {
                 _asyncResult = new ActionAsyncResult(this, callback, asyncState);
 
                 try {
-                    Task<ActionResult> task = (Task<ActionResult>)actionDescriptor.Invoke(this, action);
-                    task.Completed += OnActionCompleted;
+                    Async<ActionResult> asyncActionResult = (Async<ActionResult>)actionDescriptor.Invoke(this, action);
+                    asyncActionResult.Completed += OnActionCompleted;
                 }
                 catch (Exception e) {
                     _asyncResult = new ActionAsyncResult(new ErrorActionResult(e), asyncState);

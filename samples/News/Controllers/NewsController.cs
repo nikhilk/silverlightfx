@@ -19,8 +19,8 @@ namespace NewsWidget.Controllers {
             _newsService = newsService;
         }
 
-        public Task<ActionResult> List() {
-            Task<ActionResult> task = new Task<ActionResult>();
+        public Async<ActionResult> List() {
+            Async<ActionResult> task = new Async<ActionResult>();
             _newsService.GetNews(/* limitToLastDay */ true, OnNewsItemsAvailable, task);
 
             return task;
@@ -32,16 +32,16 @@ namespace NewsWidget.Controllers {
             ViewActionResult result = View("List");
             result.ViewData["Items"] = orderedItems.ToArray();
 
-            Task<ActionResult> task = (Task<ActionResult>)userState;
+            Async<ActionResult> task = (Async<ActionResult>)userState;
             task.Complete(result);
         }
 
-        public Task<ActionResult> Search(string query) {
+        public Async<ActionResult> Search(string query) {
             if (String.IsNullOrEmpty(query)) {
                 throw new ArgumentNullException("query");
             }
 
-            Task<ActionResult> task = new Task<ActionResult>();
+            Async<ActionResult> task = new Async<ActionResult>();
             _newsService.Search(query, OnNewsItemsAvailable, task);
 
             return task;

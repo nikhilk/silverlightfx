@@ -11,7 +11,7 @@ namespace FlickrTiles.Views {
 
     internal static class ImageLoader {
 
-        public static void LoadImage(string url, Action<ImageSource, object> imageCallback, object userContext) {
+        public static void LoadImage(Uri uri, Action<ImageSource, object> imageCallback, object userContext) {
             WebClient imageLoader = new WebClient();
             imageLoader.OpenReadCompleted += delegate(object sender, OpenReadCompletedEventArgs e) {
                 try {
@@ -24,7 +24,7 @@ namespace FlickrTiles.Views {
                     imageCallback(null, userContext);
                 }
             };
-            imageLoader.OpenReadAsync(new Uri(url));
+            imageLoader.OpenReadAsync(uri);
         }
     }
 }

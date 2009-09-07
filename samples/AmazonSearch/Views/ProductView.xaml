@@ -23,12 +23,12 @@
     </fxui:Interaction.Behaviors>
     <fxui:Interaction.Triggers>
       <fxui:MouseTrigger>
-        <fxactions:Navigate NavigateUrl="{Binding ItemUrl}" Target="Amazon" />
+        <fxactions:Navigate Uri="{Binding ItemUri}" Target="Amazon" />
       </fxui:MouseTrigger>
     </fxui:Interaction.Triggers>
   
     <Border HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="#AAAAAA" BorderThickness="1">
-      <Image Source="{Binding ImageUrl, Converter={StaticResource imageLoader}}" Margin="4" />
+      <Image Source="{Binding ImageUri, Converter={StaticResource imageLoader}}" Margin="4" />
     </Border>
   </Grid>
 </UserControl>

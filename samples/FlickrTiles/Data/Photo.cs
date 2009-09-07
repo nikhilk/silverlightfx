@@ -8,12 +8,12 @@ namespace FlickrTiles.Data {
 
     public class Photo : Model {
 
-        public string PageUrl {
+        public Uri PageUri {
             get;
             set;
         }
 
-        public string PhotoUrl {
+        public Uri PhotoUri {
             get;
             set;
         }
@@ -23,7 +23,7 @@ namespace FlickrTiles.Data {
             set;
         }
 
-        public string ThumbnailUrl {
+        public Uri ThumbnailUri {
             get;
             set;
         }

@@ -42,7 +42,7 @@ namespace System.ComponentModel.Navigation {
             descriptor = new ControllerDescriptor();
 
             Type actionResultType = typeof(ActionResult);
-            Type taskActionResultType = typeof(Task<ActionResult>);
+            Type taskActionResultType = typeof(Async<ActionResult>);
             BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance |
                                         BindingFlags.FlattenHierarchy;
 

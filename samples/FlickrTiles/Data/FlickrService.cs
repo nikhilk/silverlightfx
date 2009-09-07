@@ -36,17 +36,20 @@ namespace FlickrTiles.Data {
                             from photo in xdoc.Descendants("photo")
                             select new Photo {
                                 Title = photo.Attribute("title").Value,
-                                ThumbnailUrl = String.Format(ThumbnailUrlFormat,
-                                                             photo.Attribute("server").Value,
-                                                             photo.Attribute("id").Value,
-                                                             photo.Attribute("secret").Value),
-                                PhotoUrl = String.Format(PhotoUrlFormat,
-                                                         photo.Attribute("server").Value,
-                                                         photo.Attribute("id").Value,
-                                                         photo.Attribute("secret").Value),
-                                PageUrl = String.Format(PageUrlFormat,
-                                                        photo.Attribute("owner").Value,
-                                                        photo.Attribute("id").Value),
+                                ThumbnailUri = new Uri(String.Format(ThumbnailUrlFormat,
+                                                                     photo.Attribute("server").Value,
+                                                                     photo.Attribute("id").Value,
+                                                                     photo.Attribute("secret").Value),
+                                                       UriKind.Absolute),
+                                PhotoUri = new Uri(String.Format(PhotoUrlFormat,
+                                                                 photo.Attribute("server").Value,
+                                                                 photo.Attribute("id").Value,
+                                                                 photo.Attribute("secret").Value),
+                                                    UriKind.Absolute),
+                                PageUri = new Uri(String.Format(PageUrlFormat,
+                                                                photo.Attribute("owner").Value,
+                                                                photo.Attribute("id").Value),
+                                                  UriKind.Absolute),
                                 ShotOn = DateTime.SpecifyKind(DateTime.Parse(photo.Attribute("datetaken").Value), DateTimeKind.Utc)
                               };
 

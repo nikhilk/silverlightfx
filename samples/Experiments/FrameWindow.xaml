@@ -8,12 +8,12 @@
     <fxui:HStackPanel ChildSpacing="4" ChildFlow="Center">
       <Button Content="Back">
         <fxui:Interaction.Behaviors>
-          <fxui:Command CommandName="Back" CommandTarget="mainFrame" />
+          <fxui:CommandBehavior CommandName="Back" CommandTarget="mainFrame" />
         </fxui:Interaction.Behaviors>
       </Button>
       <Button Content="Forward">
         <fxui:Interaction.Behaviors>
-          <fxui:Command CommandName="Forward" CommandTarget="mainFrame" />
+          <fxui:CommandBehavior CommandName="Forward" CommandTarget="mainFrame" />
         </fxui:Interaction.Behaviors>
       </Button>
     </fxui:HStackPanel>

@@ -18,7 +18,7 @@
     
     <Image Source="Amazon.png" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0" />
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-      <fxui:XTextBox x:Name="keywordTextBox" Style="{StaticResource adornableFlatTextBox}" Width="220" Height="21">
+      <fxui:XTextBox x:Name="keywordTextBox" Style="{StaticResource adornableFlatTextBox}" Width="220" Height="22">
         <fxui:Interaction.Behaviors>
           <fxui:AutoCommit ButtonName="searchButton" />
           <fxui:Watermark PromptText="Enter a keyword" PromptStyle="{StaticResource watermarkText}" />

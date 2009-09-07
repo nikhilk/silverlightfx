@@ -10,9 +10,9 @@ namespace Store {
 
         private string _id;
         private string _description;
-        private string _imageUri;
+        private Uri _imageUri;
         private decimal _price;
-        private string _productUri;
+        private Uri _productUri;
         private string _title;
 
         public string Description {
@@ -38,7 +38,7 @@ namespace Store {
             }
         }
 
-        public string ImageUri {
+        public Uri ImageUri {
             get {
                 return _imageUri;
             }
@@ -62,7 +62,7 @@ namespace Store {
             }
         }
 
-        public string ProductUri {
+        public Uri ProductUri {
             get {
                 return _productUri;
             }

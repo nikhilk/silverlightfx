@@ -67,7 +67,7 @@ namespace FlickrTiles.Views {
 
                     _loadingImage = true;
                     value.IsImageLoading = true;
-                    ImageLoader.LoadImage(value.Photo.PhotoUrl, OnImageLoaded, value);
+                    ImageLoader.LoadImage(value.Photo.PhotoUri, OnImageLoaded, value);
                 }
                 else {
                     _selectedPhoto = value;
@@ -105,7 +105,7 @@ namespace FlickrTiles.Views {
             SelectedPhoto = null;
 
             foreach (Photo photo in photos) {
-                ImageLoader.LoadImage(photo.ThumbnailUrl, OnThumbnailLoaded, photo);
+                ImageLoader.LoadImage(photo.ThumbnailUri, OnThumbnailLoaded, photo);
             }
         }
 

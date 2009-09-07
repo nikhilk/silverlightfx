@@ -74,6 +74,8 @@
     <Compile Include="Controls\Progress.xaml.cs">
       <DependentUpon>Progress.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Data\SignedRequestHelper.cs" />
+    <Compile Include="Data\SortedDictionary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ProductView.xaml.cs">
       <DependentUpon>ProductView.xaml</DependentUpon>

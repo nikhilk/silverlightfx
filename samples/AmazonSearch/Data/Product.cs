@@ -18,12 +18,12 @@ namespace AmazonSearch.Data {
             set;
         }
 
-        public string ImageUrl {
+        public Uri ImageUri {
             get;
             set;
         }
 
-        public string ItemUrl {
+        public Uri ItemUri {
             get;
             set;
         }

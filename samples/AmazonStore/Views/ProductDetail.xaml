@@ -14,7 +14,7 @@
       <TextBlock Text="More Details..." Cursor="Hand" Foreground="Blue">
         <fxui:Interaction.Triggers>
           <fxui:MouseTrigger>
-            <fxactions:Navigate NavigateUrl="{Binding ProductUri}" Target="amazon" />
+            <fxactions:Navigate Uri="{Binding ProductUri}" Target="amazon" />
           </fxui:MouseTrigger>
         </fxui:Interaction.Triggers>
       </TextBlock>
