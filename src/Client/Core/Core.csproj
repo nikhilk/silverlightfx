@@ -164,6 +164,7 @@
     <Compile Include="UserInterface\Navigation\PageCache.cs" />
     <Compile Include="UserInterface\Navigation\PageJournal.cs" />
     <Compile Include="Applications\ComponentFactory.cs" />
+    <Compile Include="_System\ComponentModel\ComponentCreator.cs" />
     <Compile Include="_System\ComponentModel\ISupportInitialize.cs" />
     <Compile Include="_System\ComponentModel\IGenericComponentFactory.cs" />
     <Compile Include="_System\ComponentModel\Async.cs" />

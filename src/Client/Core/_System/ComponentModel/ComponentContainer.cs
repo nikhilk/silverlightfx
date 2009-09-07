@@ -118,6 +118,10 @@ namespace System.ComponentModel {
         }
 
         private object GetObject(Type objectType) {
+            if (typeof(IComponentCreator).IsAssignableFrom(objectType)) {
+                return Activator.CreateInstance(objectType, (IComponentContainer)this);
+            }
+
             object instance;
             if (_registeredTypes.TryGetValue(objectType, out instance)) {
                 IComponentFactory factory = instance as IComponentFactory;
