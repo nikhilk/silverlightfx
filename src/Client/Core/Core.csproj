@@ -68,6 +68,8 @@
   <ItemGroup>
     <Compile Include="Applications\ComponentCollection.cs" />
     <Compile Include="Applications\ApplicationContext.cs" />
+    <Compile Include="Applications\IUserNotificationService.cs" />
+    <Compile Include="Applications\WeakDelegateReference.cs" />
     <Compile Include="Applications\IExternalNavigationService.cs" />
     <Compile Include="Applications\Theme.cs">
       <SubType>Code</SubType>
@@ -165,6 +167,7 @@
     <Compile Include="UserInterface\Navigation\PageJournal.cs" />
     <Compile Include="Applications\ComponentFactory.cs" />
     <Compile Include="_System\ComponentModel\ComponentCreator.cs" />
+    <Compile Include="_System\ComponentModel\IEventAggregator.cs" />
     <Compile Include="_System\ComponentModel\ISupportInitialize.cs" />
     <Compile Include="_System\ComponentModel\IGenericComponentFactory.cs" />
     <Compile Include="_System\ComponentModel\Async.cs" />

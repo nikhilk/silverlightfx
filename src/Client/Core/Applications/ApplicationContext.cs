@@ -33,9 +33,16 @@ namespace SilverlightFX.Applications {
     /// main window, theming, settings, components and composition and more.
     /// </summary>
     [Service(typeof(IApplicationContext))]
+    [Service(typeof(IEventAggregator))]
     [Service(typeof(IExternalNavigationService))]
+    [Service(typeof(IUserNotificationService))]
     [ContentProperty("Components")]
-    public class ApplicationContext : IApplicationService, IApplicationLifetimeAware, IServiceProvider, IApplicationContext, IExternalNavigationService {
+    public class ApplicationContext : IApplicationService, IApplicationLifetimeAware,
+                                      IServiceProvider,
+                                      IApplicationContext,
+                                      IEventAggregator,
+                                      IExternalNavigationService,
+                                      IUserNotificationService {
 
         private static ApplicationContext _current;
 
@@ -47,6 +54,7 @@ namespace SilverlightFX.Applications {
         private Style _screenStyle;
         private IComponentContainer _componentContainer;
         private ComponentCollection _components;
+        private Dictionary<Type, List<WeakDelegateReference>> _eventMap;
         private object _model;
 
         private Window _mainWindow;
@@ -411,34 +419,6 @@ namespace SilverlightFX.Applications {
         }
 
 
-        #region Implementation of IServiceProvider
-        object IServiceProvider.GetService(Type serviceType) {
-            if (serviceType == null) {
-                throw new ArgumentNullException("serviceType");
-            }
-
-            if (serviceType == typeof(IComponentContainer)) {
-                return _componentContainer;
-            }
-
-            return GetService(serviceType);
-        }
-        #endregion
-
-        #region Implementation of IExternalNavigationService
-        bool IExternalNavigationService.CanNavigate {
-            get {
-                return HtmlPage.IsEnabled;
-            }
-        }
-
-        void IExternalNavigationService.Navigate(Uri uri, string targetFrame) {
-            if (HtmlPage.IsEnabled) {
-                HtmlPage.Window.Navigate(uri, targetFrame ?? "_self");
-            }
-        }
-        #endregion
-
         #region IApplicationService Members
         void IApplicationService.StartService(ApplicationServiceContext context) {
             _startupArguments = context.ApplicationInitParams;
@@ -464,6 +444,121 @@ namespace SilverlightFX.Applications {
         void IApplicationLifetimeAware.Starting() {
             _started = true;
             OnStarting();
+        }
+        #endregion
+
+        #region Implementation of IServiceProvider
+        object IServiceProvider.GetService(Type serviceType) {
+            if (serviceType == null) {
+                throw new ArgumentNullException("serviceType");
+            }
+
+            if (serviceType == typeof(IComponentContainer)) {
+                return _componentContainer;
+            }
+
+            return GetService(serviceType);
+        }
+        #endregion
+
+        #region Implementation of IEventAggregator
+        void IEventAggregator.Publish<TEvent>(TEvent eventArgs) {
+            if (eventArgs == null) {
+                throw new ArgumentNullException("eventArgs");
+            }
+
+            if (_eventMap == null) {
+                return;
+            }
+
+            List<WeakDelegateReference> eventHandlerList;
+            if (_eventMap.TryGetValue(typeof(TEvent), out eventHandlerList)) {
+                List<WeakDelegateReference> eventHandlerListCopy =
+                    new List<WeakDelegateReference>(eventHandlerList);
+
+                foreach (WeakDelegateReference delegateReference in eventHandlerListCopy) {
+                    Action<TEvent> eventHandler = (Action<TEvent>)delegateReference.Delegate;
+                    if (eventHandler != null) {
+                        try {
+                            eventHandler(eventArgs);
+                        }
+                        catch {
+                        }
+                    }
+                    else {
+                        eventHandlerList.Remove(delegateReference);
+                    }
+                }
+
+                if (eventHandlerList.Count == 0) {
+                    _eventMap.Remove(typeof(TEvent));
+                }
+            }
+        }
+
+        object IEventAggregator.Subscribe<TEvent>(Action<TEvent> eventHandler) {
+            if (eventHandler == null) {
+                throw new ArgumentNullException("eventHandler");
+            }
+
+            if (_eventMap == null) {
+                _eventMap = new Dictionary<Type, List<WeakDelegateReference>>();
+            }
+
+            List<WeakDelegateReference> eventHandlerList;
+            if (_eventMap.TryGetValue(typeof(TEvent), out eventHandlerList) == false) {
+                eventHandlerList = new List<WeakDelegateReference>();
+                _eventMap[typeof(TEvent)] = eventHandlerList;
+            }
+
+            WeakDelegateReference delegateReference = new WeakDelegateReference(eventHandler);
+            eventHandlerList.Add(delegateReference);
+
+            return delegateReference;
+        }
+
+        void IEventAggregator.Unsubscribe<TEvent>(object subscriptionCookie) {
+            if (subscriptionCookie == null) {
+                throw new ArgumentNullException("subscriptionCookie");
+            }
+
+            bool removed = false;
+
+            if (_eventMap != null) {
+                List<WeakDelegateReference> eventHandlerList;
+                if (_eventMap.TryGetValue(typeof(TEvent), out eventHandlerList)) {
+                    eventHandlerList.Remove((WeakDelegateReference)subscriptionCookie);
+                }
+            }
+
+            if (removed == false) {
+                throw new ArgumentException("Invalid subscription cookie.");
+            }
+        }
+        #endregion
+
+        #region Implementation of IExternalNavigationService
+        bool IExternalNavigationService.CanNavigate {
+            get {
+                return HtmlPage.IsEnabled;
+            }
+        }
+
+        void IExternalNavigationService.Navigate(Uri uri, string targetFrame) {
+            if (HtmlPage.IsEnabled) {
+                HtmlPage.Window.Navigate(uri, targetFrame ?? "_self");
+            }
+        }
+        #endregion
+
+        #region Implementation of IUserNotificationService
+        void IUserNotificationService.ShowMessage(string message, string caption) {
+            MessageBox.Show(message, caption, MessageBoxButton.OK);
+        }
+
+        bool IUserNotificationService.ShowPrompt(string message, string caption) {
+            MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.OKCancel);
+            return result == MessageBoxResult.OK;
         }
         #endregion
     }
