@@ -18,6 +18,8 @@ namespace SilverlightFX.Data {
     /// <summary>
     /// A value converter that can be used in a binding to generate
     /// a formatted string representation for a currency value.
+    /// 
+    /// The ConverterParameter can be used to specify a custom format string.
     /// </summary>
     public sealed class CurrencyFormatter : IValueConverter {
 
@@ -31,7 +33,13 @@ namespace SilverlightFX.Data {
             if (d == 0m) {
                 return String.Empty;
             }
-            return String.Format(culture, "{0}{1:C}", parameter, value);
+
+            string format = parameter as string;
+            if (String.IsNullOrEmpty(format)) {
+                format = "{0:C}";
+            }
+
+            return String.Format(culture, format, value);
         }
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {

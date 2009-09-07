@@ -10,7 +10,7 @@
     <Image Grid.Row="2" VerticalAlignment="Top" Margin="0,0,10,0"
       Source="{Binding ImageUri, Converter={StaticResource imageLoader}}" />
     <fxui:VStackPanel Grid.Column="1" Grid.Row="2" ChildSpacing="8" ChildAlignment="Left" ChildFlow="Top">
-      <TextBlock Text="{Binding Price, Converter={StaticResource currencyFormatter}, ConverterCulture='en-US'}" />
+      <TextBlock Text="{Binding Price, Converter={StaticResource currencyFormatter}, ConverterParameter='{0:C}', ConverterCulture='en-US'}" />
       <TextBlock Text="More Details..." Cursor="Hand" Foreground="Blue">
         <fxui:Interaction.Triggers>
           <fxui:MouseTrigger>

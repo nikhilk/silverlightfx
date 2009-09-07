@@ -9,7 +9,9 @@
 //
 
 using System;
+using System.Collections;
 using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Data;
 
@@ -18,7 +20,12 @@ namespace SilverlightFX.Data {
     /// <summary>
     /// A value converter that converts values into equivalent Visibility values.
     /// For Boolean values, this maps true/false into Visible/Collapsed.
-    /// For other values, this maps null and String.Empty into Collapsed.
+    /// For String values, this maps null and String.Empty into Collapsed.
+    /// For collection values, this maps empty collections into Collapsed.
+    /// For other values, this maps null into Collapsed.
+    /// 
+    /// If the ConverterParameter is set to Inverse, then Visible is returned
+    /// in place of Collapsed, and vice-versa.
     /// </summary>
     public sealed class VisibilityConverter : IValueConverter {
 
@@ -33,11 +40,17 @@ namespace SilverlightFX.Data {
             if (value == null) {
                 visibility = Visibility.Collapsed;
             }
-            if (value is bool) {
+            else if (value is bool) {
                 visibility = (bool)value ? Visibility.Visible : Visibility.Collapsed;
             }
-            if (value is string) {
+            else if (value is string) {
                 visibility = String.IsNullOrEmpty((string)value) ? Visibility.Collapsed : Visibility.Visible;
+            }
+            else if (value is IEnumerable) {
+                IEnumerable enumerable = (IEnumerable)value;
+                if (enumerable.GetEnumerator().MoveNext() == false) {
+                    visibility = Visibility.Collapsed;
+                }
             }
 
             if ((parameter is string) &&

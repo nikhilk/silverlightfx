@@ -135,7 +135,8 @@
               </DataTemplate>
             </dc:DataGridTemplateColumn.CellTemplate>
           </dc:DataGridTemplateColumn>
-          <dc:DataGridTextColumn Binding="{Binding Cost, Converter={StaticResource currencyFormatter}, ConverterCulture='en-US'}" Header="Cost" Width="50" IsReadOnly="True">
+          <dc:DataGridTextColumn Binding="{Binding Cost, Converter={StaticResource currencyFormatter}, ConverterParameter='{0:C}', ConverterCulture='en-US'}"
+            Header="Cost" Width="50" IsReadOnly="True">
             <dc:DataGridTextColumn.ElementStyle>
               <Style TargetType="TextBlock">
                 <Setter Property="TextAlignment" Value="Right" />
@@ -149,7 +150,7 @@
           Content="Checkout"
           IsEnabled="{Binding ShoppingCart.CanCheckout}"
           fxui:Interaction.Action="$model.ShoppingCart.Checkout()" />
-        <TextBlock Text="{Binding ShoppingCart.Order.Total, Converter={StaticResource currencyFormatter}, ConverterParameter=' Total: ', ConverterCulture='en-US'}" />
+        <TextBlock Text="{Binding ShoppingCart.Order.Total, Converter={StaticResource currencyFormatter}, ConverterParameter=' Total: {0:C}', ConverterCulture='en-US'}" />
       </fxui:HStackPanel>
     </fxui:TemplatePanel>
 

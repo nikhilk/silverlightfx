@@ -74,6 +74,7 @@
     <Compile Include="Applications\Theme.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\StringTrimmer.cs" />
     <Compile Include="UserInterface\DataEventTrigger.cs" />
     <Compile Include="UserInterface\ModelEventTrigger.cs" />
     <Compile Include="UserInterface\XTooltipService.cs" />

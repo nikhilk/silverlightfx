@@ -21,7 +21,7 @@
       <TextBlock Grid.Row="1" HorizontalAlignment="Center" TextWrapping="Wrap"
         Text="{Binding Title}" />
       <TextBlock Grid.Row="2" HorizontalAlignment="Center" TextWrapping="NoWrap" FontWeight="Bold"
-        Text="{Binding Price, Converter={StaticResource currencyFormatter}, ConverterCulture='en-US'}" />
+        Text="{Binding Price, Converter={StaticResource currencyFormatter}, ConverterParameter='{0:C}', ConverterCulture='en-US'}" />
     </fxui:XGrid>
   </Border>
 
