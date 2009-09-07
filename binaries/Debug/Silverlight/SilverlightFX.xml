@@ -924,108 +924,6 @@
             The list of effects to be composed.
             </summary>
         </member>
-        <member name="T:System.ComponentModel.Task`1">
-            <summary>
-            Represents asynchronous work and its result.
-            </summary>
-            <typeparam name="TResult">The type of the result.</typeparam>
-        </member>
-        <member name="T:System.ComponentModel.Model">
-            <summary>
-            Provides a base class for implementing models that encapsulate
-            data and behavior that is independent of the presentation.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.Model.#ctor">
-            <summary>
-            Initializes an instance of a Model.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String)">
-            <summary>
-            Raises a change notification event to signal a change in the
-            specified property's value.
-            </summary>
-            <param name="propertyName">The property that has changed.</param>
-        </member>
-        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String[])">
-            <summary>
-            Raises a change notification event to signal a change in the
-            specified properties.
-            </summary>
-            <param name="propertyNames">The properties that have changed.</param>
-        </member>
-        <member name="M:System.ComponentModel.Task`1.#ctor">
-            <summary>
-            Initializes an instance of an async Task. The task is not cancelable.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.Task`1.#ctor(System.Action{System.ComponentModel.Task{`0},System.Object},System.Object)">
-            <summary>
-            Initializes an instance of an async Task. The task is cancelable using the
-            specified cancel Action.
-            </summary>
-            <param name="cancelAction">The action to perform when the task is canceled.</param>
-            <param name="taskState">Optional contextual state associated with the task.</param>
-        </member>
-        <member name="M:System.ComponentModel.Task`1.Cancel">
-            <summary>
-            Cancels the completion of the task.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.Task`1.Complete(`0)">
-            <summary>
-            Completes the task with the specified result.
-            </summary>
-            <param name="result">The result of completing the task.</param>
-        </member>
-        <member name="M:System.ComponentModel.Task`1.Complete(System.Exception)">
-            <summary>
-            Completes the task with the specified error.
-            </summary>
-            <param name="error">The error that occurred while completing the task.</param>
-        </member>
-        <member name="P:System.ComponentModel.Task`1.CanCancel">
-            <summary>
-            Gets whether the task can be canceled.
-            </summary>
-        </member>
-        <member name="P:System.ComponentModel.Task`1.Error">
-            <summary>
-            Gets the error that occurred while completing the task.
-            </summary>
-        </member>
-        <member name="P:System.ComponentModel.Task`1.HasError">
-            <summary>
-            Gets whether there was an error that occurred while completing the task.
-            </summary>
-        </member>
-        <member name="P:System.ComponentModel.Task`1.IsCanceled">
-            <summary>
-            Gets whether the task was canceled.
-            </summary>
-        </member>
-        <member name="P:System.ComponentModel.Task`1.IsCompleted">
-            <summary>
-            Gets whether the task has been completed.
-            </summary>
-        </member>
-        <member name="P:System.ComponentModel.Task`1.Result">
-            <summary>
-            Gets the result of completing the task.
-            </summary>
-        </member>
-        <member name="P:System.ComponentModel.Task`1.UserData">
-            <summary>
-            Gets or sets any data that the task caller wants to track along with the task.
-            </summary>
-        </member>
-        <member name="E:System.ComponentModel.Task`1.Completed">
-            <summary>
-            The event raised when the task is completed, either with a result, with an error
-            or because of cancelation.
-            </summary>
-        </member>
         <member name="T:SilverlightFX.Data.BooleanInverter">
             <summary>
             A value converter that inverts the value of a boolean property.
@@ -1151,12 +1049,12 @@
             <param name="objectType">The type of object this instance corresponds to.</param>
             <param name="objectInstance">The object to register.</param>
         </member>
-        <member name="M:System.ComponentModel.IComponentContainer.RegisterCreator(System.Type,System.ComponentModel.IComponentCreator)">
+        <member name="M:System.ComponentModel.IComponentContainer.RegisterFactory(System.Type,System.ComponentModel.IComponentFactory)">
             <summary>
-            Registers an object creator or factory for the specified type with the container.
+            Registers an object factory for the specified type with the container.
             </summary>
             <param name="objectType">The type of object this factory corresponds to.</param>
-            <param name="objectCreator">The factory to register.</param>
+            <param name="objectFactory">The factory to register.</param>
         </member>
         <member name="T:SilverlightFX.UserInterface.XBorder">
             <summary>
@@ -1333,30 +1231,6 @@
         <member name="M:SilverlightFX.UserInterface.Glitz.LinearInterpolation.Interpolate(System.Double)">
             <internalonly />
         </member>
-        <member name="T:System.ComponentModel.IGenericComponentCreator">
-            <summary>
-            Represents a factory that can create object instances as needed.
-            </summary>
-        </member>
-        <member name="T:System.ComponentModel.IComponentCreator">
-            <summary>
-            Represents a factory that can create object instances as needed.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.IComponentCreator.CreateInstance(System.Type,System.ComponentModel.IComponentContainer,System.Boolean@)">
-            <summary>
-            Creates an instance of the component as needed.
-            </summary>
-            <param name="componentType">The type of component to be created.</param>
-            <param name="container">The container that is requesting the creation of the object.</param>
-            <param name="isSingleInstance">Whether the instance is to be treated as a singleton.</param>
-            <returns>The instance created by this factory.</returns>
-        </member>
-        <member name="P:System.ComponentModel.IGenericComponentCreator.ComponentType">
-            <summary>
-            Gets the type of component represented by this component creator.
-            </summary>
-        </member>
         <member name="T:SilverlightFX.UserInterface.ClickEffect">
             <summary>
             Plays an effect whenever the associated element is clicked.
@@ -1482,6 +1356,37 @@
             The source URI associated with the application instance.
             </summary>
         </member>
+        <member name="T:System.ComponentModel.IEventAggregator">
+            <summary>
+            Provides a simple event aggregation or pub/sub mechanism for allowing
+            different components to broadcast and listen to messages or events without
+            being coupled to each other.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.IEventAggregator.Publish``1(``0)">
+            <summary>
+            Broadcasts an event. The event is sequentially handled by all subscribers.
+            Any errors that occur are ignored.
+            </summary>
+            <typeparam name="TEvent">The type of the event argument.</typeparam>
+            <param name="eventArgs">The data associated with the event.</param>
+        </member>
+        <member name="M:System.ComponentModel.IEventAggregator.Subscribe``1(System.Action{``0})">
+            <summary>
+            Subscribes the specified handler to listen to events of the specified
+            type.
+            </summary>
+            <typeparam name="TEvent">The type of the event argument.</typeparam>
+            <param name="eventHandler">The event handler to be invoked when the event occurs.</param>
+            <returns>An opaque cookie that can be used to unsubscribe subsequently.</returns>
+        </member>
+        <member name="M:System.ComponentModel.IEventAggregator.Unsubscribe``1(System.Object)">
+            <summary>
+            Unsubscribes a previous event handler from subsequent events.
+            </summary>
+            <typeparam name="TEvent">The type of the event argument.</typeparam>
+            <param name="subscriptionCookie">The cookie that represents the subscription.</param>
+        </member>
         <member name="T:SilverlightFX.Applications.IExternalNavigationService">
             <summary>
             Provides the ability to perform a navigation external to the application.
@@ -1499,6 +1404,27 @@
             <summary>
             Gets whether external navigation can be performed.
             </summary>
+        </member>
+        <member name="T:SilverlightFX.Applications.IUserNotificationService">
+            <summary>
+            Provides the ability to notify the user with a message.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.Applications.IUserNotificationService.ShowMessage(System.String,System.String)">
+            <summary>
+            Shows the specified message to the user.
+            </summary>
+            <param name="message">The text of the notification.</param>
+            <param name="caption">The caption of the notification.</param>
+        </member>
+        <member name="M:SilverlightFX.Applications.IUserNotificationService.ShowPrompt(System.String,System.String)">
+            <summary>
+            Shows the specified message to the user, and returns whether the
+            user chose to commit or cancel the request.
+            </summary>
+            <param name="message">The text of the notification.</param>
+            <param name="caption">The caption of the notification.</param>
+            <returns>true if the user committed; false otherwise.</returns>
         </member>
         <member name="M:SilverlightFX.Applications.ApplicationContext.#ctor">
             <summary>
@@ -1834,6 +1760,7 @@
             Navigates the control to the specified URI.
             </summary>
             <param name="uri">The URI to navigate to.</param>
+            <returns>True if the control could handle the navigation; false otherwise.</returns>
         </member>
         <member name="P:System.Windows.Controls.INavigationTarget.Uri">
             <summary>
@@ -2333,6 +2260,26 @@
             not have multiple controllers.
             </summary>
         </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Float">
+            <summary>
+            Represents an effect that floats an element by projecting it forward and
+            adding a shadow.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Float.CreateEffectAnimation(System.Windows.Media.Glitz.AnimationEffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Float.Distance">
+            <summary>
+            Gets or sets the distance by which the element is floated.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Float.ShadowLength">
+            <summary>
+            Gets or sets the length of the shadow to create when the element
+            is floated.
+            </summary>
+        </member>
         <member name="T:System.ComponentModel.TimeSpanTypeConverter">
             <summary>
             Converts between TimeSpan and String.
@@ -2608,7 +2555,12 @@
             <summary>
             A value converter that converts values into equivalent Visibility values.
             For Boolean values, this maps true/false into Visible/Collapsed.
-            For other values, this maps null and String.Empty into Collapsed.
+            For String values, this maps null and String.Empty into Collapsed.
+            For collection values, this maps empty collections into Collapsed.
+            For other values, this maps null into Collapsed.
+            
+            If the ConverterParameter is set to Inverse, then Visible is returned
+            in place of Collapsed, and vice-versa.
             </summary>
         </member>
         <member name="T:System.Windows.Interactivity.TriggerActionCollection">
@@ -2765,6 +2717,109 @@
             Gets the name of the view to create to represent the action result.
             </summary>
         </member>
+        <member name="T:System.ComponentModel.Async`1">
+            <summary>
+            Represents an asynchronous result and the associated task that
+            produces the result.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+        </member>
+        <member name="T:System.ComponentModel.Model">
+            <summary>
+            Provides a base class for implementing models that encapsulate
+            data and behavior that is independent of the presentation.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.Model.#ctor">
+            <summary>
+            Initializes an instance of a Model.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String)">
+            <summary>
+            Raises a change notification event to signal a change in the
+            specified property's value.
+            </summary>
+            <param name="propertyName">The property that has changed.</param>
+        </member>
+        <member name="M:System.ComponentModel.Model.RaisePropertyChanged(System.String[])">
+            <summary>
+            Raises a change notification event to signal a change in the
+            specified properties.
+            </summary>
+            <param name="propertyNames">The properties that have changed.</param>
+        </member>
+        <member name="M:System.ComponentModel.Async`1.#ctor">
+            <summary>
+            Initializes an instance of an async result and task. The task is not cancelable.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.Async`1.#ctor(System.Action{System.ComponentModel.Async{`0},System.Object},System.Object)">
+            <summary>
+            Initializes an instance of an async result and task. The task is cancelable using the
+            specified cancel Action.
+            </summary>
+            <param name="cancelAction">The action to perform when the task is canceled.</param>
+            <param name="taskState">Optional contextual state associated with the task.</param>
+        </member>
+        <member name="M:System.ComponentModel.Async`1.Cancel">
+            <summary>
+            Cancels the completion of the associated task.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.Async`1.Complete(`0)">
+            <summary>
+            Completes the associated task with the specified result.
+            </summary>
+            <param name="result">The result of completing the task.</param>
+        </member>
+        <member name="M:System.ComponentModel.Async`1.Complete(System.Exception)">
+            <summary>
+            Completes the associated task with the specified error.
+            </summary>
+            <param name="error">The error that occurred while completing the task.</param>
+        </member>
+        <member name="P:System.ComponentModel.Async`1.CanCancel">
+            <summary>
+            Gets whether the associated task can be canceled.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.Async`1.Error">
+            <summary>
+            Gets the error that occurred while completing the associated task.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.Async`1.HasError">
+            <summary>
+            Gets whether there was an error that occurred while completing the associated task.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.Async`1.IsCanceled">
+            <summary>
+            Gets whether the associated task was canceled.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.Async`1.IsCompleted">
+            <summary>
+            Gets whether the associated task has been completed.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.Async`1.Result">
+            <summary>
+            Gets the result of completing the associated task.
+            </summary>
+        </member>
+        <member name="P:System.ComponentModel.Async`1.UserData">
+            <summary>
+            Gets or sets any data that the associated task initiator wants to track along with the task.
+            </summary>
+        </member>
+        <member name="E:System.ComponentModel.Async`1.Completed">
+            <summary>
+            The event raised when the associated task is completed, either with a result, with an error
+            or because of cancelation.
+            </summary>
+        </member>
         <member name="T:SilverlightFX.Applications.ComponentCollection">
             <summary>
             Represents a list of components. Components can only be added; they cannot
@@ -2841,6 +2896,46 @@
         <member name="P:SilverlightFX.UserInterface.Glitz.ElasticInterpolation.Springiness">
             <summary>
             Gets or sets the relative height of the bounces.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.ISupportInitialize">
+            <summary>
+            Implemented by objects that supports a simple, transacted notification for batch
+            initialization. 
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.ISupportInitialize.BeginInit">
+            <summary>
+            Signals the object that initialization is starting.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.ISupportInitialize.EndInit">
+            <summary>
+            Signals the object that initialization is complete.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.Effects.Spin3D">
+            <summary>
+            Represents a spin effect that rotates the associated element along the
+            X, Y or Z axes.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.Effects.Spin3D.CreateEffectAnimation(System.Windows.Media.Glitz.AnimationEffectDirection)">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundXAxis">
+            <summary>
+            Gets or sets whether the element should be spun around the x-axis.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundYAxis">
+            <summary>
+            Gets or sets whether the element should be spun around the y-axis.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundZAxis">
+            <summary>
+            Gets or sets whether the element should be spun around the z-axis.
             </summary>
         </member>
         <member name="T:SilverlightFX.Data.IndexToNumberConverter">
@@ -2927,6 +3022,30 @@
         <member name="T:SilverlightFX.Applications.ComponentFactory">
             <summary>
             Represents a factory that can create instances of the specified component type.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.IGenericComponentFactory">
+            <summary>
+            Represents a factory that can create object instances as needed.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.IComponentFactory">
+            <summary>
+            Represents a factory that can create object instances as needed.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.IComponentFactory.CreateInstance(System.Type,System.ComponentModel.IComponentContainer,System.Boolean@)">
+            <summary>
+            Creates an instance of the component as needed.
+            </summary>
+            <param name="componentType">The type of component to be created.</param>
+            <param name="container">The container that is requesting the creation of the object.</param>
+            <param name="isSingleInstance">Whether the instance is to be treated as a singleton.</param>
+            <returns>The instance created by this factory.</returns>
+        </member>
+        <member name="P:System.ComponentModel.IGenericComponentFactory.ComponentType">
+            <summary>
+            Gets the type of component represented by this component creator.
             </summary>
         </member>
         <member name="P:SilverlightFX.Applications.ComponentFactory.ComponentType">
@@ -3058,6 +3177,32 @@
             selection, or to customize the string that will be used to update the
             TextBox associated with the AutoComplete behavior.
             </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.XToolTipService">
+            <summary>
+            A ToolTipService implementation that allows the contents of the tooltip to share
+            the DataContext of the element that the tooltip is associated with, and thereby
+            contain binding expressions.
+            </summary>
+        </member>
+        <member name="F:SilverlightFX.UserInterface.XToolTipService.ToolTipProperty">
+            <summary>
+            Represents the ToolTip attached property.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XToolTipService.GetToolTip(System.Windows.FrameworkElement)">
+            <summary>
+            Gets the Tooltip associated with the specified element.
+            </summary>
+            <param name="element">The element to lookup.</param>
+            <returns>The current tooltip if one exists; null otherwise.</returns>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.XToolTipService.SetToolTip(System.Windows.FrameworkElement,System.Object)">
+            <summary>
+            Sets the Tooltip associated with the specified element.
+            </summary>
+            <param name="element">The element whose tooltip is to be set.</param>
+            <param name="value">The tooltip to use.</param>
         </member>
         <member name="T:System.Windows.ParameterCollection">
             <summary>
@@ -3597,6 +3742,35 @@
             action.
             </summary>
         </member>
+        <member name="T:SilverlightFX.UserInterface.CommandBehavior">
+            <summary>
+            A behavior that can be associated with a Button to invoke a command.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.CommandBehavior.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.CommandBehavior.OnDetach">
+            <internalonly />
+        </member>
+        <member name="P:SilverlightFX.UserInterface.CommandBehavior.CommandName">
+            <summary>
+            Gets or sets the name of the command to invoke.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.CommandBehavior.CommandParameter">
+            <summary>
+            Gets or sets the object to use as the parameter when invoking
+            the command.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.CommandBehavior.CommandTarget">
+            <summary>
+            Gets or sets the object that surfaces the command to be invoke.
+            By default this is empty, which is used to select the object with which
+            this behavior is associated.
+            </summary>
+        </member>
         <member name="T:SilverlightFX.UserInterface.ClickTrigger">
             <summary>
             A trigger that can be associated with a Button for handling
@@ -3604,6 +3778,15 @@
             </summary>
         </member>
         <member name="M:SilverlightFX.UserInterface.ClickTrigger.GetEventName">
+            <internalonly />
+        </member>
+        <member name="T:SilverlightFX.UserInterface.DataEventTrigger">
+            <summary>
+            A trigger that can be associated with a specific event and uses
+            the associated data context as the source for events.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DataEventTrigger.GetSource">
             <internalonly />
         </member>
         <member name="T:System.Windows.Media.Glitz.ProceduralAnimationStopState">
@@ -3859,9 +4042,9 @@
             An action that navigates to a selected URI.
             </summary>
         </member>
-        <member name="F:SilverlightFX.UserInterface.Actions.Navigate.NavigateUrlProperty">
+        <member name="F:SilverlightFX.UserInterface.Actions.Navigate.NavigateBrowserProperty">
             <summary>
-            Represents the NavigateUrl property.
+            Represents the NavigateBrowser property.
             </summary>
         </member>
         <member name="F:SilverlightFX.UserInterface.Actions.Navigate.TargetProperty">
@@ -3869,28 +4052,28 @@
             Represents the Target property.
             </summary>
         </member>
-        <member name="M:SilverlightFX.UserInterface.Actions.Navigate.#ctor">
+        <member name="F:SilverlightFX.UserInterface.Actions.Navigate.UriProperty">
             <summary>
-            Initializes an instance of Navigate.
+            Represents the Uri property.
             </summary>
         </member>
         <member name="M:SilverlightFX.UserInterface.Actions.Navigate.InvokeAction(System.EventArgs)">
             <internalonly />
         </member>
-        <member name="P:SilverlightFX.UserInterface.Actions.Navigate.ExternalNavigation">
+        <member name="P:SilverlightFX.UserInterface.Actions.Navigate.NavigateBrowser">
             <summary>
             Gets or sets the whether the navigation should be internal to the application
             or external, i.e. at the level of HTML page containing the application.
             </summary>
         </member>
-        <member name="P:SilverlightFX.UserInterface.Actions.Navigate.NavigateUrl">
-            <summary>
-            Gets or sets the URL to navigate to.
-            </summary>
-        </member>
         <member name="P:SilverlightFX.UserInterface.Actions.Navigate.Target">
             <summary>
             Gets or sets the target window/frame that should be navigated.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.Navigate.Uri">
+            <summary>
+            Gets or sets the URL to navigate to.
             </summary>
         </member>
         <member name="T:System.Windows.Media.Glitz.ProceduralAnimationSet">
@@ -4068,7 +4251,18 @@
             <summary>
             A value converter that can be used in a binding to generate
             a formatted string representation for a currency value.
+            
+            The ConverterParameter can be used to specify a custom format string.
             </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.ModelEventTrigger">
+            <summary>
+            A trigger that can be associated with a specific event and uses
+            the associated view model as the source for events.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.ModelEventTrigger.GetSource">
+            <internalonly />
         </member>
         <member name="T:System.ComponentModel.ServiceAttribute">
             <summary>
@@ -4546,35 +4740,6 @@
             Raised when the Form is closed.
             </summary>
         </member>
-        <member name="T:SilverlightFX.UserInterface.Command">
-            <summary>
-            A behavior that can be associated with a Button to invoke a command.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Command.OnAttach">
-            <internalonly />
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Command.OnDetach">
-            <internalonly />
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Command.CommandName">
-            <summary>
-            Gets or sets the name of the command to invoke.
-            </summary>
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Command.CommandParameter">
-            <summary>
-            Gets or sets the object to use as the parameter when invoking
-            the command.
-            </summary>
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Command.CommandTarget">
-            <summary>
-            Gets or sets the object that surfaces the command to be invoke.
-            By default this is empty, which is used to select the object with which
-            this behavior is associated.
-            </summary>
-        </member>
         <member name="T:SilverlightFX.UserInterface.Actions.PlayStoryboard">
             <summary>
             An action that plays a storyboard.
@@ -4583,48 +4748,33 @@
         <member name="M:SilverlightFX.UserInterface.Actions.PlayStoryboard.InvokeAction(System.EventArgs)">
             <internalonly />
         </member>
-        <member name="T:SilverlightFX.UserInterface.Effects.Float">
+        <member name="T:System.ComponentModel.ComponentCreator`1">
             <summary>
-            Represents an effect that floats an element by projecting it forward and
-            adding a shadow.
+            Represents a factory that can create object instances as needed.
+            This is used primarily as a dependency in objects that need to create
+            another object via the container, without having to take a dependency on the
+            container itself.
             </summary>
+            <typeparam name="T">The type of objects created by this creator.</typeparam>
         </member>
-        <member name="M:SilverlightFX.UserInterface.Effects.Float.CreateEffectAnimation(System.Windows.Media.Glitz.AnimationEffectDirection)">
-            <internalonly />
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Effects.Float.Distance">
+        <member name="M:System.ComponentModel.ComponentCreator`1.#ctor(System.ComponentModel.IComponentContainer)">
             <summary>
-            Gets or sets the distance by which the element is floated.
+            Creates and initializes an instance of a ComponentCreator.
             </summary>
+            <param name="container">The container to use to construct the component.</param>
         </member>
-        <member name="P:SilverlightFX.UserInterface.Effects.Float.ShadowLength">
+        <member name="M:System.ComponentModel.ComponentCreator`1.CreateInstance">
             <summary>
-            Gets or sets the length of the shadow to create when the element
-            is floated.
+            Creates an instance of the component as needed.
             </summary>
+            <returns>The instance created by this creator.</returns>
         </member>
-        <member name="T:SilverlightFX.UserInterface.Effects.Spin3D">
+        <member name="T:SilverlightFX.Data.StringTrimmer">
             <summary>
-            Represents a spin effect that rotates the associated element along the
-            X, Y or Z axes.
-            </summary>
-        </member>
-        <member name="M:SilverlightFX.UserInterface.Effects.Spin3D.CreateEffectAnimation(System.Windows.Media.Glitz.AnimationEffectDirection)">
-            <internalonly />
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundXAxis">
-            <summary>
-            Gets or sets whether the element should be spun around the x-axis.
-            </summary>
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundYAxis">
-            <summary>
-            Gets or sets whether the element should be spun around the y-axis.
-            </summary>
-        </member>
-        <member name="P:SilverlightFX.UserInterface.Effects.Spin3D.SpinAroundZAxis">
-            <summary>
-            Gets or sets whether the element should be spun around the z-axis.
+            A value converter that trims and optionally truncates strings.
+            
+            If the ConverterParameter is set to a number the string is truncated so it has
+            at most the specified length, and trailing ellipsis are appended.
             </summary>
         </member>
     </members>

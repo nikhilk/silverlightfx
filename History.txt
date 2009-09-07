@@ -18,3 +18,26 @@
 0.3.1 Release (7/16/2009)
 ===============================================================================
 - Initial release of Silverlight.FX sync'd to Silverlight 3
+
+
+0.3.2 Release (TBD)
+===============================================================================
+- Added IEventAggregator
+  Use this for in ViewModel pattern for raising and subscribing to events
+  in a loosely coupled manner.
+- Added IUserNotificationService
+  Use this in a view model to notify the user or prompt the user for
+  confirmation.
+- Added ComponentCreator<T>
+  Use this in a view model class as a depedency when a view model needs to
+  create an instance via its container without having to take a dependency
+  on the container itself.
+- Renamed IComponentCreator, and IGenericComponentCreator to IComponentFactory
+  and IGenericComponentFactory
+- Renamed Task<TResult> to Async<TResult>
+- Added StringTrimmer value converter to trim/truncate strings
+- Added support for collections in VisibilityConverter (empty collection ->
+  Visibility.Collapsed)
+- Added support for better string formatting in CurrencyConverter
+- Samples update: Fixed amazon samples for new requirement around signing
+  requests (you'll need to update web.config with accesskey/secretkey)
