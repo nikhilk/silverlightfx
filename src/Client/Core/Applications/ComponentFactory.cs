@@ -16,7 +16,7 @@ namespace SilverlightFX.Applications {
     /// <summary>
     /// Represents a factory that can create instances of the specified component type.
     /// </summary>
-    public sealed class ComponentFactory : IGenericComponentCreator {
+    public sealed class ComponentFactory : IGenericComponentFactory {
 
         private Type _componentType;
         private bool _singleton;
@@ -48,7 +48,7 @@ namespace SilverlightFX.Applications {
         }
 
         #region Implementation of IComponentCreator
-        object IComponentCreator.CreateInstance(Type componentType, IComponentContainer container, out bool isSingleInstance) {
+        object IComponentFactory.CreateInstance(Type componentType, IComponentContainer container, out bool isSingleInstance) {
             if (_componentType == null) {
                 throw new InvalidOperationException("The ComponentType of a ComponentFactory must be set.");
             }
@@ -59,7 +59,7 @@ namespace SilverlightFX.Applications {
         #endregion
 
         #region Implementation of IGenericComponentCreator
-        Type IGenericComponentCreator.ComponentType {
+        Type IGenericComponentFactory.ComponentType {
             get {
                 if (_componentType == null) {
                     throw new InvalidOperationException("The ComponentType of a ComponentFactory must be set.");

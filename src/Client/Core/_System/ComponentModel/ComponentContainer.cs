@@ -120,10 +120,10 @@ namespace System.ComponentModel {
         private object GetObject(Type objectType) {
             object instance;
             if (_registeredTypes.TryGetValue(objectType, out instance)) {
-                IComponentCreator creator = instance as IComponentCreator;
-                if (creator != null) {
+                IComponentFactory factory = instance as IComponentFactory;
+                if (factory != null) {
                     bool singleInstance = false;
-                    instance = creator.CreateInstance(objectType, this, out singleInstance);
+                    instance = factory.CreateInstance(objectType, this, out singleInstance);
 
                     if (instance != null) {
                         if (((IComponentContainer)this).InitializeObject(instance)) {
@@ -208,10 +208,10 @@ namespace System.ComponentModel {
                 throw new ArgumentNullException("objectInstance");
             }
 
-            IGenericComponentCreator genericObjectCreator = objectInstance as IGenericComponentCreator;
-            if (genericObjectCreator != null) {
-                ((IComponentContainer)this).RegisterCreator(genericObjectCreator.ComponentType,
-                                                            (IComponentCreator)objectInstance);
+            IGenericComponentFactory genericFactory = objectInstance as IGenericComponentFactory;
+            if (genericFactory != null) {
+                ((IComponentContainer)this).RegisterFactory(genericFactory.ComponentType,
+                                                            (IComponentFactory)objectInstance);
             }
             else {
                 Type objectType = objectInstance.GetType();
@@ -221,8 +221,8 @@ namespace System.ComponentModel {
                     for (int i = 0; i < attrs.Length; i++) {
                         ServiceAttribute service = (ServiceAttribute)attrs[i];
 
-                        if (objectInstance is IComponentCreator) {
-                            ((IComponentContainer)this).RegisterCreator(service.ServiceType, (IComponentCreator)objectInstance);
+                        if (objectInstance is IComponentFactory) {
+                            ((IComponentContainer)this).RegisterFactory(service.ServiceType, (IComponentFactory)objectInstance);
                         }
                         else {
                             ((IComponentContainer)this).RegisterObject(service.ServiceType, objectInstance);
@@ -246,15 +246,15 @@ namespace System.ComponentModel {
             _registeredTypes[objectType] = objectInstance;
         }
 
-        void IComponentContainer.RegisterCreator(Type objectType, IComponentCreator objectCreator) {
+        void IComponentContainer.RegisterFactory(Type objectType, IComponentFactory objectFactory) {
             if (objectType == null) {
                 throw new ArgumentNullException("objectType");
             }
-            if (objectCreator == null) {
-                throw new ArgumentNullException("objectCreator");
+            if (objectFactory == null) {
+                throw new ArgumentNullException("objectFactory");
             }
 
-            _registeredTypes[objectType] = objectCreator;
+            _registeredTypes[objectType] = objectFactory;
         }
         #endregion
     }

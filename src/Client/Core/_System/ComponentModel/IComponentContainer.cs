@@ -57,10 +57,10 @@ namespace System.ComponentModel {
         void RegisterObject(Type objectType, object objectInstance);
 
         /// <summary>
-        /// Registers an object creator or factory for the specified type with the container.
+        /// Registers an object factory for the specified type with the container.
         /// </summary>
         /// <param name="objectType">The type of object this factory corresponds to.</param>
-        /// <param name="objectCreator">The factory to register.</param>
-        void RegisterCreator(Type objectType, IComponentCreator objectCreator);
+        /// <param name="objectFactory">The factory to register.</param>
+        void RegisterFactory(Type objectType, IComponentFactory objectFactory);
     }
 }
