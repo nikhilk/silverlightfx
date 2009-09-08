@@ -10,6 +10,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace SilverlightFX.Applications {
 
@@ -53,8 +54,10 @@ namespace SilverlightFX.Applications {
                 throw new InvalidOperationException("The ComponentType of a ComponentFactory must be set.");
             }
 
+            Debug.Assert(_componentType == componentType);
+
             isSingleInstance = _singleton;
-            return Activator.CreateInstance(componentType);
+            return Activator.CreateInstance(_componentType);
         }
         #endregion
 

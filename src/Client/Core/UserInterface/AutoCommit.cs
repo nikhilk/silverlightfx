@@ -10,6 +10,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Net;
 using System.Text;
 using System.Windows;
@@ -22,9 +23,10 @@ using System.Windows.Interactivity;
 namespace SilverlightFX.UserInterface {
 
     /// <summary>
-    /// A behavior that can be associated with the TextBox control to add commit semantics.
+    /// A behavior that can be associated with TextBox and PasswordBox controls to add
+    /// commit on enter keypress semantics.
     /// </summary>
-    public class AutoCommit : Behavior<TextBox> {
+    public class AutoCommit : Behavior<Control> {
 
         private string _buttonName;
 
@@ -46,8 +48,24 @@ namespace SilverlightFX.UserInterface {
             }
         }
 
+        private bool HasInput {
+            get {
+                TextBox textBox = AssociatedObject as TextBox;
+                if (textBox != null) {
+                    return textBox.Text.Length != 0;
+                }
+
+                Debug.Assert(AssociatedObject is PasswordBox);
+                return ((PasswordBox)AssociatedObject).Password.Length != 0;
+            }
+        }
+
         /// <internalonly />
         protected override void OnAttach() {
+            if (!(AssociatedObject is TextBox) &&
+                !(AssociatedObject is PasswordBox)) {
+                throw new InvalidOperationException("AutoCommit can only be associated with TextBox or PasswordBox controls.");
+            }
             AssociatedObject.KeyDown += OnTextBoxKeyDown;
         }
 
@@ -57,9 +75,7 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnTextBoxKeyDown(object sender, KeyEventArgs e) {
-            if ((e.Handled == false) &&
-                (e.Key == Key.Enter) &&
-                (AssociatedObject.Text.Length != 0)) {
+            if ((e.Handled == false) && (e.Key == Key.Enter) && HasInput) {
                 Button targetButton = null;
                 if (String.IsNullOrEmpty(_buttonName) == false) {
                     targetButton = AssociatedObject.FindName(_buttonName) as Button;
