@@ -28,6 +28,9 @@
 - Added IUserNotificationService
   Use this in a view model to notify the user or prompt the user for
   confirmation.
+- Support for ISupportInitialize in view models (useful when creating and
+  initializing view model instances from ViewData returned by an MVC controller
+  action)
 - Added ComponentCreator<T>
   Use this in a view model class as a depedency when a view model needs to
   create an instance via its container without having to take a dependency
@@ -39,5 +42,10 @@
 - Added support for collections in VisibilityConverter (empty collection ->
   Visibility.Collapsed)
 - Added support for better string formatting in CurrencyConverter
+- Added Float and Spin3D animation effects
+- Added XToolTipService - adds support for data-binding in tooltip content
+- Added support for SL3 INavigate on PageFrame
+- Added ModelEventTrigger and DataEventTrigger for listening to events raised
+  by the associated Model or associated DataContext
 - Samples update: Fixed amazon samples for new requirement around signing
   requests (you'll need to update web.config with accesskey/secretkey)
