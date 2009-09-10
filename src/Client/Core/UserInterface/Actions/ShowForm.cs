@@ -10,6 +10,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
@@ -19,7 +20,7 @@ namespace SilverlightFX.UserInterface.Actions {
     /// <summary>
     /// An action that transitions from one visual state to another.
     /// </summary>
-    public sealed class ShowForm : TriggerAction<FrameworkElement> {
+    public sealed class ShowForm : TriggerAction<FrameworkElement>, IScriptExpressionNameResolver {
 
         /// <summary>
         /// Represents the FormModel property.
@@ -32,6 +33,8 @@ namespace SilverlightFX.UserInterface.Actions {
         /// </summary>
         public static readonly DependencyProperty FormTypeProperty =
             DependencyProperty.Register("FormType", typeof(Type), typeof(ShowForm), null);
+
+        private ScriptExpression _formModelScript;
 
         /// <summary>
         /// Initializes an instance of a ShowForm action.
@@ -48,6 +51,27 @@ namespace SilverlightFX.UserInterface.Actions {
             }
             set {
                 SetValue(FormModelProperty, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the expression to evaluate to retrive the model to associate with
+        /// the Form when it is shown.
+        /// </summary>
+        public string FormModelExpression {
+            get {
+                if (_formModelScript != null) {
+                    return _formModelScript.Expression;
+                }
+                return String.Empty;
+            }
+            set {
+                ScriptExpression script = ScriptExpression.Parse(value);
+                if (script == null) {
+                    throw new ArgumentException("value");
+                }
+
+                _formModelScript = script;
             }
         }
 
@@ -78,6 +102,13 @@ namespace SilverlightFX.UserInterface.Actions {
             Form form = null;
             object formModel = FormModel;
 
+            if ((formModel == null) && (_formModelScript != null)) {
+                formModel = _formModelScript.Execute(this);
+                if (formModel == null) {
+                    return;
+                }
+            }
+
             if (formModel == null) {
                 form = (Form)Activator.CreateInstance(formType);
             }
@@ -87,5 +118,44 @@ namespace SilverlightFX.UserInterface.Actions {
 
             form.Show();
         }
+
+        #region Implementation of IScriptExpressionNameResolver
+        object IScriptExpressionNameResolver.ResolveName(string name) {
+            object value = null;
+
+            if (name == "$dataContext") {
+                return AssociatedObject.DataContext;
+            }
+            else if (name == "$model") {
+                return View.GetModel(AssociatedObject);
+            }
+            else if (name == "$element") {
+                return AssociatedObject;
+            }
+            else {
+                // First see if the name exists as a public property on the associated
+                // object
+                BindingFlags flags = BindingFlags.Public | BindingFlags.FlattenHierarchy | BindingFlags.Instance;
+                PropertyInfo pi = AssociatedObject.GetType().GetProperty(name, flags);
+                if (pi != null) {
+                    return pi.GetValue(AssociatedObject, null);
+                }
+
+                // Lookup a named object in XAML
+                value = AssociatedObject.FindNameRecursive(name);
+                if (value != null) {
+                    return value;
+                }
+
+                // Lookup a resource
+                value = AssociatedObject.FindResource(name);
+                if (value != null) {
+                    return value;
+                }
+            }
+
+            return null;
+        }
+        #endregion
     }
 }

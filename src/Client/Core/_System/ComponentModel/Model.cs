@@ -19,7 +19,6 @@ namespace System.ComponentModel {
     /// Provides a base class for implementing models that encapsulate
     /// data and behavior that is independent of the presentation.
     /// </summary>
-    [DataContract]
     public abstract class Model : INotifyPropertyChanged {
 
         private static readonly Dictionary<string, PropertyChangedEventArgs> _eventArgsMap =

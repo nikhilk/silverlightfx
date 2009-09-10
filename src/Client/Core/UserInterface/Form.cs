@@ -167,6 +167,14 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnCancelCommand() {
+            TaskViewModel model = View.GetModel(this) as TaskViewModel;
+            if (model != null) {
+                model.Cancel(delegate() {
+                    Close(FormResult.Cancel);
+                });
+                return;
+            }
+
             Close(FormResult.Cancel);
         }
 
@@ -175,6 +183,14 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnOKCommand() {
+            TaskViewModel model = View.GetModel(this) as TaskViewModel;
+            if (model != null) {
+                model.Commit(delegate() {
+                    Close(FormResult.OK);
+                });
+                return;
+            }
+
             Close(FormResult.OK);
         }
 

@@ -73,6 +73,12 @@
     <Compile Include="BouncePage.xaml.cs">
       <DependentUpon>BouncePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NumberEditForm.xaml.cs">
+      <DependentUpon>NumberEditForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ParentPage.xaml.cs">
+      <DependentUpon>ParentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Glitz2Page.xaml.cs">
       <DependentUpon>Glitz2Page.xaml</DependentUpon>
     </Compile>
@@ -151,6 +157,14 @@
     <Page Include="ContentTransitionPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NumberEditForm.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ParentPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Glitz2Page.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>

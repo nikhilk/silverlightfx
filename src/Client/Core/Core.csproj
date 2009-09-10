@@ -75,6 +75,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\StringTrimmer.cs" />
+    <Compile Include="UserInterface\DoubleClickTrigger.cs" />
     <Compile Include="UserInterface\DataEventTrigger.cs" />
     <Compile Include="UserInterface\ModelEventTrigger.cs" />
     <Compile Include="UserInterface\XTooltipService.cs" />
@@ -168,7 +169,9 @@
     <Compile Include="UserInterface\Navigation\PageJournal.cs" />
     <Compile Include="Applications\ComponentFactory.cs" />
     <Compile Include="_System\ComponentModel\ComponentCreator.cs" />
+    <Compile Include="_System\ComponentModel\ViewModel.cs" />
     <Compile Include="_System\ComponentModel\IEventAggregator.cs" />
+    <Compile Include="_System\ComponentModel\IScriptExpressionNameResolver.cs" />
     <Compile Include="_System\ComponentModel\ISupportInitialize.cs" />
     <Compile Include="_System\ComponentModel\IGenericComponentFactory.cs" />
     <Compile Include="_System\ComponentModel\Async.cs" />
@@ -182,6 +185,8 @@
     <Compile Include="_System\ComponentModel\Navigation\ObjectActionResult.cs" />
     <Compile Include="_System\ComponentModel\Navigation\RedirectActionResult.cs" />
     <Compile Include="_System\ComponentModel\Navigation\IController.cs" />
+    <Compile Include="_System\ComponentModel\ScriptExpression.cs" />
+    <Compile Include="_System\ComponentModel\TaskViewModel.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatedEventArgs.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatingEventArgs.cs" />
     <Compile Include="UserInterface\Navigation\ErrorPage.cs" />
