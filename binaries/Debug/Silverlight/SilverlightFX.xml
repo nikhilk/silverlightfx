@@ -652,6 +652,18 @@
             Provides access to additional information about the action being executed.
             </summary>
         </member>
+        <member name="T:System.ComponentModel.IScriptExpressionNameResolver">
+            <summary>
+            Resolves name references into object instances when executing a ScriptExpression.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.IScriptExpressionNameResolver.ResolveName(System.String)">
+            <summary>
+            Resolves the specified name within a ScriptExpression into an object instance.
+            </summary>
+            <param name="name">The name to resolve.</param>
+            <returns>The resolved object instance.</returns>
+        </member>
         <member name="T:System.Windows.Parameter">
             <summary>
             Represents the base class for declarative parameters.
@@ -1231,6 +1243,37 @@
         <member name="M:SilverlightFX.UserInterface.Glitz.LinearInterpolation.Interpolate(System.Double)">
             <internalonly />
         </member>
+        <member name="T:System.ComponentModel.IEventAggregator">
+            <summary>
+            Provides a simple event aggregation or pub/sub mechanism for allowing
+            different components to broadcast and listen to messages or events without
+            being coupled to each other.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.IEventAggregator.Publish``1(``0)">
+            <summary>
+            Broadcasts an event. The event is sequentially handled by all subscribers.
+            Any errors that occur are ignored.
+            </summary>
+            <typeparam name="TEvent">The type of the event argument.</typeparam>
+            <param name="eventArgs">The data associated with the event.</param>
+        </member>
+        <member name="M:System.ComponentModel.IEventAggregator.Subscribe``1(System.Action{``0})">
+            <summary>
+            Subscribes the specified handler to listen to events of the specified
+            type.
+            </summary>
+            <typeparam name="TEvent">The type of the event argument.</typeparam>
+            <param name="eventHandler">The event handler to be invoked when the event occurs.</param>
+            <returns>An opaque cookie that can be used to unsubscribe subsequently.</returns>
+        </member>
+        <member name="M:System.ComponentModel.IEventAggregator.Unsubscribe``1(System.Object)">
+            <summary>
+            Unsubscribes a previous event handler from subsequent events.
+            </summary>
+            <typeparam name="TEvent">The type of the event argument.</typeparam>
+            <param name="subscriptionCookie">The cookie that represents the subscription.</param>
+        </member>
         <member name="T:SilverlightFX.UserInterface.ClickEffect">
             <summary>
             Plays an effect whenever the associated element is clicked.
@@ -1355,37 +1398,6 @@
             <summary>
             The source URI associated with the application instance.
             </summary>
-        </member>
-        <member name="T:System.ComponentModel.IEventAggregator">
-            <summary>
-            Provides a simple event aggregation or pub/sub mechanism for allowing
-            different components to broadcast and listen to messages or events without
-            being coupled to each other.
-            </summary>
-        </member>
-        <member name="M:System.ComponentModel.IEventAggregator.Publish``1(``0)">
-            <summary>
-            Broadcasts an event. The event is sequentially handled by all subscribers.
-            Any errors that occur are ignored.
-            </summary>
-            <typeparam name="TEvent">The type of the event argument.</typeparam>
-            <param name="eventArgs">The data associated with the event.</param>
-        </member>
-        <member name="M:System.ComponentModel.IEventAggregator.Subscribe``1(System.Action{``0})">
-            <summary>
-            Subscribes the specified handler to listen to events of the specified
-            type.
-            </summary>
-            <typeparam name="TEvent">The type of the event argument.</typeparam>
-            <param name="eventHandler">The event handler to be invoked when the event occurs.</param>
-            <returns>An opaque cookie that can be used to unsubscribe subsequently.</returns>
-        </member>
-        <member name="M:System.ComponentModel.IEventAggregator.Unsubscribe``1(System.Object)">
-            <summary>
-            Unsubscribes a previous event handler from subsequent events.
-            </summary>
-            <typeparam name="TEvent">The type of the event argument.</typeparam>
-            <param name="subscriptionCookie">The cookie that represents the subscription.</param>
         </member>
         <member name="T:SilverlightFX.Applications.IExternalNavigationService">
             <summary>
@@ -1711,6 +1723,12 @@
         <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormModel">
             <summary>
             Gets or sets the model to associate with the Form when it is shown.
+            </summary>
+        </member>
+        <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormModelExpression">
+            <summary>
+            Gets or sets the expression to evaluate to retrive the model to associate with
+            the Form when it is shown.
             </summary>
         </member>
         <member name="P:SilverlightFX.UserInterface.Actions.ShowForm.FormType">
@@ -2182,6 +2200,27 @@
             Gets the URI that was navigated to.
             </summary>
         </member>
+        <member name="T:System.ComponentModel.ComponentCreator`1">
+            <summary>
+            Represents a factory that can create object instances as needed.
+            This is used primarily as a dependency in objects that need to create
+            another object via the container, without having to take a dependency on the
+            container itself.
+            </summary>
+            <typeparam name="T">The type of objects created by this creator.</typeparam>
+        </member>
+        <member name="M:System.ComponentModel.ComponentCreator`1.#ctor(System.ComponentModel.IComponentContainer)">
+            <summary>
+            Creates and initializes an instance of a ComponentCreator.
+            </summary>
+            <param name="container">The container to use to construct the component.</param>
+        </member>
+        <member name="M:System.ComponentModel.ComponentCreator`1.CreateInstance">
+            <summary>
+            Creates an instance of the component as needed.
+            </summary>
+            <returns>The instance created by this creator.</returns>
+        </member>
         <member name="T:SilverlightFX.UserInterface.Navigation.MvcPageLoader">
             <summary>
             A PageLoader that loads pages using the MVC pattern. The PageLoader finds
@@ -2279,6 +2318,18 @@
             Gets or sets the length of the shadow to create when the element
             is floated.
             </summary>
+        </member>
+        <member name="T:SilverlightFX.UserInterface.DoubleClickTrigger">
+            <summary>
+            A trigger that can be associated with an element for handling
+            double click events.
+            </summary>
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DoubleClickTrigger.OnAttach">
+            <internalonly />
+        </member>
+        <member name="M:SilverlightFX.UserInterface.DoubleClickTrigger.OnDetach">
+            <internalonly />
         </member>
         <member name="T:System.ComponentModel.TimeSpanTypeConverter">
             <summary>
@@ -2898,6 +2949,61 @@
             Gets or sets the relative height of the bounces.
             </summary>
         </member>
+        <member name="T:System.ComponentModel.TaskViewModel">
+            <summary>
+            Provides a base class for implementing models that encapsulate
+            data and behavior associated with a task that can be canceled or
+            committed. While this is independent of presentation, this model
+            is typically associated with a Form.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.ViewModel">
+            <summary>
+            Provides a base class for implementing view models.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.TaskViewModel.Cancel(System.Action)">
+            <summary>
+            Cancels the task associated with this model.
+            </summary>
+            <param name="completeCallback">A callback to invoke when the task is canceled.</param>
+        </member>
+        <member name="M:System.ComponentModel.TaskViewModel.Cancel">
+            <summary>
+            Allows the model to perform any logic it needs to execute when canceling the
+            task. Derived implementations should call the base implementation or the Complete
+            method (if the task cancels asynchronously).
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.TaskViewModel.Commit(System.Action)">
+            <summary>
+            Commits the task associated with this model.
+            </summary>
+            <param name="completeCallback">A callback to invoke when the task is committed.</param>
+        </member>
+        <member name="M:System.ComponentModel.TaskViewModel.Commit">
+            <summary>
+            Allows the model to perform any logic it needs to execute when committing the
+            task. Derived implementations should call the base implementation or the Complete
+            method (if the task commits asynchronously).
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.TaskViewModel.Complete(System.Boolean)">
+            <summary>
+            Marks the task as completed.
+            </summary>
+            <param name="commit">Whether the task was committed or canceled.</param>
+        </member>
+        <member name="P:System.ComponentModel.TaskViewModel.IsCommitted">
+            <summary>
+            Gets whether the associated task was committed or canceled.
+            </summary>
+        </member>
+        <member name="E:System.ComponentModel.TaskViewModel.Completed">
+            <summary>
+            Raised when the task associated with this model has been completed.
+            </summary>
+        </member>
         <member name="T:System.ComponentModel.ISupportInitialize">
             <summary>
             Implemented by objects that supports a simple, transacted notification for batch
@@ -2942,6 +3048,14 @@
             <summary>
             A value converter that converts an 0-based index value into a
             1-based numeric value.
+            </summary>
+        </member>
+        <member name="T:SilverlightFX.Data.StringTrimmer">
+            <summary>
+            A value converter that trims and optionally truncates strings.
+            
+            If the ConverterParameter is set to a number the string is truncated so it has
+            at most the specified length, and trailing ellipsis are appended.
             </summary>
         </member>
         <member name="T:System.Windows.Media.Glitz.AnimationEffectDirection">
@@ -3367,7 +3481,8 @@
         </member>
         <member name="T:SilverlightFX.UserInterface.AutoCommit">
             <summary>
-            A behavior that can be associated with the TextBox control to add commit semantics.
+            A behavior that can be associated with TextBox and PasswordBox controls to add
+            commit on enter keypress semantics.
             </summary>
         </member>
         <member name="M:SilverlightFX.UserInterface.AutoCommit.#ctor">
@@ -3708,6 +3823,32 @@
         <member name="P:SilverlightFX.UserInterface.Effects.Fade.FadeOpacity">
             <summary>
             Gets or sets the final value of the opacity that this effect should animate to.
+            </summary>
+        </member>
+        <member name="T:System.ComponentModel.ScriptExpression">
+            <summary>
+            Represents a simple script-like expression consisting of at most one assignment expression (optional),
+            and at most one method expression (also optional), whose parameters are simple property.subproperty paths or
+            a single property.subproperty lookup.
+            </summary>
+        </member>
+        <member name="M:System.ComponentModel.ScriptExpression.Execute(System.ComponentModel.IScriptExpressionNameResolver)">
+            <summary>
+            Executes a script expression.
+            </summary>
+            <param name="nameResolver">An object that can resolve names in the script expression to object instances.</param>
+            <returns>The resulting value from executing the expression if any.</returns>
+        </member>
+        <member name="M:System.ComponentModel.ScriptExpression.Parse(System.String)">
+            <summary>
+            Parses text representing a script expression into a ScriptExpression instance.
+            </summary>
+            <param name="expression">The text to parse.</param>
+            <returns>The parsed script expression.</returns>
+        </member>
+        <member name="P:System.ComponentModel.ScriptExpression.Expression">
+            <summary>
+            Gets the original text used to create this ScriptExpression.
             </summary>
         </member>
         <member name="T:System.ComponentModel.Navigation.RedirectActionResult">
@@ -4747,35 +4888,6 @@
         </member>
         <member name="M:SilverlightFX.UserInterface.Actions.PlayStoryboard.InvokeAction(System.EventArgs)">
             <internalonly />
-        </member>
-        <member name="T:System.ComponentModel.ComponentCreator`1">
-            <summary>
-            Represents a factory that can create object instances as needed.
-            This is used primarily as a dependency in objects that need to create
-            another object via the container, without having to take a dependency on the
-            container itself.
-            </summary>
-            <typeparam name="T">The type of objects created by this creator.</typeparam>
-        </member>
-        <member name="M:System.ComponentModel.ComponentCreator`1.#ctor(System.ComponentModel.IComponentContainer)">
-            <summary>
-            Creates and initializes an instance of a ComponentCreator.
-            </summary>
-            <param name="container">The container to use to construct the component.</param>
-        </member>
-        <member name="M:System.ComponentModel.ComponentCreator`1.CreateInstance">
-            <summary>
-            Creates an instance of the component as needed.
-            </summary>
-            <returns>The instance created by this creator.</returns>
-        </member>
-        <member name="T:SilverlightFX.Data.StringTrimmer">
-            <summary>
-            A value converter that trims and optionally truncates strings.
-            
-            If the ConverterParameter is set to a number the string is truncated so it has
-            at most the specified length, and trailing ellipsis are appended.
-            </summary>
         </member>
     </members>
 </doc>

@@ -20,7 +20,7 @@
 - Initial release of Silverlight.FX sync'd to Silverlight 3
 
 
-0.3.2 Release (TBD)
+0.3.2 Release (9/10/2009)
 ===============================================================================
 - Added IEventAggregator
   Use this for in ViewModel pattern for raising and subscribing to events

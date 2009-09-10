@@ -22,8 +22,8 @@ using System.Windows.Markup;
 [assembly: AssemblyCopyright("Copyright © 2009, Nikhil Kothari. All Rights Reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("3.1.0.0")]
-[assembly: AssemblyFileVersion("3.1.0.0")]
+[assembly: AssemblyVersion("3.2.0.0")]
+[assembly: AssemblyFileVersion("3.2.0.0")]
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 
