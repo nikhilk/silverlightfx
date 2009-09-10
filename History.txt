@@ -25,6 +25,7 @@
 - Added IEventAggregator
   Use this for in ViewModel pattern for raising and subscribing to events
   in a loosely coupled manner.
+- Task-based pattern for showing dialogs in a view model friendly manner
 - Added IUserNotificationService
   Use this in a view model to notify the user or prompt the user for
   confirmation.
@@ -47,5 +48,6 @@
 - Added support for SL3 INavigate on PageFrame
 - Added ModelEventTrigger and DataEventTrigger for listening to events raised
   by the associated Model or associated DataContext
+
 - Samples update: Fixed amazon samples for new requirement around signing
   requests (you'll need to update web.config with accesskey/secretkey)

@@ -91,6 +91,10 @@
     <Compile Include="TaskListApplication.xaml.cs">
       <DependentUpon>TaskListApplication.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditTaskForm.Model.cs" />
+    <Compile Include="Views\EditTaskForm.xaml.cs">
+      <DependentUpon>EditTaskForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TaskListWidget.Model.cs">
       <DependentUpon>TaskListWidget.xaml</DependentUpon>
     </Compile>
@@ -111,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Content>
+    <Page Include="Views\EditTaskForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+    </Page>
     <Page Include="Views\TaskListWidget.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

@@ -4,11 +4,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.Serialization;
 
 namespace TaskList {
 
-    [DataContract]
     public class Task : Model {
 
         private string _name;
@@ -22,18 +20,16 @@ namespace TaskList {
             _visible = true;
         }
 
-        [DataMember]
         public DateTime DueDate {
             get {
                 return _dueDate;
             }
             set {
                 _dueDate = value;
-                RaisePropertyChanged("Status");
+                RaisePropertyChanged("DueDate", "Status");
             }
         }
 
-        [DataMember]
         public bool IsCompleted {
             get {
                 return _completed;
@@ -52,10 +48,9 @@ namespace TaskList {
             }
         }
 
-        [DataMember]
         public string Name {
             get {
-                return _name;
+                return _name ?? String.Empty;
             }
             set {
                 _name = value;
@@ -73,6 +68,20 @@ namespace TaskList {
                 }
                 return TaskStatus.Active;
             }
+        }
+
+        public Task Clone() {
+            return new Task() {
+                Name = Name,
+                DueDate = DueDate,
+                IsCompleted = IsCompleted
+            };
+        }
+
+        public void Copy(Task task) {
+            Name = task.Name;
+            DueDate = task.DueDate;
+            IsCompleted = task.IsCompleted;
         }
 
         public void Filter(IPredicate<Task> filter) {

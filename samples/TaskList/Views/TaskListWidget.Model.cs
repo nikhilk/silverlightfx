@@ -89,5 +89,17 @@ namespace TaskList {
             _tasks.Remove(task);
             TaskStorage.SaveTasks(_tasks.ToArray());
         }
+
+        public EditTaskFormModel EditTask(Task task) {
+            EditTaskFormModel model = new EditTaskFormModel();
+            model.Initialize(task);
+            model.Completed += delegate(object sender, EventArgs e) {
+                if (model.IsCommitted) {
+                    TaskStorage.SaveTasks(_tasks.ToArray());
+                }
+            };
+
+            return model;
+        }
     }
 }

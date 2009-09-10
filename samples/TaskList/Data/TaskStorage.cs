@@ -9,6 +9,24 @@ using System.Runtime.Serialization;
 
 namespace TaskList {
 
+    public class TaskDTO {
+
+        public DateTime DueDate {
+            get;
+            set;
+        }
+
+        public bool IsCompleted {
+            get;
+            set;
+        }
+
+        public string Name {
+            get;
+            set;
+        }
+    }
+
     internal static class TaskStorage {
 
         public static Task[] LoadTasks() {
@@ -17,10 +35,19 @@ namespace TaskList {
             try {
                 IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
                 if (storage.FileExists("Tasks.xml")) {
-                    using (Stream tasksStream = storage.OpenFile("Tasks.xml", FileMode.Open)) {
-                        DataContractSerializer reader = new DataContractSerializer(typeof(Task[]));
+                    using (Stream tasksStream = storage.OpenFile("TaskList.xml", FileMode.Open)) {
+                        DataContractSerializer reader = new DataContractSerializer(typeof(TaskDTO[]));
 
-                        tasks = (Task[])reader.ReadObject(tasksStream);
+                        TaskDTO[] taskObjects = (TaskDTO[])reader.ReadObject(tasksStream);
+
+                        tasks = new Task[taskObjects.Length];
+                        for (int i = 0; i < taskObjects.Length; i++) {
+                            tasks[i] = new Task() {
+                                Name = taskObjects[i].Name,
+                                DueDate = taskObjects[i].DueDate,
+                                IsCompleted = taskObjects[i].IsCompleted
+                            };
+                        }
 
                         IPredicate<Task> filter = new AllTasksFilter();
                         foreach (Task task in tasks) {
@@ -39,10 +66,19 @@ namespace TaskList {
             try {
                 IsolatedStorageFile storage = IsolatedStorageFile.GetUserStoreForApplication();
 
-                using (Stream tasksStream = storage.OpenFile("Tasks.xml", FileMode.Create)) {
-                    DataContractSerializer writer = new DataContractSerializer(typeof(Task[]));
+                using (Stream tasksStream = storage.OpenFile("TaskList.xml", FileMode.Create)) {
+                    DataContractSerializer writer = new DataContractSerializer(typeof(TaskDTO[]));
 
-                    writer.WriteObject(tasksStream, tasks);
+                    TaskDTO[] taskObjects = new TaskDTO[tasks.Length];
+                    for (int i = 0; i < tasks.Length; i++) {
+                        taskObjects[i] = new TaskDTO() {
+                            Name = tasks[i].Name,
+                            DueDate = tasks[i].DueDate,
+                            IsCompleted = tasks[i].IsCompleted
+                        };
+                    }
+
+                    writer.WriteObject(tasksStream, taskObjects);
                     tasksStream.Flush();
                 }
             }
