@@ -46,6 +46,7 @@ namespace System.ComponentModel.Navigation {
         private void OnActionCompleted(object sender, EventArgs e) {
             Async<ActionResult> asyncActionResult = (Async<ActionResult>)sender;
             if (asyncActionResult.HasError) {
+                asyncActionResult.MarkErrorAsHandled();
                 _asyncResult.Complete(new ErrorActionResult(asyncActionResult.Error));
             }
             else {
@@ -117,6 +118,9 @@ namespace System.ComponentModel.Navigation {
 
                 try {
                     Async<ActionResult> asyncActionResult = (Async<ActionResult>)actionDescriptor.Invoke(this, action);
+                    if (String.IsNullOrEmpty(asyncActionResult.Message)) {
+                        asyncActionResult.Message = "Navigating";
+                    }
                     asyncActionResult.Completed += OnActionCompleted;
                 }
                 catch (Exception e) {

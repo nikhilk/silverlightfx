@@ -3,7 +3,7 @@
 - ComponentModel enhancements:
   Tuple, ErrorEventArgs, Async
 - Control additions:
-  LinkLabel, WrapPanel
+  LinkLabel, WrapPanel, ActivityControl
 
 
 0.3.2 Release
