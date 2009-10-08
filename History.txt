@@ -1,3 +1,9 @@
+0.3.3 Release
+===============================================================================
+- ComponentModel enhancements
+  Tuple, ErrorEventArgs, Async
+
+
 0.3.2 Release
 ===============================================================================
 - Add ISupportInitialize
