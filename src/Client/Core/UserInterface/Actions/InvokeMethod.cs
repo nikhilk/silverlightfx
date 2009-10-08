@@ -25,6 +25,7 @@ namespace SilverlightFX.UserInterface.Actions {
 
         private string _methodName;
         private ParameterCollection _parameters;
+        private bool _parametersInitialized;
 
         /// <summary>
         /// Gets or sets the name of the method to invoke when this action is triggered.
@@ -70,12 +71,12 @@ namespace SilverlightFX.UserInterface.Actions {
 
             object[] parameters = null;
             if ((_parameters != null) && (_parameters.Count != 0)) {
-                parameters = new object[_parameters.Count];
-
-                for (int i = 0; i < _parameters.Count; i++) {
-                    object value = _parameters[i].GetValue(AssociatedObject);
-                    parameters[i] = Convert.ChangeType(value, targetParameters[i].ParameterType, CultureInfo.CurrentCulture);
+                if (_parametersInitialized == false) {
+                    _parameters.Initialize(AssociatedObject);
+                    _parametersInitialized = true;
                 }
+
+                parameters = _parameters.GetParameterValues(targetMethod);
             }
 
             targetMethod.Invoke(target, parameters);

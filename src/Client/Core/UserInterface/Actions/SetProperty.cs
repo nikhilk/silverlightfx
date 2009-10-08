@@ -12,6 +12,7 @@ using System;
 using System.Globalization;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Interactivity;
 using System.Windows.Markup;
 
@@ -24,8 +25,9 @@ namespace SilverlightFX.UserInterface.Actions {
     [ContentProperty("Value")]
     public sealed class SetProperty : InvokeMemberAction {
 
+        private Binding _valueBinding;
+        private BindingShim _binder;
         private string _propertyName;
-        private Parameter _value;
 
         /// <summary>
         /// Gets or sets the name of the property to set when this action is triggered.
@@ -40,21 +42,34 @@ namespace SilverlightFX.UserInterface.Actions {
         }
 
         /// <summary>
-        /// Gets or sets the Value as an ActionParameter that will supply the actual value to set.
+        /// Gets or sets the binding that is used to indicate the value that will be used
+        /// to set the property.
         /// </summary>
-        public Parameter Value {
+        public Binding ValueBinding {
             get {
-                return _value;
+                return _valueBinding;
             }
             set {
-                _value = value;
+                _valueBinding = value;
             }
+        }
+
+        /// <internalonly />
+        protected override void OnDetach() {
+            if (_binder != null) {
+                _binder.Dispose();
+                _binder = null;
+            }
+            base.OnDetach();
         }
 
         /// <internalonly />
         protected override void InvokeAction(EventArgs e) {
             if (String.IsNullOrEmpty(_propertyName)) {
                 throw new InvalidOperationException("The PropertyName property must be set on a SetProperty action.");
+            }
+            if (_valueBinding == null) {
+                throw new InvalidOperationException("The ValueBinding property must be set on a SetProperty action.");
             }
 
             object target = GetTarget();
@@ -67,10 +82,11 @@ namespace SilverlightFX.UserInterface.Actions {
                 throw new InvalidOperationException("The specified property '" + _propertyName + "' was not found on an object of type '" + target.GetType().FullName + "'");
             }
 
-            object value = AssociatedObject.DataContext;
-            if (_value != null) {
-                value = _value.GetValue(AssociatedObject);
+            if (_binder == null) {
+                _binder = new BindingShim(AssociatedObject, _valueBinding, null);
             }
+
+            object value = _binder.Value;
             if (targetProperty.PropertyType != typeof(Object)) {
                 value = Convert.ChangeType(value, targetProperty.PropertyType, CultureInfo.CurrentCulture);
             }

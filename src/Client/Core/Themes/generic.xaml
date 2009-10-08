@@ -3,6 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:vsm="clr-namespace:System.Windows;assembly=System.Windows"
   xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:fxdata="clr-namespace:SilverlightFX.Data;assembly=SilverlightFX"
   xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX">
 
   <!-- Label -->
@@ -32,6 +33,16 @@
               TextDecorations="{TemplateBinding TextDecorations}" 
               TextWrapping="{TemplateBinding TextWrapping}" />
             </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <Style TargetType="fxui:LinkLabel">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="fxui:LinkLabel">
+          <fxui:WrapPanel x:Name="rootPanel" />
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -183,6 +194,92 @@
       </Setter.Value>
     </Setter>
   </Style>
+  
+  <!-- ActivityControl -->
+  <Style TargetType="fxui:ActivityControl">
+    <Setter Property="CancelButtonStyle">
+      <Setter.Value>
+        <Style TargetType="Button">
+          <Setter Property="Content" Value="Cancel" />
+          <Setter Property="Margin" Value="0,4,0,0" />
+          <Setter Property="HorizontalAlignment" Value="Right" />
+        </Style>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="ProgressBarStyle">
+      <Setter.Value>
+        <Style TargetType="ProgressBar">
+          <Setter Property="Height" Value="10" />
+          <Setter Property="HorizontalAlignment" Value="Stretch" />
+        </Style>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="StatusLabelStyle">
+      <Setter.Value>
+        <Style TargetType="TextBlock">
+          <Setter Property="Margin" Value="0,0,0,4" />
+        </Style>
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="fxui:ActivityControl">
+          <Border
+            Background="{TemplateBinding Background}"
+            Padding="{TemplateBinding Padding}"
+            BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <vsm:VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="ProgressStates">
+                <vsm:VisualState x:Name="Untracked" />
+                <vsm:VisualState x:Name="Tracking">
+                  <Storyboard RepeatBehavior="Forever">
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="progressBar" Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </vsm:VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="StatusStates">
+                <vsm:VisualState x:Name="Empty" />
+                <vsm:VisualState x:Name="Message">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="statusLabel" Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </vsm:VisualState>
+              </VisualStateGroup>
+              <VisualStateGroup x:Name="CancelStates">
+                <vsm:VisualState x:Name="NonCancelable" />
+                <vsm:VisualState x:Name="Cancelable">
+                  <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="cancelButton" Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="Visible" />
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </vsm:VisualState>
+              </VisualStateGroup>
+            </vsm:VisualStateManager.VisualStateGroups>
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <TextBlock x:Name="statusLabel" Style="{TemplateBinding StatusLabelStyle}"
+                Visibility="Collapsed"
+                DataContext="{TemplateBinding AsyncActivity}" Text="{Binding Message}" />
+              <ProgressBar x:Name="progressBar" Style="{TemplateBinding ProgressBarStyle}"
+                Grid.Row="1" IsIndeterminate="True" Visibility="Collapsed" />
+              <Button x:Name="cancelButton" Style="{TemplateBinding CancelButtonStyle}"
+                Grid.Row="2" Visibility="Collapsed"
+                fxui:Interaction.Command="Cancel" />
+            </Grid>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
   <!-- DetailView -->
   <Style TargetType="fxui:DetailViewItem">
@@ -243,6 +340,39 @@
         <ControlTemplate TargetType="fxui:ListView">
           <Grid x:Name="RootElement">
             <StackPanel x:Name="ItemsPresenter" />
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+  <!-- DataSource -->
+  <Style TargetType="fxdata:DataSource">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="fxdata:DataSource">
+          <Grid x:Name="RootElement">
+            <vsm:VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="ActivityStates">
+                <vsm:VisualState x:Name="Idle" />
+                <vsm:VisualState x:Name="Loading">
+                  <Storyboard>
+                    <DoubleAnimationUsingKeyFrames
+                      Storyboard.TargetName="activityPresenter" Storyboard.TargetProperty="Opacity">
+                      <DiscreteDoubleKeyFrame KeyTime="0:0:0" Value="0" />
+                      <DiscreteDoubleKeyFrame KeyTime="0:0:0.25" Value="0" />
+                      <SplineDoubleKeyFrame KeyTime="0:0:0.5" Value="1" />
+                    </DoubleAnimationUsingKeyFrames>
+                  </Storyboard>
+                </vsm:VisualState>
+              </VisualStateGroup>
+            </vsm:VisualStateManager.VisualStateGroups>
+            <ContentPresenter x:Name="activityPresenter" Opacity="0"
+              Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}"
+              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

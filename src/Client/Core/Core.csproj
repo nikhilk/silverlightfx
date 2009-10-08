@@ -74,7 +74,13 @@
     <Compile Include="Applications\Theme.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\DataSource.cs" />
+    <Compile Include="Data\ObjectDataSource.cs" />
+    <Compile Include="Data\BoundParameter.cs" />
     <Compile Include="Data\StringTrimmer.cs" />
+    <Compile Include="UserInterface\ActivityControl.cs" />
+    <Compile Include="UserInterface\LinkLabel.cs" />
+    <Compile Include="UserInterface\WrapPanel.cs" />
     <Compile Include="UserInterface\DoubleClickTrigger.cs" />
     <Compile Include="UserInterface\DataEventTrigger.cs" />
     <Compile Include="UserInterface\ModelEventTrigger.cs" />
@@ -169,6 +175,8 @@
     <Compile Include="UserInterface\Navigation\PageJournal.cs" />
     <Compile Include="Applications\ComponentFactory.cs" />
     <Compile Include="_System\ComponentModel\ComponentCreator.cs" />
+    <Compile Include="_System\ComponentModel\Tuple.cs" />
+    <Compile Include="_System\ComponentModel\ErrorEventArgs.cs" />
     <Compile Include="_System\ComponentModel\ViewModel.cs" />
     <Compile Include="_System\ComponentModel\IEventAggregator.cs" />
     <Compile Include="_System\ComponentModel\IScriptExpressionNameResolver.cs" />
@@ -187,6 +195,8 @@
     <Compile Include="_System\ComponentModel\Navigation\IController.cs" />
     <Compile Include="_System\ComponentModel\ScriptExpression.cs" />
     <Compile Include="_System\ComponentModel\TaskViewModel.cs" />
+    <Compile Include="_System\Presentation\BindingShim.cs" />
+    <Compile Include="_System\Presentation\Controls\IAsyncControl.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatedEventArgs.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatingEventArgs.cs" />
     <Compile Include="UserInterface\Navigation\ErrorPage.cs" />
@@ -234,9 +244,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\Effects\Spin.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="UserInterface\ElementProperty.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\EventTrigger.cs">
@@ -406,9 +413,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_System\Presentation\Data\DataList.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="_System\Presentation\Data\IDataSource.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_System\Presentation\FramworkElementExtensions.cs">

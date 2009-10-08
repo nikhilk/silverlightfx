@@ -1,0 +1,26 @@
+﻿<Application
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fxapp="clr-namespace:SilverlightFX.Applications;assembly=SilverlightFX"
+  xmlns:fxdata="clr-namespace:SilverlightFX.Data;assembly=SilverlightFX"
+  xmlns:data="clr-namespace:TwitFaves.Data"
+  x:Class="TwitFaves.App">
+  
+  <Application.ApplicationLifetimeObjects>
+    <fxapp:ApplicationContext x:Name="appContext" WindowName="TwitFaves.MainWindow">
+      <data:TwitterService />
+    </fxapp:ApplicationContext>
+  </Application.ApplicationLifetimeObjects>
+
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Assets/Theme.xaml"/>
+      </ResourceDictionary.MergedDictionaries>
+
+      <fxdata:StringFormatter x:Key="stringFormatter" />
+      <fxdata:VisibilityConverter x:Key="visibilityConverter" />
+      <fxdata:DateFormatter x:Key="dateFormatter" />
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>

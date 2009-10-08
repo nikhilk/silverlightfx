@@ -3,7 +3,10 @@
 - ComponentModel enhancements:
   Tuple, ErrorEventArgs, Async
 - Control additions:
-  LinkLabel, WrapPanel, ActivityControl
+  LinkLabel, WrapPanel, ActivityControl, ObjectDataSource
+- Removed ElementProperty, replaced with BoundParameter
+- Removed Parameter property on SetProperty, and replaced with ValueBinding
+  property
 
 
 0.3.2 Release

@@ -16,9 +16,7 @@
         Content="Initialize">
         <fxui:Interaction.Triggers>
           <fxui:ClickTrigger>
-            <fxactions:SetProperty PropertyName="Value">
-              <fxui:ElementProperty ElementName="valueTextBox" PropertyName="Text" />
-            </fxactions:SetProperty>
+            <fxactions:SetProperty PropertyName="Value" ValueBinding="{Binding ElementName=valueTextBox, Path=Text}" />
           </fxui:ClickTrigger>
         </fxui:Interaction.Triggers>
       </fxui:XButton>
