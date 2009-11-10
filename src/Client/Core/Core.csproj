@@ -74,6 +74,9 @@
     <Compile Include="Applications\Theme.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data\UriFormatter.cs" />
+    <Compile Include="Data\Formatter.cs" />
+    <Compile Include="Data\FormatType.cs" />
     <Compile Include="Data\DataSource.cs" />
     <Compile Include="Data\ObjectDataSource.cs" />
     <Compile Include="Data\BoundParameter.cs" />

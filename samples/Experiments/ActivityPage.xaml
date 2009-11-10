@@ -16,7 +16,7 @@
     <fxui:ActivityControl AsyncActivity="{Binding Activity}"
       BorderBrush="#40000000" BorderThickness="1" Background="#20000000" Padding="4" Margin="4"
       ShowErrors="True"
-      ProgressButtonVisibility="Visible"
+      ProgressBarVisibility="Visible"
       CancelButtonVisibility="Visible"
       StatusLabelVisibility="Visible" />
     

@@ -76,6 +76,9 @@
     <Compile Include="ActivityPage.xaml.cs">
       <DependentUpon>ActivityPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FormattingPage.xaml.cs">
+      <DependentUpon>FormattingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataSourcePage.xaml.cs">
       <DependentUpon>DataSourcePage.xaml</DependentUpon>
     </Compile>
@@ -165,6 +168,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ActivityPage.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="FormattingPage.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>

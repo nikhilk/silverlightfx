@@ -20,30 +20,32 @@ namespace SilverlightFX.Data {
     /// a formatted representation of a DateTime or a part of a DateTime.
     /// A UTC DateTime is converted to a local DateTime in the process.
     /// </summary>
-    public sealed class DateFormatter : IValueConverter {
+    public sealed class DateFormatter : Formatter {
 
-        #region Implementation of IValueConverter
-        object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            if (targetType != typeof(string)) {
-                throw new ArgumentOutOfRangeException("targetType", "DateFormatter can only convert to String");
+        private bool _preserveUtcValues;
+
+        /// <summary>
+        /// Gets or sets whether to use UTC values in formatting or
+        /// Local values. By default UTC values are first converted to local values.
+        /// </summary>
+        public bool PreserveUtcValues {
+            get {
+                return _preserveUtcValues;
             }
-
-            if (value == null) {
-                return String.Empty;
+            set {
+                _preserveUtcValues = value;
             }
+        }
 
+        /// <internalonly />
+        protected override object Format(object value, string format, CultureInfo culture) {
             DateTime dateTime = (DateTime)value;
-            if (dateTime.Kind == DateTimeKind.Utc) {
+
+            if ((PreserveUtcValues == false) && (dateTime.Kind == DateTimeKind.Utc)) {
                 dateTime = dateTime.ToLocalTime();
             }
 
-            string format = parameter as string ?? "{0}";
-            return String.Format(culture, format, dateTime);
+            return base.Format(dateTime, format, culture);
         }
-
-        object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
-            throw new NotSupportedException();
-        }
-        #endregion
     }
 }

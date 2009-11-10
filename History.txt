@@ -7,6 +7,8 @@
 - Removed ElementProperty, replaced with BoundParameter
 - Removed Parameter property on SetProperty, and replaced with ValueBinding
   property
+- Added Title property to Page
+- Fixed opening xaml files using <fxui:Window>, <fxui:Page> etc. in Blend
 
 
 0.3.2 Release
@@ -59,6 +61,8 @@
 - Added support for SL3 INavigate on PageFrame
 - Added ModelEventTrigger and DataEventTrigger for listening to events raised
   by the associated Model or associated DataContext
+- Added more advanced string formatter, date formatter and URL formatter
+  as out-of-box value converters
 
 - Samples update: Fixed amazon samples for new requirement around signing
   requests (you'll need to update web.config with accesskey/secretkey)

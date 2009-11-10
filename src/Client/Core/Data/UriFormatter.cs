@@ -1,4 +1,4 @@
-﻿// StringFormatter.cs
+﻿// UriFormatter.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -17,8 +17,14 @@ namespace SilverlightFX.Data {
 
     /// <summary>
     /// A value converter that can be used in a binding to generate
-    /// a formatted string representation.
+    /// a formatted URI representation.
     /// </summary>
-    public sealed class StringFormatter : Formatter {
+    public sealed class UriFormatter : Formatter {
+
+        /// <internalonly />
+        protected override object Format(object value, string format, CultureInfo culture) {
+            string url = (string)base.Format(value, format, culture);
+            return new Uri(url, UriKind.RelativeOrAbsolute);
+        }
     }
 }
