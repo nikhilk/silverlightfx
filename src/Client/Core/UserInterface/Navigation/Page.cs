@@ -27,6 +27,12 @@ namespace SilverlightFX.UserInterface.Navigation {
             DependencyProperty.Register("Cache", typeof(bool?), typeof(Page),
                                         new PropertyMetadata((bool?)null));
 
+        /// <summary>
+        /// Represents the Title property.
+        /// </summary>
+        public static readonly DependencyProperty TitleProperty =
+            DependencyProperty.Register("Title", typeof(string), typeof(Page), null);
+
         private Uri _uri;
         private Uri _originalUri;
 
@@ -73,6 +79,19 @@ namespace SilverlightFX.UserInterface.Navigation {
             }
             set {
                 _originalUri = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the title of the page.
+        /// </summary>
+        public string Title {
+            get {
+                string title = (string)GetValue(TitleProperty);
+                return title ?? String.Empty;
+            }
+            set {
+                SetValue(TitleProperty, value);
             }
         }
 
