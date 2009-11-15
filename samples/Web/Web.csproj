@@ -84,6 +84,7 @@
     <Content Include="Amazon\AmazonStore.xap" />
     <Content Include="Experiments\CityService.ashx" />
     <Content Include="Experiments\ActivitySample.aspx" />
+    <Content Include="Experiments\FormattingSample.aspx" />
     <Content Include="Experiments\DataSourceSample.aspx" />
     <Content Include="Experiments\ParentPageSample.aspx" />
     <Content Include="Experiments\Glitz2Sample.aspx" />
