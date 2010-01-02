@@ -66,7 +66,7 @@ namespace SilverlightFX.Data {
                 return null;
             }
 
-            object model = View.GetModel(this);
+            object model = ViewModelAttribute.GetCurrentViewModel(this);
             if (model == null) {
                 return null;
             }

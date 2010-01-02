@@ -1,11 +1,10 @@
-﻿<fxui:ViewUserControl
+﻿<fxui:View
   xmlns="http://schemas.microsoft.com/client/2007" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
   xmlns:fxdata="clr-namespace:SilverlightFX.Data;assembly=SilverlightFX"
   xmlns:fxaction="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
-  x:Class="Experiments.ActivityPage"
-  ModelType="Experiments.ActivityViewModel">
+  x:Class="Experiments.ActivityPage">
   <Grid Background="White" Margin="20" HorizontalAlignment="Center">
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
@@ -27,4 +26,4 @@
       <Button Content="Error" fxui:Interaction.Action="$model.StopError()" />
     </fxui:HStackPanel>
   </Grid>
-</fxui:ViewUserControl>
+</fxui:View>

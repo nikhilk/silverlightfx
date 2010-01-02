@@ -12,6 +12,7 @@ namespace NewsWidget.Views.News {
     public class ListPageModel : Model {
 
         private bool _filterToday;
+        private IEnumerable<NewsItem> _items;
 
         public bool FilterToday {
             get {
@@ -24,8 +25,13 @@ namespace NewsWidget.Views.News {
         }
 
         public IEnumerable<NewsItem> Items {
-            get;
-            set;
+            get {
+                return _items;
+            }
+            set {
+                _items = value;
+                RaisePropertyChanged("Items", "ListItems");
+            }
         }
 
         public IEnumerable<NewsItem> ListItems {

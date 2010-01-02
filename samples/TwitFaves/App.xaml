@@ -7,7 +7,7 @@
   x:Class="TwitFaves.App">
   
   <Application.ApplicationLifetimeObjects>
-    <fxapp:ApplicationContext x:Name="appContext" WindowName="TwitFaves.MainWindow">
+    <fxapp:ApplicationContext x:Name="appContext" MainViewName="TwitFaves.MainView">
       <data:TwitterService />
     </fxapp:ApplicationContext>
   </Application.ApplicationLifetimeObjects>

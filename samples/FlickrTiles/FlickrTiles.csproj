@@ -73,12 +73,10 @@
       <DependentUpon>FlickrTilesApplication.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ImageLoader.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainWindowModel.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Views\MainViewModel.cs" />
     <Compile Include="Views\PhotoImage.cs" />
     <Compile Include="Views\Progress.xaml.cs">
       <DependentUpon>Progress.xaml</DependentUpon>
@@ -93,9 +91,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Content>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\MainView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Progress.xaml">
       <Generator>MSBuild:Compile</Generator>

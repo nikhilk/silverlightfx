@@ -8,7 +8,7 @@ using SilverlightFX.UserInterface;
 
 namespace WeatherWidget {
 
-    public partial class Widget : Window {
+    public partial class Widget : View {
 
         public Widget() {
             InitializeComponent();

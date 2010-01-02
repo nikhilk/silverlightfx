@@ -199,6 +199,7 @@
     <Compile Include="_System\ComponentModel\ScriptExpression.cs" />
     <Compile Include="_System\ComponentModel\TaskViewModel.cs" />
     <Compile Include="_System\Presentation\BindingShim.cs" />
+    <Compile Include="_System\Presentation\Controls\ViewModelAttribute.cs" />
     <Compile Include="_System\Presentation\Controls\IAsyncControl.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatedEventArgs.cs" />
     <Compile Include="_System\Presentation\Controls\NavigatingEventArgs.cs" />
@@ -209,7 +210,6 @@
     <Compile Include="UserInterface\Glitz\BounceInterpolation.cs" />
     <Compile Include="UserInterface\Glitz\ElasticInterpolation.cs" />
     <Compile Include="UserInterface\Glitz\LinearInterpolation.cs" />
-    <Compile Include="UserInterface\ViewUserControl.cs" />
     <Compile Include="UserInterface\DetailView.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -351,7 +351,7 @@
     <Compile Include="UserInterface\Watermark.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserInterface\Window.cs">
+    <Compile Include="UserInterface\View.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\XBorder.cs">
@@ -401,9 +401,6 @@
     </Compile>
     <Compile Include="_System\Presentation\Controls\INavigationTarget.cs" />
     <Compile Include="_System\Presentation\Controls\IAdornableControl.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="_System\Presentation\Controls\View.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="_System\Presentation\Data\DataboundControl.cs">

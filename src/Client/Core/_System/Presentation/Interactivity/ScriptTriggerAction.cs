@@ -79,7 +79,7 @@ namespace System.Windows.Interactivity {
                 return AssociatedObject.DataContext;
             }
             else if (name == "$model") {
-                return View.GetModel(AssociatedObject);
+                return ViewModelAttribute.GetCurrentViewModel(AssociatedObject);
             }
             else if (name == "$element") {
                 return AssociatedObject;

@@ -56,7 +56,7 @@
       <Setter.Value>
         <ControlTemplate TargetType="fxui:Screen">
           <Grid x:Name="RootElement">
-            <ContentPresenter x:Name="WindowPresenter" />
+            <ContentPresenter x:Name="ViewPresenter" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

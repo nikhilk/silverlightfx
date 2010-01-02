@@ -5,7 +5,7 @@
   x:Class="FlickrTiles.FlickrTilesApplication">
   
   <Application.ApplicationLifetimeObjects>
-    <fxapp:ApplicationContext x:Name="appContext" WindowName="FlickrTiles.Views.MainWindow" ThemeName="Default" />    
+    <fxapp:ApplicationContext x:Name="appContext" MainViewName="FlickrTiles.Views.MainView" ThemeName="Default" />    
   </Application.ApplicationLifetimeObjects>
   
 </Application>

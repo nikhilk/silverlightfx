@@ -1,4 +1,4 @@
-﻿// MainPage.xaml.cs
+﻿// NewsWidget.xaml.cs
 //
 
 using System;
@@ -6,11 +6,11 @@ using System.Windows;
 using System.Windows.Controls;
 using SilverlightFX.UserInterface;
 
-namespace TwitFaves {
+namespace NewsWidget {
 
-    public partial class MainWindow : Window {
+    public partial class NewsWidget : View {
 
-        public MainWindow() {
+        public NewsWidget() {
             InitializeComponent();
         }
     }

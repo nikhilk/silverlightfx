@@ -35,8 +35,7 @@ namespace Experiments {
 
     public partial class NumberEditForm : Form {
 
-        public NumberEditForm(NumberEditModel model)
-            : base(model) {
+        public NumberEditForm() {
             InitializeComponent();
         }
     }

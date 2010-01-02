@@ -82,6 +82,7 @@
     <Content Include="Amazon\AmazonSearch.xap" />
     <Content Include="Amazon\AmazonStore.aspx" />
     <Content Include="Amazon\AmazonStore.xap" />
+    <Content Include="Default.aspx" />
     <Content Include="Experiments\CityService.ashx" />
     <Content Include="Experiments\ActivitySample.aspx" />
     <Content Include="Experiments\FormattingSample.aspx" />

@@ -1,15 +1,15 @@
-﻿// MainWindow.xaml.cs
+﻿// MainView.xaml.cs
 //
 
 using System;
 using System.Windows.Controls;
 using SilverlightFX.UserInterface;
 
-namespace FlickrTiles.Views {
+namespace Store {
 
-    public partial class MainWindow : Window {
+    public partial class MainView : View {
 
-        public MainWindow() {
+        public MainView() {
             InitializeComponent();
         }
     }

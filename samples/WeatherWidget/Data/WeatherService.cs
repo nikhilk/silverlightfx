@@ -10,7 +10,7 @@ namespace WeatherWidget.Data {
 
     public sealed class WeatherService {
 
-        private const string ServiceUriFormat = "http://pipes.yahooapis.com/pipes/pipe.run?_id=WrXN95ta3RG3WFMqbrsjiw&zip={0}&_render=json";
+        private const string ServiceUriFormat = "http://pipes.yahooapis.com/pipes/pipe.run?_id=WrXN95ta3RG3WFMqbrsjiw&zip={0}&_render=json&random={1}";
 
         private HttpWebRequest _request;
         private string _zipCode;
@@ -18,7 +18,7 @@ namespace WeatherWidget.Data {
         public IAsyncResult BeginGetWeather(string zipCode, AsyncCallback callback, object state) {
             _zipCode = zipCode;
 
-            Uri uri = new Uri(String.Format(ServiceUriFormat, zipCode));
+            Uri uri = new Uri(String.Format(ServiceUriFormat, zipCode, DateTime.Now.Ticks));
 
             _request = (HttpWebRequest)HttpWebRequest.Create(uri);
             _request.Method = "GET";

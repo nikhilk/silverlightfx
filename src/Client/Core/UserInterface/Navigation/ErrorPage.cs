@@ -28,22 +28,6 @@ namespace SilverlightFX.UserInterface.Navigation {
         private Exception _error;
 
         /// <summary>
-        /// Initializes an instance of a ErrorPage.
-        /// </summary>
-        public ErrorPage()
-            : this(null) {
-        }
-
-        /// <summary>
-        /// Initializes an instance of a Page with an associated view model.
-        /// The view model is set as the DataContext of the Form.
-        /// </summary>
-        /// <param name="viewModel">The associated view model object.</param>
-        public ErrorPage(object viewModel)
-            : base(viewModel) {
-        }
-
-        /// <summary>
         /// Gets the error associated with this ErrorPage instance.
         /// </summary>
         protected internal Exception Error {

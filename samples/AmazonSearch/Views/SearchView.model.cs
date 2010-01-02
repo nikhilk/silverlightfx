@@ -8,7 +8,7 @@ using AmazonSearch.Data;
 
 namespace AmazonSearch.Views {
 
-    public class SearchViewModel : Model {
+    public class SearchViewModel : ViewModel {
 
         private ICatalog _catalog;
 

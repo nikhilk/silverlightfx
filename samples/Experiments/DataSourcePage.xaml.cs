@@ -41,7 +41,8 @@ namespace Experiments {
         }
     }
 
-    public partial class DataSourcePage : ViewUserControl {
+    [ViewModel(typeof(DataViewModel))]
+    public partial class DataSourcePage : View {
 
         public DataSourcePage() {
             InitializeComponent();

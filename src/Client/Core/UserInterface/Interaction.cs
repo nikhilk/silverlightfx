@@ -10,6 +10,7 @@
 
 using System;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Interactivity;
 
@@ -46,6 +47,13 @@ namespace SilverlightFX.UserInterface {
         /// </summary>
         public static readonly DependencyProperty TriggersProperty =
             DependencyProperty.RegisterAttached("Triggers", typeof(TriggerCollection), typeof(Interaction), null);
+
+        /// <summary>
+        /// Represents the VisualState attached property.
+        /// </summary>
+        public static readonly DependencyProperty VisualStateProperty =
+            DependencyProperty.RegisterAttached("VisualState", typeof(string), typeof(Interaction),
+                                                new PropertyMetadata(OnVisualStateChanged));
 
         /// <summary>
         /// Gets the action associated with the specified Button.
@@ -116,6 +124,22 @@ namespace SilverlightFX.UserInterface {
         }
 
         /// <summary>
+        /// Gets the visual state associated with the specified control.
+        /// </summary>
+        /// <param name="control">The control to lookup.</param>
+        /// <returns>The current visual state as it was last set.</returns>
+        public static string GetVisualState(Control control) {
+            return (string)control.GetValue(VisualStateProperty);
+        }
+
+        private static void OnVisualStateChanged(DependencyObject o, DependencyPropertyChangedEventArgs e) {
+            string newState = (string)e.NewValue;
+            if (String.IsNullOrEmpty(newState) == false) {
+                VisualStateManager.GoToState((Control)o, newState, /* useTransitions */ true);
+            }
+        }
+
+        /// <summary>
         /// Sets the action associated with the specified Button.
         /// </summary>
         /// <param name="button">The Button to associate the action with.</param>
@@ -182,6 +206,15 @@ namespace SilverlightFX.UserInterface {
         /// <param name="triggers">The collection of triggers to associate.</param>
         public static void SetTriggers(DependencyObject o, TriggerCollection triggers) {
             o.SetValue(TriggersProperty, triggers);
+        }
+
+        /// <summary>
+        /// Sets the current visual state of the specified control.
+        /// </summary>
+        /// <param name="control">The control to set.</param>
+        /// <param name="state">The name of the state that the control should be in.</param>
+        public static void SetVisualState(Control control, string state) {
+            control.SetValue(VisualStateProperty, state);
         }
     }
 }

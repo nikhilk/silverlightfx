@@ -70,11 +70,11 @@
   <ItemGroup>
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="NewsWindow.model.cs">
-      <DependentUpon>NewsWindow.xaml</DependentUpon>
+    <Compile Include="NewsWidget.model.cs">
+      <DependentUpon>NewsWidget.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewsWindow.xaml.cs">
-      <DependentUpon>NewsWindow.xaml</DependentUpon>
+    <Compile Include="NewsWidget.xaml.cs">
+      <DependentUpon>NewsWidget.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\INewsService.cs" />
     <Compile Include="Data\NewsItem.cs" />
@@ -109,7 +109,7 @@
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="NewsWindow.xaml">
+    <Page Include="NewsWidget.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

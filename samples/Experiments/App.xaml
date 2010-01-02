@@ -6,7 +6,7 @@
   x:Class="Experiments.App">
   
   <Application.ApplicationLifetimeObjects>
-    <fxapp:ApplicationContext x:Name="appContext" WindowName="$page" />
+    <fxapp:ApplicationContext x:Name="appContext" MainViewName="$page" />
   </Application.ApplicationLifetimeObjects>
   
   <Application.Resources>

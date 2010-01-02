@@ -6,6 +6,6 @@
   x:Class="ThemeSample.App">
   
   <Application.ApplicationLifetimeObjects>
-    <fxapp:ApplicationContext x:Name="appContext" ThemeName="$theme|Green" WindowName="$page|Page" />
+    <fxapp:ApplicationContext x:Name="appContext" ThemeName="$theme|Green" MainViewName="$page|Page" />
   </Application.ApplicationLifetimeObjects>
 </Application>

@@ -8,7 +8,7 @@
   x:Class="AmazonSearch.App">
   
   <Application.ApplicationLifetimeObjects>
-    <fxapp:ApplicationContext x:Name="appContext" WindowName="AmazonSearch.Views.SearchView" />
+    <fxapp:ApplicationContext x:Name="appContext" MainViewName="AmazonSearch.Views.SearchView" />
   </Application.ApplicationLifetimeObjects>
   
   <Application.Resources>

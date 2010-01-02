@@ -50,14 +50,14 @@ namespace SilverlightFX.Applications {
 
         private IDictionary<string, string> _startupArguments;
         private string _themeName;
-        private string _windowName;
+        private string _mainViewName;
         private Style _screenStyle;
         private IComponentContainer _componentContainer;
         private ComponentCollection _components;
         private Dictionary<Type, List<WeakDelegateReference>> _eventMap;
         private object _model;
 
-        private Window _mainWindow;
+        private View _mainView;
         private bool _started;
 
         /// <summary>
@@ -91,6 +91,34 @@ namespace SilverlightFX.Applications {
         public static ApplicationContext Current {
             get {
                 return _current;
+            }
+        }
+
+        /// <summary>
+        /// Gets the top-level view associated with the application.
+        /// </summary>
+        public View MainView {
+            get {
+                return _mainView;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the type name of the top-level view. The name is used to instantiate
+        /// the top-level view on startup.
+        /// The name can be one of the following:
+        /// - A simple identifier which is treated as the name of a type alongside the application
+        /// - A namespace qualified type name treated as the name of a type in the application assembly
+        /// - An assembly qualified type name
+        /// - $initParamName|defaultName which allows the selection of a type name from the HTML page
+        /// </summary>
+        public string MainViewName {
+            get {
+                return _mainViewName ?? String.Empty;
+            }
+            set {
+                EnsureUnstarted();
+                _mainViewName = value;
             }
         }
 
@@ -184,34 +212,6 @@ namespace SilverlightFX.Applications {
             }
         }
 
-        /// <summary>
-        /// Gets the top-level window associated with the application.
-        /// </summary>
-        public Window Window {
-            get {
-                return _mainWindow;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the type name of the top-level window. The name is used to instantiate
-        /// the top-level window on startup.
-        /// The name can be one of the following:
-        /// - A simple identifier which is treated as the name of a type alongside the application
-        /// - A namespace qualified type name treated as the name of a type in the application assembly
-        /// - An assembly qualified type name
-        /// - $initParamName|defaultName which allows the selection of a type name from the HTML page
-        /// </summary>
-        public string WindowName {
-            get {
-                return _windowName ?? String.Empty;
-            }
-            set {
-                EnsureUnstarted();
-                _windowName = value;
-            }
-        }
-
         internal void EnsureUnstarted() {
             if (_started) {
                 throw new InvalidOperationException("This property can only be set declaratively in XAML or in the Application's constructor.");
@@ -225,6 +225,80 @@ namespace SilverlightFX.Applications {
         /// <returns>A service instance if the service is available; null otherwise.</returns>
         protected virtual object GetService(Type serviceType) {
             return null;
+        }
+
+        private void InitializeMainView() {
+            if (String.IsNullOrEmpty(_mainViewName)) {
+                return;
+            }
+
+            string name = null;
+
+            if (_mainViewName.StartsWith("$")) {
+                string[] nameParts = _mainViewName.Split('|');
+                if ((nameParts.Length > 2) || String.IsNullOrEmpty(nameParts[0])) {
+                    throw new InvalidOperationException("Invalid view name. Either the name must be a type name, or must be in the form $<MainViewNameParam>|<DefaultName>.");
+                }
+
+                if (nameParts.Length == 2) {
+                    name = nameParts[1];
+                }
+                if (_startupArguments != null) {
+                    string selectedName;
+                    string argName = nameParts[0].Substring(1);
+                    if (_startupArguments.TryGetValue(argName, out selectedName)) {
+                        name = selectedName;
+                    }
+                }
+            }
+            else {
+                name = _mainViewName;
+            }
+
+            View mainView = null;
+            if (String.IsNullOrEmpty(name) == false) {
+                try {
+                    Type mainViewType = TypeTypeConverter.ParseTypeName(Application.Current, name);
+                    if (mainViewType == null) {
+                        throw new InvalidOperationException("The view named '" + name + "' could not be found.");
+                    }
+                    if (typeof(UIElement).IsAssignableFrom(mainViewType) == false) {
+                        throw new InvalidOperationException("The view named '" + name + "' does not derive from UIElement.");
+                    }
+
+                    UIElement uiElement = (UIElement)Activator.CreateInstance(mainViewType);
+                    mainView = uiElement as View;
+
+                    if (mainView == null) {
+                        mainView = new View(uiElement);
+                    }
+                }
+                catch (Exception e) {
+                    if (e is TargetInvocationException) {
+                        e = e.InnerException;
+                    }
+
+                    TextBlock errorText = new TextBlock();
+                    errorText.Inlines.Add(new Run() {
+                        Text = "The view named '" + name + "' could not be instantiated.",
+                        FontWeight = FontWeights.Bold,
+                        Foreground = new SolidColorBrush(Colors.Red)
+                    });
+                    errorText.Inlines.Add(new LineBreak());
+                    errorText.Inlines.Add(new Run() {
+                        Text = e.Message
+                    });
+
+                    mainView = new View(errorText);
+                    if (Debugger.IsAttached) {
+                        throw;
+                    }
+                }
+            }
+
+            if (mainView != null) {
+                Run(mainView);
+            }
         }
 
         private void InitializeTheme() {
@@ -260,80 +334,6 @@ namespace SilverlightFX.Applications {
             }
 
             Theme.LoadTheme(Application.Current.Resources, name);
-        }
-
-        private void InitializeWindow() {
-            if (String.IsNullOrEmpty(_windowName)) {
-                return;
-            }
-
-            string name = null;
-
-            if (_windowName.StartsWith("$")) {
-                string[] nameParts = _windowName.Split('|');
-                if ((nameParts.Length > 2) || String.IsNullOrEmpty(nameParts[0])) {
-                    throw new InvalidOperationException("Invalid window name. Either the name must be a type name, or must be in the form $<WindowNameParam>|<DefaultName>.");
-                }
-
-                if (nameParts.Length == 2) {
-                    name = nameParts[1];
-                }
-                if (_startupArguments != null) {
-                    string selectedName;
-                    string argName = nameParts[0].Substring(1);
-                    if (_startupArguments.TryGetValue(argName, out selectedName)) {
-                        name = selectedName;
-                    }
-                }
-            }
-            else {
-                name = _windowName;
-            }
-
-            Window mainWindow = null;
-            if (String.IsNullOrEmpty(name) == false) {
-                try {
-                    Type windowType = TypeTypeConverter.ParseTypeName(Application.Current, name);
-                    if (windowType == null) {
-                        throw new InvalidOperationException("The window named '" + name + "' could not be found.");
-                    }
-                    if (typeof(UIElement).IsAssignableFrom(windowType) == false) {
-                        throw new InvalidOperationException("The window named '" + name + "' does not derive from UIElement.");
-                    }
-
-                    UIElement uiElement = (UIElement)Activator.CreateInstance(windowType);
-                    mainWindow = uiElement as Window;
-
-                    if (mainWindow == null) {
-                        mainWindow = new Window(uiElement);
-                    }
-                }
-                catch (Exception e) {
-                    if (e is TargetInvocationException) {
-                        e = e.InnerException;
-                    }
-
-                    TextBlock errorText = new TextBlock();
-                    errorText.Inlines.Add(new Run() {
-                        Text = "The window named '" + name + "' could not be instantiated.",
-                        FontWeight = FontWeights.Bold,
-                        Foreground = new SolidColorBrush(Colors.Red)
-                    });
-                    errorText.Inlines.Add(new LineBreak());
-                    errorText.Inlines.Add(new Run() {
-                        Text = e.Message
-                    });
-
-                    mainWindow = new Window(errorText);
-                    if (Debugger.IsAttached) {
-                        throw;
-                    }
-                }
-            }
-
-            if (mainWindow != null) {
-                Run(mainWindow);
-            }
         }
 
         private void OnApplicationUnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e) {
@@ -394,28 +394,28 @@ namespace SilverlightFX.Applications {
         /// </summary>
         protected virtual void OnStarting() {
             InitializeTheme();
-            InitializeWindow();
+            InitializeMainView();
         }
 
         /// <summary>
-        /// Runs the application using the specified main window as the top-most user interface element.
+        /// Runs the application using the specified main view as the top-most user interface element.
         /// </summary>
-        /// <param name="mainWindow">The main window to use to represent the application's user interface.</param>
-        public void Run(Window mainWindow) {
-            if (mainWindow == null) {
-                throw new ArgumentNullException("mainWindow");
+        /// <param name="mainView">The main view to use to represent the application's user interface.</param>
+        public void Run(View mainView) {
+            if (mainView == null) {
+                throw new ArgumentNullException("mainView");
             }
-            if (_mainWindow != null) {
+            if (_mainView != null) {
                 throw new InvalidOperationException("Run can only be called once.");
             }
 
-            _mainWindow = mainWindow;
+            _mainView = mainView;
 
             Screen screen = new Screen();
             screen.Style = ScreenStyle;
 
             Application.Current.RootVisual = screen;
-            screen.Run(mainWindow);
+            screen.Run(mainView);
         }
 
 

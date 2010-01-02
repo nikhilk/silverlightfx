@@ -7,7 +7,7 @@ using SilverlightFX.UserInterface;
 
 namespace AmazonSearch.Views {
 
-    public partial class SearchView : Window {
+    public partial class SearchView : View {
 
         public SearchView() {
             InitializeComponent();

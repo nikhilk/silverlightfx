@@ -12,9 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Navigation;
-using System.Reflection;
 using System.Text;
-using System.Threading;
 using System.Windows;
 
 namespace SilverlightFX.UserInterface.Navigation {
@@ -158,30 +156,7 @@ namespace SilverlightFX.UserInterface.Navigation {
 
                     if ((viewType != null) && typeof(Page).IsAssignableFrom(viewType)) {
                         page = (Page)Activator.CreateInstance(viewType);
-                        if (viewData != null) {
-                            object viewModel = page.Model;
-                            if (viewModel != null) {
-                                ISupportInitialize batchInitialize = viewModel as ISupportInitialize;
-                                if (batchInitialize != null) {
-                                    batchInitialize.BeginInit();
-                                }
-
-                                Type viewModelType = viewModel.GetType();
-                                BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance |
-                                                            BindingFlags.FlattenHierarchy;
-
-                                foreach (KeyValuePair<string, object> viewDataItem in viewData) {
-                                    PropertyInfo pi = viewModelType.GetProperty(viewDataItem.Key, bindingFlags);
-                                    if ((pi != null) && pi.CanWrite) {
-                                        pi.SetValue(viewModel, viewDataItem.Value, null);
-                                    }
-                                }
-
-                                if (batchInitialize != null) {
-                                    batchInitialize.EndInit();
-                                }
-                            }
-                        }
+                        page.InitializeViewData(viewData);
 
                         if ((page is ErrorPage) && (errorResult != null)) {
                             ((ErrorPage)page).Error = errorResult.Error;

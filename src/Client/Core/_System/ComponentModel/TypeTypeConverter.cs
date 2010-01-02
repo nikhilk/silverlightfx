@@ -32,6 +32,10 @@ namespace System.ComponentModel {
         /// <internalonly />
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value) {
             if (value is string) {
+                if (DesignerProperties.IsInDesignTool) {
+                    return null;
+                }
+
                 string name = (string)value;
 
                 Type type = ParseTypeName(Application.Current, name);

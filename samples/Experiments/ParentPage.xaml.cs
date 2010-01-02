@@ -32,7 +32,7 @@ namespace Experiments {
         }
     }
 
-    public partial class ParentPage : ViewUserControl {
+    public partial class ParentPage : View {
 
         public ParentPage() {
             InitializeComponent();

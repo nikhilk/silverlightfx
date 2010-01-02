@@ -90,7 +90,8 @@ namespace Experiments {
         }
     }
 
-    public partial class DetailViewPage : Window {
+    [ViewModel(typeof(ListModel))]
+    public partial class DetailViewPage : View {
 
         public DetailViewPage() {
             InitializeComponent();

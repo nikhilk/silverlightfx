@@ -1,4 +1,4 @@
-﻿<fxui:Window
+﻿<fxui:View
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:dc="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
@@ -7,11 +7,11 @@
   xmlns:fxeffect="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
   xmlns:fxtransition="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
   xmlns:app="clr-namespace:Store"
-  x:Class="Store.MainWindow" ModelType="MainWindowModel">
+  x:Class="Store.MainView">
 
-  <fxui:Window.Resources>
+  <fxui:View.Resources>
     <app:ProductPriceFilterConverter x:Key="priceConverter" />
-  </fxui:Window.Resources>
+  </fxui:View.Resources>
   
   <fxui:XGrid Columns="20,*,5,350,20" Rows="20,40,*,5,250,20" Background="{StaticResource backgroundBrush}">
 
@@ -155,4 +155,4 @@
     </fxui:TemplatePanel>
 
   </fxui:XGrid>
-</fxui:Window>
+</fxui:View>

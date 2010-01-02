@@ -1,4 +1,4 @@
-﻿// MainWindowModel.cs
+﻿// MainViewModel.cs
 //
 
 using System;
@@ -12,7 +12,7 @@ using FlickrTiles.Data;
 
 namespace FlickrTiles.Views {
 
-    public class MainWindowModel : Model {
+    public class MainViewModel : ViewModel {
 
         private IPhotoGallery _photoGallery;
 
@@ -23,11 +23,11 @@ namespace FlickrTiles.Views {
         private PhotoImage _selectedPhoto;
         private bool _loadingImage;
 
-        public MainWindowModel()
+        public MainViewModel()
             : this(new FlickrService()) {
         }
 
-        internal MainWindowModel(IPhotoGallery photoGallery) {
+        internal MainViewModel(IPhotoGallery photoGallery) {
             _photoGallery = photoGallery;
             _photos = new ObservableCollection<PhotoImage>();
         }

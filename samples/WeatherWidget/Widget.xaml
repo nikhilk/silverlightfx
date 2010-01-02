@@ -1,4 +1,4 @@
-﻿<fxui:Window
+﻿<fxui:View
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
@@ -10,14 +10,10 @@
   x:Class="WeatherWidget.Widget"
   Width="240" Height="240">
   
-  <fxui:Window.Resources>
+  <fxui:View.Resources>
     <fxglitz:ElasticInterpolation x:Key="ElasticOut" Mode="EaseOut" />
     <fxglitz:ElasticInterpolation x:Key="ElasticInOut" Mode="EaseInOut" />
-  </fxui:Window.Resources>
-  
-  <fxui:Window.Model>
-    <app:WidgetModel />
-  </fxui:Window.Model>
+  </fxui:View.Resources>
 
   <Grid>
     <Image Source="/Background.png" Width="240" Height="240" />
@@ -148,4 +144,4 @@
       
     </Grid>
   </Grid>
-</fxui:Window>
+</fxui:View>

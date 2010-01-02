@@ -52,7 +52,7 @@ namespace SilverlightFX.UserInterface.Actions {
                 target = AssociatedObject;
             }
             else if (String.CompareOrdinal(_targetName, "$model") == 0) {
-                target = View.GetModel(AssociatedObject);
+                target = ViewModelAttribute.GetCurrentViewModel(AssociatedObject);
             }
             else {
                 target = AssociatedObject.FindNameRecursive(_targetName);

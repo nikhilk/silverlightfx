@@ -1,4 +1,4 @@
-﻿<fxui:Window
+﻿<fxui:View
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
@@ -7,15 +7,11 @@
   xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
   xmlns:fxdata="clr-namespace:SilverlightFX.Data;assembly=SilverlightFX"
   xmlns:app="clr-namespace:FlickrTiles.Views"
-  x:Class="FlickrTiles.Views.MainWindow">
-
-  <fxui:Window.Model>
-    <app:MainWindowModel />
-  </fxui:Window.Model>
+  x:Class="FlickrTiles.Views.MainView">
   
-  <fxui:Window.Resources>
+  <fxui:View.Resources>
     <fxdata:BooleanInverter x:Key="booleanInverter" />
-  </fxui:Window.Resources>
+  </fxui:View.Resources>
 
   <Grid Background="Black">
     <Grid.ColumnDefinitions>
@@ -74,7 +70,7 @@
               </fxui:HoverEffect>
             </fxui:Interaction.Behaviors>
             <Grid>
-              <Image Source="{Binding Photo.ThumbnailUrl}" Width="75" Height="75" />
+              <Image Source="{Binding Thumbnail}" Width="75" Height="75" />
               <app:Progress IsActive="{Binding IsImageLoading}" />
             </Grid>
           </Border>
@@ -135,4 +131,4 @@
     </fxui:ContentView>
 
   </Grid>
-</fxui:Window>
+</fxui:View>

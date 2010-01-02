@@ -109,11 +109,9 @@ namespace SilverlightFX.UserInterface.Actions {
                 }
             }
 
-            if (formModel == null) {
-                form = (Form)Activator.CreateInstance(formType);
-            }
-            else {
-                form = (Form)Activator.CreateInstance(formType, formModel);
+            form = (Form)Activator.CreateInstance(formType);
+            if (formModel != null) {
+                View.SetViewModel(form, formModel);
             }
 
             form.Show();
@@ -127,7 +125,7 @@ namespace SilverlightFX.UserInterface.Actions {
                 return AssociatedObject.DataContext;
             }
             else if (name == "$model") {
-                return View.GetModel(AssociatedObject);
+                return ViewModelAttribute.GetCurrentViewModel(AssociatedObject);
             }
             else if (name == "$element") {
                 return AssociatedObject;

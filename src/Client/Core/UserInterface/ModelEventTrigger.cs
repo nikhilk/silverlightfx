@@ -24,7 +24,7 @@ namespace SilverlightFX.UserInterface {
         protected override object GetSource() {
             FrameworkElement fe = AssociatedObject as FrameworkElement;
             if (fe != null) {
-                return View.GetModel(fe);
+                return ViewModelAttribute.GetCurrentViewModel(fe);
             }
             return null;
         }

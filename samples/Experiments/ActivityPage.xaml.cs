@@ -51,7 +51,7 @@ namespace Experiments {
         }
     }
 
-    public partial class ActivityPage : ViewUserControl {
+    public partial class ActivityPage : View {
 
         public ActivityPage() {
             InitializeComponent();

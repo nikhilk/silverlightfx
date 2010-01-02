@@ -9,8 +9,7 @@ namespace TaskList {
 
     public partial class EditTaskForm : Form {
 
-        public EditTaskForm(EditTaskFormModel model)
-            : base(model) {
+        public EditTaskForm() {
             InitializeComponent();
         }
     }

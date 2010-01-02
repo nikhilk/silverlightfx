@@ -7,7 +7,7 @@ using SilverlightFX.UserInterface;
 
 namespace TaskList {
 
-    public partial class TaskListWidget : Window {
+    public partial class TaskListWidget : View {
 
         public TaskListWidget() {
             InitializeComponent();

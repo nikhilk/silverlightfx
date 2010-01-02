@@ -5,7 +5,7 @@
   xmlns:fxeffect="clr-namespace:SilverlightFX.UserInterface.Effects;assembly=SilverlightFX"
   xmlns:fxnav="clr-namespace:SilverlightFX.UserInterface.Navigation;assembly=SilverlightFX"
   xmlns:fxaction="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
-  x:Class="NewsWidget.Views.News.ListPage" ModelType="NewsWidget.Views.News.ListPageModel">
+  x:Class="NewsWidget.Views.News.ListPage">
   <fxui:XGrid Rows="*,Auto">
     <fxui:ListView Style="{StaticResource newsItemListStyle}" DataSource="{Binding ListItems}">
       <fxui:ListView.ItemTemplate>

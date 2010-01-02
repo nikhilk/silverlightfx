@@ -5,7 +5,7 @@
   x:Class="EffectControl.App">
   
   <Application.ApplicationLifetimeObjects>
-    <fxapp:ApplicationContext x:Name="appContext" WindowName="Page" />
+    <fxapp:ApplicationContext x:Name="appContext" MainViewName="Page" />
   </Application.ApplicationLifetimeObjects>
   
 </Application>

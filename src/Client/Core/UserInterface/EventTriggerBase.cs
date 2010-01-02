@@ -59,7 +59,7 @@ namespace SilverlightFX.UserInterface {
                     FrameworkElement fe = AssociatedObject as FrameworkElement;
                     if (fe != null) {
                         if (String.Compare(_sourceName, "$model", StringComparison.Ordinal) == 0) {
-                            return View.GetModel(fe);
+                            return ViewModelAttribute.GetCurrentViewModel(fe);
                         }
                         if (String.Compare(_sourceName, "$dataContext", StringComparison.Ordinal) == 0) {
                             return fe.DataContext;

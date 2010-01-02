@@ -1,11 +1,10 @@
-﻿<fxui:ViewUserControl
+﻿<fxui:View
   xmlns="http://schemas.microsoft.com/client/2007" 
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
   xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
   xmlns:fxdata="clr-namespace:SilverlightFX.Data;assembly=SilverlightFX"
   xmlns:fxaction="clr-namespace:SilverlightFX.UserInterface.Actions;assembly=SilverlightFX"
-  x:Class="Experiments.DataSourcePage"
-  ModelType="Experiments.DataViewModel">
+  x:Class="Experiments.DataSourcePage">
   <Grid Background="White" Margin="20" HorizontalAlignment="Center">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="60" />
@@ -32,4 +31,4 @@
       </fxdata:ObjectDataSource.QueryParameters>
     </fxdata:ObjectDataSource>
   </Grid>
-</fxui:ViewUserControl>
+</fxui:View>

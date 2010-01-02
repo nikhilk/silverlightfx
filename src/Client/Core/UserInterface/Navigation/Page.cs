@@ -41,22 +41,6 @@ namespace SilverlightFX.UserInterface.Navigation {
         private EventHandler<PageStateEventArgs> _stateChangedHandler;
 
         /// <summary>
-        /// Initializes an instance of a Page.
-        /// </summary>
-        public Page()
-            : this(null) {
-        }
-
-        /// <summary>
-        /// Initializes an instance of a Page with an associated view model.
-        /// The view model is set as the DataContext of the Form.
-        /// </summary>
-        /// <param name="viewModel">The associated view model object.</param>
-        public Page(object viewModel)
-            : base(viewModel) {
-        }
-
-        /// <summary>
         /// Gets or sets the how the page should be cached or preserved when it
         /// is no longer the active page the PageFrame it is hosted in.
         /// True implies it must be preserved. False implies it should not be

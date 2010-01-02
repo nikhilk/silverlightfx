@@ -45,27 +45,6 @@ namespace SilverlightFX.UserInterface {
         private DelegateCommand _okCommand;
 
         /// <summary>
-        /// Initializes an instance of a Form.
-        /// </summary>
-        public Form() :
-            this(null) {
-        }
-
-        /// <summary>
-        /// Initializes an instance of a Form with an associated view model.
-        /// The view model is set as the DataContext of the Form.
-        /// </summary>
-        /// <param name="viewModel">The associated view model object.</param>
-        public Form(object viewModel)
-            : base(viewModel) {
-            _cancelCommand = new DelegateCommand(OnCancelCommand, /* canExecute */ true);
-            _okCommand = new DelegateCommand(OnOKCommand, /* canExecute */ true);
-
-            Resources.Add("CancelCommand", _cancelCommand);
-            Resources.Add("OKCommand", _okCommand);
-        }
-
-        /// <summary>
         /// Gets or sets the effect to be played when the form is closing.
         /// </summary>
         public AnimationEffect CloseEffect {
@@ -167,7 +146,7 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnCancelCommand() {
-            TaskViewModel model = View.GetModel(this) as TaskViewModel;
+            TaskViewModel model = View.GetViewModel(this) as TaskViewModel;
             if (model != null) {
                 model.Cancel(delegate() {
                     Close(FormResult.Cancel);
@@ -182,8 +161,19 @@ namespace SilverlightFX.UserInterface {
             CloseCore();
         }
 
+        /// <internalonly />
+        protected override void OnLoaded() {
+            base.OnLoaded();
+
+            _cancelCommand = new DelegateCommand(OnCancelCommand, /* canExecute */ true);
+            _okCommand = new DelegateCommand(OnOKCommand, /* canExecute */ true);
+
+            Resources.Add("CancelCommand", _cancelCommand);
+            Resources.Add("OKCommand", _okCommand);
+        }
+
         private void OnOKCommand() {
-            TaskViewModel model = View.GetModel(this) as TaskViewModel;
+            TaskViewModel model = View.GetViewModel(this) as TaskViewModel;
             if (model != null) {
                 model.Commit(delegate() {
                     Close(FormResult.OK);

@@ -1,4 +1,4 @@
-﻿// MainWindowModel.cs
+﻿// MainViewModel.cs
 //
 
 using System;
@@ -10,11 +10,11 @@ using TwitFaves.Data;
 
 namespace TwitFaves {
 
-    public class MainWindowModel : ViewModel {
+    public class MainViewModel : ViewModel {
 
         private ITwitterService _twitterService;
 
-        public MainWindowModel(ITwitterService twitterService) {
+        public MainViewModel(ITwitterService twitterService) {
             _twitterService = twitterService;
         }
 

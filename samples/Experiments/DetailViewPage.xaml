@@ -1,4 +1,4 @@
-﻿<fxui:Window
+﻿<fxui:View
     xmlns="http://schemas.microsoft.com/client/2007" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
@@ -7,9 +7,6 @@
     xmlns:fxtransitions="clr-namespace:SilverlightFX.UserInterface.Transitions;assembly=SilverlightFX"
     xmlns:app="clr-namespace:Experiments;assembly=Experiments"
     x:Class="Experiments.DetailViewPage">
-  <fxui:Window.Model>
-    <app:ListModel />
-  </fxui:Window.Model>
 
   <StackPanel Background="White" Margin="20" HorizontalAlignment="Center">
 
@@ -71,4 +68,4 @@
     </StackPanel>
 
   </StackPanel>
-</fxui:Window>
+</fxui:View>

@@ -5,7 +5,7 @@
   x:Class="WeatherWidget.App">
 
   <Application.ApplicationLifetimeObjects>
-    <fxapp:ApplicationContext x:Name="appContext" WindowName="Widget" ThemeName="Default" />
+    <fxapp:ApplicationContext x:Name="appContext" MainViewName="Widget" ThemeName="Default" />
   </Application.ApplicationLifetimeObjects>
   
 </Application>

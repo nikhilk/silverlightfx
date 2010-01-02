@@ -1,4 +1,4 @@
-﻿// NewsWindow.model.cs
+﻿// NewsWidgetModel.model.cs
 //
 
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace NewsWidget {
 
-    public sealed class NewsWindowModel : Model {
+    public sealed class NewsWidgetModel : Model {
 
         private string _searchText;
 

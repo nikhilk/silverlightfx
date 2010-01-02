@@ -17,14 +17,14 @@ using System.Windows.Media;
 
 namespace SilverlightFX.UserInterface {
 
-    // TODO: Add visual states for empty and for main window
-    // TODO: Add effect properties for showing/hiding forms and main window
+    // TODO: Add visual states for empty and for main view
+    // TODO: Add effect properties for showing/hiding forms and main view
 
     /// <summary>
     /// Represents the root visual of an application.
     /// </summary>
     [TemplatePart(Name = "RootElement", Type = typeof(Grid))]
-    [TemplatePart(Name = "WindowPresenter", Type = typeof(ContentPresenter))]
+    [TemplatePart(Name = "ViewPresenter", Type = typeof(ContentPresenter))]
     public sealed class Screen : ContentControl {
 
         /// <summary>
@@ -33,10 +33,10 @@ namespace SilverlightFX.UserInterface {
         public static readonly DependencyProperty FormBackgroundProperty =
             DependencyProperty.Register("FormBackground", typeof(Brush), typeof(Screen), null);
 
-        private ContentPresenter _windowPresenter;
+        private ContentPresenter _viewPresenter;
         private Grid _rootElement;
 
-        private Window _mainWindow;
+        private View _mainView;
         private Form _currentForm;
 
         /// <summary>
@@ -62,8 +62,8 @@ namespace SilverlightFX.UserInterface {
         internal void Close(Form form, Form previousForm) {
             _currentForm = previousForm;
             if (_currentForm == null) {
-                _mainWindow.IsEnabled = true;
-                _mainWindow.Focus();
+                _mainView.IsEnabled = true;
+                _mainView.Focus();
             }
         }
 
@@ -72,24 +72,24 @@ namespace SilverlightFX.UserInterface {
             base.OnApplyTemplate();
 
             _rootElement = GetTemplateChild("RootElement") as Grid;
-            _windowPresenter = GetTemplateChild("WindowPresenter") as ContentPresenter;
+            _viewPresenter = GetTemplateChild("ViewPresenter") as ContentPresenter;
 
-            if (_mainWindow != null) {
-                _windowPresenter.Content = _mainWindow;
+            if (_mainView != null) {
+                _viewPresenter.Content = _mainView;
             }
         }
 
-        internal void Run(Window mainWindow) {
-            if (_mainWindow != null) {
+        internal void Run(View mainView) {
+            if (_mainView != null) {
                 throw new InvalidOperationException("The screen already contains content.");
             }
-            _mainWindow = mainWindow;
+            _mainView = mainView;
 
-            if (_windowPresenter == null) {
+            if (_viewPresenter == null) {
                 ApplyTemplate();
             }
             else {
-                _windowPresenter.Content = _mainWindow;
+                _viewPresenter.Content = _mainView;
             }
         }
 
@@ -105,21 +105,21 @@ namespace SilverlightFX.UserInterface {
                 throw new ArgumentNullException("screenContent");
             }
 
-            Window window = screenContent as Window;
-            if (window == null) {
-                window = new Window(screenContent);
+            View view = screenContent as View;
+            if (view == null) {
+                view = new View(screenContent);
             }
 
-            Run(window);
+            Run(view);
         }
 
         internal void Show(Form form) {
-            if (_mainWindow == null) {
+            if (_mainView == null) {
                 return;
             }
 
             if (_currentForm == null) {
-                _mainWindow.IsEnabled = false;
+                _mainView.IsEnabled = false;
             }
 
             Grid overlayElement = null;

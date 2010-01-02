@@ -1,4 +1,4 @@
-﻿// MainWindow.model.cs
+﻿// MainViewModel.model.cs
 //
 
 using System;
@@ -9,7 +9,7 @@ using SilverlightFX.Applications;
 
 namespace Store {
 
-    public class MainWindowModel : Model {
+    public class MainViewModel : ViewModel {
 
         private Catalog _catalog;
         private ShoppingCart _cart;
@@ -20,7 +20,7 @@ namespace Store {
 
         private Product _selectedProduct;
 
-        public MainWindowModel(Catalog catalog, ShoppingCart cart, IExternalNavigationService navigationService) {
+        public MainViewModel(Catalog catalog, ShoppingCart cart, IExternalNavigationService navigationService) {
             _catalog = catalog;
             _catalog.ProductsLoaded += OnProductsLoaded;
             _catalog.LoadPopularProducts();
