@@ -1,3 +1,12 @@
+0.3.4 Release
+===============================================================================
+- ViewModel by convention (ViewModel is same name as View with Model or
+  ViewModel suffix). Override convention with [ViewModel] attribute on View
+  or by setting View.Model attached property.
+- Replaced Window and ViewUserControl with View
+- Renamed ApplicationContext.WindowName/Window with MainViewName/MainView
+
+
 0.3.3 Release
 ===============================================================================
 - ComponentModel enhancements:
