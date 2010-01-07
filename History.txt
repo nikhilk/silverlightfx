@@ -5,6 +5,9 @@
   or by setting View.Model attached property.
 - Replaced Window and ViewUserControl with View
 - Renamed ApplicationContext.WindowName/Window with MainViewName/MainView
+- Renamed Screen to ViewWorkspace and ApplicationContext.ScreenStyle to
+  WorkspaceStyle
+- Renamed TaskViewModel to FormViewModel
 
 
 0.3.3 Release

@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Experiments {
 
-    public class NumberEditModel : TaskViewModel {
+    public class NumberEditModel : FormViewModel {
 
         private int _number;
 

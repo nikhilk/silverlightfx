@@ -1,4 +1,4 @@
-﻿// Screen.cs
+﻿// ViewWorkspace.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -17,21 +17,20 @@ using System.Windows.Media;
 
 namespace SilverlightFX.UserInterface {
 
-    // TODO: Add visual states for empty and for main view
     // TODO: Add effect properties for showing/hiding forms and main view
 
     /// <summary>
-    /// Represents the root visual of an application.
+    /// Represents the workspace containing the main view of the application.
     /// </summary>
     [TemplatePart(Name = "RootElement", Type = typeof(Grid))]
     [TemplatePart(Name = "ViewPresenter", Type = typeof(ContentPresenter))]
-    public sealed class Screen : ContentControl {
+    public sealed class ViewWorkspace : ContentControl {
 
         /// <summary>
         /// Represents the FormBackground property.
         /// </summary>
         public static readonly DependencyProperty FormBackgroundProperty =
-            DependencyProperty.Register("FormBackground", typeof(Brush), typeof(Screen), null);
+            DependencyProperty.Register("FormBackground", typeof(Brush), typeof(ViewWorkspace), null);
 
         private ContentPresenter _viewPresenter;
         private Grid _rootElement;
@@ -40,10 +39,10 @@ namespace SilverlightFX.UserInterface {
         private Form _currentForm;
 
         /// <summary>
-        /// Initializes an instance of a Screen control.
+        /// Initializes an instance of a ViewWorkspace control.
         /// </summary>
-        public Screen() {
-            DefaultStyleKey = typeof(Screen);
+        public ViewWorkspace() {
+            DefaultStyleKey = typeof(ViewWorkspace);
         }
 
         /// <summary>
@@ -81,7 +80,7 @@ namespace SilverlightFX.UserInterface {
 
         internal void Run(View mainView) {
             if (_mainView != null) {
-                throw new InvalidOperationException("The screen already contains content.");
+                throw new InvalidOperationException("The workspace already contains a view.");
             }
             _mainView = mainView;
 
@@ -94,20 +93,20 @@ namespace SilverlightFX.UserInterface {
         }
 
         /// <summary>
-        /// Shows the specified content in the screen. Typically the Screen is created and its
-        /// content is set by the framework internally when you call XApplication.Run.
-        /// If you create the Screen yourself, you can initialize its content by calling this
+        /// Shows the specified content in the workspace. Typically the Workspace is created and its
+        /// content is set by the framework internally by ApplicationContext.
+        /// If you create the Workspace yourself, you can initialize its content by calling this
         /// method.
         /// </summary>
-        /// <param name="screenContent">The content to show on the screen.</param>
-        public void Show(FrameworkElement screenContent) {
-            if (screenContent == null) {
-                throw new ArgumentNullException("screenContent");
+        /// <param name="content">The content to show on the workspace.</param>
+        public void Show(FrameworkElement content) {
+            if (content == null) {
+                throw new ArgumentNullException("content");
             }
 
-            View view = screenContent as View;
+            View view = content as View;
             if (view == null) {
-                view = new View(screenContent);
+                view = new View(content);
             }
 
             Run(view);

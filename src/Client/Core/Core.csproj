@@ -197,7 +197,7 @@
     <Compile Include="_System\ComponentModel\Navigation\RedirectActionResult.cs" />
     <Compile Include="_System\ComponentModel\Navigation\IController.cs" />
     <Compile Include="_System\ComponentModel\ScriptExpression.cs" />
-    <Compile Include="_System\ComponentModel\TaskViewModel.cs" />
+    <Compile Include="_System\ComponentModel\FormViewModel.cs" />
     <Compile Include="_System\Presentation\BindingShim.cs" />
     <Compile Include="_System\Presentation\Controls\ViewModelAttribute.cs" />
     <Compile Include="_System\Presentation\Controls\IAsyncControl.cs" />
@@ -306,7 +306,7 @@
     <Compile Include="UserInterface\Navigation\Page.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="UserInterface\Screen.cs">
+    <Compile Include="UserInterface\ViewWorkspace.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInterface\TextFilter.cs">

@@ -1,4 +1,4 @@
-﻿// TaskViewModel.cs
+﻿// FormViewModel.cs
 // Copyright (c) Nikhil Kothari, 2008. All Rights Reserved.
 // http://www.nikhilk.net
 //
@@ -14,11 +14,11 @@ namespace System.ComponentModel {
 
     /// <summary>
     /// Provides a base class for implementing models that encapsulate
-    /// data and behavior associated with a task that can be canceled or
-    /// committed. While this is independent of presentation, this model
-    /// is typically associated with a Form.
+    /// data and behavior associated with a Form that can be canceled or
+    /// committed. The FormViewModel typically represents a task whose
+    /// completion causes the form to be closed.
     /// </summary>
-    public abstract class TaskViewModel : ViewModel {
+    public abstract class FormViewModel : ViewModel {
 
         private bool _committed;
         private bool _completed;

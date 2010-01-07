@@ -137,8 +137,8 @@ namespace SilverlightFX.UserInterface {
                 _parentForm.Focus();
             }
 
-            Screen currentScreen = Application.Current.RootVisual as Screen;
-            currentScreen.Close(this, _parentForm);
+            ViewWorkspace currentWorkspace = Application.Current.RootVisual as ViewWorkspace;
+            currentWorkspace.Close(this, _parentForm);
 
             if (_closedHandler != null) {
                 _closedHandler(this, EventArgs.Empty);
@@ -146,7 +146,7 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnCancelCommand() {
-            TaskViewModel model = View.GetViewModel(this) as TaskViewModel;
+            FormViewModel model = View.GetViewModel(this) as FormViewModel;
             if (model != null) {
                 model.Cancel(delegate() {
                     Close(FormResult.Cancel);
@@ -173,7 +173,7 @@ namespace SilverlightFX.UserInterface {
         }
 
         private void OnOKCommand() {
-            TaskViewModel model = View.GetViewModel(this) as TaskViewModel;
+            FormViewModel model = View.GetViewModel(this) as FormViewModel;
             if (model != null) {
                 model.Commit(delegate() {
                     Close(FormResult.OK);
@@ -193,10 +193,12 @@ namespace SilverlightFX.UserInterface {
         /// Shows the Form as a modal dialog.
         /// </summary>
         public void Show() {
-            Screen currentScreen = Application.Current.RootVisual as Screen;
-            if (currentScreen != null) {
-                currentScreen.Show(this);
+            ViewWorkspace currentWorkspace = Application.Current.RootVisual as ViewWorkspace;
+            if (currentWorkspace != null) {
+                currentWorkspace.Show(this);
             }
+
+            // TODO: Error otherwise?
         }
 
         internal void Show(Panel parentPanel, Form parentForm, FrameworkElement overlayElement) {

@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace TaskList {
 
-    public class EditTaskFormModel : TaskViewModel {
+    public class EditTaskFormModel : FormViewModel {
 
         private Task _task;
         private Task _originalTask;

@@ -51,7 +51,7 @@ namespace SilverlightFX.Applications {
         private IDictionary<string, string> _startupArguments;
         private string _themeName;
         private string _mainViewName;
-        private Style _screenStyle;
+        private Style _workspaceStyle;
         private IComponentContainer _componentContainer;
         private ComponentCollection _components;
         private Dictionary<Type, List<WeakDelegateReference>> _eventMap;
@@ -135,19 +135,6 @@ namespace SilverlightFX.Applications {
         }
 
         /// <summary>
-        /// The style applied to the screen or the root visual of the application.
-        /// </summary>
-        public Style ScreenStyle {
-            get {
-                return _screenStyle;
-            }
-            set {
-                EnsureUnstarted();
-                _screenStyle = value;
-            }
-        }
-
-        /// <summary>
         /// Gets the settings associated with the running application.
         /// </summary>
         public IsolatedStorageSettings Settings {
@@ -209,6 +196,20 @@ namespace SilverlightFX.Applications {
         public Uri Uri {
             get {
                 return Application.Current.Host.Source;
+            }
+        }
+
+        /// <summary>
+        /// The style applied to the ViewWorkspace representing the root visual of the application,
+        /// and the container of the main view.
+        /// </summary>
+        public Style WorkspaceStyle {
+            get {
+                return _workspaceStyle;
+            }
+            set {
+                EnsureUnstarted();
+                _workspaceStyle = value;
             }
         }
 
@@ -411,11 +412,11 @@ namespace SilverlightFX.Applications {
 
             _mainView = mainView;
 
-            Screen screen = new Screen();
-            screen.Style = ScreenStyle;
+            ViewWorkspace workspace = new ViewWorkspace();
+            workspace.Style = WorkspaceStyle;
 
-            Application.Current.RootVisual = screen;
-            screen.Run(mainView);
+            Application.Current.RootVisual = workspace;
+            workspace.Run(mainView);
         }
 
 

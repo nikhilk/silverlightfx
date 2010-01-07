@@ -48,13 +48,13 @@
     </Setter>
   </Style>
 
-  <!-- Screen -->
-  <Style TargetType="fxui:Screen">
+  <!-- ViewWorkspace -->
+  <Style TargetType="fxui:ViewWorkspace">
     <Setter Property="Background" Value="White" />
     <Setter Property="FormBackground" Value="#20000000" />
     <Setter Property="Template">
       <Setter.Value>
-        <ControlTemplate TargetType="fxui:Screen">
+        <ControlTemplate TargetType="fxui:ViewWorkspace">
           <Grid x:Name="RootElement">
             <ContentPresenter x:Name="ViewPresenter" />
           </Grid>
