@@ -1,0 +1,57 @@
+﻿<fxui:View
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:fxui="clr-namespace:SilverlightFX.UserInterface;assembly=SilverlightFX"
+  xmlns:local="clr-namespace:Translate"
+  x:Class="Translate.TranslateWindow"
+  mc:Ignorable="d"
+  d:DesignWidth="800" d:DesignHeight="600"
+  TextOptions.TextHintingMode="Animated">
+  
+  <fxui:View.Resources>
+    <fxui:Command x:Key="translateCommand" Method="Translate" />
+    <fxui:Command x:Key="speakCommand" Method="Speak" />
+  </fxui:View.Resources>
+
+  <Grid>
+    <Image Source="/Assets/Background.jpg" Stretch="UniformToFill" />
+    
+    <fxui:VStackPanel Margin="10" ChildAlignment="Center" ChildSpacing="4">
+      <fxui:HStackPanel HorizontalAlignment="Center" ChildAlignment="Center" ChildSpacing="10">
+        <ContentControl Style="{StaticResource logo}" />
+        <TextBlock Style="{StaticResource titleText}" Text="Microsoft Translator" />
+      </fxui:HStackPanel>
+
+      <TextBlock Style="{StaticResource labelText}"
+        Text="Enter some text to translate:" />
+      <TextBox Style="{StaticResource inputText}"
+        AcceptsReturn="True" Width="400" Height="100"
+        HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto"
+        Text="{Binding Text, Mode=TwoWay}" />
+
+      <TextBlock Style="{StaticResource labelText}"
+        Text="Select a language:" />
+      <ComboBox Width="100" ItemsSource="{Binding Languages}" DisplayMemberPath="Name"
+        fxui:Commands.Selection="{StaticResource translateCommand}" />
+
+      <Border Style="{StaticResource displayArea}" Margin="0,10,0,0">
+        <TextBlock Style="{StaticResource labelText}" Width="400"
+          Text="{Binding TranslatedText}" />
+      </Border>
+      
+      <Button Width="100" Height="23"
+        fxui:Commands.Click="{StaticResource speakCommand}"
+        Content="Say It!" />
+    </fxui:VStackPanel>
+
+    <MediaElement x:Name="mediaPlayer" IsMuted="False" AutoPlay="True">
+      <fxui:Interaction.Triggers>
+        <fxui:ModelEventTrigger EventName="PlayStream">
+          <local:PlayWaveAudio />
+        </fxui:ModelEventTrigger>
+      </fxui:Interaction.Triggers>
+    </MediaElement>
+  </Grid>
+</fxui:View>
