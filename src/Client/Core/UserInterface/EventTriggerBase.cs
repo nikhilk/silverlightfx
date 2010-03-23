@@ -92,6 +92,37 @@ namespace SilverlightFX.UserInterface {
             base.OnAttach();
 
             object source = GetSource();
+            if (source == null) {
+                FrameworkElement element = AssociatedObject as FrameworkElement;
+                if (element != null) {
+                    element.Loaded += (s, e) => {
+                        SubscribeDeferred();
+                    };
+                }
+                else {
+                    SubscribeDeferred();
+                }
+            }
+            else {
+                Subscribe(source);
+            }
+        }
+
+        /// <internalonly />
+        protected override void OnDetach() {
+            if (_eventHandler != null) {
+                object source = GetSource();
+                Unsubscribe(source);
+            }
+
+            base.OnDetach();
+        }
+
+        private void OnEvent(object sender, EventArgs e) {
+            HandleEvent(e);
+        }
+
+        private void Subscribe(object source) {
             string eventName = GetEventName();
 
             Type sourceType = source.GetType();
@@ -113,25 +144,26 @@ namespace SilverlightFX.UserInterface {
             eventInfo.AddEventHandler(source, _eventHandler);
         }
 
-        /// <internalonly />
-        protected override void OnDetach() {
-            if (_eventHandler != null) {
+        private void SubscribeDeferred() {
+            AssociatedObject.Dispatcher.BeginInvoke(delegate() {
                 object source = GetSource();
-                string eventName = GetEventName();
+                if (source == null) {
+                    return;
+                }
 
-                Type sourceType = source.GetType();
-                EventInfo eventInfo = sourceType.GetEvent(eventName, BindingFlags.Public | BindingFlags.Instance |
-                                                                     BindingFlags.FlattenHierarchy);
-
-                eventInfo.RemoveEventHandler(source, _eventHandler);
-                _eventHandler = null;
-            }
-
-            base.OnDetach();
+                Subscribe(source);
+            });
         }
 
-        private void OnEvent(object sender, EventArgs e) {
-            HandleEvent(e);
+        private void Unsubscribe(object source) {
+            string eventName = GetEventName();
+
+            Type sourceType = source.GetType();
+            EventInfo eventInfo = sourceType.GetEvent(eventName, BindingFlags.Public | BindingFlags.Instance |
+                                                                 BindingFlags.FlattenHierarchy);
+
+            eventInfo.RemoveEventHandler(source, _eventHandler);
+            _eventHandler = null;
         }
     }
 }

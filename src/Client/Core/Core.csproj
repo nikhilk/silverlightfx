@@ -82,6 +82,9 @@
     <Compile Include="Data\BoundParameter.cs" />
     <Compile Include="Data\StringTrimmer.cs" />
     <Compile Include="UserInterface\ActivityControl.cs" />
+    <Compile Include="UserInterface\Command.cs" />
+    <Compile Include="UserInterface\CommandExecutingEventArgs.cs" />
+    <Compile Include="UserInterface\Commands.cs" />
     <Compile Include="UserInterface\LinkLabel.cs" />
     <Compile Include="UserInterface\WrapPanel.cs" />
     <Compile Include="UserInterface\DoubleClickTrigger.cs" />

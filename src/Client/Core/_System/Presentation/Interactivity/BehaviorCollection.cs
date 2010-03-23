@@ -26,6 +26,22 @@ namespace System.Windows.Interactivity {
             _associatedObject = o;
         }
 
+        /// <summary>
+        /// Gets the specified type of behavior if it is attached to the element.
+        /// </summary>
+        /// <typeparam name="TBehavior">The type of behavior to lookup.</typeparam>
+        /// <returns>The instance of the behavior if it is present.</returns>
+        public TBehavior GetBehavior<TBehavior>() where TBehavior : Behavior {
+            Type behaviorType = typeof(TBehavior);
+            foreach (Behavior b in this) {
+                if (behaviorType.IsAssignableFrom(b.GetType())) {
+                    return (TBehavior)b;
+                }
+            }
+
+            return null;
+        }
+
         /// <internalonly />
         protected override void InsertItem(int index, Behavior item) {
             base.InsertItem(index, item);
